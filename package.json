@@ -1,0 +1,61 @@
+{
+  "name": "vue-baidu-map-3x",
+  "author": "YangJianFei",
+  "private": false,
+  "version": "1.0.5",
+  "description": "vue-baidu-map的vue3版本。Baidu Map Component for Vue 3.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "vite",
+    "vue",
+    "vue2",
+    "vue3",
+    "baidu-map",
+    "vue-baidu-map",
+    "vue3-baidu-map",
+    "vue-baidu-map-3x",
+    "vue-baidu-map-3",
+    "vue-baidu-map-3.0",
+    "vue-baidu-map-v3"
+  ],
+  "files": [
+    "dist",
+    "components"
+  ],
+  "main": "./dist/vue-baidu-map-3x.umd.js",
+  "module": "./dist/vue-baidu-map-3x.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-baidu-map-3x.es.js",
+      "require": "./dist/vue-baidu-map-3x.umd.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YangJianFei/vue3x-baidu-map.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YangJianFei/vue3x-baidu-map/issues"
+  },
+  "homepage": "https://github.com/YangJianFei/vue3x-baidu-map#readme",
+  "license": "MIT",
+  "dependencies": {
+    "bmaplib.curveline": "^1.0.0",
+    "bmaplib.heatmap": "^1.0.4",
+    "bmaplib.lushu": "^1.0.7",
+    "bmaplib.markerclusterer": "^1.0.13",
+    "tiny-emitter": "^2.1.0",
+    "vue": "^3.2.25"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.0",
+    "vite": "^2.8.0"
+  }
+}
