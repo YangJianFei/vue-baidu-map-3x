@@ -2,7 +2,7 @@
   "name": "vue-baidu-map-3x",
   "author": "YangJianFei",
   "private": false,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "vue-baidu-map的vue3版本。Baidu Map Component for Vue 3.0",
   "scripts": {
     "dev": "vite",
@@ -17,6 +17,7 @@
     "baidu-map",
     "vue-baidu-map",
     "vue3-baidu-map",
+    "vue3x-baidu-map",
     "vue-baidu-map-3x",
     "vue-baidu-map-3",
     "vue-baidu-map-3.0",
@@ -36,12 +37,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YangJianFei/vue3x-baidu-map.git"
+    "url": "git+https://github.com/YangJianFei/vue-baidu-map-3x.git"
   },
   "bugs": {
-    "url": "https://github.com/YangJianFei/vue3x-baidu-map/issues"
+    "url": "https://github.com/YangJianFei/vue-baidu-map-3x/issues"
   },
-  "homepage": "https://github.com/YangJianFei/vue3x-baidu-map#readme",
+  "homepage": "https://github.com/YangJianFei/vue-baidu-map-3x#readme",
   "license": "MIT",
   "dependencies": {
     "bmaplib.curveline": "^1.0.0",
