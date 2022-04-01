@@ -1,22 +1,22 @@
 # VUE3 BAIDU MAP
 
-## fork vue-baidu-map组件的vue3版本
+## fork vue-baidu-map组件通过vite构建的vue3版本
 
 <p align="center">
-  <img src="https://dafrok.github.io/vue-baidu-map/favicon.png" width="200px">
+  <img src="https://yangjianfei.github.io/vue-baidu-map-3x/favicon.png" width="200px">
 </p>
 <p align="center">基于 VUE 3.x 的百度地图组件</p>
 
-## vite/webpack可直接使用(通过vite构建)
+[![npm](https://img.shields.io/npm/v/vue-baidu-map-3x.svg)]()
 
 ## 语言
 
-- [中文](https://github.com/Dafrok/vue-baidu-map/blob/master/README.zh.md)
-- [English](https://github.com/Dafrok/vue-baidu-map/blob/master/README.md)
+- [中文](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/README.md)
+- [English](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/README.en.md)
 
 ## 文档
 
-[https://dafrok.github.io/vue-baidu-map](https://dafrok.github.io/vue-baidu-map)
+[https://yangjianfei.github.io/vue-baidu-map-3x/](https://yangjianfei.github.io/vue-baidu-map-3x/)
 
 ## 开始
 
