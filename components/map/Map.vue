@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="$attrs.class" :style="$attrs.style">
     <div v-if="!hasBmView" ref="view" style="width: 100%; height: 100%">
     </div>
     <slot></slot>
@@ -10,9 +10,12 @@
 import bindEvents from '../base/bindEvent.js'
 import { checkType } from '../base/util.js'
 import EvenBus from '../base/eventBus.js'
+import MapView from './MapView.vue';
 
 export default {
   name: 'bm-map',
+  inheritAttrs: false,
+  emits: ['ready'],
   props: {
     ak: {
       type: String
@@ -217,12 +220,12 @@ export default {
       }
       let $el = this.$refs.view
       if (this.$slots.default) {
-        for (let $node of this.$slots.default() || []) {
-          if ($node.componentOptions && $node.componentOptions.tag === 'bm-view') {
-            this.hasBmView = true
-            $el = $node.elm
-          }
-        }
+        // for (let $node of this.$slots.default() || []) {
+        //   if ($node.type && $node.type.name && 'bm-view' === $node.type.name) {
+        //     this.hasBmView = true
+        //     $el = $node.elm  // 获取不到$el 暂时去掉
+        //   }
+        // }
       }
       const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick })
       this.map = map
@@ -284,7 +287,9 @@ export default {
   },
   data() {
     return {
-      hasBmView: false
+      hasBmView: false,
+      map: null,
+      BMap: null
     }
   }
 }
