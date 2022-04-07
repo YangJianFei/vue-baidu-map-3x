@@ -22,6 +22,10 @@ const routes = [
     {
         path: '/map-view',
         component: () => import('_c/map-view.vue')
+    },
+    {
+        path: '/scale',
+        component: () => import('_c/scale.vue')
     }
 ];
 

@@ -10,7 +10,6 @@
 import bindEvents from '../base/bindEvent.js'
 import { checkType } from '../base/util.js'
 import EvenBus from '../base/eventBus.js'
-import MapView from './MapView.vue';
 
 export default {
   name: 'bm-map',
