@@ -44,7 +44,7 @@ export default {
           content: item.content,
           bounds
         })
-        this.originInstance.getCopyrightCollection()
+        // this.originInstance.getCopyrightCollection()
       })
     }
   }

@@ -46,6 +46,7 @@
   "license": "MIT",
   "dependencies": {
     "bmaplib.curveline": "^1.0.0",
+    "bmaplib.distancetool": "^1.0.2",
     "bmaplib.heatmap": "^1.0.4",
     "bmaplib.lushu": "^1.0.7",
     "bmaplib.markerclusterer": "^1.0.13",
