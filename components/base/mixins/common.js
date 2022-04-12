@@ -15,7 +15,7 @@ const types = {
 }
 
 const getParent = $component => {
-  return ($component.abstract || ($component.$slots.default && $component.$el === $component.$slots.default()[0]?.$el)) ? getParent($component.$parent) : $component
+  return ($component.abstract || $component.name !== 'bm-map') ? getParent($component.$parent) : $component
 }
 //($component.abstract || $component.$el === $component.$children[0].$el) ? getParent($component.$parent) : $component
 
@@ -71,7 +71,7 @@ class Mixin {
         return this.$parent.preventChildrenRender
       }
     }
-    this.mounted = function () {
+    this.created = function () {
       const $parent = getParent(this.$parent)
       const map = $parent.map
       const { ready } = this

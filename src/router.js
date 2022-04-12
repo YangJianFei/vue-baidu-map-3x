@@ -24,8 +24,12 @@ const routes = [
         component: () => import('_c/map-view.vue')
     },
     {
-        path: '/scale',
-        component: () => import('_c/scale.vue')
+        path: '/control',
+        component: () => import('_c/control.vue')
+    },
+    {
+        path: '/cover',
+        component: () => import('_c/cover.vue')
     }
 ];
 

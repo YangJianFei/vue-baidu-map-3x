@@ -56,6 +56,8 @@
 import { ref, onUnmounted } from 'vue';
 import DistanceTool from 'bmaplib.distancetool'
 
+window.global = window.global || window;
+
 const controlType = ref('citylist');
 const distanceTool = ref(null);
 

@@ -294,7 +294,8 @@ export default {
     return {
       hasBmView: false,
       map: null,
-      BMap: null
+      BMap: null,
+      name: 'bm-map'
     }
   }
 }
