@@ -1,7 +1,7 @@
 <template>
-<div>
-  <slot></slot>
-</div>
+  <div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -16,34 +16,37 @@ export default {
   },
   mixins: [commonMixin('contextMenu')],
   methods: {
-    load () {
-      const {width, BMap, map, $parent} = this
+    load() {
+      const { width, BMap, map, $parent } = this
       const parent = this.parent = $parent.originInstance || map
       if (this.originInstance) {
         parent.removeContextMenu(this.originInstance)
       }
       const menu = this.originInstance = new BMap.ContextMenu()
-      for (const item of this.$children) {
-        if (item.seperator) {
-          menu.addSeparator()
-          continue
-        }
-        const menuItem = new BMap.MenuItem(item.text, function (point, pixel) {
-          item.callback({
-            point,
-            pixel,
-            BMap,
-            map,
-            target: parent
+      if (this.$slots.default) {
+        for (const item of this.$slots.default() || []) {
+          const props = item.props;
+          if (props.seperator) {
+            menu.addSeparator()
+            continue
+          }
+          const menuItem = new BMap.MenuItem(props.text, function (point, pixel) {
+            props.callback({
+              point,
+              pixel,
+              BMap,
+              map,
+              target: parent
+            })
+          }, {
+            width,
+            id: props.id,
+            iconUrl: props.iconUrl
           })
-        }, {
-          width,
-          id: item.id,
-          iconUrl: item.iconUrl
-        })
-        item.disabled ? menuItem.disable() : menuItem.enable()
-        item.originInstance = menuItem
-        menu.addItem(menuItem)
+          props.disabled ? menuItem.disable() : menuItem.enable()
+          props.originInstance = menuItem
+          menu.addItem(menuItem)
+        }
       }
       parent.addContextMenu(menu)
     }

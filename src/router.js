@@ -30,6 +30,22 @@ const routes = [
     {
         path: '/cover',
         component: () => import('_c/cover.vue')
+    },
+    {
+        path: '/layer',
+        component: () => import('_c/layer.vue')
+    },
+    {
+        path: '/search',
+        component: () => import('_c/search.vue')
+    },
+    {
+        path: '/menu',
+        component: () => import('_c/menu.vue')
+    },
+    {
+        path: '/error',
+        component: () => import('_c/error.vue')
     }
 ];
 

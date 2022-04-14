@@ -1,7 +1,7 @@
 <template>
-<span>
-  <slot></slot>
-</span>
+  <span>
+    <slot></slot>
+  </span>
 </template>
 <script>
 export default {
@@ -9,7 +9,7 @@ export default {
   props: {
     callback: {
       type: Function,
-      default: function () {}
+      default: function () { }
     },
     text: {
       type: String
@@ -25,37 +25,38 @@ export default {
     },
     seperator: {
       type: Boolean
-    }
+    },
+    originInstance: {}
   },
   methods: {
-    reload () {
+    reload() {
       this.$parent.map && this.$parent.load()
     }
   },
   watch: {
-    text () {
+    text() {
       this.reload()
     },
-    iconUrl () {
+    iconUrl() {
       this.reload()
     },
-    id () {
+    id() {
       this.reload()
     },
-    disabled () {
+    disabled() {
       this.reload()
     },
-    iseperator () {
+    iseperator() {
       this.reload()
     },
-    callback () {
+    callback() {
       this.reload()
     }
   },
-  destroyed () {
+  destroyed() {
     this.reload()
   },
-  mounted () {
+  mounted() {
     this.reload()
   }
 }
