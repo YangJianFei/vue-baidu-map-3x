@@ -25,6 +25,17 @@
         </bm-context-menu>
       </bm-marker>
     </baidu-map>
+    <baidu-map v-if="activeType==='area'" class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="10">
+      <bm-boundary name="北京市海淀区" :strokeWeight="2" strokeColor="blue"></bm-boundary>
+    </baidu-map>
+    <baidu-map v-if="activeType==='auto'" class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="11">
+      <bm-control :offset="{width: '10px', height: '10px'}">
+        <bm-auto-complete v-model="keyword" :sugStyle="{zIndex: 1}">
+          <input placeholder="请输入地名关键字" />
+        </bm-auto-complete>
+      </bm-control>
+      <bm-local-search :keyword="keyword" :auto-viewport="true"></bm-local-search>
+    </baidu-map>
   </div>
 </template>
 
@@ -35,6 +46,8 @@ const activeType = ref('menu');
 const labels = ref([
   { name: '菜单', type: 'menu' },
   { name: 'maker菜单', type: 'makerMenu' },
+  { name: '行政区域', type: 'area' },
+  { name: '自动填充', type: 'auto' },
 ]);
 
 const center = ref({
@@ -42,6 +55,7 @@ const center = ref({
   lat: 39.915
 });
 const zoom = ref(15);
+const keyword = ref();
 
 const gotoBeijing = (e) => {
   center.value = {

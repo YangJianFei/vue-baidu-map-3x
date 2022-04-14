@@ -1,9 +1,9 @@
 <template>
-<span>
-  <slot>
-    <input>
-  </slot>
-</span>
+  <span>
+    <slot>
+      <input>
+    </slot>
+  </span>
 </template>
 
 <script>
@@ -13,6 +13,7 @@ import bindEvents from '../base/bindEvent.js'
 export default {
   name: 'bm-autocomplete',
   mixins: [commonMixin()],
+  emits: ['update:modelValue'],
   props: {
     types: {
       type: String
@@ -22,22 +23,23 @@ export default {
     },
     sugStyle: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
-    }
+    },
+    modelValue: {}
   },
   watch: {
-    types () {
+    types() {
       this.reload()
     },
-    location () {
+    location() {
       this.reload()
     }
   },
   methods: {
-    load () {
-      const {BMap, map, $el, types, location, sugStyle} = this
+    load() {
+      const { BMap, map, $el, types, location, sugStyle } = this
       const input = $el.querySelector('input')
       if (!input) {
         return
@@ -60,7 +62,7 @@ export default {
       // Support v-model
       this.originInstance.addEventListener('onconfirm', e => {
         const val = e.item.value
-        this.$emit('input', val.province + val.city + val.district + val.street + val.business)
+        this.$emit('update:modelValue', val.province + val.city + val.district + val.street + val.business)
       })
 
       bindEvents.call(this, this.originInstance)
