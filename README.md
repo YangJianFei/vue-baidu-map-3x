@@ -66,5 +66,7 @@ app.use(BaiduMap, {
 ## 关于我
 
 扫描添加下方的微信(<span style="color:red;">yjf163163</span>)并回复加群，即可加入”<span style="color:red;">前端男海群</span>“。交流学习，及时获取代码最新动态。
-<img src="https://yangjianfei.github.io/vue-baidu-map-3x/heifahaizei.png" width="256px">
+<div>
+  <img src="https://yangjianfei.github.io/vue-baidu-map-3x/heifahaizei.png" width="256px">
+</div>
 如果对你有帮助送我一颗小星星（づ￣3￣）づ╭❤～
