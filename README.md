@@ -36,8 +36,8 @@ const app = createApp(App);
 app.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: 'YOUR_APP_KEY',
-  v:'2.0',  // 默认使用3.0
-  type: 'WebGL' // ||API 默认API  (使用此模式 BMap=BMapGL)
+  // v:'2.0',  // 默认使用3.0
+  // type: 'WebGL' // ||API 默认API  (使用此模式 BMap=BMapGL)
 });
 ```
 
@@ -50,7 +50,7 @@ app.use(BaiduMap, {
 </template>
 
 <script setup>
-const ready = ({Bmap,map})=>{
+const ready = ({BMap,map})=>{
   //  对地图进行自定义操作
 };
 </script>

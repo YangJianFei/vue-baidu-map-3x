@@ -7,7 +7,8 @@ import '@/assets/css/common.scss'
 const app = createApp(App);
 
 app.use(BaiduMap, {
-    ak: 'rlgqKI41z2TzKv9mpVb60LiZptSguMBU'
+    ak: 'rlgqKI41z2TzKv9mpVb60LiZptSguMBU',
+    type: 'WebGL'
 });
 app.use(Router);
 app.mount('#app');

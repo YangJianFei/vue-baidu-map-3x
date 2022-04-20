@@ -1,11 +1,12 @@
 <script>
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
-import {createPoint, createSize} from '../base/factory.js'
+import { createPoint, createSize } from '../base/factory.js'
+import { deleteEmptyKey } from 'c/base/util.js'
 
 export default {
   name: 'bm-label',
-  render () {},
+  render() { },
   mixins: [commonMixin('overlay')],
   props: {
     content: {
@@ -27,20 +28,20 @@ export default {
     }
   },
   watch: {
-    content (val) {
+    content(val) {
       this.originInstance.setContent(val)
     },
-    title (val) {
+    title(val) {
       this.originInstance.setTitle(val)
     },
-    'offset.width' (val, oldVal) {
-      const {BMap} = this
+    'offset.width'(val, oldVal) {
+      const { BMap } = this
       if (val.toString() !== oldVal.toString()) {
-        this.originInstance.setOffset(createSize(BMap, {width: val, height: this.offset.height}))
+        this.originInstance.setOffset(createSize(BMap, { width: val, height: this.offset.height }))
       }
     },
-    'offset.height' (val, oldVal) {
-      const {BMap} = this
+    'offset.height'(val, oldVal) {
+      const { BMap } = this
       if (val.toString() !== oldVal.toString()) {
         this.originInstance.setOffset(createSize(BMap, {
           width: this.offset.width,
@@ -48,41 +49,43 @@ export default {
         }))
       }
     },
-    'position.lng' (val, oldVal) {
-      const {BMap} = this
+    'position.lng'(val, oldVal) {
+      const { BMap } = this
       const lng = val
       if (val.toString() !== oldVal.toString() && lng >= -180 && lng <= 180) {
-        this.originInstance.setCenter(createPoint(BMap, {lng, lat: this.center.lat}))
+        this.originInstance.setCenter(createPoint(BMap, { lng, lat: this.center.lat }))
       }
     },
-    'position.lat' (val, oldVal) {
-      const {BMap} = this
+    'position.lat'(val, oldVal) {
+      const { BMap } = this
       const lat = val
       if (val.toString() !== oldVal.toString() && lat >= -74 && lat <= 74) {
-        this.originInstance.setCenter(createPoint(BMap, {lng: this.center.lng, lat}))
+        this.originInstance.setCenter(createPoint(BMap, { lng: this.center.lng, lat }))
       }
     },
     labelStyle: {
-      handler (val) {
+      handler(val) {
         this.originInstance.setStyle(val)
       },
       deep: true
     },
-    zIndex (val) {
+    zIndex(val) {
       this.originInstance.setZIndex(val)
     },
-    massClear (val) {
+    massClear(val) {
       val ? this.originInstance.enableMassClear() : this.originInstance.disableMassClear()
     }
   },
   methods: {
-    load () {
-      const {BMap, map, content, title, offset, position, labelStyle, zIndex, massClear, $parent} = this
-      const overlay = new BMap.Label(content, {
+    load() {
+      const { BMap, map, content, title, offset, position, labelStyle, zIndex, massClear, $parent } = this
+      let labelOption = {
         offset: createSize(BMap, offset),
         position: createPoint(BMap, position),
         enableMassClear: massClear
-      })
+      };
+      deleteEmptyKey(labelOption);
+      const overlay = new BMap.Label(content, labelOption)
       this.originInstance = overlay
       try {
         $parent.originInstance.setLabel(overlay)

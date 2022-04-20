@@ -1,3 +1,6 @@
+
+import { deleteEmptyKey } from 'c/base/util.js'
+
 export function createPoint(BMap, options = {}) {
   const { lng, lat } = options
   return new BMap.Point(lng, lat)
@@ -20,27 +23,31 @@ export function createSize(BMap, options = {}) {
 
 export function createIcon(BMap, options = {}) {
   const { url, size, opts = {} } = options
-  return new BMap.Icon(url, createSize(BMap, size), {
+  let iconOption = {
     anchor: opts.anchor && createSize(BMap, opts.anchor),
     imageSize: opts.imageSize && createSize(BMap, opts.imageSize),
     imageOffset: opts.imageOffset && createSize(BMap, opts.imageOffset),
     infoWindowAnchor: opts.infoWindowAnchor && createSize(BMap, opts.infoWindowAnchor),
     printImageUrl: opts.printImageUrl
-  })
+  };
+  deleteEmptyKey(iconOption);
+  return new BMap.Icon(url, createSize(BMap, size), iconOption)
 }
 
 export function createLabel(BMap, options = {}) {
   const { content, opts } = options
-  return new BMap.Label(content, {
+  let labelOption = {
     offset: opts.offset && createSize(BMap, opts.offset),
     position: opts.position && createPoint(BMap, opts.position),
     enableMassClear: opts.enableMassClear
-  })
+  };
+  deleteEmptyKey(labelOption);
+  return new BMap.Label(content, labelOption)
 }
 
 export function createSymbol(BMap, options = {}) {
   const { path, opts } = options
-  return new BMap.Symbol(window[path] || path, {
+  let symbolOption = {
     anchor: opts.anchor && createSize(BMap, opts.anchor),
     fillColor: opts.fillColor,
     fillOpacity: opts.fillOpacity,
@@ -49,7 +56,9 @@ export function createSymbol(BMap, options = {}) {
     strokeColor: opts.strokeColor,
     strokeOpacity: opts.strokeOpacity,
     strokeWeight: opts.strokeWeight
-  })
+  };
+  deleteEmptyKey(symbolOption);
+  return new BMap.Symbol(window[path] || path, symbolOption)
 }
 
 export function createIconSequence(BMap, options = {}) {

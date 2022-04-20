@@ -1,6 +1,7 @@
 <script>
 import commonMixin from '../base/mixins/common.js'
 import { createSize } from '../base/factory.js'
+import { deleteEmptyKey } from 'c/base/util.js'
 
 export default {
   name: 'bm-map-type',
@@ -26,12 +27,14 @@ export default {
       const { BMap, map, anchor, offset, type } = this
       const mapTypes = []
       this.mapTypes && this.mapTypes.forEach(item => mapTypes.push(window[item]))
-      this.originInstance = new BMap.MapTypeControl({
+      let maptypeControlOption = {
         anchor: window[anchor],
         offset: offset && createSize(BMap, offset),
         type: window[type],
         mapTypes
-      })
+      };
+      deleteEmptyKey(maptypeControlOption);
+      this.originInstance = new BMap.MapTypeControl(maptypeControlOption)
       map.addControl(this.originInstance)
     }
   }

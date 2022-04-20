@@ -2,6 +2,7 @@
 import { createSize } from '../base/factory.js'
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
+import { deleteEmptyKey } from 'c/base/util.js'
 
 export default {
   name: 'bm-overview-map',
@@ -42,12 +43,14 @@ export default {
       this.mapTypes && this.mapTypes.forEach(item => {
         mapTypes.push(window[item])
       })
-      this.originInstance = new BMap.OverviewMapControl({
+      let overviewOption = {
         anchor: window[anchor],
         offset: createSize(BMap, offset),
         size: createSize(BMap, size),
         isOpen
-      })
+      };
+      deleteEmptyKey(overviewOption);
+      this.originInstance = new BMap.OverviewMapControl(overviewOption)
       bindEvents.call(this, this.originInstance)
       map.addControl(this.originInstance)
     }

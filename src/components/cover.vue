@@ -18,7 +18,7 @@
       </bm-marker>
     </baidu-map>
     <baidu-map v-else-if="activeType==='customPoint'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-      <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" :icon="{url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif', size: {width: 300, height: 157}}"></bm-marker>
+      <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" :icon="{url: './heifahaizei.png', size: {width: 52, height: 26}}"></bm-marker>
     </baidu-map>
     <baidu-map v-else-if="activeType==='infoPoint'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
       <bm-marker :position="markerPoint" :dragging="true" @click="infoWindowOpen">
