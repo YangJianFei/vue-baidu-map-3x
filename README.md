@@ -80,3 +80,7 @@ const ready = ({Bmap,map})=>{
   <img src="https://yangjianfei.github.io/vue-baidu-map-3x/heifahaizei.png" width="256px">
 </div>
 如果对你有帮助送我一颗小星星（づ￣3￣）づ╭❤～
+
+
+## 更新日志
+[更新日志](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/changelogs.md)
