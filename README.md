@@ -1,6 +1,6 @@
 # VUE3 BAIDU MAP
 
-## fork vue-baidu-map组件通过vite构建的vue3版本（支持地图v2.0和v3.0）
+## fork vue-baidu-map组件通过vite构建的vue3版本（支持地图v2.0、v3.0和webGl）
 
 <p align="center">
   <img src="https://yangjianfei.github.io/vue-baidu-map-3x/favicon.png" width="200px">

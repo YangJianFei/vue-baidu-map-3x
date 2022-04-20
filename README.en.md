@@ -1,6 +1,6 @@
 # VUE BAIDU MAP
 
-## fork vue-baidu-map  vue3 (build by vite，support baidu v2.0 and v3.0)
+## fork vue-baidu-map  vue3 (build by vite，support baidu v2.0 、 v3.0 and webGl)
 
 <p align="center">
   <img src="https://yangjianfei.github.io/vue-baidu-map-3x/favicon.png" width="200px">
