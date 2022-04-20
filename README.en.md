@@ -60,4 +60,13 @@ Vue.use(BaiduMap, {
 
 [MIT 许可证](https://opensource.org/licenses/MIT)
 
-版权所有 (c) 2016至今, YangJianFei <1294485765@qq.com>
+copyright (c) 2016至今, YangJianFei <1294485765@qq.com>
+
+
+## About me
+
+wechart:yjf163163  wechart group:scan me
+<div>
+  <img src="https://yangjianfei.github.io/vue-baidu-map-3x/heifahaizei.png" width="256px">
+</div>
+Hope you star!（づ￣3￣）づ╭<span style="color:red;">❤</span>～
