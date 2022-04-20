@@ -78,8 +78,7 @@ class Mixin {
       map ? ready() : EvenBus.$on('ready', ready)
       //$parent.$on('ready', ready)
     }
-    this.destroyed = destroyInstance
-    this.beforeDestroy = destroyInstance
+    this.unmounted = destroyInstance
   }
 }
 

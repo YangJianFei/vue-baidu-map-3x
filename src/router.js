@@ -44,6 +44,10 @@ const routes = [
         component: () => import('_c/menu.vue')
     },
     {
+        path: '/else',
+        component: () => import('_c/else.vue')
+    },
+    {
         path: '/error',
         component: () => import('_c/error.vue')
     }

@@ -12,6 +12,7 @@ import { createLabel, createIcon, createPoint } from '../base/factory.js'
 export default {
   name: 'bm-marker',
   mixins: [commonMixin('overlay')],
+  inject: ['Cluster'],
   props: {
     position: {},
     offset: {},
@@ -157,7 +158,11 @@ export default {
         map.addOverlay(overlay)
       }
       overlay.setAnimation(window[animation])
+      this.Cluster?.addMaker(this);
     }
+  },
+  beforeUnmount() {
+    this.Cluster?.removeMaker(this);
   }
 }
 </script>
