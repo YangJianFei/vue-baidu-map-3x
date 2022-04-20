@@ -99,7 +99,7 @@ export default {
         height,
         title,
         maxWidth,
-        offset: createSize(BMap, offset),
+        offset: offset && createSize(BMap, offset),
         enableAutoPan: autoPan,
         enableCloseOnClick: closeOnClick,
         enableMessage: typeof message === 'undefined',
@@ -130,7 +130,7 @@ export default {
     },
     openInfoWindow() {
       const { BMap, $container, position, originInstance } = this
-      $container.openInfoWindow(originInstance, createPoint(BMap, position))
+      $container.openInfoWindow(originInstance, createPoint(BMap, position || this.$parent.position))
     },
     closeInfoWindow() {
       this.$container.closeInfoWindow(this.originInstance)
