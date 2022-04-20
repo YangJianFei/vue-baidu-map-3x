@@ -15,7 +15,7 @@
     <baidu-map v-if="controlType==='scaleRule'" class="map" center="北京">
       <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
     </baidu-map>
-    <baidu-map v-else-if="controlType==='scale'" class="map" center="北京">
+    <baidu-map v-else-if="controlType==='scale'" class="map" center="北京" :scroll-wheel-zoom="true">
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
     </baidu-map>
     <baidu-map v-else-if="controlType==='type'" class="map" center="北京">
@@ -55,6 +55,7 @@
 <script setup>
 import { ref, onUnmounted } from 'vue';
 import DistanceTool from 'bmaplib.distancetool'
+import GlDistanceTool from 'bmapgllib.distancetool'
 
 window.global = window.global || window;
 
@@ -81,7 +82,7 @@ const addZoom = (level) => {
 };
 
 const setDistanceToolInstance = ({ map }) => {
-  distanceTool.value = new DistanceTool(map, { lineStroke: 2 });
+  distanceTool.value = new window.BMapGLLib.DistanceTool(map);
 };
 
 const openDistanceTool = (e) => {

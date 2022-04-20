@@ -1,6 +1,7 @@
 <script>
 import commonMixin from '../base/mixins/common.js'
 import { createSize } from '../base/factory.js'
+import MethodMap from 'c/base/methodMap.js';
 
 export default {
   name: 'bm-navigation',
@@ -41,7 +42,7 @@ export default {
   methods: {
     load() {
       const { BMap, map, anchor, offset, type, showZoomInfo, enableGeolocation } = this
-      this.originInstance = new BMap.NavigationControl({
+      this.originInstance = new BMap[MethodMap[this._BMap().type].NavigationControl]({
         anchor: window[anchor],
         offset: offset && createSize(BMap, offset),
         type: window[type],

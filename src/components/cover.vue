@@ -61,7 +61,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const activeType = ref('massivePoint');
+const activeType = ref('point');
 const labels = ref([
   { name: '跳跃点', type: 'point' },
   { name: '自定义图标点', type: 'customPoint' },

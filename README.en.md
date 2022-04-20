@@ -35,7 +35,8 @@ import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
   /* Visit http://lbsyun.baidu.com/apiconsole/key for details about app key. */
   ak: 'YOUR_APP_KEY',
-  v:'2.0'  // default 3.0
+  v:'2.0',  // default 3.0
+  type: 'WebGL' // ||API defaultAPI (BMap=BMapGL)
 })
 ```
 

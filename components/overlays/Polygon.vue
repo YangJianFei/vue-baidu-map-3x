@@ -1,16 +1,17 @@
 <script>
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
-import {createPoint} from '../base/factory.js'
+import { createPoint } from '../base/factory.js'
+import { deleteEmptyKey } from 'c/base/util.js'
 
 export default {
   name: 'bm-polygon',
-  render () {},
+  render() { },
   mixins: [commonMixin('overlay')],
   props: {
     path: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     },
@@ -47,43 +48,43 @@ export default {
   },
   watch: {
     path: {
-      handler (val, oldVal) {
+      handler(val, oldVal) {
         this.reload()
       },
       deep: true
     },
-    strokeColor (val) {
+    strokeColor(val) {
       this.originInstance.setStrokeColor(val)
     },
-    strokeOpacity (val) {
+    strokeOpacity(val) {
       this.originInstance.setStrokeOpacity(val)
     },
-    strokeWeight (val) {
+    strokeWeight(val) {
       this.originInstance.setStrokeWeight(val)
     },
-    strokeStyle (val) {
+    strokeStyle(val) {
       this.originInstance.setStrokeStyle(val)
     },
-    fillColor (val) {
+    fillColor(val) {
       this.originInstance.setFillColor(val)
     },
-    fillOpacity (val) {
+    fillOpacity(val) {
       this.originInstance.setFillOpacity(val)
     },
-    editing (val) {
+    editing(val) {
       val ? this.originInstance.enableEditing() : this.originInstance.disableEditing()
     },
-    massClear (val) {
+    massClear(val) {
       val ? this.originInstance.enableMassClear() : this.originInstance.disableMassClear()
     },
-    clicking (val) {
+    clicking(val) {
       this.reload()
     }
   },
   methods: {
-    load () {
-      const {BMap, map, path, strokeColor, strokeWeight, strokeOpacity, strokeStyle, fillColor, fillOpacity, editing, massClear, clicking} = this
-      const overlay = new BMap.Polygon(path.map(item => createPoint(BMap, {lng: item.lng, lat: item.lat})), {
+    load() {
+      const { BMap, map, path, strokeColor, strokeWeight, strokeOpacity, strokeStyle, fillColor, fillOpacity, editing, massClear, clicking } = this
+      let polygonOption = {
         strokeColor,
         strokeWeight,
         strokeOpacity,
@@ -93,7 +94,9 @@ export default {
         // enableEditing: editing,
         enableMassClear: massClear,
         enableClicking: clicking
-      })
+      };
+      deleteEmptyKey(polygonOption);
+      const overlay = new BMap.Polygon(path.map(item => createPoint(BMap, { lng: item.lng, lat: item.lat })), polygonOption)
       this.originInstance = overlay
       map.addOverlay(overlay)
       bindEvents.call(this, overlay)

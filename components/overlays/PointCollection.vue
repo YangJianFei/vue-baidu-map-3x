@@ -2,6 +2,7 @@
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
 import { createPoint } from '../base/factory.js'
+import { deleteEmptyKey } from 'c/base/util.js'
 
 export default {
   render() { },
@@ -63,11 +64,13 @@ export default {
   methods: {
     load() {
       const { BMap, map, points, shape, color, size } = this
-      const overlay = this.originInstance = new BMap.PointCollection(points.map(p => createPoint(BMap, p)), {
+      let pointCollectionOption = {
         shape: window[shape],
         color,
         size: window[size]
-      })
+      };
+      deleteEmptyKey(pointCollectionOption);
+      const overlay = this.originInstance = new BMap.PointCollection(points.map(p => createPoint(BMap, p)), pointCollectionOption)
       bindEvents.call(this, overlay)
       map.addOverlay(overlay)
     }

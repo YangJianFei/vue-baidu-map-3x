@@ -1,11 +1,12 @@
 <script>
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
-import {createPoint} from '../base/factory.js'
+import { createPoint } from '../base/factory.js'
+import { deleteEmptyKey } from 'c/base/util.js'
 
 export default {
   name: 'bm-circle',
-  render () {},
+  render() { },
   mixins: [commonMixin('overlay')],
   props: {
     center: {
@@ -44,89 +45,89 @@ export default {
     }
   },
   watch: {
-    'center.lng' (val, oldVal) {
-      const {BMap, originInstance, isEditing, disableEditing, enableEditing, center, editing} = this
+    'center.lng'(val, oldVal) {
+      const { BMap, originInstance, isEditing, disableEditing, enableEditing, center, editing } = this
       if (!isEditing) {
         disableEditing()
         const lng = val
         if (val.toString() !== oldVal.toString() && lng >= -180 && lng <= 180) {
-          originInstance.setCenter(createPoint(BMap, {lng, lat: center.lat}))
+          originInstance.setCenter(createPoint(BMap, { lng, lat: center.lat }))
         }
         editing && enableEditing()
       }
     },
-    'center.lat' (val, oldVal) {
-      const {BMap, originInstance, isEditing, disableEditing, enableEditing, center, editing} = this
+    'center.lat'(val, oldVal) {
+      const { BMap, originInstance, isEditing, disableEditing, enableEditing, center, editing } = this
       if (!isEditing) {
         disableEditing()
         const lat = val
         if (val.toString() !== oldVal.toString() && lat >= -74 && lat <= 74) {
-          originInstance.setCenter(createPoint(BMap, {lng: center.lng, lat}))
+          originInstance.setCenter(createPoint(BMap, { lng: center.lng, lat }))
         }
         editing && enableEditing()
       }
     },
-    radius (val, oldVal) {
-      const {originInstance, isEditing, disableEditing, enableEditing, editing} = this
+    radius(val, oldVal) {
+      const { originInstance, isEditing, disableEditing, enableEditing, editing } = this
       if (!isEditing) {
         disableEditing()
         originInstance.setRadius(val)
         editing && enableEditing()
       }
     },
-    strokeColor (val) {
+    strokeColor(val) {
       this.originInstance.setStrokeColor(val)
     },
-    strokeOpacity (val) {
+    strokeOpacity(val) {
       this.originInstance.setStrokeOpacity(val)
     },
-    strokeWeight (val) {
+    strokeWeight(val) {
       this.originInstance.setStrokeWeight(val)
     },
-    strokeStyle (val) {
+    strokeStyle(val) {
       this.originInstance.setStrokeStyle(val)
     },
-    fillColor (val) {
+    fillColor(val) {
       this.originInstance.setFillColor(val)
     },
-    fillOpacity (val) {
+    fillOpacity(val) {
       this.originInstance.setFillOpacity(val)
     },
-    editing (val) {
+    editing(val) {
       val ? this.enableEditing() : this.disableEditing()
     },
-    massClear (val) {
+    massClear(val) {
       val ? this.originInstance.enableMassClear() : this.originInstance.disableMassClear()
     },
-    clicking (val) {
+    clicking(val) {
       this.reload()
     }
   },
   methods: {
-    dragStartHandler () {
+    dragStartHandler() {
       this.isEditing = true
     },
-    dragEndHandler () {
+    dragEndHandler() {
       this.isEditing = false
       this.bindEditingNodeEvents()
     },
-    bindEditingNodeEvents () {
-      const {originInstance, editingKey, dragStartHandler, dragEndHandler} = this
+    bindEditingNodeEvents() {
+      const { originInstance, editingKey, dragStartHandler, dragEndHandler } = this
       originInstance[editingKey].forEach($node => {
         $node.addEventListener('dragstart', dragStartHandler)
         $node.addEventListener('dragend', dragEndHandler)
       })
     },
-    enableEditing () {
-      const {originInstance, bindEditingNodeEvents} = this
+    enableEditing() {
+      const { originInstance, bindEditingNodeEvents } = this
       originInstance.enableEditing()
       bindEditingNodeEvents()
     },
-    disableEditing () {
-      const {originInstance} = this
+    disableEditing() {
+      const { originInstance } = this
       originInstance.disableEditing()
     },
-    getEditingKey (overlay) {
+    getEditingKey(overlay) {
       const stack = []
       overlay.enableEditing()
       setTimeout(() => {
@@ -143,9 +144,9 @@ export default {
         }
       }, 0)
     },
-    load () {
-      const {BMap, map, center, radius, strokeColor, strokeWeight, strokeOpacity, strokeStyle, fillColor, fillOpacity, editing, massClear, clicking, enableEditing, disableEditing, getEditingKey, editingKey} = this
-      const overlay = new BMap.Circle(createPoint(BMap, {lng: center.lng, lat: center.lat}), radius, {
+    load() {
+      const { BMap, map, center, radius, strokeColor, strokeWeight, strokeOpacity, strokeStyle, fillColor, fillOpacity, editing, massClear, clicking, enableEditing, disableEditing, getEditingKey, editingKey } = this
+      let overlayOption = {
         strokeColor,
         strokeWeight,
         strokeOpacity,
@@ -155,7 +156,9 @@ export default {
         // enableEditing: editing,
         enableMassClear: massClear,
         enableClicking: clicking
-      })
+      };
+      deleteEmptyKey(overlayOption);
+      const overlay = new BMap.Circle(createPoint(BMap, { lng: center.lng, lat: center.lat }), radius, overlayOption)
       this.originInstance = overlay
       map.addOverlay(overlay)
       bindEvents.call(this, overlay)

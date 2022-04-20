@@ -8,6 +8,7 @@
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
 import { createPoint, createSize } from '../base/factory.js'
+import { deleteEmptyKey } from 'c/base/util.js'
 
 export default {
   name: 'bm-info-window',
@@ -93,7 +94,7 @@ export default {
     load() {
       const { BMap, map, show, title, width, height, maxWidth, offset, autoPan, closeOnClick, message, maximize, bindObserver, $parent } = this
       const $content = this.$el
-      const overlay = new BMap.InfoWindow($content, {
+      let infoWindowOption = {
         width,
         height,
         title,
@@ -103,7 +104,9 @@ export default {
         enableCloseOnClick: closeOnClick,
         enableMessage: typeof message === 'undefined',
         message
-      })
+      };
+      deleteEmptyKey(infoWindowOption);
+      const overlay = new BMap.InfoWindow($content, infoWindowOption)
 
       maximize ? overlay.enableMaximize() : overlay.disableMaximize()
       bindEvents.call(this, overlay)

@@ -10,6 +10,7 @@
 import bindEvents from '../base/bindEvent.js'
 import { checkType } from '../base/util.js'
 import EvenBus from '../base/eventBus.js'
+import MethodMap from 'c/base/methodMap.js';
 
 export default {
   name: 'bm-map',
@@ -20,6 +21,9 @@ export default {
       type: String
     },
     v: {
+      type: String
+    },
+    type: {
       type: String
     },
     center: {
@@ -161,13 +165,13 @@ export default {
     },
     theme(val) {
       const { map } = this
-      map.setMapStyle({ styleJson: val })
+      map[MethodMap[this._BMap().type].setMapStyle]({ styleJson: val })
     },
     'mapStyle.features': {
       handler(val, oldVal) {
         const { map, mapStyle } = this
         const { style, styleJson } = mapStyle
-        map.setMapStyle({
+        map[MethodMap[this._BMap().type].setMapStyle]({
           styleJson,
           features: val,
           style
@@ -178,7 +182,7 @@ export default {
     'mapStyle.style'(val, oldVal) {
       const { map, mapStyle } = this
       const { features, styleJson } = mapStyle
-      map.setMapStyle({
+      map[MethodMap[this._BMap().type].setMapStyle]({
         styleJson,
         features,
         style: val
@@ -188,7 +192,7 @@ export default {
       handler(val, oldVal) {
         const { map, mapStyle } = this
         const { features, style } = mapStyle
-        map.setMapStyle({
+        map[MethodMap[this._BMap().type].setMapStyle]({
           styleJson: val,
           features,
           style
@@ -198,7 +202,7 @@ export default {
     },
     mapStyle(val) {
       const { map, theme } = this
-      !theme && map.setMapStyle(val)
+      !theme && map[MethodMap[this._BMap().type].setMapStyle](val)
     }
   },
   methods: {
@@ -232,7 +236,7 @@ export default {
       const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick })
       this.map = map
       const { setMapOptions, zoom, getCenterPoint, theme, mapStyle } = this
-      theme ? map.setMapStyle({ styleJson: theme }) : map.setMapStyle(mapStyle)
+      theme ? map[MethodMap[this._BMap().type].setMapStyle]({ styleJson: theme }) : (mapStyle && map[MethodMap[this._BMap().type].setMapStyle](mapStyle))
       setMapOptions()
       bindEvents.call(this, map)
       // 此处强行初始化一次地图 回避一个由于错误的 center 字符串导致初始化失败抛出的错误
@@ -266,9 +270,11 @@ export default {
       if (!window.BMap) {
         const ak = this.ak || this._BMap().ak
         const v = this.v || this._BMap().v
+        const type = this.type || this._BMap().type
         window.BMap = {}
         window.BMap._preloader = new Promise((resolve, reject) => {
           window._initBaiduMap = function () {
+            window.BMap = type == 'WebGL' ? window.BMapGL : window.BMap;
             resolve(window.BMap)
             window.document.body.removeChild($script)
             window.BMap._preloader = null
@@ -276,7 +282,13 @@ export default {
           }
           const $script = document.createElement('script')
           window.document.body.appendChild($script)
-          $script.src = `https://api.map.baidu.com/api?v=${v}&ak=${ak}&callback=_initBaiduMap`
+          switch (type) {
+            case 'WebGL':
+              $script.src = `https://api.map.baidu.com/api?v=1.0&type=webgl&ak=${ak}&callback=_initBaiduMap`
+              break;
+            default:
+              $script.src = `https://api.map.baidu.com/api?v=${v}&ak=${ak}&callback=_initBaiduMap`
+          }
         })
         return window.BMap._preloader
       } else if (!window.BMap._preloader) {
