@@ -1,6 +1,6 @@
 # VUE3 BAIDU MAP
 
-## fork vue-baidu-map组件通过vite构建的vue3版本
+## fork vue-baidu-map组件通过vite构建的vue3版本（支持地图v2.0和v3.0）
 
 <p align="center">
   <img src="https://yangjianfei.github.io/vue-baidu-map-3x/favicon.png" width="200px">
@@ -35,16 +35,23 @@ import BaiduMap from 'vue-baidu-map-3x';
 const app = createApp(App);
 app.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
-  ak: 'YOUR_APP_KEY'
+  ak: 'YOUR_APP_KEY',
+  v:'2.0'  // 默认使用3.0
 });
 ```
 
 ### 使用
 ```vue
 <template>
-  <baidu-map class="map">
+  <baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5" @ready="ready" >
   </baidu-map>
 </template>
+
+<script setup>
+const ready = ({Bmap,map})=>{
+  //  对地图进行自定义操作
+};
+</script>
 
 <style>
 /* 地图容器必须设置宽和高属性 */
@@ -55,6 +62,9 @@ app.use(BaiduMap, {
 </style>
 ```
 
+## 废弃
+~~BmView~~
+废弃了<font color="#e81224">BmView</font>组件
 
 ## 协议
 

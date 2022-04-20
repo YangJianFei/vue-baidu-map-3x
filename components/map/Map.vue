@@ -19,6 +19,10 @@ export default {
     ak: {
       type: String
     },
+    v: {
+      type: String,
+      default: '3.0'
+    },
     center: {
       type: [Object, String]
     },
@@ -262,6 +266,7 @@ export default {
     getMapScript() {
       if (!window.BMap) {
         const ak = this.ak || this._BMap().ak
+        const v = this.v || this._BMap().v
         window.BMap = {}
         window.BMap._preloader = new Promise((resolve, reject) => {
           window._initBaiduMap = function () {
@@ -272,7 +277,7 @@ export default {
           }
           const $script = document.createElement('script')
           window.document.body.appendChild($script)
-          $script.src = `https://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=_initBaiduMap`
+          $script.src = `https://api.map.baidu.com/api?v=${v}&ak=${ak}&callback=_initBaiduMap`
         })
         return window.BMap._preloader
       } else if (!window.BMap._preloader) {

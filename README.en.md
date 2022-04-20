@@ -1,6 +1,6 @@
 # VUE BAIDU MAP
 
-## fork vue-baidu-map  vue3 (build by vite)
+## fork vue-baidu-map  vue3 (build by vite，support baidu v2.0 and v3.0)
 
 <p align="center">
   <img src="https://yangjianfei.github.io/vue-baidu-map-3x/favicon.png" width="200px">
@@ -34,7 +34,8 @@ import BaiduMap from 'vue-baidu-map'
 
 Vue.use(BaiduMap, {
   /* Visit http://lbsyun.baidu.com/apiconsole/key for details about app key. */
-  ak: 'YOUR_APP_KEY'
+  ak: 'YOUR_APP_KEY',
+  v:'2.0'  // default 3.0
 })
 ```
 
@@ -42,9 +43,16 @@ Vue.use(BaiduMap, {
 
 ```vue
 <template>
-  <baidu-map class="map">
+  <baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5" @ready="ready" >
   </baidu-map>
 </template>
+
+<script setup>
+const ready = ({Bmap,map})=>{
+  //  custom operate
+};
+</script>
+
 
 <style>
 /* The container of BaiduMap must be set width & height. */
@@ -55,12 +63,15 @@ Vue.use(BaiduMap, {
 </style>
 ```
 
+## abandon
+~~BmView~~
+abandon<font color="#e81224">BmView</font>component
 
 ## License
 
-[MIT 许可证](https://opensource.org/licenses/MIT)
+[MIT ](https://opensource.org/licenses/MIT)
 
-copyright (c) 2016至今, YangJianFei <1294485765@qq.com>
+copyright (c) 2016~now, YangJianFei <1294485765@qq.com>
 
 
 ## About me

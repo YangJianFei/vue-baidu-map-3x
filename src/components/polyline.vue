@@ -62,7 +62,6 @@ const paintPolyline = (e) => {
   !polyline.value.paths.length && polyline.value.paths.push([])
   polyline.value.paths[polyline.value.paths.length - 1].push(e.point)
 }
-
 </script>
 
 <style>
