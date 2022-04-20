@@ -20,8 +20,7 @@ export default {
       type: String
     },
     v: {
-      type: String,
-      default: '3.0'
+      type: String
     },
     center: {
       type: [Object, String]
