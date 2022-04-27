@@ -83,6 +83,10 @@ const ready = ({BMap,map})=>{
 </div>
 如果对你有帮助送我一颗小星星（づ￣3￣）づ╭❤～
 
+## 任务清单
+
+- [ ] 按需加载
+- [ ] treeshaking
 
 ## 更新日志
 [更新日志](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/changelogs.md)

@@ -50,6 +50,10 @@ const routes = [
     {
         path: '/error',
         component: () => import('_c/error.vue')
+    },
+    {
+        path: '/test',
+        component: () => import('_c/test.vue')
     }
 ];
 

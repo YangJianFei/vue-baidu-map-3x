@@ -82,3 +82,11 @@ wechart:yjf163163  wechart group:scan me
   <img src="https://yangjianfei.github.io/vue-baidu-map-3x/heifahaizei.png" width="256px">
 </div>
 Hope you star!（づ￣3￣）づ╭<span style="color:red;">❤</span>～
+
+## todos
+
+- [ ] Load on demand
+- [ ] treeshaking
+
+## updated logs
+[updated logs](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/changelogs.md)
