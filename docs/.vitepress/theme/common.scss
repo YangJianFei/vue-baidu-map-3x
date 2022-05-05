@@ -1,0 +1,22 @@
+/*
+ * Filename: e:\huilder_code\vue-baidu-map-3x\docs\.vitepress\theme\common.scss
+ * Path: e:\huilder_code\vue-baidu-map-3x
+ * Created Date: Wednesday, April 27th 2022, 5:32:34 pm
+ * Author: yang jian fei
+ * 
+ * Copyright (c) 2022 瑞为
+ */
+.map {
+    height: 300px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 120px 1fr 120px;
+}
+
+.home-hero {
+    .image {
+        width: 200px;
+    }
+}

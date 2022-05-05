@@ -71,9 +71,6 @@
 <script setup>
 import { ref, inject, onMounted } from 'vue';
 import { BmlMarkerClusterer, BmlLushu, BmlHeatmap, BmlCurveLine } from 'c';
-import { elError } from './symbol.js'
-
-const elerr = inject(elError);
 
 const props = defineProps({
   modelValue: {}

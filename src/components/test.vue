@@ -15,7 +15,7 @@ export default {
   created() { },
   data() {
     return {
-      ak: 'rlgqKI41z2TzKv9mpVb60LiZptSguMBU'
+      ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK'
     };
   },
   props: {},

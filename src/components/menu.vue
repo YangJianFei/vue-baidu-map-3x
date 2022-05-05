@@ -36,13 +36,17 @@
       </bm-control>
       <bm-local-search :keyword="keyword" :auto-viewport="true"></bm-local-search>
     </baidu-map>
+    <div @click="go">跳转</div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-const activeType = ref('menu');
+const Router = useRouter();
+
+const activeType = ref('auto');
 const labels = ref([
   { name: '菜单', type: 'menu' },
   { name: 'maker菜单', type: 'makerMenu' },
@@ -74,4 +78,10 @@ const gotoShanghai = (e) => {
 const getPosition = (e) => {
   alert(`${e.point.lng} / ${e.point.lat}`)
 };
+
+const go = () => {
+  Router.push({
+    path: '/else'
+  });
+}
 </script>

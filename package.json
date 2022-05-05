@@ -2,12 +2,15 @@
   "name": "vue-baidu-map-3x",
   "author": "YangJianFei",
   "private": false,
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "vue-baidu-map的vue3版本（支持v2.0、v3.0和webGl api）。Baidu Map Component for Vue 3.0 (support v2.0 、 v3.0 and webGl api)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "keywords": [
     "vite",
@@ -59,8 +62,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
-    "sass": "^1.49.11",
+    "bmapgllib.distancetool": "^1.0.0",
+    "clipboard": "^2.0.10",
+    "sass": "^1.51.0",
     "vite": "^2.8.0",
-    "bmapgllib.distancetool": "^1.0.0"
+    "vitepress": "^0.22.3"
   }
 }

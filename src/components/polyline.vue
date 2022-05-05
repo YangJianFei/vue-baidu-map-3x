@@ -37,7 +37,6 @@ const syncPolyline = (e) => {
   if (path.length === 1) {
     polyline.value.paths[polyline.value.paths.length - 1].push(e.point)
   }
-  // this.$set(path, path.length - 1, e.point)
   polyline.value.paths[polyline.value.paths.length - 1][path.length - 1] = e.point;
 }
 
