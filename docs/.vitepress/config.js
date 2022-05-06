@@ -14,8 +14,8 @@ const config = {
     title: 'vue-baidu-map-3x',
     description: 'vue-baidu-map的vue3版本（支持v2.0、v3.0和webGl api）我全都有',
     lang: 'zh-cn',
-    base: '/doc/',
-    outDir: 'doc',
+    base: '/site/',
+    outDir: 'site',
     markdown: {
         lineNumbers: true,
         config: (md) => {
