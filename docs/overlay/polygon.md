@@ -1,5 +1,3 @@
-<template lang="md">
-
 # 多边形
 
 `BmPolygon`
@@ -23,104 +21,40 @@
 
 |事件名|参数|描述|
 |------|----|----|
-|click|event{type, target, point, pixel}|点击多边形后会触发此事件|
-|dblclick|event{type, target, point, pixel}|双击多边形后会触发此事件|
-|mousedown|event{type, target, point, pixel}|鼠标在多边形上按下触发此事件|
-|mouseup|event{type, target, point, pixel}|鼠标在多边形释放触发此事件|
-|mouseout|event{type, target, point, pixel}|鼠标离开多边形时触发此事件|
-|mouseover|event{type, target, point, pixel}|当鼠标进入多边形区域时会触发此事件|
-|remove|event{type, target}|移除多边形时触发|
-|lineupdate|event{type, target}|覆盖物的属性发生变化时触发|
+|click|`event{type, target, point, pixel}`|点击多边形后会触发此事件|
+|dblclick|`event{type, target, point, pixel}`|双击多边形后会触发此事件|
+|mousedown|`event{type, target, point, pixel}`|鼠标在多边形上按下触发此事件|
+|mouseup|`event{type, target, point, pixel}`|鼠标在多边形释放触发此事件|
+|mouseout|`event{type, target, point, pixel}`|鼠标离开多边形时触发此事件|
+|mouseover|`event{type, target, point, pixel}`|当鼠标进入多边形区域时会触发此事件|
+|remove|`event{type, target}`|移除多边形时触发|
+|lineupdate|`event{type, target}`|覆盖物的属性发生变化时触发|
 
 
 ## 示例
 
 ### 在地图中添加可编辑的多边形
 
-#### 代码
-
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-    <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolygonPath"/>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
+      <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolygonPath" />
+    </baidu-map>
+  </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      polygonPath: [
-        {lng: 116.412732, lat: 39.911707},
-        {lng: 116.39455, lat: 39.910932},
-        {lng: 116.403461, lat: 39.921336}
-      ]
-    }
-  },
-  methods: {
-    updatePolygonPath (e) {
-      this.polygonPath = e.target.getPath()
-    },
-    addPolygonPoint () {
-      this.polygonPath.push({lng: 116.404, lat: 39.915})
-    }
-  }
-}
+<script setup>
+import { ref } from 'vue';
+
+const polygonPath = ref([
+  { lng: 116.412732, lat: 39.911707 },
+  { lng: 116.39455, lat: 39.910932 },
+  { lng: 116.403461, lat: 39.921336 }
+]);
+
+const updatePolygonPath = (e) => {
+  polygonPath.value = e.target.getPath()
+};
 </script>
-```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-    <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :fill-opacity="0.5" :editing="true" @lineupdate="updatePolygonPath"></bm-polygon>
-  </baidu-map>
-  <md-table>
-    <md-table-header>
-      <md-table-head>坐标</md-table-head>
-      <md-table-head>经度</md-table-head>
-      <md-table-head>纬度</md-table-head>
-    </md-table-header>
-    <md-table-body>
-      <md-table-row v-for="(point, index) in polygonPath" :key="index">
-        <md-table-cell>{{`坐标-${index + 1}`}}</md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="point.lng" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="point.lat" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-      </md-table-row>
-    </md-table-body>
-  </md-table>
-  <md-button class="md-raised md-primary" @click="addPolygonPoint">
-    添加一个坐标点
-  </md-button>
-</doc-preview>
-</template>
-
-<script>
-export default {
-  data () {
-    return {
-      polygonPath: [
-        {lng: 116.412732, lat: 39.911707},
-        {lng: 116.39455, lat: 39.910932},
-        {lng: 116.403461, lat: 39.921336}
-      ]
-    }
-  },
-  methods: {
-    updatePolygonPath (e) {
-      this.polygonPath = e.target.getPath()
-    },
-    addPolygonPoint () {
-      this.polygonPath.push({lng: 116.404, lat: 39.915})
-    }
-  }
-}
-</script>
+-/DemoCode-

@@ -7,10 +7,14 @@
 ### 全局注册
 
 ```javascript
-import Vue from 'vue'
+import { createApp } from 'vue'
+import App from './App.vue'
 import {BmlMarkerClusterer} from 'vue-baidu-map'
 
-Vue.component('bml-marker-cluster', BmlMarkerClusterer)
+const app = createApp(App);
+
+app.component('bml-marker-cluster', BmlMarkerClusterer)
+app.mount('#app');
 ```
 
 ### 局部注册

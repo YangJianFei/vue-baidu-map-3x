@@ -14,6 +14,7 @@ const config = {
     title: 'vue-baidu-map-3x',
     description: 'vue-baidu-map的vue3版本（支持v2.0、v3.0和webGl api）我全都有',
     lang: 'zh-cn',
+    docsDir: 'doc2',
     markdown: {
         lineNumbers: true,
         config: (md) => {
@@ -32,11 +33,11 @@ const config = {
                 link: '/begin/install'
             }, {
                 text: '坑人集合',
-                link: '/fuck/'
+                link: '/hole/'
             }
         ],
         sidebar: {
-            '/fuck/': 'auto',
+            '/hole/': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -63,6 +64,10 @@ const config = {
                 {
                     text: '地图容器API',
                     link: '/baidu-map'
+                },
+                {
+                    text: '双向绑定',
+                    link: '/shuangxiang'
                 },
                 {
                     text: '图像绘制',
@@ -95,6 +100,9 @@ const config = {
                         }, {
                             text: '全景',
                             link: '/control/panorama'
+                        }, {
+                            text: '测距',
+                            link: '/control/cheju'
                         }, {
                             text: '自定义控件',
                             link: '/control/control'
@@ -205,7 +213,7 @@ const config = {
                     ]
                 }, {
                     text: '坑人集合',
-                    link: '/fuck/'
+                    link: '/hole/'
                 }
             ]
         }

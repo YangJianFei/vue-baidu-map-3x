@@ -14,8 +14,8 @@
 ## 事件
 |事件名|参数|描述|
 |------|-----|----|
-|viewchanged|event{type, target, isOpen}|缩略地图开合状态发生变化后触发此事件|
-|viewchanging|event{type, target}|缩略地图开合状态发生变化过程中触发此事件|
+|viewchanged|`event{type, target, isOpen}`|缩略地图开合状态发生变化后触发此事件|
+|viewchanging|`event{type, target}`|缩略地图开合状态发生变化过程中触发此事件|
 
 ## 示例
 
@@ -23,17 +23,12 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" center="北京">
-    <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" center="北京">
+      <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-<doc-preview>
-  <baidu-map class="map" center="北京">
-    <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-

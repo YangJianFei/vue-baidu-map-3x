@@ -55,7 +55,6 @@
 <script setup>
 import { ref, onUnmounted } from 'vue';
 import DistanceTool from 'bmaplib.distancetool'
-import GlDistanceTool from 'bmapgllib.distancetool'
 
 window.global = window.global || window;
 
@@ -82,7 +81,7 @@ const addZoom = (level) => {
 };
 
 const setDistanceToolInstance = ({ map }) => {
-  distanceTool.value = new window.BMapGLLib.DistanceTool(map);
+  distanceTool.value = new DistanceTool(map, { lineStroke: 2 });
 };
 
 const openDistanceTool = (e) => {

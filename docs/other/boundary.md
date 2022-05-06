@@ -1,5 +1,3 @@
-<template lang="md">
-
 # 行政区划
 
 `BmBoundary` 组件继承于 `bm-polygon` 组件，视图由 `bm-polygon` 组件进行渲染。
@@ -22,54 +20,24 @@
 
 |事件名|参数|描述|
 |------|----|----|
-|click|event{type, target, point, pixel}|点击行政区划后会触发此事件|
-|dblclick|event{type, target, point, pixel}|双击行政区划后会触发此事件|
-|mousedown|event{type, target, point, pixel}|鼠标在行政区划上按下触发此事件|
-|mouseup|event{type, target, point, pixel}|鼠标在行政区划释放触发此事件|
-|mouseout|event{type, target, point, pixel}|鼠标离开行政区划时触发此事件|
-|mouseover|event{type, target, point, pixel}|当鼠标进入行政区划时会触发此事件|
-|remove|event{type, target}|移出行政区划时触发|
+|click|`event{type, target, point, pixel}`|点击行政区划后会触发此事件|
+|dblclick|`event{type, target, point, pixel}`|双击行政区划后会触发此事件|
+|mousedown|`event{type, target, point, pixel}`|鼠标在行政区划上按下触发此事件|
+|mouseup|`event{type, target, point, pixel}`|鼠标在行政区划释放触发此事件|
+|mouseout|`event{type, target, point, pixel}`|鼠标离开行政区划时触发此事件|
+|mouseover|`event{type, target, point, pixel}`|当鼠标进入行政区划时会触发此事件|
+|remove|`event{type, target}`|移出行政区划时触发|
 
 ## 示例
 
 ### 在地图中添加北京市海淀区行政区划范围
 
-#### 代码
-
-```html
-<baidu-map class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="11">
-  <bm-boundary name="北京市海淀区" :strokeWeight="2" strokeColor="blue"></bm-boundary>
-</baidu-map>
-```
-
-#### 预览
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 109.49384, lat: 26.84204}" :zoom="11">
-    <bm-boundary :name="name" :strokeWeight="2" strokeColor="blue"></bm-boundary>
-  </baidu-map>
-  <md-table>
-    <md-table-header>
-      <md-table-head>行政区划名</md-table-head>
-    </md-table-header>
-    <md-table-body>
-      <md-table-row>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model="name" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-      </md-table-row>
-    </md-table-body>
-  </md-table>
-</doc-preview>
+-DemoCode-
+<template>
+  <div>
+    <baidu-map class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="10">
+      <bm-boundary name="北京市海淀区" :strokeWeight="2" strokeColor="blue"></bm-boundary>
+    </baidu-map>
+  </div>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-      name: '湖南省'
-    }
-  }
-}
-</script>
+-/DemoCode-

@@ -31,7 +31,7 @@ export default {
             continue
           }
           const menuItem = new BMap.MenuItem(props.text, function (point, pixel) {
-            props.callback({
+            props.callback && props.callback({
               point,
               pixel,
               BMap,

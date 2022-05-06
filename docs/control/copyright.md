@@ -15,24 +15,13 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" center="北京" :zoom="3">
-    <bm-copyright
-      anchor="BMAP_ANCHOR_TOP_RIGHT"
-      :copyright="[{id: 1, content: 'Copyright Message', bounds: {ne: {lng: 110, lat: 40}, sw:{lng: 0, lat: 0}}}, {id: 2, content: '<a>我是版权信息</a>'}]">
-    </bm-copyright>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" center="北京" :zoom="5">
+      <bm-copyright anchor="BMAP_ANCHOR_TOP_RIGHT" :copyright="[{id: 1, content: 'Copyright Message', bounds: {ne: {lng: 110, lat: 40}, sw:{lng: 0, lat: 0}}}, {id: 2, content: '<a>我是版权信息</a>'}]">
+      </bm-copyright>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" center="北京" :zoom="3">
-    <bm-copyright
-      anchor="BMAP_ANCHOR_TOP_RIGHT"
-      :copyright="[{id: 1, content: 'Copyright Message', bounds: {ne: {lng: 110, lat: 40}, sw:{lng: 0, lat: 0}}}, {id: 2, content: '<a>我是版权信息</a>'}]">
-    </bm-copyright>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-

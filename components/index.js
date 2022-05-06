@@ -1,5 +1,4 @@
 import BaiduMap from './map/Map.vue'
-import BmView from './map/MapView.vue'
 import BmScale from './controls/Scale.vue'
 import BmNavigation from './controls/Navigation.vue'
 import BmMapType from './controls/MapType.vue'
@@ -41,7 +40,6 @@ export default {
     Vue.config.globalProperties._BMap = () => ({ ak, v, type })
 
     Vue.component('baidu-map', BaiduMap)
-    Vue.component('bm-view', BmView)
 
     Vue.component('bm-scale', BmScale)
     Vue.component('bm-navigation', BmNavigation)
@@ -81,7 +79,7 @@ export default {
 }
 
 export {
-  BaiduMap, BmView,
+  BaiduMap,
   BmScale, BmNavigation, BmMapType, BmOverviewMap, BmGeolocation, BmCopyright, BmCityList, BmPanorama, BmControl,
   BmMarker, BmPointCollection, BmPolyline, BmPolygon, BmCircle, BmGround, BmLabel, BmInfoWindow, BmOverlay,
   BmContextMenu, BmContextMenuItem,

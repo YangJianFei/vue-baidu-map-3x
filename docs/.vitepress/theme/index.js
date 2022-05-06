@@ -9,7 +9,7 @@
 
 
 import DefaultTheme from 'vitepress/theme'
-import BaiduMap from '/components'
+import BaiduMap from '/vite-index.js'
 import RunCode from '../components/run-code.vue'
 import './common.scss'
 
@@ -18,6 +18,7 @@ export default {
     enhanceApp({ app }) {
         app.use(BaiduMap, {
             ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK',
+            // v: '2.0'
             // type: 'WebGL'
         });
         app.component('RunCode', RunCode);

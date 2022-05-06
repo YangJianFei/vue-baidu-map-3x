@@ -1,5 +1,3 @@
-<template lang="md">
-
 # 步行路线规划
 
 `BmWalking`
@@ -19,11 +17,11 @@
 
 |事件名|参数|描述|
 |------|----|----|
-|markersset|{pois: Array}|标注添加完成后的回调函数。|
-|infohtmlset|{poi: LocalResultPoi, html: HTMLElement}|标注气泡内容创建后的回调函数。|
-|resultshtmlset|{container: HTMLElement}|结果列表添加完成后的回调函数。|
-|searchcomplete|{results: WalkingRouteResult}|检索完成后的回调函数。如果是多关键字检索，回调函数参数返回一个LocalResult的数组，数组中的结果顺序和检索中多关键字数组中顺序一致|
-|polylinesset|{routes: Array}|折线添加完成后的回调函数。|
+|markersset|`{pois: Array}`|标注添加完成后的回调函数。|
+|infohtmlset|`{poi: LocalResultPoi, html: HTMLElement}`|标注气泡内容创建后的回调函数。|
+|resultshtmlset|`{container: HTMLElement}`|结果列表添加完成后的回调函数。|
+|searchcomplete|`{results: WalkingRouteResult}`|检索完成后的回调函数。如果是多关键字检索，回调函数参数返回一个LocalResult的数组，数组中的结果顺序和检索中多关键字数组中顺序一致|
+|polylinesset|`{routes: Array}`|折线添加完成后的回调函数。|
 
 ## 示例
 
@@ -31,22 +29,12 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-<baidu-map>
-  <bm-view class="map">
-  </bm-view>
-  <bm-walking start="百度大厦" end="北京邮电大学西门" :auto-viewport="true" location="北京"></bm-walking>
-</baidu-map>
+  <div>
+    <baidu-map class="map" style="overflow:auto" center="北京">
+      <bm-walking start="百度大厦" end="北京邮电大学西门" :auto-viewport="true" location="北京"></bm-walking>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-<doc-preview>
-<baidu-map>
-  <bm-view class="map">
-  </bm-view>
-  <bm-walking start="百度大厦" end="北京邮电大学西门" :auto-viewport="true" location="北京"></bm-walking>
-</baidu-map>
-</doc-preview>
-</template>
+-/DemoCode-

@@ -1,5 +1,3 @@
-<template lang="md">
-
 # 公交路线检索
 
 `BmBus`
@@ -18,35 +16,23 @@
 
 |事件名|参数|描述|
 |------|----|----|
-|getbuslistcomplete|{rs: BusListResult}|设置公交列表查询后的回调函数。|
-|getbuslinecomplete|{rs: BusLine|设置公交线路查询后的回调函数。|
-|buslisthtmlset|{container: HTMLElement}|公交列表结果页渲染后回调函数。|
-|buslinehtmlset|{container: HTMLElement}|公交线路结果页渲染后回调函数。|
-|markersset|{pois: Array, transfers: Array}|标注添加完成后的回调函数。|
-|polylinesset|{routes: Array, routes: Array}|折线添加完成后的回调函数。|
+|getbuslistcomplete|`{rs: BusListResult}`|设置公交列表查询后的回调函数。|
+|getbuslinecomplete|`{rs: BusLine}`|设置公交线路查询后的回调函数。|
+|buslisthtmlset|`{container: HTMLElement}`|公交列表结果页渲染后回调函数。|
+|buslinehtmlset|`{container: HTMLElement}`|公交线路结果页渲染后回调函数。|
+|markersset|`{pois: Array, transfers: Array}`|标注添加完成后的回调函数。|
+|polylinesset|`{routes: Array, routes: Array}`|折线添加完成后的回调函数。|
 
 ## 示例
 
 ### 查询北京331路公交车途径路线
 
-#### 代码
-
-```html
+-DemoCode-
 <template>
-<baidu-map>
-  <bm-view class="map">
-  </bm-view>
-  <bm-bus keyword="331" :auto-viewport="true" location="北京"></bm-bus>
-</baidu-map>
+  <div>
+    <baidu-map class="map" style="overflow:auto;" center="北京">
+      <bm-bus keyword="331" :auto-viewport="true" location="北京"></bm-bus>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-<doc-preview>
-  <baidu-map>
-    <bm-view class="map">
-    </bm-view>
-    <bm-bus keyword="331" :auto-viewport="true" location="北京"></bm-bus>
-  </baidu-map>
-</doc-preview>
-</template>
+-/DemoCode-

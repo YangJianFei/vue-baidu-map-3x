@@ -17,18 +17,12 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" center="北京">
-    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" center="北京">
+      <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" center="北京">
-    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-

@@ -13,20 +13,12 @@
 
 ### 在右上角加入比例尺控件
 
-#### 代码
-
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" center="北京">
-    <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" center="北京">
+      <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" center="北京">
-    <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-

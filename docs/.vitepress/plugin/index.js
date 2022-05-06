@@ -15,7 +15,7 @@ const transformCode = (md) => {
         args[0] = mdContent.replace(demoCodeRgx, demoCode => {
             const demoCodehighlight = render.call(md, '```html' + demoCode + '```');
             demoCode = demoCode.replace('<template>', `<RunCode highligh="${encodeURIComponent(demoCodehighlight)}">`)
-                .replace('</template>', `<template></template>\n</RunCode>`);
+                .replace('</template>', `</RunCode>`);
             return demoCode;
         }).replaceAll('-DemoCode-', '').replaceAll('-/DemoCode-', '');
         return render.call(md, ...args);

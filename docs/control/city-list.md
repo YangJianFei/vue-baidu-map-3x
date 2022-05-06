@@ -22,18 +22,12 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" style="height: 500px" center="北京">
-    <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" style="height: 500px" center="北京">
+      <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" style="height: 500px" center="北京">
-    <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-

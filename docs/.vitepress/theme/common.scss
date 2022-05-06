@@ -8,6 +8,9 @@
  */
 .map {
     height: 300px;
+    img {
+        max-width: none;
+    }
 }
 
 .grid-3 {

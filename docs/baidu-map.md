@@ -1,7 +1,7 @@
 # 地图容器
 
 `BaiduMap` 百度地图容器，用于挂载百度地图核心类和一个百度地图实例。是所有地图组件的根组件。\
-地图容器的实质是一个空的 DOM 节点，它可以用于挂载 `BmView` 组件或其它 DOM 节点或组件。如果你需要二次开发或手动控制其子组件，可以使用在 `ready` 事件中使用返回的 `BMap` 类和 `map` 实例进行手动控制。
+地图容器的实质是一个空的 DOM 节点，它可以用于挂载 `BmScale` 组件或其它 DOM 节点或组件。如果你需要二次开发或手动控制其子组件，可以使用在 `ready` 事件中使用返回的 `BMap` 类和 `map` 实例进行手动控制。
 
 ## 实例属性
 
@@ -78,225 +78,60 @@
   <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
   </baidu-map>
 </template>
-
-<script setup>
-  console.log('wagg');
-</script>
 -/DemoCode-
 
 
-::: details 点击查看代码
-
-```html
-<template>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-  </baidu-map>
-</template>
-```
-
-:::
-
 ### 开启滚轮缩放
 
-#### 代码
-
-```html
+-DemoCode-
 <template>
   <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
   </baidu-map>
 </template>
-```
-
-#### 预览
-```
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
-  </baidu-map>
-</doc-preview>
-```
+-/DemoCode-
 
 ### 设置自定义主题
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
   <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :mapStyle="mapStyle">
   </baidu-map>
 </template>
-<script>
-export default {
-  data () {
-    return {
-      mapStyle: {
-        styleJson: [
-          {
-            "featureType": "all",
-            "elementType": "geometry",
-            "stylers": {
-                "hue": "#007fff",
-                "saturation": 89
-            }
-          },
-          {
-            "featureType": "water",
-            "elementType": "all",
-            "stylers": {
-                "color": "#ffffff"
-            }
-          }
-        ]
+
+<script setup>
+import {ref} from 'vue';
+
+const mapStyle = ref({
+  styleJson: [
+    {
+      "featureType": "all",
+      "elementType": "geometry",
+      "stylers": {
+          "hue": "#007fff",
+          "saturation": 89
+      }
+    },
+    {
+      "featureType": "water",
+      "elementType": "all",
+      "stylers": {
+          "color": "#ffffff"
       }
     }
-  }
-}
+  ]
+});
 </script>
-```
-
-#### 预览
-```
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :mapStyle="mapStyle">
-  </baidu-map>
-</doc-preview>
-```
+-/DemoCode-
 
 ### 设置地图类型
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
   <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" mapType="BMAP_SATELLITE_MAP">
   </baidu-map>
 </template>
-```
-
-#### 预览
-```
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" mapType="BMAP_SATELLITE_MAP">
-  </baidu-map>
-</doc-preview>
-```
-
-### 双向绑定
-
-#### 代码
-
-```html
-<template>
-  <div>
-    <input v-model.number="center.lng">
-    <input v-model.number="center.lat">
-    <input v-model.number="zoom">
-    <baidu-map 
-        class="map"
-        :scroll-wheel-zoom="true"
-        :center="center"
-        :zoom="zoom"
-        @moving="syncCenterAndZoom"
-        @moveend="syncCenterAndZoom"
-        @zoomend="syncCenterAndZoom">
-    </baidu-map>
-  <div>
-</template>
-
-<script>
-export default {
-  data () {
-    return {
-      center: {
-        lng: 116.404,
-        lat: 39.915
-      },
-      zoom: 15
-    }
-  },
-  methods: {
-     syncCenterAndZoom (e) {
-      const {lng, lat} = e.target.getCenter()
-      this.center.lng = lng
-      this.center.lat = lat
-      this.zoom = e.target.getZoom()
-    }
-  }
-}
-</script>
-```
-
-#### 预览
-```
-<doc-preview>
-  <baidu-map class="map" :scroll-wheel-zoom="true" :center="center" :zoom="zoom" @moving="syncCenterAndZoom" @moveend="syncCenterAndZoom" @zoomend="syncCenterAndZoom">
-  </baidu-map>
-  <md-table>
-    <md-table-header>
-      <md-table-head>经度</md-table-head>
-      <md-table-head>纬度</md-table-head>
-      <md-table-head>缩放</md-table-head>
-    </md-table-header>
-    <md-table-body>
-      <md-table-row>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="center.lng" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="center.lat" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="zoom" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-      </md-table-row>
-    </md-table-body>
-  </md-table>
-</doc-preview>
-</template>
-
-<script>
-export default {
-  data () {
-    return {
-      center: {
-        lng: 116.404,
-        lat: 39.915
-      },
-      zoom: 15,
-      mapStyle: {
-        styleJson: [
-          {
-            "featureType": "all",
-            "elementType": "geometry",
-            "stylers": {
-                "hue": "#007fff",
-                "saturation": 89
-            }
-          },
-          {
-            "featureType": "water",
-            "elementType": "all",
-            "stylers": {
-                "color": "#ffffff"
-            }
-          }
-        ]
-      }
-    }
-  },
-  methods: {
-     syncCenterAndZoom (e) {
-      const {lng, lat} = e.target.getCenter()
-      this.center.lng = lng
-      this.center.lat = lat
-      this.zoom = e.target.getZoom()
-    }
-  }
-}
-</script>
-```
+-/DemoCode-

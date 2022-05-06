@@ -15,17 +15,12 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map">
-    <bm-panorama></bm-panorama>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
+      <bm-panorama></bm-panorama>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-    <bm-panorama></bm-panorama>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-

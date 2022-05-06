@@ -1,5 +1,3 @@
-<template lang="md">
-
 # 弧线
 
 `BmlCurveLine`
@@ -21,111 +19,88 @@
 
 |事件名|参数|描述|
 |------|----|----|
-|click|event{type, target, point, pixel}|点击折线后会触发此事件|
-|dblclick|event{type, target, point, pixel}|双击折线后会触发此事件|
-|mousedown|event{type, target, point, pixel}|鼠标在折线上按下触发此事件|
-|mouseup|event{type, target, point, pixel}|鼠标在折线释放触发此事件|
-|mouseout|event{type, target, point, pixel}|鼠标离开折线时触发此事件|
-|mouseover|event{type, target, point, pixel}|当鼠标进入折线区域时会触发此事件|
-|remove|event{type, target}|移除折线时触发|
-|lineupdate|event{type, target}|覆盖物的属性发生变化时触发|
+|click|`event{type, target, point, pixel}`|点击折线后会触发此事件|
+|dblclick|`event{type, target, point, pixel}`|双击折线后会触发此事件|
+|mousedown|`event{type, target, point, pixel}`|鼠标在折线上按下触发此事件|
+|mouseup|`event{type, target, point, pixel}`|鼠标在折线释放触发此事件|
+|mouseout|`event{type, target, point, pixel}`|鼠标离开折线时触发此事件|
+|mouseover|`event{type, target, point, pixel}`|当鼠标进入折线区域时会触发此事件|
+|remove|`event{type, target}`|移除折线时触发|
+|lineupdate|`event{type, target}`|覆盖物的属性发生变化时触发|
 
 ## 示例
 
 ### 在地图中添加可编辑的弧线
 
-#### 代码
+<div>
+  <baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5" :scroll-wheel-zoom="true">
+    <component v-if="bmlCurveLine" :is="bmlCurveLine" :points="points" :editing="true" @lineupdate="update">
+    </component>
+  </baidu-map>
+  <button @click="addPoint" class="md-raised md-primary">
+    添加一个坐标点
+  </button>
+</div>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const points = ref([
+  { lng: 116.432045, lat: 39.910683 },
+  { lng: 120.129721, lat: 30.314429 },
+  { lng: 121.491121, lat: 25.127053 }
+]);
+const bmlCurveLine = ref(null);
+
+onMounted(()=>{
+  import('/components/extra/CurveLine.vue').then(module=>{
+    bmlCurveLine.value = module.default;
+  });
+});
+
+const addPoint = () => {
+  points.value.push({
+    lng: 116.404,
+    lat: 39.915
+  })
+};
+
+const update = (e) => {
+  points.value = e.target.cornerPoints
+};
+</script>
 
 ```html
 <template>
-<baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5">
-  <bml-curve-line :points="points" :editing="true" @lineupdate="update"></bml-curve-line>
-</baidu-map>
+  <div>
+    <baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5" :scroll-wheel-zoom="true">
+      <bml-curve-line :points="points" :editing="true" @lineupdate="update"></bml-curve-line>
+    </baidu-map>
+    <button @click="addPoint" class="md-raised md-primary">
+      添加一个坐标点
+    </button>
+  </div>
 </template>
 
-<script>
-import {BmlCurveLine} from 'vue-baidu-map'
-export default {
-  components: {
-    BmlCurveLine
-  },
-  methods: {
-    update (e) {
-      this.points = e.target.cornerPoints
-    }
-  },
-  data () {
-    return {
-      points: [
-        {lng: 116.432045, lat: 39.910683},
-        {lng: 120.129721, lat: 30.314429},
-        {lng: 121.491121, lat: 25.127053}
-      ]
-    }
-  }
-}
+<script setup>
+import { ref } from 'vue';
+import { BmlCurveLine } from '/components';
+
+const points = ref([
+  { lng: 116.432045, lat: 39.910683 },
+  { lng: 120.129721, lat: 30.314429 },
+  { lng: 121.491121, lat: 25.127053 }
+]);
+
+const addPoint = () => {
+  points.value.push({
+    lng: 116.404,
+    lat: 39.915
+  })
+};
+
+const update = (e) => {
+  points.value = e.target.cornerPoints
+};
 </script>
 ```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5" :scroll-wheel-zoom="true">
-    <bml-curve-line :points="points" :editing="true" @lineupdate="update"></bml-curve-line>
-  </baidu-map>
-  <md-table>
-    <md-table-header>
-      <md-table-head>坐标</md-table-head>
-      <md-table-head>经度</md-table-head>
-      <md-table-head>纬度</md-table-head>
-    </md-table-header>
-    <md-table-body>
-      <md-table-row v-for="(point, index) in points" :key="index">
-        <md-table-cell>{{`坐标-${index + 1}`}}</md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="point.lng" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="point.lat" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-      </md-table-row>
-    </md-table-body>
-  </md-table>
-  <md-button @click="addPoint" class="md-raised md-primary">
-    添加一个坐标点
-  </md-button>
-</doc-preview>
-</template>
-
-<script>
-import BmlCurveLine from '../../../components/extra/CurveLine.vue'
-export default {
-  components: {
-    BmlCurveLine
-  },
-  methods: {
-    addPoint () {
-      this.points.push({
-        lng: 116.404,
-        lat: 39.915
-      })
-    },
-    update (e) {
-      this.points = e.target.cornerPoints
-    }
-  },
-  data () {
-    return {
-      points: [
-        {lng: 116.432045, lat: 39.910683},
-        {lng: 120.129721, lat: 30.314429},
-        {lng: 121.491121, lat: 25.127053}
-      ]
-    }
-  }
-}
-</script>

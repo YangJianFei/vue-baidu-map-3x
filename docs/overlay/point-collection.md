@@ -1,5 +1,3 @@
-<template lang="md">
-
 # 海量点
 
 `BmPointCollection`
@@ -17,75 +15,39 @@
 
 |事件名|参数|描述|
 |------|----|----|
-|click|event{currentTarget, point, returnValue, target, type}|点击坐标点后会触发此事件|
-|mouseout|event{currentTarget, point, returnValue, target, type}|鼠标离开坐标点时触发此事件|
-|mouseover|event{currentTarget, point, returnValue, target, type}|当鼠标进入坐标点区域时会触发此事件|
+|click|`event{currentTarget, point, returnValue, target, type}`|点击坐标点后会触发此事件|
+|mouseout|`event{currentTarget, point, returnValue, target, type}`|鼠标离开坐标点时触发此事件|
+|mouseover|`event{currentTarget, point, returnValue, target, type}`|当鼠标进入坐标点区域时会触发此事件|
 
 ## 示例
 
 ### 添加 1000 个随机点
 
-#### 代码
-
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" :center="{lng: 105.000, lat: 38.000}" :zoom="4">
-    <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL" @click="clickHandler"></bm-point-collection>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" @ready="addPoints" :center="{lng: 105.000, lat: 38.000}" :zoom="4">
+      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL" @click="clickHandler"></bm-point-collection>
+    </baidu-map>
+  </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      points: []
-    }
-  },
-  methods: {
-    clickHandler (e) {
-      alert(`单击点的坐标为：${e.point.lng}, ${e.point.lat}`);
-    },
-    addPoints () {
-      const points = [];
-      for (var i = 0; i < 1000; i++) {
-        const position = {lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21}
-        points.push(position)
-      }
-      this.points = points
-    }
+<script setup>
+import { ref } from 'vue';
+
+const points = ref([]);
+
+const clickHandler = (e) => {
+  alert(`单击点的坐标为：${e.point.lng}，${e.point.lat}`);
+};
+
+const addPoints = () => {
+  const pointAll = [];
+  for (var i = 0; i < 1000; i++) {
+    const position = { lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 };
+    pointAll.push(position);
   }
-}
+  points.value = pointAll;
+};
 </script>
-```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" @ready="addPoints" :center="{lng: 105.000, lat: 38.000}" :zoom="4">
-    <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL" @click="clickHandler"></bm-point-collection>
-  </baidu-map>
-</doc-preview>
-</template>
-
-<script>
-export default {
-  data () {
-    return {
-      points: []
-    }
-  },
-  methods: {
-    clickHandler (e) {
-      alert(`单击点的坐标为：${e.point.lng}, ${e.point.lat}`);
-    },
-    addPoints () {
-      const points = [];
-      for (var i = 0; i < 1000; i++) {
-        const position = {lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21}
-        points.push(position)
-      }
-      this.points = points
-    }
-  }
-}
-</script>
+-/DemoCode-

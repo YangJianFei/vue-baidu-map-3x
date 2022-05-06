@@ -1,5 +1,3 @@
-<template lang="md">
-
 # 折线
 
 `BmPolyline`
@@ -22,103 +20,81 @@
 
 |事件名|参数|描述|
 |------|----|----|
-|click|event{type, target, point, pixel}|点击折线后会触发此事件|
-|dblclick|event{type, target, point, pixel}|双击折线后会触发此事件|
-|mousedown|event{type, target, point, pixel}|鼠标在折线上按下触发此事件|
-|mouseup|event{type, target, point, pixel}|鼠标在折线释放触发此事件|
-|mouseout|event{type, target, point, pixel}|鼠标离开折线时触发此事件|
-|mouseover|event{type, target, point, pixel}|当鼠标进入折线区域时会触发此事件|
-|remove|event{type, target}|移除折线时触发|
-|lineupdate|event{type, target}|覆盖物的属性发生变化时触发|
+|click|`event{type, target, point, pixel}`|点击折线后会触发此事件|
+|dblclick|`event{type, target, point, pixel}`|双击折线后会触发此事件|
+|mousedown|`event{type, target, point, pixel}`|鼠标在折线上按下触发此事件|
+|mouseup|`event{type, target, point, pixel}`|鼠标在折线释放触发此事件|
+|mouseout|`event{type, target, point, pixel}`|鼠标离开折线时触发此事件|
+|mouseover|`event{type, target, point, pixel}`|当鼠标进入折线区域时会触发此事件|
+|remove|`event{type, target}`|移除折线时触发|
+|lineupdate|`event{type, target}`|覆盖物的属性发生变化时触发|
 
 ## 示例
 
 ### 在地图中添加可编辑的折线
 
-#### 代码
-
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
-    <bm-polyline :path="polylinePath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolylinePath"></bm-polyline>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="14" @mousemove="syncPolyline" @click="paintPolyline" @rightclick="newPolyline">
+      <bm-control>
+        <button @click.stop="toggle">{{ polyline.editing ? '停止绘制' : '开始绘制' }}</button>
+      </bm-control>
+      <bm-polyline :path="path" v-for="path of polyline.paths" :key="path"></bm-polyline>
+    </baidu-map>
+  </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      polylinePath: [
-        {lng: 116.404, lat: 39.915},
-        {lng: 116.405, lat: 39.920},
-        {lng: 116.423493, lat: 39.907445}
-      ]
-    }
-  },
-  methods: {
-    updatePolylinePath (e) {
-      this.polylinePath = e.target.getPath()
-    },
-    addPolylinePoint () {
-      this.polylinePath.push({lng: 116.404, lat: 39.915})
-    }
+<script setup>
+import { ref, toRef } from 'vue';
+
+const polyline = ref({
+  editing: false,
+  paths: []
+});
+
+const toggle = (name) => {
+  polyline.value.editing = !polyline.value.editing;
+};
+
+const syncPolyline = (e) => {
+  if (!polyline.value.editing) {
+    return
+  }
+
+  if (!polyline.value.paths.length) {
+    return
+  }
+  const path = polyline.value.paths[polyline.value.paths.length - 1]
+  if (!path.length) {
+    return
+  }
+  if (path.length === 1) {
+    polyline.value.paths[polyline.value.paths.length - 1].push(e.point)
+  }
+  polyline.value.paths[polyline.value.paths.length - 1][path.length - 1] = e.point;
+}
+
+const newPolyline = (e) => {
+  if (!polyline.value.editing) {
+    return
+  }
+  if (!polyline.value.paths.length) {
+    polyline.value.paths.push([])
+  }
+  const path = polyline.value.paths[polyline.value.paths.length - 1]
+  path.pop()
+  if (path.length) {
+    polyline.value.paths.push([])
   }
 }
-</script>
-```
 
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
-    <bm-polyline :path="polylinePath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolylinePath"></bm-polyline>
-  </baidu-map>
-  <md-table>
-    <md-table-header>
-      <md-table-head>坐标</md-table-head>
-      <md-table-head>经度</md-table-head>
-      <md-table-head>纬度</md-table-head>
-    </md-table-header>
-    <md-table-body>
-      <md-table-row v-for="(point, index) in polylinePath" :key="index">
-        <md-table-cell>{{`坐标-${index + 1}`}}</md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="point.lng" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-        <md-table-cell>
-          <md-input-container>
-            <md-input v-model.number="point.lat" md-inline></md-input>
-          </md-input-container>
-        </md-table-cell>
-      </md-table-row>
-    </md-table-body>
-  </md-table>
-  <md-button @click="addPolylinePoint" class="md-raised md-primary">
-    添加一个坐标点
-  </md-button>
-</doc-preview>
-</template>
-
-<script>
-export default {
-  data () {
-    return {
-      polylinePath: [
-        {lng: 116.404, lat: 39.915},
-        {lng: 116.405, lat: 39.920},
-        {lng: 116.423493, lat: 39.907445}
-      ]
-    }
-  },
-  methods: {
-    updatePolylinePath (e) {
-      this.polylinePath = e.target.getPath()
-    },
-    addPolylinePoint () {
-      this.polylinePath.push({lng: 116.404, lat: 39.915})
-    }
+const paintPolyline = (e) => {
+  if (!polyline.value.editing) {
+    return
   }
+  !polyline.value.paths.length && polyline.value.paths.push([])
+  polyline.value.paths[polyline.value.paths.length - 1].push(e.point)
 }
 </script>
+-/DemoCode-

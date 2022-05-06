@@ -15,8 +15,8 @@
 ## 事件
 |事件名|参数|描述|
 |------|-----|----|
-|locationSuccess|{point, AddressComponent, marker}|定位成功后触发此事件|
-|locationError|{StatusCode}|定位失败后触发此事件|
+|locationSuccess|`{point, AddressComponent, marker}`|定位成功后触发此事件|
+|locationError|`{StatusCode}`|定位失败后触发此事件|
 
 ## 示例
 
@@ -24,18 +24,12 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" center="北京">
-    <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" center="北京">
+      <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-
-<doc-preview>
-  <baidu-map class="map" center="北京">
-    <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-

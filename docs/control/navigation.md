@@ -18,17 +18,12 @@
 
 #### 代码
 
-```html
+-DemoCode-
 <template>
-  <baidu-map class="map" center="北京">
-    <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
-  </baidu-map>
+  <div>
+    <baidu-map class="map" center="北京">
+      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+    </baidu-map>
+  </div>
 </template>
-```
-
-#### 预览
-<doc-preview>
-  <baidu-map class="map" center="北京">
-    <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
-  </baidu-map>
-</doc-preview>
+-/DemoCode-
