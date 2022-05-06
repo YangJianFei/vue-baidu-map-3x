@@ -14,7 +14,7 @@ const config = {
     title: 'vue-baidu-map-3x',
     description: 'vue-baidu-map的vue3版本（支持v2.0、v3.0和webGl api）我全都有',
     lang: 'zh-cn',
-    docsDir: 'doc2',
+    outDir: 'doc',
     markdown: {
         lineNumbers: true,
         config: (md) => {
@@ -34,6 +34,9 @@ const config = {
             }, {
                 text: '坑人集合',
                 link: '/hole/'
+            }, {
+                text: 'vue-baidu-map',
+                link: 'https://dafrok.github.io/vue-baidu-map/'
             }
         ],
         sidebar: {
