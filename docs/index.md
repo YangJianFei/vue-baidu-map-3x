@@ -27,7 +27,7 @@ features:
 footer: MIT Licensed | Copyright © 2022-present YangJianFei❤️1294485765@qq.com
 ---
 
+<p align="center" style="font-size: 24px;font-weight: bold;">偷窥次数</p>
 <p align="center">
-  <div style="font-size:18px;font-weight: bold;">偷窥次数</div>
   <img src="https://profile-counter.glitch.me/vue-baidu-map-3x/count.svg"/>
 </p>
