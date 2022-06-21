@@ -37,3 +37,8 @@ import { BaiduMap } from 'vue-baidu-map-3x'
 }
 </style>
 ```
+
+::: danger
+地图加载完事件有：**init**,**load**,**loaded**,**ready**
+注意他们的区别一个不行试试另一个
+:::

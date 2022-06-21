@@ -26,7 +26,7 @@
 -DemoCode-
 <template>
   <div>
-    <baidu-map class="map" @ready="addPoints" :center="{lng: 105.000, lat: 38.000}" :zoom="4">
+    <baidu-map class="map" @init="addPoints" :center="{ lng: 105.000, lat: 38.000 }" :zoom="4">
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL" @click="clickHandler"></bm-point-collection>
     </baidu-map>
   </div>
