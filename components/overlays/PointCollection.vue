@@ -62,8 +62,13 @@ export default {
     }
   },
   methods: {
-    load() {
-      const { BMap, map, points, shape, color, size } = this
+    load() { },
+    init({ BMap, map }) {
+      this.$emit('init', {
+        BMap,
+        map
+      });
+      const { points, shape, color, size } = this
       let pointCollectionOption = {
         shape: window[shape],
         color,

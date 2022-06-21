@@ -15,7 +15,7 @@ import MethodMap from '../base/methodMap.js';
 export default {
   name: 'bm-map',
   inheritAttrs: false,
-  emits: ['ready'],
+  emits: ['ready', 'init'],
   props: {
     ak: {
       type: String
@@ -243,12 +243,18 @@ export default {
       map.reset()
       map.centerAndZoom(getCenterPoint(), zoom)
       let loadNum = 0;
+      this.$emit('init', { BMap, map });
+      EvenBus.$emit('init', { BMap, map });
       map.addEventListener('tilesloaded', () => {
         if (!loadNum) {
           loadNum++;
           this.$emit('ready', { BMap, map })
           EvenBus.$emit('ready', { BMap, map });
         }
+      });
+      map.addEventListener('loaded', () => {
+        this.$emit('loaded', { BMap, map });
+        EvenBus.$emit('loaded', { BMap, map });
       });
       // Debug
       // window.map = map

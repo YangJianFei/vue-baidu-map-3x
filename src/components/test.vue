@@ -1,27 +1,52 @@
 <template>
   <div>
-    <BaiduMap class="map" :center="{ lng: 118.454, lat: 32.955 }" :zoom="5" :ak="ak" v="3.0" type="API" @ready="ready">
-    </BaiduMap>
+    <baidu-map class="map" :center="'北京'" :mapStyle="mapStyle" :zoom="15" :scroll-wheel-zoom="true" @ready="mapInit">
+    </baidu-map>
   </div>
 </template>
 
 <script>
 
-import { BaiduMap } from 'c';
-
 export default {
   name: "PoleMap",
-  components: { BaiduMap },
   created() { },
   data() {
     return {
-      ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK'
+      mapCenter: { lng: 0, lat: 0 },
+      zoom: 3,
+      Width: '100%',
+      height: 400,
+      mapStyle: [
+        {
+          featureType: 'land',
+          elementType: 'geometry',
+          stylers: {
+            color: '#fffff9ff'
+          }
+        },
+        {
+          featureType: 'water',
+          elementType: 'all',
+          stylers: {
+            color: '#8AC3DB'
+          }
+        },
+        {
+          featureType: 'highway',
+          elementType: 'geometry.fill',
+          stylers: {
+            color: '#FFF693'
+          }
+        }
+      ]
     };
   },
   props: {},
   methods: {
-    ready({ BMap, map }) {
-
+    mapInit() {
+      // this.mapCenter.lng = 114.517154
+      // this.mapCenter.lat = 38.038766
+      // this.zoom = 8
     }
   },
 };

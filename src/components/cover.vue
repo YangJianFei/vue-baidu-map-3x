@@ -25,7 +25,7 @@
         <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门</bm-info-window>
       </bm-marker>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='massivePoint'" class="map" :center="{lng: 105.000, lat: 38.000}" :zoom="4">
+    <baidu-map v-else-if="activeType==='massivePoint'" class="map" :center="{lng: 105.000, lat: 38.000}" :zoom="4" :scroll-wheel-zoom="true">
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL" @click="clickHandler"></bm-point-collection>
     </baidu-map>
     <baidu-map v-else-if="activeType==='blokenLine'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">

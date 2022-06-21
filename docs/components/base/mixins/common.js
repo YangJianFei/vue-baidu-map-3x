@@ -32,6 +32,7 @@ class Mixin {
   constructor(prop) {
     this.emits = ['ready'];
     this.methods = {
+      init() { },
       ready() {
         const $parent = getParent(this.$parent)
         const BMap = this.BMap = $parent.BMap
@@ -78,6 +79,7 @@ class Mixin {
       const map = $parent.map
       const { ready } = this
       map ? ready() : EvenBus.$on('ready', ready);
+      EvenBus.$on('init', this.init);
     }
     this.unmounted = destroyInstance
   }

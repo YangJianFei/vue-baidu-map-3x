@@ -52,12 +52,15 @@
 |dragend|`{type, target, pixel, point}`|停止拖拽地图时触发|
 |addtilelayer|`{type, target}`|添加一个自定义地图图层时触发此事件|
 |removetilelayer|`{type, target}`|移除一个自定义地图图层时触发此事件|
+|init|`{BMap,map}`|初始化完成，地图可能未加载|
 |load|`{type, target, pixel, point, zoom}`|调用Map.centerAndZoom()方法时会触发此事件。这表示位置、缩放层级已经确定，但可能还在载入地图图块|
+|loaded|`{BMap,map}`|同load|
 |resize|`{type, target, size}`|地图可视区域大小发生变化时会触发此事件|
 |hotspotclick|`{type, target, spots}`|点击热区时触发此事件|
 |hotspotover|`{type, target, spots}`|鼠标移至热区时触发此事件|
 |hotspotout|`{type, target, spots}`|鼠标移出热区时触发此事件|
 |tilesloaded|`{type, target}`|当地图所有图块完成加载时触发此事件|
+|ready|`{BMap,map}`|同tilesloaded|
 |touchstart|`{type, target, point,pixel}`|触摸开始时触发此事件，仅适用移动设备|
 |touchmove|`{type, target, point,pixel}`|触摸移动时触发此事件，仅适用移动设备|
 |touchend|`{type, target, point,pixel}`|触摸结束时触发此事件，仅适用移动设备|
@@ -75,7 +78,7 @@
 
 -DemoCode-
 <template>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
+  <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
   </baidu-map>
 </template>
 -/DemoCode-
@@ -85,7 +88,7 @@
 
 -DemoCode-
 <template>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
+  <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15" :scroll-wheel-zoom="true">
   </baidu-map>
 </template>
 -/DemoCode-
@@ -96,12 +99,12 @@
 
 -DemoCode-
 <template>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :mapStyle="mapStyle">
+  <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15" :mapStyle="mapStyle">
   </baidu-map>
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const mapStyle = ref({
   styleJson: [
@@ -109,15 +112,15 @@ const mapStyle = ref({
       "featureType": "all",
       "elementType": "geometry",
       "stylers": {
-          "hue": "#007fff",
-          "saturation": 89
+        "hue": "#007fff",
+        "saturation": 89
       }
     },
     {
       "featureType": "water",
       "elementType": "all",
       "stylers": {
-          "color": "#ffffff"
+        "color": "#ffffff"
       }
     }
   ]
@@ -131,7 +134,7 @@ const mapStyle = ref({
 
 -DemoCode-
 <template>
-  <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" mapType="BMAP_SATELLITE_MAP">
+  <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15" mapType="BMAP_SATELLITE_MAP">
   </baidu-map>
 </template>
 -/DemoCode-
