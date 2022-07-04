@@ -12,3 +12,19 @@ export const deleteEmptyKey = (obj) => {
         }
     });
 }
+
+let config = {
+    v: '3.0',
+    type: 'API'
+};
+
+export const setConfig = (options = {}) => {
+    config = Object.assign(config, options);
+    if (!config.ak) {
+        console.error('请配置ak：百度地图开发者平台申请的密钥');
+    }
+};
+
+export const getConfig = () => {
+    return config;
+};

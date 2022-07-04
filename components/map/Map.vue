@@ -11,6 +11,7 @@ import bindEvents from '../base/bindEvent.js'
 import { checkType } from '../base/util.js'
 import EvenBus from '../base/eventBus.js'
 import MethodMap from '../base/methodMap.js';
+import { setConfig, getConfig } from '../base/util';
 
 export default {
   name: 'bm-map',
@@ -165,13 +166,13 @@ export default {
     },
     theme(val) {
       const { map } = this
-      map[MethodMap[this._BMap().type].setMapStyle]({ styleJson: val })
+      map[MethodMap[getConfig().type].setMapStyle]({ styleJson: val })
     },
     'mapStyle.features': {
       handler(val, oldVal) {
         const { map, mapStyle } = this
         const { style, styleJson } = mapStyle
-        map[MethodMap[this._BMap().type].setMapStyle]({
+        map[MethodMap[getConfig().type].setMapStyle]({
           styleJson,
           features: val,
           style
@@ -182,7 +183,7 @@ export default {
     'mapStyle.style'(val, oldVal) {
       const { map, mapStyle } = this
       const { features, styleJson } = mapStyle
-      map[MethodMap[this._BMap().type].setMapStyle]({
+      map[MethodMap[getConfig().type].setMapStyle]({
         styleJson,
         features,
         style: val
@@ -192,7 +193,7 @@ export default {
       handler(val, oldVal) {
         const { map, mapStyle } = this
         const { features, style } = mapStyle
-        map[MethodMap[this._BMap().type].setMapStyle]({
+        map[MethodMap[getConfig().type].setMapStyle]({
           styleJson: val,
           features,
           style
@@ -202,7 +203,7 @@ export default {
     },
     mapStyle(val) {
       const { map, theme } = this
-      !theme && map[MethodMap[this._BMap().type].setMapStyle](val)
+      !theme && map[MethodMap[getConfig().type].setMapStyle](val)
     }
   },
   methods: {
@@ -236,7 +237,7 @@ export default {
       const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick })
       this.map = map
       const { setMapOptions, zoom, getCenterPoint, theme, mapStyle } = this
-      theme ? map[MethodMap[this._BMap().type].setMapStyle]({ styleJson: theme }) : (mapStyle && map[MethodMap[this._BMap().type].setMapStyle](mapStyle))
+      theme ? map[MethodMap[getConfig().type].setMapStyle]({ styleJson: theme }) : (mapStyle && map[MethodMap[getConfig().type].setMapStyle](mapStyle))
       setMapOptions()
       bindEvents.call(this, map)
       // 此处强行初始化一次地图 回避一个由于错误的 center 字符串导致初始化失败抛出的错误
@@ -274,13 +275,10 @@ export default {
     },
     getMapScript() {
       if (!window.BMap) {
-        const ak = this.ak || this._BMap().ak
-        const v = this.v || this._BMap().v
-        const type = this.type || this._BMap().type
         window.BMap = {}
         window.BMap._preloader = new Promise((resolve, reject) => {
           window._initBaiduMap = function () {
-            window.BMap = type == 'WebGL' ? window.BMapGL : window.BMap;
+            window.BMap = getConfig().type == 'WebGL' ? window.BMapGL : window.BMap;
             resolve(window.BMap)
             window.document.body.removeChild($script)
             window.BMap._preloader = null
@@ -288,12 +286,12 @@ export default {
           }
           const $script = document.createElement('script')
           window.document.body.appendChild($script)
-          switch (type) {
+          switch (getConfig().type) {
             case 'WebGL':
-              $script.src = `https://api.map.baidu.com/api?v=1.0&type=webgl&ak=${ak}&callback=_initBaiduMap`
+              $script.src = `https://api.map.baidu.com/api?v=1.0&type=webgl&ak=${getConfig().ak}&callback=_initBaiduMap`
               break;
             default:
-              $script.src = `https://api.map.baidu.com/api?v=${v}&ak=${ak}&callback=_initBaiduMap`
+              $script.src = `https://api.map.baidu.com/api?v=${getConfig().v}&ak=${getConfig().ak}&callback=_initBaiduMap`
           }
         })
         return window.BMap._preloader
@@ -308,6 +306,13 @@ export default {
       getMapScript()
         .then(initMap)
     }
+  },
+  created() {
+    const options = {};
+    this.ak && (options.ak = this.ak);
+    this.v && (options.v = this.v);
+    this.type && (options.type = this.type);
+    setConfig(options);
   },
   mounted() {
     this.reset()

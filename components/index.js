@@ -34,10 +34,11 @@ import BmlLushu from './extra/Lushu.vue'
 import BmlHeatmap from './extra/Heatmap.vue'
 import BmlCurveLine from './extra/CurveLine.vue'
 
+import { setConfig } from './base/util';
+
 export default {
-  install(Vue, options) {
-    const { ak, v = '3.0', type = 'API' } = options
-    Vue.config.globalProperties._BMap = () => ({ ak, v, type })
+  install(Vue, options = {}) {
+    setConfig(options);
 
     Vue.component('baidu-map', BaiduMap)
 

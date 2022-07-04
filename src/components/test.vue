@@ -1,14 +1,19 @@
 <template>
   <div>
-    <baidu-map class="map" :center="'北京'" :mapStyle="mapStyle" :zoom="15" :scroll-wheel-zoom="true" @ready="mapInit">
+    <baidu-map class="map" ak="Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK" v="2.0" type="WebGL" :center="'北京'" :zoom="15" :scroll-wheel-zoom="true" @ready="mapInit">
+      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
     </baidu-map>
   </div>
 </template>
 
 <script>
-
+import { BaiduMap, BmNavigation } from 'c'
 export default {
   name: "PoleMap",
+  components: {
+    BaiduMap,
+    BmNavigation
+  },
   created() { },
   data() {
     return {

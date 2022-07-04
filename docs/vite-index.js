@@ -38,10 +38,11 @@ import BmTraffic from './components/layers/Traffic.vue'
 import BmBoundary from './components/others/Boundary.vue'
 import BmAutoComplete from './components/others/AutoComplete.vue'
 
+import { setConfig } from './components/base/util'
+
 export default {
-    install(Vue, options) {
-        const { ak, v = '3.0', type = 'API' } = options
-        Vue.config.globalProperties._BMap = () => ({ ak, v, type })
+    install(Vue, options = {}) {
+        setConfig(options);
 
         Vue.component('baidu-map', BaiduMap)
 
