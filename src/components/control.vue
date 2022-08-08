@@ -24,7 +24,7 @@
     <baidu-map v-else-if="controlType==='overview'" class="map" center="北京">
       <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map>
     </baidu-map>
-    <baidu-map v-else-if="controlType==='location'" class="map" center="北京">
+    <baidu-map v-else-if="controlType==='location'" class="map" center="北京" @init="handleMapInit">
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
     </baidu-map>
     <baidu-map v-else-if="controlType==='copyright'" class="map" center="北京">
@@ -87,6 +87,16 @@ const setDistanceToolInstance = ({ map }) => {
 const openDistanceTool = (e) => {
   distanceTool.value && distanceTool.value.open();
 };
+
+const handleMapInit = ({ BMap, map }) => {
+  const geolocation = new BMap.Geolocation();
+  return new Promise((res, rej) => {
+    geolocation.getCurrentPosition(function (result) {
+      console.log(result);
+      return res(result);
+    }, { enableHighAccuracy: true });
+  });
+}
 
 onUnmounted(() => {
   distanceTool.value && distanceTool.value.close();

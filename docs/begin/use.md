@@ -41,7 +41,7 @@ app.mount('#app');
 
 ```html
 <template>
-  <baidu-map class="map" ak="BaiduMapAK" v="3.0" type="API">
+  <baidu-map class="map" ak="BaiduMapAK" v="3.0" type="API" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
   </baidu-map>
 </template>
 
