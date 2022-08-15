@@ -43,13 +43,19 @@ class Mixin {
           map
         })
       },
+      mountedReady() {
+        this.mountedLoad()
+      },
       transmitEvent(e) {
         this.$emit(e.type.replace(/^on/, ''), e)
       },
       reload() {
         this && this.BMap && this.$nextTick(() => {
           this.unload()
-          this.$nextTick(this.load)
+          this.$nextTick(() => {
+            this.load();
+            this.mountedLoad();
+          })
         })
       },
       unload() {
@@ -67,7 +73,8 @@ class Mixin {
               map[types[prop.type].unload](originInstance)
           }
         } catch (e) { }
-      }
+      },
+      mountedLoad() { }
     }
     this.computed = {
       renderByParent() {
@@ -80,6 +87,12 @@ class Mixin {
       const { ready } = this
       map ? ready() : EvenBus.$on('ready', ready);
       EvenBus.$on('init', this.init);
+    }
+    this.mounted = function () {
+      const $parent = getParent(this.$parent)
+      const map = $parent.map
+      const { mountedReady } = this
+      map ? mountedReady() : EvenBus.$on('ready', mountedReady);
     }
     this.unmounted = destroyInstance
   }

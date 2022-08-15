@@ -22,7 +22,8 @@ export default {
     }
   },
   methods: {
-    load() {
+    load() { },
+    mountedLoad() {
       const { BMap, map, $el, pane } = this
       const $emit = this.$emit.bind(this)
       class CustomOverlay extends BMap.Overlay {

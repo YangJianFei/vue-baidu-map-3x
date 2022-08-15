@@ -15,7 +15,8 @@
     <div v-if="activeType==='point'">
       <baidu-map class="map" center="中国" :scroll-wheel-zoom="true" :double-click-zoom="true">
         <bml-marker-clusterer :averageCenter="true" :styles="styles">
-          <bm-marker v-for="marker of markers" :key="marker" :position="{lng: marker.lng, lat: marker.lat}" @dragend="updateMarker($event, marker)" :dragging="true"></bm-marker>
+          <bm-marker v-for="marker of markers" :key="marker" :position="{lng: marker.lng, lat: marker.lat}" @dragend="updateMarker($event, marker)"
+            :dragging="true"></bm-marker>
         </bml-marker-clusterer>
       </baidu-map>
       <button class="md-raised md-primary" @click="addMarker">添加一个随机点</button>
@@ -25,7 +26,8 @@
     <div v-if="activeType==='lushu'">
       <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="11">
         <bm-driving start="天安门" end="百度大厦" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true"></bm-driving>
-        <bml-lushu @start="changeBtnText('pause')" @stop="changeBtnText('play_arrow')" @pause="changeBtnText('play_arrow')" :path="path" :rotation="rotation" :content="content" :infoWindow="true" :speed="speed" :icon="icon" :play="play">
+        <bml-lushu @start="changeBtnText('pause')" @stop="changeBtnText('play_arrow')" @pause="changeBtnText('play_arrow')" :path="path"
+          :rotation="rotation" :content="content" :infoWindow="true" :speed="speed" :icon="icon" :play="play">
         </bml-lushu>
       </baidu-map>
       <table>

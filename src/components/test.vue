@@ -1,7 +1,13 @@
 <template>
   <div>
-    <baidu-map class="map" ak="Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK" v="2.0" type="WebGL" :center="'北京'" :zoom="15" :scroll-wheel-zoom="true" @ready="mapInit">
-      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+    <span @click="change">修改</span>
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
+      <!-- <bm-marker v-for="(point,index) in points" :key="index" :position="point"> -->
+      <bm-overlay v-for="(point,index) in points" :key="index" pane="labelPane">
+        <div>我爱北京天安门</div>
+      </bm-overlay>
+      <!-- <bm-label content="sddd"></bm-label> -->
+      <!-- </bm-marker> -->
     </baidu-map>
   </div>
 </template>
@@ -43,6 +49,9 @@ export default {
             color: '#FFF693'
           }
         }
+      ],
+      points: [
+        { "lng": 116.404, "lat": 39.915 }
       ]
     };
   },
@@ -52,6 +61,12 @@ export default {
       // this.mapCenter.lng = 114.517154
       // this.mapCenter.lat = 38.038766
       // this.zoom = 8
+    },
+    change() {
+      this.points = [
+        { "lng": 116.404, "lat": 39.905 },
+        { "lng": 116.404, "lat": 39.925 },
+      ]
     }
   },
 };

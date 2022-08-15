@@ -145,7 +145,7 @@ const handleSearchComplete = (res) => {
 
 <script setup>
 import { ref } from 'vue';
-import {  BmlLushu } from '/components';
+import {  BmlLushu } from 'vue-baidu-map-3x';
 
 const btnText = ref('play_arrow');
 const path = ref([]);
