@@ -64,6 +64,9 @@ const ready = ({BMap,map})=>{
 </style>
 ```
 
+### 离线地图
+安装插件使用<font color="#e81224">npm i vue-baidu-map-offline</font>
+
 ## 废弃
 ~~BmView~~
 废弃了<font color="#e81224">BmView</font>组件

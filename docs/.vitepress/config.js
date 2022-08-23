@@ -36,12 +36,16 @@ const config = {
                 text: '坑人集合',
                 link: '/hole/'
             }, {
+                text: '离线地图',
+                link: '/offline-map/'
+            }, {
                 text: 'vue-baidu-map',
                 link: 'https://dafrok.github.io/vue-baidu-map/'
             }
         ],
         sidebar: {
             '/hole/': 'auto',
+            '/offline-map/': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -218,6 +222,9 @@ const config = {
                 }, {
                     text: '坑人集合',
                     link: '/hole/'
+                }, {
+                    text: '离线地图',
+                    link: '/offline-map/'
                 }
             ]
         }

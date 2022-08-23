@@ -64,6 +64,9 @@ const ready = ({Bmap,map})=>{
 </style>
 ```
 
+### offline map
+install plugin<font color="#e81224">npm i vue-baidu-map-offline</font> contact me wechart:yjf163163|1294485765@qq.com
+
 ## abandon
 ~~BmView~~
 abandon<font color="#e81224">BmView</font>component
