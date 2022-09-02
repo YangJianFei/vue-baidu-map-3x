@@ -1,7 +1,7 @@
 <template>
   <div>
     <span @click="change">修改</span>
-    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" @ready="handleReady">
       <!-- <bm-marker v-for="(point,index) in points" :key="index" :position="point"> -->
       <bm-overlay v-for="(point,index) in points" :key="index" pane="labelPane">
         <div>我爱北京天安门</div>
@@ -67,6 +67,12 @@ export default {
         { "lng": 116.404, "lat": 39.905 },
         { "lng": 116.404, "lat": 39.925 },
       ]
+    },
+    handleReady({ BMap, map }) {
+      map.setTilt(73); // 倾斜度
+      map.setDisplayOptions({
+        skyColors: ['rgba(186, 0, 255, 0)', 'rgba(186, 0, 255, 0.2)'] // 设置天空颜色
+      })
     }
   },
 };

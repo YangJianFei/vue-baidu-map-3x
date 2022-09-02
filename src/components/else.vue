@@ -58,6 +58,7 @@
     <baidu-map v-if="activeType==='hots'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="14">
       <bml-heatmap :data="data" :max="100" :radius="20">
       </bml-heatmap>
+      <span @click="handleChange">改变</span>
     </baidu-map>
     <div v-if="activeType==='curveLine'">
       <baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5" :scroll-wheel-zoom="true">
@@ -79,7 +80,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue'])
 
-const activeType = ref('point');
+const activeType = ref('hots');
 const labels = ref([
   { name: '点聚合', type: 'point' },
   { name: '路书', type: 'lushu' },
@@ -284,6 +285,18 @@ const getMarkers = () => {
     const position = { lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 }
     markers.value.push(position);
   }
+};
+
+const handleChange = () => {
+  data.value = [
+    { lng: 116.4183, lat: 39.925015, count: 15 },
+    { lng: 116.421969, lat: 39.913527, count: 3 },
+    { lng: 116.422936, lat: 39.921854, count: 24 },
+    { lng: 116.41905, lat: 39.929217, count: 12 },
+    { lng: 116.424579, lat: 39.914987, count: 57 },
+    { lng: 116.42076, lat: 39.915251, count: 70 },
+    { lng: 116.425867, lat: 39.918989, count: 8 }
+  ];
 };
 
 getMarkers();
