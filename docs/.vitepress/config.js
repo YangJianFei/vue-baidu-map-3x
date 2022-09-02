@@ -41,11 +41,15 @@ const config = {
             }, {
                 text: 'vue-baidu-map',
                 link: 'https://dafrok.github.io/vue-baidu-map/'
+            }, {
+                text: '和作者聊聊天',
+                link: '/help/'
             }
         ],
         sidebar: {
             '/hole/': 'auto',
             '/offline-map/': 'auto',
+            '/help/': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -225,6 +229,9 @@ const config = {
                 }, {
                     text: '离线地图',
                     link: '/offline-map/'
+                }, {
+                    text: '和作者聊聊天',
+                    link: '/help/'
                 }
             ]
         }
