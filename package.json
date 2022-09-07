@@ -61,6 +61,7 @@
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@types/node": "^18.7.15",
     "@vitejs/plugin-vue": "^2.2.0",
     "bmapgllib.distancetool": "^1.0.0",
     "clipboard": "^2.0.10",

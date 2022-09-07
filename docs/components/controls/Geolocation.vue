@@ -2,7 +2,7 @@
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
 import { createIcon, createSize } from '../base/factory.js'
-import { deleteEmptyKey } from '../base/util.js'
+import { deleteEmptyKey, getConfig } from '../base/util.js'
 
 export default {
   name: 'bm-geolocation',
@@ -53,7 +53,13 @@ export default {
         locationIcon: locationIcon && createIcon(BMap, locationIcon)
       };
       deleteEmptyKey(geoLocationOption);
-      this.originInstance = new BMap.GeolocationControl(geoLocationOption)
+      switch (getConfig().type) {
+        case 'WebGL':
+          this.originInstance = new BMap.LocationControl(geoLocationOption)
+          break;
+        default:
+          this.originInstance = new BMap.GeolocationControl(geoLocationOption)
+      }
       bindEvents.call(this, this.originInstance)
       map.addControl(this.originInstance)
     }

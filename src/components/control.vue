@@ -28,7 +28,8 @@
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
     </baidu-map>
     <baidu-map v-else-if="controlType==='copyright'" class="map" center="北京">
-      <bm-copyright anchor="BMAP_ANCHOR_TOP_RIGHT" :copyright="[{id: 1, content: 'Copyright Message', bounds: {ne: {lng: 110, lat: 40}, sw:{lng: 0, lat: 0}}}, {id: 2, content: '<a>我是版权信息</a>'}]">
+      <bm-copyright anchor="BMAP_ANCHOR_TOP_RIGHT"
+        :copyright="[{id: 1, content: 'Copyright Message', bounds: {ne: {lng: 110, lat: 40}, sw:{lng: 0, lat: 0}}}, {id: 2, content: '<a>我是版权信息</a>'}]">
       </bm-copyright>
     </baidu-map>
     <baidu-map v-else-if="controlType==='citylist'" class="map" style="height: 400px" center="北京">
@@ -58,7 +59,7 @@ import DistanceTool from 'bmaplib.distancetool'
 
 window.global = window.global || window;
 
-const controlType = ref('citylist');
+const controlType = ref('location');
 const distanceTool = ref(null);
 
 const zoom = ref(10);
