@@ -27,8 +27,8 @@ features:
 footer: MIT Licensed | Copyright © 2022-present YangJianFei❤️1294485765@qq.com
 ---
 
+<p align="center" style="font-size: 24px;font-weight: bold;">代码智能提示</p>
 <p align="center">
-  <h2 class="mb12" align="center">代码智能提示</h2>
   <img class="card-img" src="./image/map-tip.gif" title="代码智能提示" alt="代码智能提示"/>
 </p>
 
