@@ -17,7 +17,7 @@ import { getPointByAddress } from 'vue-baidu-map-3x';
 const config = {
     location:['31.225696563611', '121.49884033194']
 };
-getAddressByPoints(config, '你的ak');
+getAddressByPoints(config, ['你的ak']);
 ```
 
 ## getPointByAddress 通过地址获取坐标
@@ -37,7 +37,7 @@ import { getAddressByPoints } from 'vue-baidu-map-3x';
 const config = {
     address:'北京市海淀区上地十街10号'
 };
-getAddressByPoints(config, '你的ak');
+getAddressByPoints(config, ['你的ak']);
 ```
 
 ## getPointsTransfer 坐标转换
@@ -60,5 +60,5 @@ const config = {
         '114.34892734521,29.245429778924'
     ]
 };
-getAddressByPoints(config, '你的ak');
+getAddressByPoints(config, ['你的ak']);
 ```
