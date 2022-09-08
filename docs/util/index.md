@@ -55,7 +55,7 @@ import { getAddressByPoints } from 'vue-baidu-map-3x';
 */
 
 const config = {
-    location:[
+    locations:[
         '114.21892734521,29.575429778924',
         '114.34892734521,29.245429778924'
     ]

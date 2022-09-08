@@ -13,14 +13,20 @@
 </template>
 
 <script>
-import { BaiduMap, BmNavigation } from 'c'
+import { BaiduMap, BmNavigation, getPointsTransfer } from 'c'
 export default {
   name: "PoleMap",
   components: {
     BaiduMap,
     BmNavigation
   },
-  created() { },
+  created() {
+    getPointsTransfer({
+      location: ['114.21892734521, 29.575429778924']
+    }).then(res => {
+      console.log(res);
+    });
+  },
   data() {
     return {
       mapCenter: { lng: 0, lat: 0 },
