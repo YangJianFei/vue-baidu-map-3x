@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     // sourcemap: true,
     lib: {
-      entry: path.resolve(__dirname, 'components/index.js'),
+      entry: path.resolve(__dirname, 'components/index.ts'),
       name: 'vue-baidu-map-3x',
       fileName: (format) => `vue-baidu-map-3x.${format}.js`
     },

@@ -1,93 +1,42 @@
-declare interface IAppConfig {
-    ak: string;
-    v?: string;
-    type?: string;
-    [key: string]: any;
-}
-
-declare interface ILocation {
-    lat: number;
-    lng: number;
-}
-
-declare interface IAddressResult {
-    country?: string;
-    country_code?: number;
-    country_code_iso?: string;
-    country_code_iso2?: string;
-    province?: string;
-    city?: string;
-    city_level?: number;
-    district?: string;
-    town?: string;
-    town_code?: string;
-    street?: string;
-    street_number?: string;
-    adcode?: number;
-    direction?: string;
-    distance?: string;
-}
-
-declare interface IPoi {
-    addr?: string;
-    cp?: string;
-    direction?: string;
-    distance?: number;
-    name?: string;
-    tag?: string;
-    point?: any;
-    tel?: number;
-    uid?: string;
-    zip?: number;
-    parent_poi?: any;
-}
-declare enum Coordtype {
-    bd09ll = 'bd09ll', // 百度经纬度坐标
-    bd09mc = 'bd09mc', // 百度米制坐标
-    gcj02ll = 'gcj02ll', // 国测局经纬度坐标，仅限中国
-    wgs84ll = 'wgs84ll', // GPS经纬度
-}
-
-declare interface IRoute {
-    name?: string;
-    distance?: string;
-}
-
-declare interface IBelong {
-    direction_desc?: string;
-    name?: string;
-    tag?: string;
-}
-
-declare interface IPointToAddressConfig {
-    location: number[];
-    extensions_poi?: number;
-    output?: string;
-    coordtype?: Coordtype;
-    ret_coordtype?: string;
-    radius?: number;
-    sn?: string;
-    poi_types?: string;
-    extensions_road?: boolean;
-    extensions_town?: boolean;
-    language?: string;
-    language_auto?: number;
-    [key: string]: any;
-}
-
-declare interface IPointToAddressResult {
-    location?: ILocation;
-    formatted_address?: string;
-    business?: string;
-    addressComponent?: IAddressResult;
-    pois?: IPoi[];
-    roads?: IRoute[];
-    poiRegions?: IBelong[];
-    sematic_description?: string;
-    cityCode?: number;
-}
-
-declare interface IPointToAddressReponse {
-    status: number;
-    result: IPointToAddressResult
-}
+import BaiduMap from './map/Map.vue';
+import BmScale from './controls/Scale.vue';
+import BmNavigation from './controls/Navigation.vue';
+import BmMapType from './controls/MapType.vue';
+import BmOverviewMap from './controls/OverviewMap.vue';
+import BmGeolocation from './controls/Geolocation.vue';
+import BmCopyright from './controls/Copyright.vue';
+import BmCityList from './controls/CityList.vue';
+import BmPanorama from './controls/Panorama.vue';
+import BmControl from './controls/Control.vue';
+import BmMarker from './overlays/Marker.vue';
+import BmPointCollection from './overlays/PointCollection.vue';
+import BmPolyline from './overlays/Polyline.vue';
+import BmPolygon from './overlays/Polygon.vue';
+import BmCircle from './overlays/Circle.vue';
+import BmGround from './overlays/Ground.vue';
+import BmLabel from './overlays/Label.vue';
+import BmInfoWindow from './overlays/InfoWindow.vue';
+import BmOverlay from './overlays/Overlay.vue';
+import BmContextMenu from './context-menu/Menu.vue';
+import BmContextMenuItem from './context-menu/Item.vue';
+import BmLocalSearch from './search/LocalSearch.vue';
+import BmTransit from './search/Transit.vue';
+import BmWalking from './search/Walking.vue';
+import BmDriving from './search/Driving.vue';
+import BmBus from './search/Bus.vue';
+import BmTile from './layers/Tile.vue';
+import BmTraffic from './layers/Traffic.vue';
+import BmBoundary from './others/Boundary.vue';
+import BmAutoComplete from './others/AutoComplete.vue';
+import BmlMarkerClusterer from './extra/MarkerClusterer.vue';
+import BmlLushu from './extra/Lushu.vue';
+import BmlHeatmap from './extra/Heatmap.vue';
+import BmlCurveLine from './extra/CurveLine.vue';
+import { getAddressByPoints, getPointByAddress, getPointsTransfer } from './utils';
+declare const _default: {
+    install(Vue: any, options?: {}): void;
+};
+export default _default;
+export { BaiduMap, BmScale, BmNavigation, BmMapType, BmOverviewMap, BmGeolocation, BmCopyright, BmCityList, BmPanorama, BmControl, BmMarker, BmPointCollection, BmPolyline, BmPolygon, BmCircle, BmGround, BmLabel, BmInfoWindow, BmOverlay, BmContextMenu, BmContextMenuItem, BmLocalSearch, BmTransit, BmWalking, BmDriving, BmBus, BmTile, BmTraffic, BmBoundary, BmAutoComplete };
+export { BmlMarkerClusterer, BmlLushu, BmlHeatmap, BmlCurveLine };
+export { getAddressByPoints, getPointByAddress, getPointsTransfer };

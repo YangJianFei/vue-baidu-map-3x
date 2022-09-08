@@ -53,7 +53,7 @@ const config = {
             '/': [
                 {
                     text: '介绍',
-                    link: 'index'
+                    link: process.env.npm_lifecycle_event == 'docs:dev' ? 'indexno' : 'index'
                 },
                 {
                     text: '开始',
@@ -223,6 +223,9 @@ const config = {
                             link: '/bmaplib/curve-line'
                         }
                     ]
+                }, {
+                    text: '工具函数',
+                    link: '/util/'
                 }, {
                     text: '坑人集合',
                     link: '/hole/'

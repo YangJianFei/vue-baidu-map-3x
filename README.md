@@ -90,6 +90,7 @@ const ready = ({BMap,map})=>{
 
 - [ ] 按需加载
 - [ ] treeshaking
+- [ ] 箭头绘制，区域划分
 
 ## 更新日志
 [更新日志](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/changelogs.md)

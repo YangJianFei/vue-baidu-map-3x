@@ -8,6 +8,7 @@
  */
 
 import { getConfig } from '../base/util';
+import { IAddressToPointConfig, IAddressToPointResponse, IPointTransferConfig, IPointTransferResponse } from './type';
 
 export function getParamsStrByObject(obj: any) {
     let arr: string[] = [];
@@ -17,6 +18,13 @@ export function getParamsStrByObject(obj: any) {
     return arr.join('&');
 }
 
+/**
+ * 通过坐标获取地址 config和返回值参考百度api
+ * @param config {IPointToAddressConfig}  默认值 {extensions_poi 1,output: 'json',coordtype: 'wgs84ll',timeout: 60  }
+ * @param aks {String[]} ; ak不传默认使用map ak
+ * 
+ * @return {promise} ; 
+*/
 export function getAddressByPoints(config: IPointToAddressConfig, aks: string[] = []) {
     if (!config.location || !config.location.length) {
         console.error('请传入location');
@@ -31,14 +39,20 @@ export function getAddressByPoints(config: IPointToAddressConfig, aks: string[] 
                 location: [],
                 extensions_poi: 1,
                 output: 'json',
-                coordtype: 'wgs84ll'
+                coordtype: 'wgs84ll',
+                timeout: 60
             }, config);
 
-            let num = 0;
+            let num: number = 0;
             const requestBaidu = () => {
+                const timer = setTimeout(() => {
+                    reject(new Error('查询超时'));
+                }, params.timeout * 1000);
+
                 const callbackName: string = 'baiduReverse' + Math.floor(Math.random() * 1000000);
                 params.callback = callbackName;
                 window[callbackName] = (res: IPointToAddressReponse) => {
+                    clearTimeout(timer);
                     window[callbackName] = null;
                     document.getElementById(callbackName)?.remove();
                     if (!res.status) {
@@ -56,7 +70,7 @@ export function getAddressByPoints(config: IPointToAddressConfig, aks: string[] 
                 let script = document.createElement('script');
                 script.id = callbackName;
                 script.src = `https://api.map.baidu.com/reverse_geocoding/v3/?${getParamsStrByObject(params)}`;
-                document.getElementsByTagName('head')[0].appendChild(script);
+                document.getElementsByTagName('head')[0]?.appendChild(script);
             };
             requestBaidu();
         } else {
@@ -66,25 +80,45 @@ export function getAddressByPoints(config: IPointToAddressConfig, aks: string[] 
     });
 }
 
-export function getPointByAddress(config = {}) {
+/**
+ * 通过地址获取坐标 config和返回值参考百度api
+ * @param config {IAddressToPointConfig} 默认值 {output: 'json',timeout: 60}
+ * @param aks {String[]} ; ak不传默认使用map ak
+ * 
+ * @return {promise} ; 
+*/
+export function getPointByAddress(config: IAddressToPointConfig, aks: string[] = []) {
+    if (!config.address) {
+        console.error('请传入address');
+    }
+    const appConfig = getConfig() as IAppConfig;
+    if (appConfig.ak) {
+        aks.push(appConfig.ak);
+    }
     return new Promise((resolve, reject) => {
-        if (getConfig().BaiduMapAKs.length) {
+        if (aks.length) {
             let params = Object.assign({
                 address: '',
                 output: 'json',
+                timeout: 60
             }, config);
 
-            let num = 0;
+            let num: number = 0;
             const requestBaidu = () => {
-                const callbackName = 'baidugeocoding' + Math.floor(Math.random() * 1000000);
+                const timer = setTimeout(() => {
+                    reject(new Error('查询超时'));
+                }, params.timeout * 1000);
+
+                const callbackName: string = 'baidugeocoding' + Math.floor(Math.random() * 1000000);
                 params.callback = callbackName;
-                window[callbackName] = (res) => {
+                window[callbackName] = (res: IAddressToPointResponse) => {
+                    clearTimeout(timer);
                     window[callbackName] = null;
-                    document.getElementById(callbackName).remove();
+                    document.getElementById(callbackName)?.remove();
                     if (!res.status) {
                         resolve(res.result);
                     } else {
-                        if (num < getConfig().BaiduMapAKs.length * 4) {
+                        if (num < aks.length * 4) {
                             num++;
                             requestBaidu();
                         } else {
@@ -92,11 +126,11 @@ export function getPointByAddress(config = {}) {
                         }
                     }
                 };
-                params.ak = getConfig().BaiduMapAKs[num % getConfig().BaiduMapAKs.length];
+                params.ak = aks[num % aks.length];
                 let script = document.createElement('script');
                 script.id = callbackName;
                 script.src = `https://api.map.baidu.com/geocoding/v3/?${getParamsStrByObject(params)}`;
-                document.getElementsByTagName('head')[0].appendChild(script);
+                document.getElementsByTagName('head')[0]?.appendChild(script);
             };
             requestBaidu();
         } else {
@@ -106,26 +140,46 @@ export function getPointByAddress(config = {}) {
     });
 }
 
-export function getPointsGPS(config = {}) {
+/**
+ * 坐标转换 config和返回值参考百度api
+ * @param config {IPointTransferConfig} 默认值 {from: 1,to: 5,timeout: 60}
+ * @param aks {String[]} ; ak不传默认使用map ak
+ * 
+ * @return {promise} ; 
+*/
+export function getPointsTransfer(config: IPointTransferConfig, aks: string[]) {
+    if (!config.location || !config.location.length) {
+        console.error('请传入location');
+    }
+    const appConfig = getConfig() as IAppConfig;
+    if (appConfig.ak) {
+        aks.push(appConfig.ak);
+    }
     return new Promise((resolve, reject) => {
-        if (getConfig().BaiduMapAKs.length) {
+        if (aks.length) {
             let params = Object.assign({
                 locations: [],
                 from: 1,
-                to: 5
+                to: 5,
+                timeout: 60
             }, config);
 
-            let num = 0;
+            let num: number = 0;
             const requestBaidu = () => {
-                const callbackName = 'baidugeoconv' + Math.floor(Math.random() * 1000000);
+                const timer = setTimeout(() => {
+                    reject(new Error('查询超时'));
+                }, params.timeout * 1000);
+
+                const callbackName: string = 'baidugeoconv' + Math.floor(Math.random() * 1000000);
                 params.callback = callbackName;
-                window[callbackName] = (res) => {
+                window[callbackName] = (res: IPointTransferResponse) => {
+                    clearTimeout(timer);
                     window[callbackName] = null;
-                    document.getElementById(callbackName).remove();
+                    document.getElementById(callbackName)?.remove();
                     if (!res.status) {
                         resolve(res.result);
                     } else {
-                        if (num < getConfig().BaiduMapAKs.length * 4) {
+                        if (num < aks.length * 4) {
                             num++;
                             requestBaidu();
                         } else {
@@ -133,12 +187,12 @@ export function getPointsGPS(config = {}) {
                         }
                     }
                 };
-                params.ak = getConfig().BaiduMapAKs[num % getConfig().BaiduMapAKs.length];
+                params.ak = aks[num % aks.length];
                 params.coords = params.locations.join(';');
                 let script = document.createElement('script');
                 script.id = callbackName;
                 script.src = `https://api.map.baidu.com/geoconv/v1/?${getParamsStrByObject(params)}`;
-                document.getElementsByTagName('head')[0].appendChild(script);
+                document.getElementsByTagName('head')[0]?.appendChild(script);
             };
             requestBaidu();
         } else {

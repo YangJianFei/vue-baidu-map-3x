@@ -28,10 +28,29 @@ function destroyInstance() {
   unload()
 }
 
-class Mixin {
-  constructor(prop) {
-    this.emits = ['ready'];
-    this.methods = {
+const getMixin = (prop = {}) => {
+  return {
+    emits: ['ready'],
+    computed: {
+      renderByParent() {
+        return this.$parent.preventChildrenRender
+      }
+    },
+    created() {
+      const $parent = getParent(this.$parent)
+      const map = $parent.map
+      const { ready } = this
+      map ? ready() : EvenBus.$on('ready', ready);
+      EvenBus.$on('init', this.init);
+    },
+    mounted() {
+      const $parent = getParent(this.$parent)
+      const map = $parent.map
+      const { mountedReady } = this
+      map ? mountedReady() : EvenBus.$on('ready', mountedReady);
+    },
+    unmounted: destroyInstance,
+    methods: {
       init() { },
       ready() {
         const $parent = getParent(this.$parent)
@@ -75,27 +94,8 @@ class Mixin {
         } catch (e) { }
       },
       mountedLoad() { }
-    }
-    this.computed = {
-      renderByParent() {
-        return this.$parent.preventChildrenRender
-      }
-    }
-    this.created = function () {
-      const $parent = getParent(this.$parent)
-      const map = $parent.map
-      const { ready } = this
-      map ? ready() : EvenBus.$on('ready', ready);
-      EvenBus.$on('init', this.init);
-    }
-    this.mounted = function () {
-      const $parent = getParent(this.$parent)
-      const map = $parent.map
-      const { mountedReady } = this
-      map ? mountedReady() : EvenBus.$on('ready', mountedReady);
-    }
-    this.unmounted = destroyInstance
-  }
+    },
+  };
 }
 
-export default type => new Mixin({ type })
+export default type => getMixin({ type });

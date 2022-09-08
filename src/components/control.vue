@@ -12,7 +12,7 @@
     <label v-for="label in labels" :key="label.type">
       <input name="controlType" type="radio" :checked="controlType===label.type" @change="controlType=label.type">{{label.name}}
     </label>
-    <baidu-map v-if="controlType==='scaleRule'" class="map" center="北京">
+    <baidu-map v-if="controlType==='scaleRule'" class="map" center="北京" :scroll-wheel-zoom="true">
       <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
     </baidu-map>
     <baidu-map v-else-if="controlType==='scale'" class="map" center="北京" :scroll-wheel-zoom="true">
@@ -59,7 +59,7 @@ import DistanceTool from 'bmaplib.distancetool'
 
 window.global = window.global || window;
 
-const controlType = ref('location');
+const controlType = ref('scaleRule');
 const distanceTool = ref(null);
 
 const zoom = ref(10);

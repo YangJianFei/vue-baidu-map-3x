@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": "src",
+        "baseUrl": ".",
         "paths": {
             "@/*": [
                 "src/*"
@@ -12,7 +12,7 @@
                 "src/components/*"
             ],
             "types/*": [
-                "types/*"
+                "components/types/*"
             ]
         }
     }
