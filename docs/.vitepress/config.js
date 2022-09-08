@@ -53,7 +53,7 @@ const config = {
             '/': [
                 {
                     text: '介绍',
-                    link: process.env.npm_lifecycle_event == 'docs:dev' ? 'indexno' : 'index'
+                    link: 'index'
                 },
                 {
                     text: '开始',
