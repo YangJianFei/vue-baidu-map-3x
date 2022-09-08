@@ -37,7 +37,7 @@ getAddressByPoints<span class="token punctuation">(</span>config, <span class="t
 */
 
 const config <span class="token operator">=</span> <span class="token punctuation">{</span>
-    location:<span class="token punctuation">[</span>
+    locations:<span class="token punctuation">[</span>
         <span class="token string">&#39;114.21892734521,29.575429778924&#39;</span>,
         <span class="token string">&#39;114.34892734521,29.245429778924&#39;</span>
     <span class="token punctuation">]</span>
