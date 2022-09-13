@@ -23,7 +23,7 @@ const config = {
         }
     },
     themeConfig: {
-        repo: pkg.repository,
+        repo: pkg.homepage,
         logo: '/heifahaizei.png',
         docsBranch: 'main',
         editLinks: true,

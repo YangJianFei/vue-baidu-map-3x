@@ -2,7 +2,7 @@
   "name": "vue-baidu-map-3x",
   "author": "YangJianFei",
   "private": false,
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "vue-baidu-map的vue3版本（支持v2.0、v3.0和webGl api）。Baidu Map Component for Vue 3.0 (support v2.0 、 v3.0 and webGl api)",
   "scripts": {
     "dev": "vite",
@@ -28,7 +28,9 @@
   ],
   "files": [
     "dist",
-    "components"
+    "components",
+    "types",
+    "vetur"
   ],
   "main": "./dist/vue-baidu-map-3x.umd.js",
   "module": "./dist/vue-baidu-map-3x.es.js",
