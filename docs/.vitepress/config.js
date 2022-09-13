@@ -41,9 +41,6 @@ const config = {
                 link: '/offline-map/',
                 latest: true
             }, {
-                text: 'vue-baidu-map',
-                link: 'https://dafrok.github.io/vue-baidu-map/'
-            }, {
                 text: '和作者聊聊天',
                 link: '/help/'
             }
