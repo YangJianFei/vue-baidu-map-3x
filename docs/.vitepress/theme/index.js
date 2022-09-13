@@ -12,6 +12,8 @@ import DefaultTheme from 'vitepress/theme'
 import BaiduMap from '/vite-index.js'
 import RunCode from '../components/run-code.vue'
 import './common.scss'
+import Layout from '../components/layout.vue';
+console.log(DefaultTheme);
 
 export default {
     ...DefaultTheme,

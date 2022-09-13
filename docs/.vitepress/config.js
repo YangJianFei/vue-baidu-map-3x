@@ -34,10 +34,12 @@ const config = {
                 link: '/begin/install'
             }, {
                 text: '坑人集合',
-                link: '/hole/'
+                link: '/hole/',
+                hot: true
             }, {
                 text: '离线地图',
-                link: '/offline-map/'
+                link: '/offline-map/',
+                latest: true
             }, {
                 text: 'vue-baidu-map',
                 link: 'https://dafrok.github.io/vue-baidu-map/'
@@ -123,6 +125,7 @@ const config = {
                 },
                 {
                     text: '覆盖物',
+                    hot: true,
                     children: [
                         {
                             text: '点',
@@ -225,13 +228,16 @@ const config = {
                     ]
                 }, {
                     text: '工具函数',
-                    link: '/util/'
+                    link: '/util/',
+                    latest: true
                 }, {
                     text: '坑人集合',
-                    link: '/hole/'
+                    link: '/hole/',
+                    hot: true
                 }, {
                     text: '离线地图',
-                    link: '/offline-map/'
+                    link: '/offline-map/',
+                    latest: true
                 }, {
                     text: '和作者聊聊天',
                     link: '/help/'
