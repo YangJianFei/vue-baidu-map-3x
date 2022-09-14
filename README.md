@@ -93,4 +93,4 @@ const ready = ({BMap,map})=>{
 - [ ] 箭头绘制，区域划分
 
 ## 更新日志
-[更新日志](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/changelogs.md)
+[更新日志](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/docs/changelogs.md)

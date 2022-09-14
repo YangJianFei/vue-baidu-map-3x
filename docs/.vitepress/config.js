@@ -33,22 +33,31 @@ const config = {
                 text: '开始',
                 link: '/begin/install'
             }, {
-                text: '坑人集合',
+                text: '焚书坑儒',
                 link: '/hole/',
                 hot: true
             }, {
-                text: '离线地图',
+                text: '断网地图',
                 link: '/offline-map/',
                 latest: true
             }, {
-                text: '和作者聊聊天',
+                text: '和作者摆龙门阵',
                 link: '/help/'
+            }, {
+                text: '曲径通幽',
+                items: [
+                    {
+                        text: '更新日志',
+                        link: '/changelogs'
+                    }
+                ]
             }
         ],
         sidebar: {
             '/hole/': 'auto',
             '/offline-map/': 'auto',
             '/help/': 'auto',
+            '/changelogs': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -238,6 +247,9 @@ const config = {
                 }, {
                     text: '和作者聊聊天',
                     link: '/help/'
+                }, {
+                    text: '更新日志',
+                    link: '/changelogs'
                 }
             ]
         }

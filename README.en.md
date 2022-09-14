@@ -92,4 +92,4 @@ Hope you star!（づ￣3￣）づ╭<span style="color:red;">❤</span>～
 - [ ] treeshaking
 
 ## updated logs
-[updated logs](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/changelogs.md)
+[updated logs](https://github.com/YangJianFei/vue-baidu-map-3x/blob/main/docs/changelogs.md)
