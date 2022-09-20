@@ -44,7 +44,7 @@ import BmlLushu from './extra/Lushu.vue'
 import BmlHeatmap from './extra/Heatmap.vue'
 import BmlCurveLine from './extra/CurveLine.vue'
 
-import { setConfig } from './base/util';
+import { setConfig, getConfig } from './base/util';
 import { getAddressByPoints, getPointByAddress, getPointsTransfer } from './utils';
 
 export default {
@@ -103,5 +103,6 @@ export {
 export {
   getAddressByPoints,
   getPointByAddress,
-  getPointsTransfer
+  getPointsTransfer,
+  getConfig
 }

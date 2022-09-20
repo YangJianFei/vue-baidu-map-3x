@@ -62,3 +62,18 @@ const config = {
 };
 getAddressByPoints(config, ['你的ak']);
 ```
+
+## getConfig 获取组件配置
+示例
+
+```bash
+import { getConfig } from 'vue-baidu-map-3x';
+
+/**
+ * 获取组件配置 返回值是use组件的参数
+ * 
+ * @return {config} ; 
+*/
+
+getConfig();
+```

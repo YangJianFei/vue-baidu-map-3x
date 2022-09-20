@@ -13,6 +13,9 @@
 
 <script setup>
 import { ref, toRef } from 'vue';
+import { getConfig } from 'c';
+
+const config = getConfig();
 
 const polyline = ref({
   editing: false,
@@ -36,9 +39,9 @@ const syncPolyline = (e) => {
     return
   }
   if (path.length === 1) {
-    polyline.value.paths[polyline.value.paths.length - 1].push(e.point)
+    polyline.value.paths[polyline.value.paths.length - 1].push(config.type == 'WebGL' ? e.latlng : e.point)
   }
-  polyline.value.paths[polyline.value.paths.length - 1][path.length - 1] = e.point;
+  polyline.value.paths[polyline.value.paths.length - 1][path.length - 1] = config.type == 'WebGL' ? e.latlng : e.point;
 }
 
 const newPolyline = (e) => {
@@ -60,7 +63,7 @@ const paintPolyline = (e) => {
     return
   }
   !polyline.value.paths.length && polyline.value.paths.push([])
-  polyline.value.paths[polyline.value.paths.length - 1].push(e.point)
+  polyline.value.paths[polyline.value.paths.length - 1].push(config.type == 'WebGL' ? e.latlng : e.point)
 }
 </script>
 

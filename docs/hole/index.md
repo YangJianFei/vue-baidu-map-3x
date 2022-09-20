@@ -59,3 +59,7 @@ import { BaiduMap } from 'vue-baidu-map-3x'
 	</div>
 </baidu-map>
 ```
+
+::: danger 地图事件点坐标坑
+WebGl地图事件点坐标是latlng，Api事件点坐标是point
+:::

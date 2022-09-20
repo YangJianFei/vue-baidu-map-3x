@@ -66,6 +66,10 @@
 |touchend|`{type, target, point,pixel}`|触摸结束时触发此事件，仅适用移动设备|
 |longpress|`{type, target, point,pixel}`|长按事件，仅适用移动设备|
 
+::: danger 地图事件点坐标坑
+WebGl地图事件点坐标是latlng，Api事件点坐标是point
+:::
+
 ## 自定义主题
 
 百度地图实例允许用户设置自定义配色风格以配合不同风格的主题设计。
