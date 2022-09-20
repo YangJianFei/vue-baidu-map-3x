@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as n,b as s}from"./app.0a7757b9.js";const m='{"title":"\u5B89\u88C5","description":"","frontmatter":{},"headers":[{"level":2,"title":"NPM","slug":"npm"}],"relativePath":"begin/install.md"}',t={},r=s("",3),i=[r];function c(o,d,l,_,p,h){return n(),a("div",null,i)}var f=e(t,[["render",c]]);export{m as __pageData,f as default};
