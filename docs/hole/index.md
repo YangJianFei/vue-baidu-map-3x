@@ -42,3 +42,20 @@ import { BaiduMap } from 'vue-baidu-map-3x'
 地图加载完事件有：**init**,**load**,**loaded**,**ready**
 注意他们的区别一个不行试试另一个
 :::
+
+
+::: danger 信息窗体同时只能存在一个，所以不能循环里面添加
+参考：https://lbsyun.baidu.com/index.php?title=jspopularGL/guide/infoWindow
+:::
+
+```html{2-7}
+<baidu-map class="map" :center="{lng: location.lng, lat: location.lat}" :zoom="15" style="height: 800px;">
+	<div v-for="item in locationInfo"> // 错误写法
+		<bm-marker :position="{lng: item.location.lng, lat: item.location.lat}" :dragging="false" @click="item.open = true">
+			<bm-info-window :show="item.open" @close="item.open=false" @open="item.open = true">
+				{{ item }}
+			</bm-info-window>
+		</bm-marker>
+	</div>
+</baidu-map>
+```

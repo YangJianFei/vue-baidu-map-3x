@@ -9,7 +9,7 @@ const app = createApp(App);
 app.use(BaiduMap, {
     // v: '2.0',
     ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK',// LkW3zeVtdMjBZGhCggdGNHAkcuMDveOr    Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK
-    // type: 'WebGL'
+    type: 'WebGL'
 });
 app.use(Router);
 app.mount('#app');

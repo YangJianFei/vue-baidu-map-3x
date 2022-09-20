@@ -28,6 +28,23 @@
 |restore|`event{type, target}`|信息窗口还原时触发此事件|
 |clickclose|`event{type, target}`|点击信息窗口的关闭按钮时触发此事件|
 
+::: danger 警告
+信息窗体同时只能存在一个，所以不能循环里面添加
+参考：https://lbsyun.baidu.com/index.php?title=jspopularGL/guide/infoWindow
+:::
+
+```html{2-7}
+<baidu-map class="map" :center="{lng: location.lng, lat: location.lat}" :zoom="15" style="height: 800px;">
+	<div v-for="item in locationInfo"> // 错误写法
+		<bm-marker :position="{lng: item.location.lng, lat: item.location.lat}" :dragging="false" @click="item.open = true">
+			<bm-info-window :show="item.open" @close="item.open=false" @open="item.open = true">
+				{{ item }}
+			</bm-info-window>
+		</bm-marker>
+	</div>
+</baidu-map>
+```
+
 ## 示例
 
 ### 在地图中添加一个信息窗体
@@ -65,3 +82,4 @@ const clear = () => {
 };
 </script>
 -/DemoCode-
+

@@ -1,19 +1,16 @@
 <template>
   <div>
     <span @click="change">修改</span>
-    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" @ready="handleReady">
-      <!-- <bm-marker v-for="(point,index) in points" :key="index" :position="point"> -->
-      <bm-overlay v-for="(point,index) in points" :key="index" pane="labelPane">
-        <div>我爱北京天安门</div>
-      </bm-overlay>
-      <!-- <bm-label content="sddd"></bm-label> -->
-      <!-- </bm-marker> -->
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" @ready="handleReady" scroll-wheel-zoom>
+      <bm-marker v-for="(point,index) in points" :key="point.lng" :position="point" :dragging="true" @click="infoWindowOpen">
+        <bm-info-window :key="index" :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门{{index}}</bm-info-window>
+      </bm-marker>
     </baidu-map>
   </div>
 </template>
 
 <script>
-import { BaiduMap, BmNavigation, getPointsTransfer } from 'vue-baidu-map-3x'
+import { BaiduMap, BmNavigation, getPointsTransfer } from 'c'
 export default {
   name: "PoleMap",
   components: {
@@ -57,8 +54,21 @@ export default {
         }
       ],
       points: [
-        { "lng": 116.404, "lat": 39.915 }
-      ]
+        { "lng": 116.404, "lat": 39.915 },
+        { "lng": 116.404, "lat": 39.945 }
+      ],
+      label: {
+        content: 'wahaha',
+        opts: {
+          offset: {
+            width: 50,
+            height: 50
+          },
+          position: { "lng": 116.404, "lat": 39.915 },
+          enableMassClear: true
+        }
+      },
+      show: false
     };
   },
   props: {},
@@ -79,6 +89,9 @@ export default {
       map.setDisplayOptions({
         skyColors: ['rgba(186, 0, 255, 0)', 'rgba(186, 0, 255, 0.2)'] // 设置天空颜色
       })
+    },
+    infoWindowOpen() {
+      this.show = true;
     }
   },
 };
