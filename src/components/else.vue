@@ -73,7 +73,7 @@
 
 <script setup>
 import { ref, inject, onMounted } from 'vue';
-import { BmlMarkerClusterer, BmlLushu, BmlHeatmap, BmlCurveLine } from 'c';
+import { BmlMarkerClusterer, BmlLushu, BmlHeatmap, BmlCurveLine } from 'vue-baidu-map-3x';
 
 const props = defineProps({
   modelValue: {}

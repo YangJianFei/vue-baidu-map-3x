@@ -9,7 +9,7 @@
 
 
 import DefaultTheme from 'vitepress/theme'
-import BaiduMap from '/vite-index.js'
+import BaiduMap from 'vue-baidu-map-3x';
 import RunCode from '../components/run-code.vue'
 import './common.scss'
 import Layout from '../components/layout.vue';

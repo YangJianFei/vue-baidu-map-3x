@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import BaiduMap from 'c'
+import BaiduMap from 'vue-baidu-map-3x'
 import Router from './router';
 import '@/assets/css/common.scss'
 

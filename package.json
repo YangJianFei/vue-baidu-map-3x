@@ -65,12 +65,12 @@
   "devDependencies": {
     "@types/node": "^18.7.15",
     "@vitejs/plugin-vue": "^2.2.0",
-    "bmapgllib.distancetool": "^1.0.0",
     "clipboard": "^2.0.10",
     "sass": "^1.51.0",
     "typescript": "^4.8.2",
     "vite": "^2.8.0",
-    "vitepress": "^0.22.3"
+    "vitepress": "^0.22.3",
+    "vue-baidu-map-3x": "file:components"
   },
   "typings": "types/index.d.ts",
   "vetur": {

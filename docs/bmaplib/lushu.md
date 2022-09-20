@@ -86,7 +86,7 @@ const icon = ref({
 const bmlLushu = ref(null);
 
 onMounted(()=>{
-  import('/components/extra/Lushu.vue').then(module=>{
+  import('vue-baidu-map-3x/extra/Lushu.vue').then(module=>{
     bmlLushu.value = module.default;
   });
 });

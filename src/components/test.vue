@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { BaiduMap, BmNavigation, getPointsTransfer } from 'c'
+import { BaiduMap, BmNavigation, getPointsTransfer } from 'vue-baidu-map-3x'
 export default {
   name: "PoleMap",
   components: {
