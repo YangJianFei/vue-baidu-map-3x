@@ -19,7 +19,8 @@
       <input v-model.number="center.lng">
       <input v-model.number="center.lat">
       <input v-model.number="zoom">
-      <baidu-map class="map" :scroll-wheel-zoom="true" :center="center" :zoom="zoom" @moving="syncCenterAndZoom" @moveend="syncCenterAndZoom" @zoomend="syncCenterAndZoom">
+      <baidu-map class="map" :scroll-wheel-zoom="true" :center="center" :zoom="zoom" @moving="syncCenterAndZoom" @moveend="syncCenterAndZoom"
+        @zoomend="syncCenterAndZoom">
       </baidu-map>
     </div>
   </div>
@@ -38,18 +39,18 @@ let zoom = ref(15);
 const mapStyle = ref({
   styleJson: [
     {
-      "featureType": "all",
+      "featureType": "land",
       "elementType": "geometry",
       "stylers": {
-        "hue": "#007fff",
-        "saturation": 89
+        "visibility": "on",
+        "color": "#091220ff"
       }
-    },
-    {
+    }, {
       "featureType": "water",
-      "elementType": "all",
+      "elementType": "geometry",
       "stylers": {
-        "color": "#ffffff"
+        "visibility": "on",
+        "color": "#113549ff"
       }
     }
   ]

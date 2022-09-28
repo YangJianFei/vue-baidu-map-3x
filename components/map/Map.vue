@@ -10,7 +10,7 @@
 import bindEvents from '../base/bindEvent.js'
 import { checkType } from '../base/util.js'
 import EvenBus from '../base/eventBus.js'
-import MethodMap from '../base/methodMap.js';
+import getMapMethod from '../base/methodMap.js';
 import { setConfig, getConfig } from '../base/util';
 
 export default {
@@ -166,13 +166,13 @@ export default {
     },
     theme(val) {
       const { map } = this
-      map[MethodMap[getConfig().type].setMapStyle]({ styleJson: val })
+      map[getMapMethod('setMapStyle')]({ styleJson: val })
     },
     'mapStyle.features': {
       handler(val, oldVal) {
         const { map, mapStyle } = this
         const { style, styleJson } = mapStyle
-        map[MethodMap[getConfig().type].setMapStyle]({
+        map[getMapMethod('setMapStyle')]({
           styleJson,
           features: val,
           style
@@ -183,7 +183,7 @@ export default {
     'mapStyle.style'(val, oldVal) {
       const { map, mapStyle } = this
       const { features, styleJson } = mapStyle
-      map[MethodMap[getConfig().type].setMapStyle]({
+      map[getMapMethod('setMapStyle')]({
         styleJson,
         features,
         style: val
@@ -193,7 +193,7 @@ export default {
       handler(val, oldVal) {
         const { map, mapStyle } = this
         const { features, style } = mapStyle
-        map[MethodMap[getConfig().type].setMapStyle]({
+        map[getMapMethod('setMapStyle')]({
           styleJson: val,
           features,
           style
@@ -203,7 +203,7 @@ export default {
     },
     mapStyle(val) {
       const { map, theme } = this
-      !theme && map[MethodMap[getConfig().type].setMapStyle](val)
+      !theme && map[getMapMethod('setMapStyle')](val)
     }
   },
   methods: {
@@ -237,12 +237,14 @@ export default {
       const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick })
       this.map = map
       const { setMapOptions, zoom, getCenterPoint, theme, mapStyle } = this
-      theme ? map[MethodMap[getConfig().type].setMapStyle]({ styleJson: theme }) : (mapStyle && map[MethodMap[getConfig().type].setMapStyle](mapStyle))
       setMapOptions()
       bindEvents.call(this, map)
       // 此处强行初始化一次地图 回避一个由于错误的 center 字符串导致初始化失败抛出的错误
       map.reset()
       map.centerAndZoom(getCenterPoint(), zoom)
+      setTimeout(() => {
+        theme ? map[getMapMethod('setMapStyle')]({ styleJson: theme }) : (mapStyle && map[getMapMethod('setMapStyle')](mapStyle))
+      }, 3000);
       let loadNum = 0;
       this.$emit('init', { BMap, map });
       EvenBus.$emit('init', { BMap, map });

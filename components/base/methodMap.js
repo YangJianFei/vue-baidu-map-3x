@@ -7,13 +7,34 @@
  * Copyright (c) 2022 瑞为
  */
 
-export default {
+import { getConfig } from './util';
+
+const config = getConfig();
+
+const methods = {
     'API': {
-        setMapStyle: 'setMapStyle',
-        NavigationControl: 'NavigationControl'
+        '2.0': {
+            setMapStyle: 'setMapStyle',
+            NavigationControl: 'NavigationControl'
+        },
+        '3.0': {
+            setMapStyle: 'setMapStyleV2',
+            NavigationControl: 'NavigationControl'
+        }
     },
     'WebGL': {
         setMapStyle: 'setMapStyleV2',
         NavigationControl: 'NavigationControl3D'
     }
 }
+
+const getMapMethod = (method) => {
+    const config = getConfig();
+    if (config.type == 'WebGL') {
+        return methods[config.type][method];
+    } else {
+        return methods[config.type][config.v][method];
+    }
+}
+
+export default getMapMethod;

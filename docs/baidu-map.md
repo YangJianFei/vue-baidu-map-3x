@@ -99,7 +99,7 @@ WebGl地图事件点坐标是latlng，Api事件点坐标是point
 
 ### 设置自定义主题
 
-#### 代码
+#### 代码（api3.0和webGl使用的是setMapStyleV2，api2.0使用的是setMapStyle）
 
 -DemoCode-
 <template>

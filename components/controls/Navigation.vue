@@ -1,7 +1,7 @@
 <script>
 import commonMixin from '../base/mixins/common.js'
 import { createSize } from '../base/factory.js'
-import MethodMap from '../base/methodMap.js';
+import getMapMethod from '../base/methodMap.js';
 import { deleteEmptyKey, getConfig } from '../base/util.js'
 
 export default {
@@ -51,7 +51,7 @@ export default {
         enableGeolocation
       };
       deleteEmptyKey(navigationOption);
-      this.originInstance = new BMap[MethodMap[getConfig().type].NavigationControl](navigationOption)
+      this.originInstance = new BMap[getMapMethod('NavigationControl')](navigationOption)
       map.addControl(this.originInstance)
     }
   }
