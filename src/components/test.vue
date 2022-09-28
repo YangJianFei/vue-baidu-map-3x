@@ -1,98 +1,79 @@
+/*
+ * Author: yang jian fei
+ * Email: 1294485765@qq.com
+ * Created Date: Thursday, May 5th 2022, 11:45:35 am
+ * Modified By: yang jian fei
+ * Desc: desc
+ * Copyright (c) 2022 瑞为
+ */
 <template>
   <div>
     <span @click="change">修改</span>
-    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" @ready="handleReady" scroll-wheel-zoom>
-      <bm-marker v-for="(point,index) in points" :key="point.lng" :position="point" :dragging="true" @click="infoWindowOpen">
-        <bm-info-window :key="index" :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门{{index}}</bm-info-window>
+    <span @click="handleJudge">判断</span>
+    <baidu-map class="map" :center="{lng: 117.16976, lat: 36.17322}" :zoom="15" @click="drawLine" :scroll-wheel-zoom="true">
+      <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolygonPath" />
+      <bm-marker v-for="item,index of position" :position="item" :key="index" :dragging="true" animation="BMAP_ANIMATION_BOUNCE">
+        <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}" />
       </bm-marker>
     </baidu-map>
   </div>
 </template>
 
-<script>
-import { BaiduMap, BmNavigation, getPointsTransfer } from 'c'
-export default {
-  name: "PoleMap",
-  components: {
-    BaiduMap,
-    BmNavigation
+<script setup>
+import './BMapLib';
+import { ref } from 'vue';
+
+const position = ref([
+  { lng: 116.404, lat: 39.915 }
+]);
+
+const polygonPath = ref([
+  // { lng: 116.412732, lat: 39.911707 },
+  // { lng: 116.39455, lat: 39.910932 },
+  // { lng: 116.403461, lat: 39.921336 }
+  {
+    lng: 117.09041095828636,
+    lat: 36.20757184260112
   },
-  created() {
-    getPointsTransfer({
-      location: ['114.21892734521, 29.575429778924']
-    }).then(res => {
-      console.log(res);
-    });
+  {
+    lng: 117.09034358537312,
+    lat: 36.20421185276448
   },
-  data() {
-    return {
-      mapCenter: { lng: 0, lat: 0 },
-      zoom: 3,
-      Width: '100%',
-      height: 400,
-      mapStyle: [
-        {
-          featureType: 'land',
-          elementType: 'geometry',
-          stylers: {
-            color: '#fffff9ff'
-          }
-        },
-        {
-          featureType: 'water',
-          elementType: 'all',
-          stylers: {
-            color: '#8AC3DB'
-          }
-        },
-        {
-          featureType: 'highway',
-          elementType: 'geometry.fill',
-          stylers: {
-            color: '#FFF693'
-          }
-        }
-      ],
-      points: [
-        { "lng": 116.404, "lat": 39.915 },
-        { "lng": 116.404, "lat": 39.945 }
-      ],
-      label: {
-        content: 'wahaha',
-        opts: {
-          offset: {
-            width: 50,
-            height: 50
-          },
-          position: { "lng": 116.404, "lat": 39.915 },
-          enableMassClear: true
-        }
-      },
-      show: false
-    };
+  {
+    lng: 117.09845528412822,
+    lat: 36.204142685681326
   },
-  props: {},
-  methods: {
-    mapInit() {
-      // this.mapCenter.lng = 114.517154
-      // this.mapCenter.lat = 38.038766
-      // this.zoom = 8
-    },
-    change() {
-      this.points = [
-        { "lng": 116.404, "lat": 39.905 },
-        { "lng": 116.404, "lat": 39.925 },
-      ]
-    },
-    handleReady({ BMap, map }) {
-      map.setTilt(73); // 倾斜度
-      map.setDisplayOptions({
-        skyColors: ['rgba(186, 0, 255, 0)', 'rgba(186, 0, 255, 0.2)'] // 设置天空颜色
-      })
-    },
-    infoWindowOpen() {
-      this.show = true;
-    }
-  },
+  {
+    lng: 117.09836994510476,
+    lat: 36.20765556746687
+
+  }
+]);
+
+const change = () => {
+  position.value = { lng: 116.404, lat: 39.925 }
 };
+
+const handleJudge = () => {
+  const point = new BMap.Point(position.value[0].lng, position.value[0].lat);
+  const points = [];
+  polygonPath.value.forEach(item => {
+    points.push(new BMap.Point(item.lng, item.lat));
+  });
+  const ply = new BMap.Polygon(points);
+  const result = BMapLib.GeoUtils.isPointInPolygon(point, ply);
+  console.log(result, ply, point);
+}
+
+const drawLine = (e) => {
+  const point = new BMap.Point(position.value[0].lng, position.value[0].lat);
+  const points = [];
+  polygonPath.value.forEach(item => {
+    points.push(new BMap.Point(item.lng, item.lat));
+  });
+  const ply = new BMap.Polygon(points);
+  const result = BMapLib.GeoUtils.isPointInPolygon(e.point, ply);
+  console.log(result, ply, point);
+
+}
 </script>

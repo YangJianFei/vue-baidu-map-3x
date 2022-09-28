@@ -9,8 +9,10 @@
 
 ### 投食列表
 
-- [x] 是淑淑呀 50米
-- [x] 晚风 18米
+- [wx] 是淑淑呀 50米
+- [wx] 晚风 18米
+- [wx] Turnsole 25米
+- [wx] moning 20米
 
 
 ![支付](../image/yjfpay.png)

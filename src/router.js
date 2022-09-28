@@ -54,6 +54,10 @@ const routes = [
     {
         path: '/test',
         component: () => import('_c/test.vue')
+    },
+    {
+        path: '/distribution',
+        component: () => import('_c/distribution.vue')
     }
 ];
 
