@@ -168,42 +168,12 @@ export default {
       const { map } = this
       map[getMapMethod('setMapStyle')]({ styleJson: val })
     },
-    'mapStyle.features': {
-      handler(val, oldVal) {
-        const { map, mapStyle } = this
-        const { style, styleJson } = mapStyle
-        map[getMapMethod('setMapStyle')]({
-          styleJson,
-          features: val,
-          style
-        })
+    mapStyle: {
+      handler(val) {
+        const { map, theme } = this
+        !theme && map[getMapMethod('setMapStyle')](val)
       },
       deep: true
-    },
-    'mapStyle.style'(val, oldVal) {
-      const { map, mapStyle } = this
-      const { features, styleJson } = mapStyle
-      map[getMapMethod('setMapStyle')]({
-        styleJson,
-        features,
-        style: val
-      })
-    },
-    'mapStyle.styleJson': {
-      handler(val, oldVal) {
-        const { map, mapStyle } = this
-        const { features, style } = mapStyle
-        map[getMapMethod('setMapStyle')]({
-          styleJson: val,
-          features,
-          style
-        })
-      },
-      deep: true
-    },
-    mapStyle(val) {
-      const { map, theme } = this
-      !theme && map[getMapMethod('setMapStyle')](val)
     }
   },
   methods: {
@@ -242,9 +212,7 @@ export default {
       // 此处强行初始化一次地图 回避一个由于错误的 center 字符串导致初始化失败抛出的错误
       map.reset()
       map.centerAndZoom(getCenterPoint(), zoom)
-      setTimeout(() => {
-        theme ? map[getMapMethod('setMapStyle')]({ styleJson: theme }) : (mapStyle && map[getMapMethod('setMapStyle')](mapStyle))
-      }, 3000);
+      theme ? map[getMapMethod('setMapStyle')]({ styleJson: theme }) : (mapStyle && map[getMapMethod('setMapStyle')](mapStyle))
       let loadNum = 0;
       this.$emit('init', { BMap, map });
       EvenBus.$emit('init', { BMap, map });
