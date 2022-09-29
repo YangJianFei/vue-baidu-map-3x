@@ -1,3 +1,5 @@
 ## 数据分析
 
-<Download/>
+<ClientOnly>
+  <Download/>
+</ClientOnly>
