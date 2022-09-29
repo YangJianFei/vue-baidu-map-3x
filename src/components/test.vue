@@ -21,7 +21,7 @@
 
 <script setup>
 import './BMapLib';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const position = ref([
   { lng: 116.404, lat: 39.915 }

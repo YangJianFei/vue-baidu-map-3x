@@ -49,6 +49,9 @@ const config = {
                     {
                         text: '更新日志',
                         link: '/changelogs'
+                    }, {
+                        text: '周下载量',
+                        link: '/help/download'
                     }
                 ]
             }
@@ -58,6 +61,7 @@ const config = {
             '/offline-map/': 'auto',
             '/help/': 'auto',
             '/changelogs': 'auto',
+            '/help/download': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -250,6 +254,9 @@ const config = {
                 }, {
                     text: '更新日志',
                     link: '/changelogs'
+                }, {
+                    text: '周下载量',
+                    link: '/help/download'
                 }
             ]
         }

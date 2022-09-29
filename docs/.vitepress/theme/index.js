@@ -12,8 +12,8 @@ import DefaultTheme from 'vitepress/theme'
 import BaiduMap from 'vue-baidu-map-3x';
 import RunCode from '../components/run-code.vue'
 import './common.scss'
-import Layout from '../components/layout.vue';
-console.log(DefaultTheme);
+import Loading from '../components/loading.vue';
+import Download from '../components/download.vue';
 
 export default {
     ...DefaultTheme,
@@ -24,5 +24,7 @@ export default {
             // type: 'WebGL'
         });
         app.component('RunCode', RunCode);
+        app.component('Loading', Loading);
+        app.component('Download', Download);
     }
 }
