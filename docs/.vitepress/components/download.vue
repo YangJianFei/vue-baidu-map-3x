@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 
 import sparkline from '@fnando/sparkline';
 
@@ -47,6 +47,35 @@ const onMouseout = () => {
   showData.value = false
 };
 
+const generalSvg = (res) => {
+  let arr = [];
+  let num = 0;
+  let index = 0;
+  const restNum = res.downloads.length % 7;
+  if (restNum) {
+    res.downloads.splice(0, restNum);
+  }
+  res.downloads.forEach((item, i) => {
+    index = i + 1;
+    num += item.downloads;
+    if (index % 7 == 0) {
+      arr.push({
+        day: res.downloads[index - 7].day + '~' + item.day,
+        num
+      });
+      num = 0;
+    } else {
+    }
+  });
+  numData.value = arr;
+  nextTick(() => {
+    sparkline($svg.value, arr.map(item => item.num), {
+      onmousemove: onMouseMove,
+      onmouseout: onMouseout
+    });
+  });
+};
+
 onMounted(() => {
   svgWidth.value = parseInt(getComputedStyle($div.value).width);
   if (window.fetch) {
@@ -55,37 +84,11 @@ onMounted(() => {
     const date = new Date(new Date().getTime() - oneDay);
     const yearAgo = new Date(new Date().getTime() - oneDay * 366);
     fetch(`https://api.npmjs.org/downloads/range/${yearAgo.getFullYear()}-${yearAgo.getMonth() + 1}-${yearAgo.getDate()}:${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}/vue-baidu-map-3x`)
-      .then(data => data.json())
-      .then(res => {
-        let arr = [];
-        let num = 0;
-        let index = 0;
-        const restNum = res.downloads.length % 7;
-        if (restNum) {
-          res.downloads.splice(0, restNum);
-        }
-        res.downloads.forEach((item, i) => {
-          index = i + 1;
-          num += item.downloads;
-          if (index % 7 == 0) {
-            arr.push({
-              day: res.downloads[index - 7].day + '~' + item.day,
-              num
-            });
-            num = 0;
-          } else {
-          }
-        });
-        numData.value = arr;
-        sparkline($svg.value, arr.map(item => item.num), {
-          onmousemove: onMouseMove,
-          onmouseout: onMouseout
-        });
-      })
-      .catch(() => {
+      .then(data => data.json()).then(res => {
+        generalSvg(res);
+      }).catch(() => {
         errorTip.value = '获取数据失败，请稍后重试！';
-      })
-      .finally(() => {
+      }).finally(() => {
         isLoading.value = false;
       });
   } else {
