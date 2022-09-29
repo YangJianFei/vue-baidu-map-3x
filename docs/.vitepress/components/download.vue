@@ -23,9 +23,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
-
 import sparkline from '@fnando/sparkline';
+import { ref, onMounted, nextTick } from 'vue';
 
 const $svg = ref('');
 const $div = ref('');
@@ -38,7 +37,6 @@ const showData = ref(false);
 const activeIndex = ref(-1);
 
 const onMouseMove = (e, data) => {
-  console.log(data);
   activeIndex.value = data.index;
   showData.value = true;
 };
@@ -69,7 +67,11 @@ const generalSvg = (res) => {
   });
   numData.value = arr;
   nextTick(() => {
-    sparkline($svg.value, arr.map(item => item.num), {
+    let fun = sparkline;
+    if (typeof sparkline !== 'function') {
+      fun = sparkline.default;
+    }
+    fun($svg.value, arr.map(item => item.num), {
       onmousemove: onMouseMove,
       onmouseout: onMouseout
     });
