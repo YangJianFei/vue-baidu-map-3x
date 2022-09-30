@@ -47,11 +47,14 @@ const config = {
                 text: '曲径通幽',
                 items: [
                     {
-                        text: '更新日志',
+                        text: '版本历史',
                         link: '/changelogs'
                     }, {
-                        text: '周下载量',
+                        text: '数据统计',
                         link: '/help/download'
+                    }, {
+                        text: '打破砂锅',
+                        link: '/help/about'
                     }
                 ]
             }
@@ -62,6 +65,7 @@ const config = {
             '/help/': 'auto',
             '/changelogs': 'auto',
             '/help/download': 'auto',
+            '/help/about': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -252,11 +256,14 @@ const config = {
                     text: '和作者聊聊天',
                     link: '/help/'
                 }, {
-                    text: '更新日志',
+                    text: '版本历史',
                     link: '/changelogs'
                 }, {
-                    text: '周下载量',
+                    text: '数据统计',
                     link: '/help/download'
+                }, {
+                    text: '打破砂锅',
+                    link: '/help/about'
                 }
             ]
         }
