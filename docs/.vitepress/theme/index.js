@@ -14,10 +14,12 @@ import RunCode from '../components/run-code.vue'
 import './common.scss'
 import Loading from '../components/loading.vue';
 import Download from '../components/download.vue';
+import { showHolidayTheme } from '../plugin/util';
 
 export default {
     ...DefaultTheme,
     enhanceApp({ app }) {
+        showHolidayTheme();
         app.use(BaiduMap, {
             ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK',
             // v: '2.0'
