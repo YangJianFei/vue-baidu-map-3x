@@ -20,6 +20,7 @@
 
 |事件名|参数|描述|
 |------|----|----|
+|load|`{boundaries:Array,paths:Array}`|区域加载完成事件（可通过判断返回数据是否为空数组判断区域是否正确）|
 |click|`event{type, target, point, pixel}`|点击行政区划后会触发此事件|
 |dblclick|`event{type, target, point, pixel}`|双击行政区划后会触发此事件|
 |mousedown|`event{type, target, point, pixel}`|鼠标在行政区划上按下触发此事件|

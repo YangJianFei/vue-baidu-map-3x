@@ -26,7 +26,7 @@
       </bm-marker>
     </baidu-map>
     <baidu-map v-if="activeType==='area'" class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="10">
-      <bm-boundary name="北京市海淀区" :strokeWeight="2" strokeColor="blue"></bm-boundary>
+      <bm-boundary name="北京市海淀区1" :strokeWeight="2" strokeColor="blue" @load="handleBoundaryLoad"></bm-boundary>
     </baidu-map>
     <baidu-map v-if="activeType==='auto'" class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="11">
       <bm-control :offset="{width: '10px', height: '10px'}">
@@ -83,5 +83,8 @@ const go = () => {
   Router.push({
     path: '/else'
   });
+}
+const handleBoundaryLoad = data => {
+  console.log(data);
 }
 </script>

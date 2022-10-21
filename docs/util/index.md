@@ -4,7 +4,7 @@
 示例
 
 ```bash
-import { getPointByAddress } from 'vue-baidu-map-3x';
+import { getAddressByPoints } from 'vue-baidu-map-3x';
 
 /**
  * 通过坐标获取地址 config和返回值参考百度api
@@ -24,7 +24,7 @@ getAddressByPoints(config, ['你的ak']);
 示例
 
 ```bash
-import { getAddressByPoints } from 'vue-baidu-map-3x';
+import { getPointByAddress } from 'vue-baidu-map-3x';
 
 /**
  * 通过地址获取坐标 config和返回值参考百度api
@@ -37,14 +37,14 @@ import { getAddressByPoints } from 'vue-baidu-map-3x';
 const config = {
     address:'北京市海淀区上地十街10号'
 };
-getAddressByPoints(config, ['你的ak']);
+getPointByAddress(config, ['你的ak']);
 ```
 
 ## getPointsTransfer 坐标转换
 示例
 
 ```bash
-import { getAddressByPoints } from 'vue-baidu-map-3x';
+import { getPointsTransfer } from 'vue-baidu-map-3x';
 
 /**
  * 坐标转换 config和返回值参考百度api
@@ -60,7 +60,7 @@ const config = {
         '114.34892734521,29.245429778924'
     ]
 };
-getAddressByPoints(config, ['你的ak']);
+getPointsTransfer(config, ['你的ak']);
 ```
 
 ## getConfig 获取组件配置

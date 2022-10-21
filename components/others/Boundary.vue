@@ -1,6 +1,10 @@
 <template>
   <div v-if="paths.length">
-    <bm-polygon v-for="(path, index) of paths" :key="index" :path="path" :stroke-color="strokeColor" :stroke-weight="strokeWeight" :stroke-opacity="strokeOpacity" :stroke-style="strokeStyle" :fill-opacity="fillOpacity" :fill-color="fillColor" :mass-clear="massClear" :clicking="clicking" @click="$emit('click', $event)" @dblclick="$emit('dblclick', $event)" @mousedown="$emit('mousedown', $event)" @mouseup="$emit('mouseup', $event)" @mouseout="$emit('mouseout', $event)" @mouseover="$emit('mouseover', $event)" @remove="$emit('remove', $event)" />
+    <bm-polygon v-for="(path, index) of paths" :key="index" :path="path" :stroke-color="strokeColor" :stroke-weight="strokeWeight"
+      :stroke-opacity="strokeOpacity" :stroke-style="strokeStyle" :fill-opacity="fillOpacity" :fill-color="fillColor" :mass-clear="massClear"
+      :clicking="clicking" @click="$emit('click', $event)" @dblclick="$emit('dblclick', $event)" @mousedown="$emit('mousedown', $event)"
+      @mouseup="$emit('mouseup', $event)" @mouseout="$emit('mouseout', $event)" @mouseover="$emit('mouseover', $event)"
+      @remove="$emit('remove', $event)" />
   </div>
 </template>
 
@@ -13,7 +17,7 @@ export default {
   mixins: [
     commonMixin('abstract')
   ],
-  emits: ['click', 'dblclick', 'mousedown', 'mouseup', 'mouseout', 'mouseover', 'remove'],
+  emits: ['click', 'dblclick', 'mousedown', 'mouseup', 'mouseout', 'mouseover', 'remove', 'load'],
   props: ['name', 'strokeColor', 'strokeWeight', 'strokeOpacity', 'strokeStyle', 'fillColor', 'fillOpacity', 'massClear', 'clicking'],
   data() {
     return {
@@ -33,8 +37,10 @@ export default {
       const { BMap, name } = this
       const bd = new BMap.Boundary()
       bd.get(name, data => {
-        this.paths = data.boundaries.map(boundary => (boundary || []).split(';')
+        const paths = data.boundaries.map(boundary => (boundary || []).split(';')
           .map(point => (([lng, lat]) => ({ lng, lat }))(point.split(',').map(p => +p))))
+        this.paths = paths;
+        this.$emit('load', { boundaries: data.boundaries, paths: [...paths] });
       })
     }
   }

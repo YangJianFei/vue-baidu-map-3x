@@ -8,72 +8,65 @@
  */
 <template>
   <div>
-    <span @click="change">修改</span>
-    <span @click="handleJudge">判断</span>
-    <baidu-map class="map" :center="{lng: 117.16976, lat: 36.17322}" :zoom="15" @click="drawLine" :scroll-wheel-zoom="true">
-      <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolygonPath" />
-      <bm-marker v-for="item,index of position" :position="item" :key="index" :dragging="true" animation="BMAP_ANIMATION_BOUNCE">
-        <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}" />
-      </bm-marker>
+    <span @click="changePoint">修改</span>
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="11">
+      <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{
+             url: 'https://blog-1307687732.cos.ap-beijing.myqcloud.com//image火箭.png',
+             size: {width: 64, height: 64}
+           }"></bm-marker>
     </baidu-map>
   </div>
 </template>
 
 <script setup>
-import './BMapLib';
 import { ref, onMounted } from 'vue';
 
-const position = ref([
-  { lng: 116.404, lat: 39.915 }
-]);
 
-const polygonPath = ref([
-  // { lng: 116.412732, lat: 39.911707 },
-  // { lng: 116.39455, lat: 39.910932 },
-  // { lng: 116.403461, lat: 39.921336 }
-  {
-    lng: 117.09041095828636,
-    lat: 36.20757184260112
+const btnText = ref('play_arrow');
+const path = ref([]);
+const rotation = ref(true);
+const play = ref(false);
+const content = ref('一言不合就开车');
+const speed = ref(5000);
+const starPoint = ref('天安门');
+const endPoint = ref('百度大厦');
+const icon = ref({
+  url: 'http://api.map.baidu.com/library/LuShu/1.2/examples/car.png',
+  size: {
+    width: 52,
+    height: 26
   },
-  {
-    lng: 117.09034358537312,
-    lat: 36.20421185276448
-  },
-  {
-    lng: 117.09845528412822,
-    lat: 36.204142685681326
-  },
-  {
-    lng: 117.09836994510476,
-    lat: 36.20765556746687
-
+  opts: {
+    anchor: {
+      width: 27,
+      height: 13
+    }
   }
-]);
+});
 
-const change = () => {
-  position.value = { lng: 116.404, lat: 39.925 }
+const changeBtnText = (val) => {
+  btnText.value = val
+  if (val === 'play_arrow') {
+    play.value = false
+  }
 };
 
-const handleJudge = () => {
-  const point = new BMap.Point(position.value[0].lng, position.value[0].lat);
-  const points = [];
-  polygonPath.value.forEach(item => {
-    points.push(new BMap.Point(item.lng, item.lat));
-  });
-  const ply = new BMap.Polygon(points);
-  const result = BMapLib.GeoUtils.isPointInPolygon(point, ply);
-  console.log(result, ply, point);
+const toggle = () => {
+  play.value = !play.value
+};
+
+const handleSearchComplete = (res) => {
+  path.value = res.getPlan(0).getRoute(0).getPath()
+};
+
+const changePoint = () => {
+  starPoint.value = '香山公园';
+  endPoint.value = '中国工商银行(国贸大厦支行)';
 }
 
-const drawLine = (e) => {
-  const point = new BMap.Point(position.value[0].lng, position.value[0].lat);
-  const points = [];
-  polygonPath.value.forEach(item => {
-    points.push(new BMap.Point(item.lng, item.lat));
-  });
-  const ply = new BMap.Polygon(points);
-  const result = BMapLib.GeoUtils.isPointInPolygon(e.point, ply);
-  console.log(result, ply, point);
-
+const handleReady = ({ map }) => {
+  console.log(map);
+  map.setHeading(64.5);
+  map.setTilt(73);
 }
 </script>
