@@ -148,8 +148,8 @@ export function getPointByAddress(config: IAddressToPointConfig, aks: string[] =
  * @return {promise} ; 
 */
 export function getPointsTransfer(config: IPointTransferConfig, aks: string[] = []) {
-    if (!config.location || !config.location.length) {
-        console.error('请传入location');
+    if (!config.locations || !config.locations.length) {
+        console.error('请传入locations');
     }
     const appConfig = getConfig() as IAppConfig;
     if (appConfig.ak) {
