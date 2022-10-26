@@ -25,7 +25,8 @@
     </div>
     <div v-if="activeType==='lushu'">
       <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="11">
-        <bm-driving start="天安门" end="百度大厦" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true"></bm-driving>
+        <bm-driving :start="lushuPoint.start" :end="lushuPoint.end" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true">
+        </bm-driving>
         <bml-lushu @start="changeBtnText('pause')" @stop="changeBtnText('play_arrow')" @pause="changeBtnText('play_arrow')" :path="path"
           :rotation="rotation" :content="content" :infoWindow="true" :speed="speed" :icon="icon" :play="play">
         </bml-lushu>
@@ -80,7 +81,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue'])
 
-const activeType = ref('hots');
+const activeType = ref('lushu');
 const labels = ref([
   { name: '点聚合', type: 'point' },
   { name: '路书', type: 'lushu' },
@@ -210,6 +211,17 @@ const points = ref([
   { lng: 121.491121, lat: 25.127053 }
 ]);
 
+const lushuPoint = ref({
+  start: {
+    lng: 116.301934,
+    lat: 39.977552
+  },
+  end: {
+    lng: 116.508328,
+    lat: 39.919141
+  },
+});
+
 const addMarker = () => {
   const position = { lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 }
   markers.value.push(position)
@@ -268,6 +280,7 @@ const toggle = () => {
 };
 
 const handleSearchComplete = (res) => {
+  console.log(res.policy);
   path.value = res.getPlan(0).getRoute(0).getPath()
 };
 

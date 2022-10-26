@@ -8,23 +8,13 @@
  */
 <template>
   <div>
-    <span @click="changePoint">修改</span>
-    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="11">
-      <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" :icon="{
-             url: 'https://blog-1307687732.cos.ap-beijing.myqcloud.com//image火箭.png',
-             size: {width: 64, height: 64}
-           }"></bm-marker>
+    <baidu-map class="map" center="北京" @init="handleMapInit">
     </baidu-map>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import {
-  getAddressByPoints,
-  getPointByAddress,
-  getPointsTransfer,
-} from 'c';
 
 const btnText = ref('play_arrow');
 const path = ref([]);
@@ -74,25 +64,13 @@ const handleReady = ({ map }) => {
   map.setTilt(73);
 }
 
-const config = {
-  location: ['31.225696563611', '121.49884033194']
-};
-getAddressByPoints(config).then(res => {
-  console.log(res);
-});
-const config2 = {
-  address: '北京市海淀区上地十街10号'
-};
-getPointByAddress(config2).then(res => {
-  console.log(res);
-});
-const config3 = {
-  locations: [
-    '114.21892734521,29.575429778924',
-    '114.34892734521,29.245429778924'
-  ]
-};
-getPointsTransfer(config3).then(res => {
-  console.log(res);
-});
+const handleMapInit = ({ BMap, map }) => {
+  const geolocation = new BMap.Geolocation();
+  return new Promise((res, rej) => {
+    geolocation.getCurrentPosition(function (result) {
+      console.log(result);
+      return res(result);
+    }, { enableHighAccuracy: true });
+  });
+}
 </script>

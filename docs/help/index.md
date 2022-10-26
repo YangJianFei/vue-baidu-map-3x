@@ -14,6 +14,7 @@
 - [wx] Turnsole 25米
 - [wx] moning 20米
 - [wx] michael 100米
+- [wx] *🐱 20米 （感谢这位大佬，转了还没加我，感谢支持）
 
 
 ![支付](../image/yjfpay.png)

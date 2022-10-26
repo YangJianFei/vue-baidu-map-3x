@@ -63,3 +63,23 @@ import { BaiduMap } from 'vue-baidu-map-3x'
 ::: danger 地图事件点坐标坑
 WebGl地图事件点坐标是latlng，Api事件点坐标是point
 :::
+
+::: danger 驾车路线规划坑
+WebGL和API3.0的start和end点不能是地点名，需和官方文档一致。API2.0的可以是地点名
+:::
+
+```
+<bm-driving :start="lushuPoint.start" :end="lushuPoint.end" :auto-viewport="true" :policy="policy" :panel="true" location="北京" :waypoints="['西二旗']">
+</bm-driving>
+
+const lushuPoint = ref({
+  start: {
+    lng: 116.301934,
+    lat: 39.977552
+  },
+  end: {
+    lng: 116.508328,
+    lat: 39.919141
+  },
+});
+```
