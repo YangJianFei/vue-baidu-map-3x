@@ -25,8 +25,8 @@
         </bm-context-menu>
       </bm-marker>
     </baidu-map>
-    <baidu-map v-if="activeType==='area'" class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="10">
-      <bm-boundary name="北京市海淀区1" :strokeWeight="2" strokeColor="blue" @load="handleBoundaryLoad"></bm-boundary>
+    <baidu-map v-if="activeType==='area'" class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="10" :scroll-wheel-zoom="true">
+      <bm-boundary name="深圳市光明区公明街道" :strokeWeight="2" strokeColor="blue" @load="handleBoundaryLoad"></bm-boundary>
     </baidu-map>
     <baidu-map v-if="activeType==='auto'" class="map" :center="{lng: 116.403765, lat: 39.914850}" :zoom="11">
       <bm-control :offset="{width: '10px', height: '10px'}">

@@ -8,7 +8,12 @@
  */
 <template>
   <div>
-    <baidu-map class="map" center="北京" @init="handleMapInit">
+    <span @click="changePath">修改</span>
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
+      <bm-circle :key="1" :center="circlePath.center" :radius="circlePath.radius" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2"
+        @lineupdate="updateCirclePath" :editing="true"></bm-circle>
+      <bm-circle :key="2" :center="circlePath1.center" :radius="circlePath1.radius" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2"
+        @lineupdate="updateCirclePath1" :editing="true"></bm-circle>
     </baidu-map>
   </div>
 </template>
@@ -16,61 +21,27 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-const btnText = ref('play_arrow');
-const path = ref([]);
-const rotation = ref(true);
-const play = ref(false);
-const content = ref('一言不合就开车');
-const speed = ref(5000);
-const starPoint = ref('天安门');
-const endPoint = ref('百度大厦');
-const icon = ref({
-  url: 'http://api.map.baidu.com/library/LuShu/1.2/examples/car.png',
-  size: {
-    width: 52,
-    height: 26
+const circlePath = ref({
+  center: {
+    lng: 116.404,
+    lat: 39.915
   },
-  opts: {
-    anchor: {
-      width: 27,
-      height: 13
-    }
-  }
+  radius: 500
+});
+const circlePath1 = ref({
+  center: {
+    lng: 116.504,
+    lat: 39.915
+  },
+  radius: 500
 });
 
-const changeBtnText = (val) => {
-  btnText.value = val
-  if (val === 'play_arrow') {
-    play.value = false
-  }
-};
-
-const toggle = () => {
-  play.value = !play.value
-};
-
-const handleSearchComplete = (res) => {
-  path.value = res.getPlan(0).getRoute(0).getPath()
-};
-
-const changePoint = () => {
-  starPoint.value = '香山公园';
-  endPoint.value = '中国工商银行(国贸大厦支行)';
-}
-
-const handleReady = ({ map }) => {
-  console.log(map);
-  map.setHeading(64.5);
-  map.setTilt(73);
-}
-
-const handleMapInit = ({ BMap, map }) => {
-  const geolocation = new BMap.Geolocation();
-  return new Promise((res, rej) => {
-    geolocation.getCurrentPosition(function (result) {
-      console.log(result);
-      return res(result);
-    }, { enableHighAccuracy: true });
-  });
+const changePath = () => {
+  try {
+    circlePath.value.center.lat = 39.995
+  } catch (e) { }
+  try {
+    circlePath1.value.center.lat = 39.995
+  } catch (e) { }
 }
 </script>

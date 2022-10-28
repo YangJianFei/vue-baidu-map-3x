@@ -113,10 +113,12 @@ export default {
     },
     bindEditingNodeEvents() {
       const { originInstance, editingKey, dragStartHandler, dragEndHandler } = this
-      originInstance[editingKey].forEach($node => {
-        $node.addEventListener('dragstart', dragStartHandler)
-        $node.addEventListener('dragend', dragEndHandler)
-      })
+      if (originInstance[editingKey]) {
+        originInstance[editingKey].forEach($node => {
+          $node.addEventListener('dragstart', dragStartHandler)
+          $node.addEventListener('dragend', dragEndHandler)
+        })
+      }
     },
     enableEditing() {
       const { originInstance, bindEditingNodeEvents } = this
