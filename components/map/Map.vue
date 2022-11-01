@@ -16,7 +16,7 @@ import { setConfig, getConfig } from '../base/util';
 export default {
   name: 'bm-map',
   inheritAttrs: false,
-  emits: ['ready', 'init'],
+  emits: ['ready', 'init', 'animationed'],
   props: {
     ak: {
       type: String
@@ -87,25 +87,33 @@ export default {
     },
     mapStyle: {
       type: Object
+    },
+    hasAnimation: {
+      type: Boolean,
+      default: true
+    },
+    defaultAnimation: {
+      type: Boolean,
+      default: true
     }
   },
   watch: {
     center(val, oldVal) {
       const { map, zoom } = this
       if (checkType(val) === 'String' && val !== oldVal) {
-        map.centerAndZoom(val, zoom)
+        this.setCenterZoom(map, val, zoom);
       }
     },
     'center.lng'(val, oldVal) {
       const { BMap, map, zoom, center } = this
       if (val !== oldVal && val >= -180 && val <= 180) {
-        map.centerAndZoom(new BMap.Point(val, center.lat), zoom)
+        this.setCenterZoom(map, new BMap.Point(val, center.lat), zoom);
       }
     },
     'center.lat'(val, oldVal) {
       const { BMap, map, zoom, center } = this
       if (val !== oldVal && val >= -74 && val <= 74) {
-        map.centerAndZoom(new BMap.Point(center.lng, val), zoom)
+        this.setCenterZoom(map, new BMap.Point(center.lng, val), zoom);
       }
     },
     zoom(val, oldVal) {
@@ -211,7 +219,7 @@ export default {
       bindEvents.call(this, map)
       // 此处强行初始化一次地图 回避一个由于错误的 center 字符串导致初始化失败抛出的错误
       map.reset()
-      map.centerAndZoom(getCenterPoint(), zoom)
+      this.setCenterZoom(map, getCenterPoint(), zoom);
       theme ? map[getMapMethod('setMapStyle')]({ styleJson: theme }) : (mapStyle && map[getMapMethod('setMapStyle')](mapStyle))
       let loadNum = 0;
       this.$emit('init', { BMap, map });
@@ -227,9 +235,28 @@ export default {
         this.$emit('loaded', { BMap, map });
         EvenBus.$emit('loaded', { BMap, map });
       });
-      // Debug
-      // window.map = map
-      // window.mapComponent = this
+    },
+    setCenterZoom(map, center, zoom) {
+      if (getConfig().type === 'WebGL') {
+        if (!this.hasAnimation || !this.defaultAnimation) {
+          map.setCenter(center, {
+            noAnimation: !this.hasAnimation,
+            callback: () => {
+              map.setZoom(zoom, {
+                noAnimation: !this.hasAnimation,
+                zoomCenter: center,
+                callback: () => {
+                  this.$emit('animationed', { BMap: this.BMap, map });
+                }
+              });
+            }
+          });
+        } else {
+          map.centerAndZoom(center, zoom);
+        }
+      } else {
+        map.centerAndZoom(center, zoom);
+      }
     },
     getCenterPoint() {
       const { center, BMap } = this

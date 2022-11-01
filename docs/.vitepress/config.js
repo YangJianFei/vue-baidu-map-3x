@@ -47,6 +47,10 @@ const config = {
                 text: '曲径通幽',
                 items: [
                     {
+                        text: '地区编码坐标数据',
+                        link: '/util/area',
+                        latest: true
+                    }, {
                         text: '版本历史',
                         link: '/changelogs'
                     }, {
@@ -264,6 +268,10 @@ const config = {
                 }, {
                     text: '打破砂锅',
                     link: '/help/about'
+                }, {
+                    text: '地区编码坐标数据',
+                    link: '/util/area',
+                    latest: true
                 }
             ]
         }
