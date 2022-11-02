@@ -12,7 +12,7 @@ import transformCode from "./plugin"
 
 const config = {
     title: 'vue-baidu-map-3x',
-    description: 'vue-baidu-map的vue3版本（支持v2.0、v3.0和webGl api）我全都有',
+    description: 'baidu-map的vue3版本（支持v2.0、v3.0和webGl api）我全都有。同时也是vue2-baidu-map的文档',
     lang: 'zh-cn',
     base: '/doc/',
     outDir: 'doc',
@@ -61,6 +61,10 @@ const config = {
                         link: '/help/about'
                     }
                 ]
+            }, {
+                text: '传送门',
+                link: '/help/portal',
+                hot: true
             }
         ],
         sidebar: {
@@ -70,6 +74,7 @@ const config = {
             '/changelogs': 'auto',
             '/help/download': 'auto',
             '/help/about': 'auto',
+            'help/portal': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -272,6 +277,10 @@ const config = {
                     text: '地区编码坐标数据',
                     link: '/util/area',
                     latest: true
+                }, {
+                    text: '传送门',
+                    link: '/help/portal',
+                    hot: true
                 }
             ]
         }

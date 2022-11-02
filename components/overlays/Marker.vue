@@ -169,3 +169,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.BMap_Marker img {
+  max-width: none;
+}
+</style>
