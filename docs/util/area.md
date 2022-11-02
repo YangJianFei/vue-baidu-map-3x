@@ -1,7 +1,7 @@
 ## 全国地区编码坐标点数据集
 
 ```js
-import AreaCodePoint from 'vue-baidu-map-3x/areaCodePoint.json';
+import AreaCodePoint from 'vue-baidu-map-3x/dist/areaCodePoint.json';
 
 // 示例：
 {
@@ -9,5 +9,6 @@ import AreaCodePoint from 'vue-baidu-map-3x/areaCodePoint.json';
     "lat": 39.91101332265389,
     "lng": 116.413554023728
   }
+  // 其他地区。。。
 }
 ```
