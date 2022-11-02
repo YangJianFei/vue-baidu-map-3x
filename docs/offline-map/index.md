@@ -1,6 +1,6 @@
 ## 支持vue2，vue3，vite|webpack
 
-> vue2：先安装vue-baidu-map
+> vue2：先安装vue2-baidu-map
 
 > vue3: 先安装vue-baidu-map-3x
 

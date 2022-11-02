@@ -33,6 +33,7 @@ npm i --save vue-baidu-map-3x
 ```javascript
 import { createApp } from 'vue';
 import BaiduMap from 'vue-baidu-map-3x';
+// import BaiduMap from 'vue2-baidu-map'; vue2使用
 
 const app = createApp(App);
 app.use(BaiduMap, {
@@ -68,6 +69,21 @@ const ready = ({BMap,map})=>{
 
 ### 离线地图
 安装插件使用<font color="#e81224">npm i vue-baidu-map-offline</font>
+
+## 全国地区编码坐标点数据集
+
+```js
+import AreaCodePoint from 'vue-baidu-map-3x/dist/areaCodePoint.json';
+
+// 示例：
+{
+  "110000": {
+    "lat": 39.91101332265389,
+    "lng": 116.413554023728
+  }
+  // 其他地区。。。
+}
+```
 
 ## 废弃
 ~~BmView~~

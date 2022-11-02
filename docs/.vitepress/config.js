@@ -12,7 +12,7 @@ import transformCode from "./plugin"
 
 const config = {
     title: 'vue-baidu-map-3x',
-    description: 'baidu-map的vue3版本（支持v2.0、v3.0和webGl api）我全都有。同时也是vue2-baidu-map的文档',
+    description: 'baidu-map的vue3/vue2版本（支持v2.0、v3.0和webGl api）我全都有。同时也是vue2-baidu-map的文档',
     lang: 'zh-cn',
     base: '/doc/',
     outDir: 'doc',
