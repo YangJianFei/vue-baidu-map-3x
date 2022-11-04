@@ -12,7 +12,7 @@ import bindEvents from '../base/bindEvent.js'
 
 export default {
   name: 'bm-autocomplete',
-  mixins: [commonMixin()],
+  mixins: [commonMixin('autoComplete')],
   emits: ['update:modelValue', 'searchcomplete'],
   props: {
     types: {
