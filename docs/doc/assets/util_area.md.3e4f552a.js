@@ -1,0 +1,11 @@
+import{_ as n,c as s,o as a,b as e}from"./app.f434dbf7.js";const _='{"title":"\u5168\u56FD\u5730\u533A\u7F16\u7801\u5750\u6807\u70B9\u6570\u636E\u96C6","description":"","frontmatter":{},"headers":[{"level":2,"title":"\u5168\u56FD\u5730\u533A\u7F16\u7801\u5750\u6807\u70B9\u6570\u636E\u96C6","slug":"\u5168\u56FD\u5730\u533A\u7F16\u7801\u5750\u6807\u70B9\u6570\u636E\u96C6"}],"relativePath":"util/area.md"}',p={},t=e(`<h2 id="\u5168\u56FD\u5730\u533A\u7F16\u7801\u5750\u6807\u70B9\u6570\u636E\u96C6" tabindex="-1">\u5168\u56FD\u5730\u533A\u7F16\u7801\u5750\u6807\u70B9\u6570\u636E\u96C6 <a class="header-anchor" href="#\u5168\u56FD\u5730\u533A\u7F16\u7801\u5750\u6807\u70B9\u6570\u636E\u96C6" aria-hidden="true">#</a></h2><div class="language-js line-numbers-mode"><pre><code><span class="token keyword">import</span> AreaCodePoint <span class="token keyword">from</span> <span class="token string">&#39;vue-baidu-map-3x/dist/areaCodePoint.json&#39;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// \u793A\u4F8B\uFF1A</span>
+<span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;110000&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;lat&quot;</span><span class="token operator">:</span> <span class="token number">39.91101332265389</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;lng&quot;</span><span class="token operator">:</span> <span class="token number">116.413554023728</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// \u5176\u4ED6\u5730\u533A\u3002\u3002\u3002</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div>`,2),r=[t];function o(c,l,i,u,d,m){return a(),s("div",null,r)}var k=n(p,[["render",o]]);export{_ as __pageData,k as default};
