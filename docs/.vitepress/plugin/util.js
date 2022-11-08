@@ -7,7 +7,6 @@
  * Copyright (c) 2022 黑发
  */
 
-
 export const showHolidayTheme = () => {
   try {
     const nowTime = new Date();
@@ -48,3 +47,45 @@ export const showHolidayTheme = () => {
     }
   } catch { }
 };
+
+/**
+ * YY YYYY
+ * M MM
+ * D DD
+ * H HH
+ * m mm
+ * s ss
+ * */
+export const getFormartTime = (time, format = 'YYYY-MM-DD') => {
+  if (time) {
+    if (!time.getFullYear) {
+      time = new Date(time);
+    }
+    const year = time.getFullYear() + '';
+    const month = (time.getMonth() + 1) + '';
+    const day = time.getDate() + '';
+    const hour = time.getHours() + '';
+    const minute = time.getMinutes() + '';
+    const second = time.getSeconds() + '';
+    const formatList = [
+      { label: 'YYYY', value: year },
+      { label: 'YY', value: year.substring(2) },
+      { label: 'MM', value: month.padStart(2, '0') },
+      { label: 'M', value: month },
+      { label: 'HH', value: hour.padStart(2, '0') },
+      { label: 'M', value: month },
+      { label: 'DD', value: day.padStart(2, '0') },
+      { label: 'D', value: day },
+      { label: 'mm', value: minute.padStart(2, '0') },
+      { label: 'm', value: minute },
+      { label: 'ss', value: second.padStart(2, '0') },
+      { label: 's', value: second }
+    ];
+    formatList.forEach(item => {
+      format = format.replace(item.label, item.value);
+    });
+    return format
+  } else {
+    return '';
+  }
+}

@@ -15,6 +15,7 @@
 - [wx] moning 20米
 - [wx] michael 100米
 - [wx] *🐱 20米 （感谢这位大佬，转了还没加我，感谢支持）
+- [wx] 小王同学 30米
 
 
 ![支付](../image/yjfpay.png)

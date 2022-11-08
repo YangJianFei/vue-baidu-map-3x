@@ -7,19 +7,18 @@
  * Copyright (c) 2022 黑发
  */
 <template>
-  <div>wahaha</div>
-  <Content />
+  <Layout>
+    <template #daily>
+      <DailySentence />
+    </template>
+  </Layout>
 </template>
 
-<script>
-export default {
-  name: 'Layout',
-  data() {
-    return {
-      data: []
-    }
-  }
-};
+<script setup lang="ts">
+import DefaultTheme from 'vitepress/theme';
+import DailySentence from './daily-sentence.vue';
+
+const Layout = DefaultTheme.Layout;
 </script>
 
 <style lang="scss" scoped>

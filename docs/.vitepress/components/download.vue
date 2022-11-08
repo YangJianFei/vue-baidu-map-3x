@@ -9,7 +9,7 @@
 <template>
   <div class="download-wrap">
     <h2 ref="$div">
-      ⬇️周下载量
+      ⬇️{{name}}
       <span v-show="showData">
         {{activeIndex>-1?numData[activeIndex].day:''}}
         <span class="download-wrap-num"> {{activeIndex>-1?numData[activeIndex].num:''}}</span>
@@ -25,6 +25,13 @@
 <script setup>
 import sparkline from '@fnando/sparkline';
 import { ref, onMounted, nextTick } from 'vue';
+
+const props = defineProps({
+  name: {
+    type: String,
+    default: 'vue-baidu-map-3x'
+  }
+});
 
 const $svg = ref('');
 const $div = ref('');
@@ -85,7 +92,7 @@ onMounted(() => {
     const oneDay = 24 * 60 * 60 * 1000;
     const date = new Date(new Date().getTime() - oneDay);
     const yearAgo = new Date(new Date().getTime() - oneDay * 366);
-    fetch(`https://api.npmjs.org/downloads/range/${yearAgo.getFullYear()}-${yearAgo.getMonth() + 1}-${yearAgo.getDate()}:${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}/vue-baidu-map-3x`)
+    fetch(`https://api.npmjs.org/downloads/range/${yearAgo.getFullYear()}-${yearAgo.getMonth() + 1}-${yearAgo.getDate()}:${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}/${props.name}`)
       .then(data => data.json()).then(res => {
         generalSvg(res);
       }).catch(() => {

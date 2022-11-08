@@ -9,6 +9,9 @@
         </bm-auto-complete>
       </bm-control>
       <bm-local-search :keyword="keyword" :auto-viewport="true"></bm-local-search>
+      <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true">
+        <div>sdfd</div>
+      </bm-geolocation>
     </baidu-map>
   </div>
 </template>
@@ -29,5 +32,9 @@ const handleReady = ({ BMap, map }) => {
 const handleChange = () => {
   keyword.value = '';
   location.value = '天津市';
+}
+
+const handleClick = () => {
+  console.log('click');
 }
 </script>

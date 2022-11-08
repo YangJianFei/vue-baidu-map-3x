@@ -6,6 +6,10 @@
  * 
  * Copyright (c) 2022 瑞为
  */
+.tx-center {
+    text-align: center;
+}
+
 .theme .nav-bar {
     background: radial-gradient(rgba(255, 255, 255, 0.7) 1px, white 1px);
     backdrop-filter: saturate(50%) blur(4px);
