@@ -1,1 +1,0 @@
-import{_ as t,c as r,o as e,b as o}from"./app.c7c63873.js";const f='{"title":"\u95EE\u5230\u5E95","description":"","frontmatter":{},"headers":[{"level":2,"title":"\u95EE\u5230\u5E95","slug":"\u95EE\u5230\u5E95"}],"relativePath":"help/about.md"}',a={},s=o("",2),n=[s];function d(_,i,h,c,g,l){return e(),r("div",null,n)}var b=t(a,[["render",d]]);export{f as __pageData,b as default};

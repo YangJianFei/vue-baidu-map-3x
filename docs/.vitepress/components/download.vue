@@ -96,7 +96,8 @@ onMounted(() => {
       .then(data => data.json()).then(res => {
         generalSvg(res);
       }).catch(() => {
-        errorTip.value = '获取数据失败，请稍后重试！';
+        errorTip.value = '数据不翼而飞，到底是人性的扭曲还是道德的沦丧！';
+        showError.value = true;
       }).finally(() => {
         isLoading.value = false;
       });

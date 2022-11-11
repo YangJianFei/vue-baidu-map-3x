@@ -1,1 +1,0 @@
-import{_ as t,c as e,o as r,b as a}from"./app.c7c63873.js";const u='{"title":"\u4F20\u9001\u95E8","description":"","frontmatter":{},"headers":[{"level":2,"title":"\u4F20\u9001\u95E8","slug":"\u4F20\u9001\u95E8"}],"relativePath":"help/portal.md"}',o={},n=a("",3),d=[n];function l(p,s,i,h,_,b){return r(),e("div",null,d)}var f=t(o,[["render",l]]);export{u as __pageData,f as default};
