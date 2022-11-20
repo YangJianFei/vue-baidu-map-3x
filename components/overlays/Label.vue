@@ -53,14 +53,14 @@ export default {
       const { BMap } = this
       const lng = val
       if (val.toString() !== oldVal.toString() && lng >= -180 && lng <= 180) {
-        this.originInstance.setCenter(createPoint(BMap, { lng, lat: this.center.lat }))
+        this.originInstance.setPosition(createPoint(BMap, { lng, lat: this.position.lat }))
       }
     },
     'position.lat'(val, oldVal) {
       const { BMap } = this
       const lat = val
       if (val.toString() !== oldVal.toString() && lat >= -74 && lat <= 74) {
-        this.originInstance.setCenter(createPoint(BMap, { lng: this.center.lng, lat }))
+        this.originInstance.setPosition(createPoint(BMap, { lng: this.position.lng, lat }))
       }
     },
     labelStyle: {
