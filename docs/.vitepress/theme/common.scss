@@ -6,6 +6,11 @@
  * 
  * Copyright (c) 2022 瑞为
  */
+
+.txc-primary {
+    color: var(--c-brand);
+}
+
 .tx-center {
     text-align: center;
 }
@@ -23,10 +28,20 @@
     }
 }
 
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
 .grid-col-2 {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
+}
+
+.grid-2-full {
+    grid-column-start: span 2;
 }
 
 .grid-3 {
@@ -72,4 +87,10 @@
     .label-hot {
         margin-left: 4px;
     }
+}
+
+.advert-label {
+    font-size: 11px;
+    margin-left: 3px;
+    color: #a6b7bf;
 }

@@ -11,12 +11,16 @@
     <template #daily>
       <DailySentence />
     </template>
+    <template #sidebar-top>
+      <AdvertMe />
+    </template>
   </Layout>
 </template>
 
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme';
 import DailySentence from './daily-sentence.vue';
+import AdvertMe from './advert-me.vue';
 
 const Layout = DefaultTheme.Layout;
 </script>
