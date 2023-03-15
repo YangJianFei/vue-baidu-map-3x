@@ -6,7 +6,7 @@
 
 |属性名|类型 |默认值|描述|
 |------|-----|------|----|
-|gridSize|Size||网格大小|
+|gridSize|Number||网格大小|
 |maxZoom|Number||聚合的最大缩放级别|
 |minClusterSize|Number||单个聚合的最小数量|
 |styles|Array[`{url, size, opt_anchor, textColor, opt_textSize}`]|[]|聚合的样式风格集合|

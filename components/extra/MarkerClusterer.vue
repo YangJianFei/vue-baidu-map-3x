@@ -20,7 +20,7 @@ export default {
   },
   props: {
     gridSize: {
-      type: Object
+      type: Number
     },
     maxZoom: {
       type: Number
@@ -47,7 +47,7 @@ export default {
     gridSize: {
       handler(val) {
         const { BMap, originInstance } = this
-        originInstance.setGridSize(BMap, val.map)
+        originInstance.setGridSize(val)
       },
       deep: true
     },
@@ -58,7 +58,7 @@ export default {
     minClusterSize: {
       handler(val) {
         const { BMap, originInstance } = this
-        originInstance.setMinClusterSize(createSize(BMap, val))
+        originInstance.setMinClusterSize(val)
       },
       deep: true
     },
@@ -81,9 +81,9 @@ export default {
     load() {
       const { BMap, map, gridSize, minClusterSize, maxZoom, styles, averageCenter } = this
       this.originInstance = new MarkerClusterer(map, {
-        gridSize: gridSize && createSize(BMap, gridSize),
+        gridSize: gridSize ||60,
         maxZoom,
-        minClusterSize: minClusterSize && createSize(BMap, minClusterSize),
+        minClusterSize: minClusterSize || 2,
         styles: styles.map(item => {
           item.size = createSize(BMap, item.size)
           return item

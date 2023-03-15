@@ -81,7 +81,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue'])
 
-const activeType = ref('lushu');
+const activeType = ref('point');
 const labels = ref([
   { name: '点聚合', type: 'point' },
   { name: '路书', type: 'lushu' },
@@ -299,6 +299,8 @@ const getMarkers = () => {
     const position = { lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 }
     markers.value.push(position);
   }
+    markers.value.push({lng: 116.4183, lat: 39.925015});
+    markers.value.push({lng: 116.5183, lat: 39.925015});
 };
 
 const handleChange = () => {
