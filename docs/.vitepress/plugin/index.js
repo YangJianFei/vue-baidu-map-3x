@@ -10,7 +10,7 @@
 const transformCode = (md) => {
     const render = md.render;
     md.render = (...args) => {
-        const demoCodeRgx = /(?<=-DemoCode(.*?)-)(.|\n)*?(?=-\/DemoCode-)/g;
+        const demoCodeRgx = /(?<=-DemoCode(.*?)-)(.|\n|\r)*?(?=-\/DemoCode-)/g;
         let mdContent = args[0];
         args[0] = mdContent.replace(demoCodeRgx, demoCode => {
             const demoCodehighlight = render.call(md, '```html' + demoCode + '```');

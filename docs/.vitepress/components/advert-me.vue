@@ -8,21 +8,21 @@
  */
 
 <template>
-  <div class="advert-me">
+  <div class="advert-wrap">
     <span class="advert-label">广告</span>
     <div class="grid-2">
       <span>🐝</span>
-      <div class="txc-primary">{{introMe.name}}</div>
+      <div class="txc-primary">{{ introMe.name }}</div>
       <div>求职位：</div>
-      <div class="txc-primary">{{introMe.job}}</div>
+      <div class="txc-primary">{{ introMe.job }}</div>
       <div>微信：</div>
-      <div class="txc-primary">{{introMe.wx}}</div>
+      <div class="txc-primary">{{ introMe.wx }}</div>
       <div>学历：</div>
-      <div class="txc-primary">{{introMe.school}}</div>
+      <div class="txc-primary">{{ introMe.school }}</div>
       <div>出生日期：</div>
-      <div class="txc-primary">{{introMe.birthday}}</div>
+      <div class="txc-primary">{{ introMe.birthday }}</div>
       <div>工作地：</div>
-      <div class="txc-primary">{{introMe.address}}</div>
+      <div class="txc-primary">{{ introMe.address }}</div>
     </div>
   </div>
 </template>
@@ -41,10 +41,4 @@ const introMe = ref({
 
 </script>
 
-<style lang="scss" scoped>
-.advert-me {
-  padding: 10px 20px;
-  border-bottom: 1px solid var(--c-divider);
-  font-size: 14px;
-}
-</style>
+<style lang="scss" scoped></style>

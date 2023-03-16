@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.tx-right {
+    text-align: right;
+}
+
 .theme .nav-bar {
     background: radial-gradient(rgba(255, 255, 255, 0.7) 1px, white 1px);
     backdrop-filter: saturate(50%) blur(4px);
@@ -89,8 +93,13 @@
     }
 }
 
-.advert-label {
-    font-size: 11px;
-    margin-left: 3px;
-    color: #a6b7bf;
+.advert-wrap {
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--c-divider);
+    font-size: 14px;
+    .advert-label {
+        font-size: 11px;
+        margin-left: 3px;
+        color: #a6b7bf;
+    }
 }
