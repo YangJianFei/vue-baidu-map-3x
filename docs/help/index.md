@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-03-16 17:51:02
+ * @LastEditTime: 2023-03-20 16:46:36
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\docs\help\index.md
 -->
@@ -17,6 +17,7 @@
 
 ### 投食列表（有了大佬们的支持感觉开源也有动力了，开肝🚀）
 
+- [wx] archer 20米
 - [zfb] 御坂美惠 20米
 - [zfb] Day Day Up 50米
 - [wx] butf traveling 50米
