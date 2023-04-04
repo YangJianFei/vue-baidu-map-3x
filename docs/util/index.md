@@ -1,5 +1,10 @@
 # 工具函数
 
+
+::: danger 工具函数只适用于旧的服务器ak，浏览器ak及新的服务器ak不能用
+新的工具函数请使用hooks：useGeocoder
+:::
+
 ## getAddressByPoints 通过坐标获取地址
 示例
 

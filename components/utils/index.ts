@@ -10,6 +10,15 @@
 import { getConfig } from '../base/util';
 import { IAddressToPointConfig, IAddressToPointResponse, IPointTransferConfig, IPointTransferResponse } from './type';
 
+let mapLoadResolve;
+let mapLoadPromise: Promise<IBMap> = new Promise((resolve) => {
+    mapLoadResolve = resolve;
+});
+export { mapLoadResolve };
+export const getBMap = () => {
+    return mapLoadPromise;
+};
+
 export function getParamsStrByObject(obj: any) {
     let arr: string[] = [];
     Object.keys(obj).forEach(key => {

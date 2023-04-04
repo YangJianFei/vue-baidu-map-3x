@@ -1,5 +1,9 @@
+import { useMap } from './useMap';
 import { useGeocoder } from './useGeocoder';
+import { usePoint } from './usePoint';
 
 export {
-    useGeocoder
+    useMap,
+    useGeocoder,
+    usePoint,
 };

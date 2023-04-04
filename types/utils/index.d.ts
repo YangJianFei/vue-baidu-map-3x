@@ -7,6 +7,9 @@
  * Copyright (c) 2022 黑发
  */
 import { IAddressToPointConfig, IPointTransferConfig } from './type';
+declare let mapLoadResolve: any;
+export { mapLoadResolve };
+export declare const getBMap: () => Promise<IBMap>;
 export declare function getParamsStrByObject(obj: any): string;
 /**
  * 通过坐标获取地址 config和返回值参考百度api

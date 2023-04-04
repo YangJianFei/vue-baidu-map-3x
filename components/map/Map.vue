@@ -8,10 +8,11 @@
 
 <script>
 import bindEvents from '../base/bindEvent.js'
-import { checkType } from '../base/util.js'
+import { checkType, setConfig, getConfig } from '../base/util.js'
 import EvenBus from '../base/eventBus.js'
 import getMapMethod from '../base/methodMap.js';
-import { setConfig, getConfig } from '../base/util';
+import { mapLoadResolve } from '../utils';
+
 
 export default {
   name: 'bm-map',
@@ -269,6 +270,7 @@ export default {
     initMap(BMap) {
       this.BMap = BMap
       this.init(BMap)
+      mapLoadResolve(BMap);
     },
     getMapScript() {
       if (!window.BMap) {

@@ -1,5 +1,15 @@
+<!--
+ * @Description:   
+ * @Author: YangJianFei
+ * @Date: 2023-03-14 11:14:25
+ * @LastEditTime: 2023-04-04 16:54:07
+ * @LastEditors: YangJianFei
+ * @FilePath: \vue-baidu-map-3x\docs\changelogs.md
+-->
 ## 更新日志
 ## vue-baidu-map-3x
+### v1.0.32 [2023-04-04]
+- 添加hooks
 ### v1.0.31 [2023-02-20]
 - 修复点聚合网格属性配置
 ### v1.0.30 [2023-02-17]

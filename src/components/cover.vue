@@ -9,56 +9,65 @@
 <template>
   <div>
     <label v-for="label in labels" :key="label.type">
-      <input type="radio" name="pointType" :checked="label.type===activeType" @change="activeType=label.type">
-      {{label.name}}
+      <input type="radio" name="pointType" :checked="label.type === activeType" @change="activeType = label.type">
+      {{ label.name }}
     </label>
-    <baidu-map v-if="activeType==='point'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="8">
-      <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" animation="BMAP_ANIMATION_BOUNCE">
-        <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}" />
+    <baidu-map v-if="activeType === 'point'" class="map" :center="{ lng: 113.73099, lat: 27.984867 }" :zoom="8">
+      <bm-marker :position="{ lng: 113.73099, lat: 27.984867 }" :dragging="true" animation="BMAP_ANIMATION_BOUNCE">
+        <bm-label content="我爱北京天安门" :labelStyle="{ color: 'red', fontSize: '24px' }"
+          :offset="{ width: -35, height: 30 }" />
       </bm-marker>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='customPoint'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-      <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" :icon="{url: './heifahaizei.png', size: {width: 52, height: 26}}">
+    <baidu-map v-else-if="activeType === 'customPoint'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+      <bm-marker :position="{ lng: 116.404, lat: 39.915 }" :dragging="true"
+        :icon="{ url: './heifahaizei.png', size: { width: 52, height: 26 } }">
       </bm-marker>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='infoPoint'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
+    <baidu-map v-else-if="activeType === 'infoPoint'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
       <bm-marker :position="markerPoint" :dragging="true" @click="infoWindowOpen">
         <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门</bm-info-window>
       </bm-marker>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='massivePoint'" class="map" :center="{lng: 105.000, lat: 38.000}" :zoom="4" :scroll-wheel-zoom="true">
+    <baidu-map v-else-if="activeType === 'massivePoint'" class="map" :center="{ lng: 105.000, lat: 38.000 }" :zoom="4"
+      :scroll-wheel-zoom="true">
       <!-- <bm-point-collection :points="[{lat:37.405247,lng:109.49779}]" /> -->
-      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL" @click="clickHandler">
+      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL"
+        @click="clickHandler">
       </bm-point-collection>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='blokenLine'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
-      <bm-polyline :path="polylinePath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolylinePath">
+    <baidu-map v-else-if="activeType === 'blokenLine'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15"
+      :scroll-wheel-zoom="true">
+      <bm-polyline :path="polylinePath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true"
+        @lineupdate="updatePolylinePath">
       </bm-polyline>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='polygon'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-      <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true" @lineupdate="updatePolygonPath" />
+    <baidu-map v-else-if="activeType === 'polygon'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+      <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true"
+        @lineupdate="updatePolygonPath" />
     </baidu-map>
-    <baidu-map v-else-if="activeType==='circle'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-      <bm-circle :center="circlePath.center" :radius="circlePath.radius" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2"
-        @lineupdate="updateCirclePath" :editing="true"></bm-circle>
+    <baidu-map v-else-if="activeType === 'circle'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+      <bm-circle :center="circlePath.center" :radius="circlePath.radius" stroke-color="blue" :stroke-opacity="0.5"
+        :stroke-weight="2" @lineupdate="updateCirclePath" :editing="true"></bm-circle>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='ground'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="12">
-      <bm-ground :bounds="bounds" imageURL="//developer.baidu.com/map/jsdemo/img/si-huan.png" :opacity="1" :displayOnMinLevel="10"
-        :displayOnMaxLevel="14">
+    <baidu-map v-else-if="activeType === 'ground'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="12">
+      <bm-ground :bounds="bounds" imageURL="//developer.baidu.com/map/jsdemo/img/si-huan.png" :opacity="1"
+        :displayOnMinLevel="10" :displayOnMaxLevel="14">
       </bm-ground>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='label'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-      <bm-label content="我爱北京天安门" :position="{lng: 116.404, lat: 39.915}" :labelStyle="{color: 'red', fontSize : '24px'}" title="Hover me" />
+    <baidu-map v-else-if="activeType === 'label'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+      <bm-label content="我爱北京天安门" :position="{ lng: 116.404, lat: 39.915 }"
+        :labelStyle="{ color: 'red', fontSize: '24px' }" title="Hover me" />
     </baidu-map>
-    <baidu-map v-else-if="activeType==='infoWin'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-      <bm-info-window :position="{lng: 116.404, lat: 39.915}" title="Info Window Title" :show="infoWindow.show" @close="infoWinClose"
-        @open="infoWinOpen">
+    <baidu-map v-else-if="activeType === 'infoWin'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+      <bm-info-window :position="{ lng: 116.404, lat: 39.915 }" title="Info Window Title" :show="infoWindow.show"
+        @close="infoWinClose" @open="infoWinOpen">
         <p v-text="infoWindow.contents"></p>
         <button @click="clear">Clear</button>
       </bm-info-window>
     </baidu-map>
-    <baidu-map v-else-if="activeType==='customOverlay'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
-      <bm-overlay pane="labelPane" :class="{sample: true, active}" @draw="draw" @mouseover="active = true" @mouseleave="active = false">
+    <baidu-map v-else-if="activeType === 'customOverlay'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+      <bm-overlay pane="labelPane" :class="{ sample: true, active }" @draw="draw" @mouseover="active = true"
+        @mouseleave="active = false">
         <div>我爱北京天安门</div>
       </bm-overlay>
     </baidu-map>
@@ -194,6 +203,7 @@ addPoints();
   padding: 10px;
   position: absolute;
 }
+
 .sample.active {
   background: rgba(0, 0, 0, 0.75);
   color: #fff;

@@ -5,6 +5,10 @@ declare interface IAppConfig {
     [key: string]: any;
 }
 
+interface IBMap {
+    [key: string]: any;
+}
+
 declare interface ILocation {
     lat: number;
     lng: number;
@@ -87,4 +91,23 @@ declare interface IPointToAddressReponse {
     status: number;
     result?: IPointToAddressResult;
     [key: string]: any;
+}
+
+interface IPoint {
+    lnt: number;
+    lat: number;
+    equals: (IPoint) => boolean
+}
+
+interface IGeocoderResult {
+    point: IPoint;
+    address: string;
+    addressComponents: any;
+    surroundingPois: any;
+    business: string;
+}
+
+interface IGeoCoder {
+    getPoint: (address: string, callback: (result: null | IPoint) => void, city: string) => void;
+    getLocation: (point: IPoint, callback: (result: null | IGeocoderResult) => void, options: any) => void;
 }

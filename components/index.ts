@@ -36,6 +36,7 @@ import BmlCurveLine from './extra/CurveLine.vue'
 
 import { setConfig, getConfig } from './base/util';
 import { getAddressByPoints, getPointByAddress, getPointsTransfer } from './utils';
+import { useGeocoder, usePoint, useMap } from './hooks';
 
 export default {
   install(Vue, options = {}) {
@@ -101,5 +102,8 @@ export {
   getAddressByPoints,
   getPointByAddress,
   getPointsTransfer,
-  getConfig
+  useMap,
+  getConfig,
+  useGeocoder,
+  usePoint
 }

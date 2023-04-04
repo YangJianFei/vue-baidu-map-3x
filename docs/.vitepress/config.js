@@ -250,9 +250,12 @@ const config = {
                         }
                     ]
                 }, {
-                    text: '工具函数',
-                    link: '/util/',
+                    text: 'hooks',
+                    link: '/util/hooks',
                     latest: true
+                }, {
+                    text: '工具函数',
+                    link: '/util/'
                 }, {
                     text: '坑人集合',
                     link: '/hole/',

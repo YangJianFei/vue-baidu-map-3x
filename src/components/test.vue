@@ -1,3 +1,11 @@
+<!--
+ * @Description:   
+ * @Author: YangJianFei
+ * @Date: 2023-03-14 11:14:25
+ * @LastEditTime: 2023-04-04 16:34:23
+ * @LastEditors: YangJianFei
+ * @FilePath: \vue-baidu-map-3x\src\components\test.vue
+-->
 <!-- vue 3 引入百度api -->
 <template>
   <div>
@@ -18,7 +26,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { getPointByAddress } from 'c'
+import { getPointByAddress, useGeocoder, usePoint } from 'c'
 
 const keyword = ref('');
 const location = ref('上海市');
@@ -39,9 +47,14 @@ const handleClick = () => {
   console.log('click');
 }
 
-getPointByAddress({
-  address: '北京市海淀区上地十街10号'
-}).then(res => {
-  console.log(res);
+useGeocoder().then((geocoder) => {
+  geocoder.getPoint('广东省深圳市光明新区上辇新村', (res) => {
+    console.log('222:', res);
+  });
+  usePoint(116.404, 39.915).then(point => {
+    geocoder.getLocation(point, (result) => {
+      console.log('1111:', result);
+    });
+  });
 });
 </script>

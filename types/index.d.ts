@@ -34,10 +34,11 @@ import BmlHeatmap from './extra/Heatmap.vue';
 import BmlCurveLine from './extra/CurveLine.vue';
 import { getConfig } from './base/util';
 import { getAddressByPoints, getPointByAddress, getPointsTransfer } from './utils';
+import { useGeocoder, usePoint, useMap } from './hooks';
 declare const _default: {
     install(Vue: any, options?: {}): void;
 };
 export default _default;
 export { BaiduMap, BmScale, BmNavigation, BmMapType, BmOverviewMap, BmGeolocation, BmCopyright, BmCityList, BmPanorama, BmControl, BmMarker, BmPointCollection, BmPolyline, BmPolygon, BmCircle, BmGround, BmLabel, BmInfoWindow, BmOverlay, BmContextMenu, BmContextMenuItem, BmLocalSearch, BmTransit, BmWalking, BmDriving, BmBus, BmTile, BmTraffic, BmBoundary, BmAutoComplete };
 export { BmlMarkerClusterer, BmlLushu, BmlHeatmap, BmlCurveLine };
-export { getAddressByPoints, getPointByAddress, getPointsTransfer, getConfig };
+export { getAddressByPoints, getPointByAddress, getPointsTransfer, useMap, getConfig, useGeocoder, usePoint };
