@@ -41,7 +41,7 @@ const getMixin = (prop = {}) => {
       const map = $parent.map
       const { ready } = this
       map ? ready() : EvenBus.$on('ready', ready);
-      EvenBus.$on('init', this.init);
+      map ? this.init({ BMap: $parent.BMap, map }) : EvenBus.$on('init', this.init);
     },
     mounted() {
       const $parent = getParent(this.$parent)
