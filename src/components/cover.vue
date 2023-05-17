@@ -25,7 +25,9 @@
     </baidu-map>
     <baidu-map v-else-if="activeType === 'infoPoint'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
       <bm-marker :position="markerPoint" :dragging="true" @click="infoWindowOpen">
-        <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门</bm-info-window>
+        <bm-info-window :show="true">
+          <p>{{ markerInfo.title }}</p>
+        </bm-info-window>
       </bm-marker>
     </baidu-map>
     <baidu-map v-else-if="activeType === 'massivePoint'" class="map" :center="{ lng: 105.000, lat: 38.000 }" :zoom="4"
@@ -75,9 +77,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive, nextTick } from 'vue';
 
-const activeType = ref('point');
+const activeType = ref('infoPoint');
 const labels = ref([
   { name: '跳跃点', type: 'point' },
   { name: '自定义图标点', type: 'customPoint' },
@@ -93,6 +95,12 @@ const labels = ref([
 ]);
 const markerPoint = ref({ lng: 116.404, lat: 39.915 });
 const show = ref(false);
+const markerInfo = reactive({
+  title: '我爱北京'
+});
+setTimeout(() => {
+  markerInfo.title = 'wahaha';
+}, 3000);
 const points = ref([]);
 const polylinePath = ref([
   { lng: 116.404, lat: 39.915 },

@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-04-19 09:44:26
+ * @LastEditTime: 2023-05-10 08:53:48
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\todo.md
 -->
@@ -27,3 +27,11 @@ gllib包建立起来
 百度地图点聚合卡了 // 修改源码
 
 自定义覆盖物click加了stop，地图点击事件需要点两次才能触发
+
+infowindow等通过el获取的，当{{数据}}数据更新后，没有重新load
+
+marker等组件还没加载完再更改数据会报错
+
+聚合点marker更新后，聚合没变化
+
+使用bm-driving之后 bm-info-window打开会马上关掉

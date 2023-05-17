@@ -2,12 +2,14 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-04-20 17:37:42
+ * @LastEditTime: 2023-05-17 19:19:59
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\docs\changelogs.md
 -->
 ## 更新日志
 ## vue-baidu-map-3x
+### v1.0.33 [2023-05-17]
+- 去掉BmMarker告警
 ### v1.0.33 [2023-04-20]
 - 修改海量点组件bug
 ### v1.0.32 [2023-04-04]

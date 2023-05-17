@@ -13,7 +13,11 @@ import { deleteEmptyKey } from '../base/util.js'
 export default {
   name: 'bm-marker',
   mixins: [commonMixin('overlay')],
-  inject: ['Cluster'],
+  inject: {
+    Cluster: {
+      default: () => ({})
+    }
+  },
   props: {
     position: {},
     offset: {},
@@ -161,11 +165,11 @@ export default {
         map.addOverlay(overlay)
       }
       overlay.setAnimation(window[animation])
-      this.Cluster?.addMaker(this);
+      this.Cluster?.addMaker?.(this);
     }
   },
   beforeUnmount() {
-    this.Cluster?.removeMaker(this);
+    this.Cluster?.removeMaker?.(this);
   }
 }
 </script>
