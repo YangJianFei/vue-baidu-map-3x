@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-04-07 18:09:32
+ * @LastEditTime: 2023-06-20 16:34:46
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\components\search.vue
 -->
@@ -41,7 +41,7 @@
       </div>
       <baidu-map class="map" center="北京" :zoom="16">
         <bm-driving start="天通苑北" end="宋家庄地铁站" :auto-viewport="true" :policy="policy" :panel="true" location="北京"
-          :waypoints="['西二旗']">
+          :waypoints="['西二旗']" @markersset="onmarkersset">
         </bm-driving>
       </baidu-map>
     </div>
@@ -75,5 +75,12 @@ const leastTime = () => {
 };
 const handleComplete = (res) => {
   console.log(res);
+};
+const onmarkersset = (e) => {
+  console.log(e);
+  e.forEach(item => {
+    item?.bn?.removeEventListener?.('click');
+    item?.marker?.removeEventListener?.('click');
+  })
 };
 </script>

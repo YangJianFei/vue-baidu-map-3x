@@ -65,7 +65,11 @@ const config = {
                 text: '传送门',
                 link: '/help/portal',
                 hot: true
-            }
+            }, {
+                text: '饿了么',
+                link: '/advert/',
+                hot: true
+            },
         ],
         sidebar: {
             '/hole/': 'auto',
@@ -75,6 +79,7 @@ const config = {
             '/help/download': 'auto',
             '/help/about': 'auto',
             'help/portal': 'auto',
+            '/advert/': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -283,6 +288,10 @@ const config = {
                 }, {
                     text: '传送门',
                     link: '/help/portal',
+                    hot: true
+                }, {
+                    text: '饿了么',
+                    link: '/advert/',
                     hot: true
                 }
             ]

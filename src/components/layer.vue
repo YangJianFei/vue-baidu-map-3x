@@ -9,15 +9,15 @@
 <template>
   <div>
     <label v-for="label in labels" :key="label.type">
-      <input type="radio" name="pointType" :checked="label.type===activeType" @change="activeType=label.type">
-      {{label.name}}
+      <input type="radio" name="pointType" :checked="label.type === activeType" @change="activeType = label.type">
+      {{ label.name }}
     </label>
-    <baidu-map v-if="activeType==='tileLayer'" class="map" :center="{lng: 116.332782, lat: 40.007978}" :zoom="16">
+    <baidu-map v-if="activeType === 'tileLayer'" class="map" :center="{ lng: 116.332782, lat: 40.007978 }" :zoom="16">
       <bm-tile :isTransparentPng="true" tileUrlTemplate="//developer.baidu.com/map/jsdemo/demo/tiles/{Z}/tile{X}_{Y}.png">
       </bm-tile>
     </baidu-map>
-    <baidu-map v-if="activeType==='traffic'" class="map" :center="{lng: 116.332782, lat: 40.007978}" :zoom="16">
-      <bm-traffic :predictDate="{weekday: 7, hour: 12}">
+    <baidu-map v-if="activeType === 'traffic'" class="map" :center="{ lng: 116.332782, lat: 40.007978 }" :zoom="16">
+      <bm-traffic :predictDate="{ weekday: 7, hour: 12 }">
       </bm-traffic>
     </baidu-map>
   </div>

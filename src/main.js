@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-04-20 17:16:20
+ * @LastEditTime: 2023-08-10 09:53:16
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\main.js
  */
@@ -16,6 +16,7 @@ const app = createApp(App);
 
 app.use(BaiduMap, {
     // v: '2.0',
+    // ak: 'bCZwoVwtuuYm6c0z42rGpZKu8LYaTv2M',
     ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK',// LkW3zeVtdMjBZGhCggdGNHAkcuMDveOr    Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK   yU5nt3oggGqpGWqAj9GVGcZzRHttvIaD
     // ak: 'X9GswT5Unq8UAUy5irSYAMSN7R79wEpL', // 群-德德
     // type: 'WebGL'

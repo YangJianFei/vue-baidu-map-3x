@@ -96,6 +96,10 @@ export default {
     defaultAnimation: {
       type: Boolean,
       default: true
+    },
+    preserveDrawingBuffer: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -213,7 +217,7 @@ export default {
         //   }
         // }
       }
-      const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick })
+      const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick, preserveDrawingBuffer: this.preserveDrawingBuffer })
       this.map = map
       const { setMapOptions, zoom, getCenterPoint, theme, mapStyle } = this
       setMapOptions()

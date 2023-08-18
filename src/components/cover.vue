@@ -8,6 +8,7 @@
  */
 <template>
   <div>
+    <span @click="handleClick">切换</span>
     <label v-for="label in labels" :key="label.type">
       <input type="radio" name="pointType" :checked="label.type === activeType" @change="activeType = label.type">
       {{ label.name }}
@@ -44,8 +45,8 @@
       </bm-polyline>
     </baidu-map>
     <baidu-map v-else-if="activeType === 'polygon'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
-      <bm-polygon :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2" :editing="true"
-        @lineupdate="updatePolygonPath" />
+      <bm-polygon v-if="showPolygon" :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2"
+        :editing="true" @lineupdate="updatePolygonPath" />
     </baidu-map>
     <baidu-map v-else-if="activeType === 'circle'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
       <bm-circle :center="circlePath.center" :radius="circlePath.radius" stroke-color="blue" :stroke-opacity="0.5"
@@ -79,7 +80,7 @@
 <script setup>
 import { ref, reactive, nextTick } from 'vue';
 
-const activeType = ref('infoPoint');
+const activeType = ref('point');
 const labels = ref([
   { name: '跳跃点', type: 'point' },
   { name: '自定义图标点', type: 'customPoint' },
@@ -134,6 +135,11 @@ const infoWindow = ref({
   contents: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 });
 const active = ref(false);
+const showPolygon = ref(true);
+
+const handleClick = () => {
+  showPolygon.value = !showPolygon.value;
+};
 
 const infoWindowOpen = () => {
   show.value = true;

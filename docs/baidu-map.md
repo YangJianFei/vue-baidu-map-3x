@@ -27,6 +27,7 @@
 |~~theme~~|Array||自定义主题，是 `mapStyle.styleJson` 属性的别名，可能会在下一个主版本中 **移除** ，不推荐使用|
 |hasAnimation|Boolean|true|WebGL地图是否有动画效果（为false可以通过**animationed**事件拿到map对象）|
 |defaultAnimation|Boolean|true|WebGL是否使用默认动画效果（为false时动画效果很快，可以通过**animationed**事件拿到map对象）|
+|preserveDrawingBuffer|Boolean|false|获取地图截图需要设置为true，地球模式不支持。否则是黑屏|
 
 ## 事件
 |事件名|参数|描述|

@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-04-04 16:34:23
+ * @LastEditTime: 2023-08-10 09:54:28
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\components\test.vue
 -->
@@ -10,7 +10,11 @@
 <template>
   <div>
     <span @click="handleChange">修改</span>
-    <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="14" @ready="handleReady">
+    <baidu-map class="map" :center="{ lng: 120.31858328810601, lat: 31.498809732685714 }" :zoom="zoom" scroll-wheel-zoom
+      @init="handleReady" @zoomend="handleZoomed">
+      <bm-marker :position="{ lng: 120.31858328810601, lat: 31.498809732685714 }" :dragging="true"
+        :icon="{ url: './heifahaizei.png', size: { width: 52, height: 26 } }">
+      </bm-marker>
       <bm-control :offset="{ width: '10px', height: '10px' }">
         <bm-auto-complete v-model="keyword" :sugStyle="{ zIndex: 1 }" :location="location">
           <input placeholder="请输入地名关键字" />
@@ -30,17 +34,32 @@ import { getPointByAddress, useGeocoder, usePoint } from 'c'
 
 const keyword = ref('');
 const location = ref('上海市');
+const zoom = ref(5);
 
 const handleReady = ({ BMap, map }) => {
+  console.log('ready:test');
+  setTimeout(() => {
+    zoom.value = 18;
+  }, 3000);
+  // map.setDisplayOptions({
+  //   poi: false       //是否显示POI信息 
+  // })
+  var bdary = new BMap.Boundary();
+  bdary.get("北京市海淀区", function (rs) {
+    console.log(rs);
+  });
   map.addEventListener('click', (e) => {
     var marker5 = new BMap.Marker(new BMap.Point(e.latlng.lng, e.latlng.lat));
     map.addOverlay(marker5);
   })
 }
 
+const handleZoomed = (e) => {
+  console.log('zoomed');
+};
+
 const handleChange = () => {
-  keyword.value = '';
-  location.value = '天津市';
+  zoom.value = 15;
 }
 
 const handleClick = () => {

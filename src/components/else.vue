@@ -9,26 +9,28 @@
 <template>
   <div>
     <label v-for="label in labels" :key="label.type">
-      <input type="radio" name="pointType" :checked="label.type===activeType" @change="activeType=label.type">
-      {{label.name}}
+      <input type="radio" name="pointType" :checked="label.type === activeType" @change="activeType = label.type">
+      {{ label.name }}
     </label>
-    <div v-if="activeType==='point'">
+    <div v-if="activeType === 'point'">
       <baidu-map class="map" center="中国" :scroll-wheel-zoom="true" :double-click-zoom="true">
         <bml-marker-clusterer :averageCenter="true" :styles="styles">
-          <bm-marker v-for="marker of markers" :key="marker" :position="{lng: marker.lng, lat: marker.lat}" @dragend="updateMarker($event, marker)"
-            :dragging="true"></bm-marker>
+          <bm-marker v-for="marker of markers" :key="marker" :position="{ lng: marker.lng, lat: marker.lat }"
+            @dragend="updateMarker($event, marker)" :dragging="true"></bm-marker>
         </bml-marker-clusterer>
       </baidu-map>
       <button class="md-raised md-primary" @click="addMarker">添加一个随机点</button>
       <button class="md-raised md-primary" @click="removeMarker">删除上一个点</button>
       <button class="md-raised md-primary" @click="changeStyles">更换皮肤</button>
     </div>
-    <div v-if="activeType==='lushu'">
-      <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="11">
-        <bm-driving :start="lushuPoint.start" :end="lushuPoint.end" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true">
+    <div v-if="activeType === 'lushu'">
+      <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="11">
+        <bm-driving :start="lushuPoint.start" :end="lushuPoint.end" @searchcomplete="handleSearchComplete" :panel="false"
+          :autoViewport="true" :waypoints="waypoints">
         </bm-driving>
-        <bml-lushu @start="changeBtnText('pause')" @stop="changeBtnText('play_arrow')" @pause="changeBtnText('play_arrow')" :path="path"
-          :rotation="rotation" :content="content" :infoWindow="true" :speed="speed" :icon="icon" :play="play">
+        <bml-lushu @start="changeBtnText('pause')" @stop="changeBtnText('play_arrow')"
+          @pause="changeBtnText('play_arrow')" :path="path" :rotation="rotation" :content="content" :infoWindow="true"
+          :speed="speed" :icon="icon" :play="play">
         </bml-lushu>
       </baidu-map>
       <table>
@@ -42,7 +44,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><span @click="toggle">{{btnText}}</span></td>
+            <td><span @click="toggle">{{ btnText }}</span></td>
             <td>
               <input v-model="rotation" type="radio" name="lushu">
             </td>
@@ -56,13 +58,13 @@
         </tbody>
       </table>
     </div>
-    <baidu-map v-if="activeType==='hots'" class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="14">
+    <baidu-map v-if="activeType === 'hots'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="14">
       <bml-heatmap :data="data" :max="heatMax" :radius="20">
       </bml-heatmap>
       <span @click="handleChange">改变</span>
     </baidu-map>
-    <div v-if="activeType==='curveLine'">
-      <baidu-map class="map" :center="{lng: 118.454, lat: 32.955}" :zoom="5" :scroll-wheel-zoom="true">
+    <div v-if="activeType === 'curveLine'">
+      <baidu-map class="map" :center="{ lng: 118.454, lat: 32.955 }" :zoom="5" :scroll-wheel-zoom="true">
         <bml-curve-line :points="points" :editing="true" @lineupdate="update"></bml-curve-line>
       </baidu-map>
       <button @click="addPoint" class="md-raised md-primary">
@@ -222,6 +224,13 @@ const lushuPoint = ref({
   },
 });
 
+const waypoints = ref([
+  {
+    lng: 116.901934,
+    lat: 39.577552
+  }
+]);
+
 const addMarker = () => {
   const position = { lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 }
   markers.value.push(position)
@@ -299,8 +308,8 @@ const getMarkers = () => {
     const position = { lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 }
     markers.value.push(position);
   }
-    markers.value.push({lng: 116.4183, lat: 39.925015});
-    markers.value.push({lng: 116.5183, lat: 39.925015});
+  markers.value.push({ lng: 116.4183, lat: 39.925015 });
+  markers.value.push({ lng: 116.5183, lat: 39.925015 });
 };
 
 const handleChange = () => {

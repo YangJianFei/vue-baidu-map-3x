@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-05-10 08:53:48
+ * @LastEditTime: 2023-08-14 17:28:32
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\todo.md
 -->
@@ -35,3 +35,9 @@ marker等组件还没加载完再更改数据会报错
 聚合点marker更新后，聚合没变化
 
 使用bm-driving之后 bm-info-window打开会马上关掉
+
+驾车规划3.0/webgl用不了
+
+点聚合分省市区多层级聚合
+
+webgl用不了路书
