@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-08-10 09:54:28
+ * @LastEditTime: 2023-08-25 15:01:40
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\components\test.vue
 -->
@@ -10,20 +10,10 @@
 <template>
   <div>
     <span @click="handleChange">修改</span>
-    <baidu-map class="map" :center="{ lng: 120.31858328810601, lat: 31.498809732685714 }" :zoom="zoom" scroll-wheel-zoom
-      @init="handleReady" @zoomend="handleZoomed">
-      <bm-marker :position="{ lng: 120.31858328810601, lat: 31.498809732685714 }" :dragging="true"
-        :icon="{ url: './heifahaizei.png', size: { width: 52, height: 26 } }">
-      </bm-marker>
-      <bm-control :offset="{ width: '10px', height: '10px' }">
-        <bm-auto-complete v-model="keyword" :sugStyle="{ zIndex: 1 }" :location="location">
-          <input placeholder="请输入地名关键字" />
-        </bm-auto-complete>
-      </bm-control>
-      <bm-local-search :keyword="keyword" :auto-viewport="true"></bm-local-search>
-      <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true">
-        <div>sdfd</div>
-      </bm-geolocation>
+    <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="zoom" scroll-wheel-zoom @init="handleReady"
+      @zoomend="handleZoomed">
+      <bm-label content="我爱北京天安门" :position="{ lng: 116.404, lat: 39.915 }"
+        :labelStyle="{ color: 'red', fontSize: '24px' }" title="Hover me" />
     </baidu-map>
   </div>
 </template>
@@ -34,9 +24,18 @@ import { getPointByAddress, useGeocoder, usePoint } from 'c'
 
 const keyword = ref('');
 const location = ref('上海市');
-const zoom = ref(5);
+const zoom = ref(15);
 
 const handleReady = ({ BMap, map }) => {
+  //设置限定区域
+  // BMapLib.AreaRestriction.setBounds(
+  //   map, // 参数1：当前地图实例
+  //   new BMap.Bounds( // 参数2：需要限制的区域范围（长方形区域）。用bounds限制
+  //     new BMap.Point(118.561352, 30.576457), // bounds参数1：限制区域的左下角坐标
+  //     new BMap.Point(121.803875, 31.865034) // bounds参数2：限制区域的右上角坐标
+  //   )
+  // );
+
   console.log('ready:test');
   setTimeout(() => {
     zoom.value = 18;

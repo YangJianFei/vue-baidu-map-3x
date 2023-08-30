@@ -12,3 +12,10 @@ import AreaCodePoint from 'vue-baidu-map-3x/dist/areaCodePoint.json';
   // 其他地区。。。
 }
 ```
+
+## 区域限制js
+
+```js
+// main.js或者其他使用前的位置引入
+import 'vue-baidu-map-3x/dist/AreaRestriction_min.js';
+```

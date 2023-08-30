@@ -6,6 +6,7 @@
 
 |百度官方文档🏹|
 | ------------- |
+|[百度坐标拾取系统](https://api.map.baidu.com/lbsapi/getpoint/index.html)|
 |[mapVData,点线面3D大数据效果](https://lbsyun.baidu.com/solutions/mapvdata)|
 |[Api2类参考](https://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b0)|
 |[Api3文档](https://lbsyun.baidu.com/index.php?title=jspopular3.0)|

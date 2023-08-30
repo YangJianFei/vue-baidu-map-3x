@@ -16,7 +16,7 @@
 -DemoCode-
 <template>
   <div>
-    <baidu-map class="map" center="北京">
+    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="15">
       <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
     </baidu-map>
   </div>

@@ -24,7 +24,7 @@ app.mount('#app');
 
 ```html
 <template>
-  <baidu-map class="bm-view" :center="{lng: 116.404, lat: 39.915}">
+  <baidu-map class="bm-view" :zoom="12" :center="{lng: 116.404, lat: 39.915}" >
   </baidu-map>
 </template>
 
