@@ -20,6 +20,6 @@ app.use(BaiduMap, {
 
 ```
 
-::: tip 详细使用
-请联系微信：yjf163163
+::: tip 详细使用请扫码查看（前端男海小程序）
+![前端男海小程序](../image/fe-sea-mini.jpg)
 :::

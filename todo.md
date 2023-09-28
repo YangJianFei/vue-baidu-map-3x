@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-08-30 10:44:19
+ * @LastEditTime: 2023-09-22 17:22:04
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\todo.md
 -->
@@ -45,3 +45,7 @@ webgl用不了路书
 webgl label标签不显示
 
 3x今日推荐：工具，组件？
+
+api当zoom小于6时自定义覆盖物无效
+
+百度地图引入和组件分开

@@ -80,7 +80,7 @@
 <script setup>
 import { ref, reactive, nextTick } from 'vue';
 
-const activeType = ref('point');
+const activeType = ref('polygon');
 const labels = ref([
   { name: '跳跃点', type: 'point' },
   { name: '自定义图标点', type: 'customPoint' },
@@ -105,8 +105,8 @@ setTimeout(() => {
 const points = ref([]);
 const polylinePath = ref([
   { lng: 116.404, lat: 39.915 },
-  { lng: 116.405, lat: 39.920 },
-  { lng: 116.423493, lat: 39.907445 }
+  { lng: 116.405, lat: 39.820 },
+  { lng: 116.423493, lat: 39.707445 }
 ]);
 const polygonPath = ref([
   { lng: 116.412732, lat: 39.911707 },

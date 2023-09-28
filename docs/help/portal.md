@@ -11,3 +11,6 @@
 |[Api2类参考](https://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b0)|
 |[Api3文档](https://lbsyun.baidu.com/index.php?title=jspopular3.0)|
 |[WebGL文档](https://lbsyun.baidu.com/index.php?title=jspopularGL)|
+
+|GeoJson下载🏹|
+|[阿里数据可视化中心](https://datav.aliyun.com/portal/school/atlas/area_selector)|
