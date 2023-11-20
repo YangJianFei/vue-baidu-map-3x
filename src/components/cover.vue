@@ -8,7 +8,7 @@
  */
 <template>
   <div>
-    <span @click="handleClick">切换</span>
+    <span @click="handleClick">{{ labelContent }}</span>
     <label v-for="label in labels" :key="label.type">
       <input type="radio" name="pointType" :checked="label.type === activeType" @change="activeType = label.type">
       {{ label.name }}
@@ -20,8 +20,19 @@
       </bm-marker>
     </baidu-map>
     <baidu-map v-else-if="activeType === 'customPoint'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
-      <bm-marker :position="{ lng: 116.404, lat: 39.915 }" :dragging="true"
-        :icon="{ url: './heifahaizei.png', size: { width: 52, height: 26 } }">
+      <bm-marker :position="{ lng: 116.404, lat: 39.915 }" :dragging="true" :icon="{
+        url: './heifahaizei.png',
+        size: {
+          width: 52,
+          height: 26,
+        },
+        opts: {
+          imageSize: {
+            width: 20,
+            height: 20,
+          }
+        }
+      }">
       </bm-marker>
     </baidu-map>
     <baidu-map v-else-if="activeType === 'infoPoint'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
@@ -31,8 +42,8 @@
         </bm-info-window>
       </bm-marker>
     </baidu-map>
-    <baidu-map v-else-if="activeType === 'massivePoint'" class="map" :center="{ lng: 105.000, lat: 38.000 }" :zoom="4"
-      :scroll-wheel-zoom="true">
+    <baidu-map v-else-if="activeType === 'massivePoint'" class="map" :center="{ lng: 105.0, lat: 38.0 }" :zoom="4"
+      :scroll-wheel-zoom="true" @init="addPoints">
       <!-- <bm-point-collection :points="[{lat:37.405247,lng:109.49779}]" /> -->
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL"
         @click="clickHandler">
@@ -62,9 +73,9 @@
         :labelStyle="{ color: 'red', fontSize: '24px' }" title="Hover me" />
     </baidu-map>
     <baidu-map v-else-if="activeType === 'infoWin'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
-      <bm-info-window :position="{ lng: 116.404, lat: 39.915 }" title="Info Window Title" :show="infoWindow.show"
-        @close="infoWinClose" @open="infoWinOpen">
-        <p v-text="infoWindow.contents"></p>
+      <bm-info-window :position="{ lng: markerPoint.lng, lat: markerPoint.lat }" title="Info Window Title"
+        :show="infoWindow.show" @close="infoWinClose" @open="infoWinOpen">
+        <p @click="onContentClick">{{ infoWinContent }}</p>
         <button @click="clear">Clear</button>
       </bm-info-window>
     </baidu-map>
@@ -81,6 +92,7 @@
 import { ref, reactive, nextTick } from 'vue';
 
 const activeType = ref('polygon');
+const infoWinContent = ref('我是内容');
 const labels = ref([
   { name: '跳跃点', type: 'point' },
   { name: '自定义图标点', type: 'customPoint' },
@@ -201,7 +213,10 @@ const draw = ({ el, BMap, map }) => {
   el.style.top = pixel.y - 20 + 'px'
 };
 
-addPoints();
+const onContentClick = () => {
+  infoWinContent.value = '我是内容修改后';
+};
+// addPoints();
 </script>
 
 <style>

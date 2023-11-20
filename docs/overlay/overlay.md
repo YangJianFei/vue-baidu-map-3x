@@ -36,8 +36,8 @@ import { ref } from 'vue';
 const active = ref(false);
 
 const draw = ({ el, BMap, map }) => {
-  const pixel = map.pointToOverlayPixel(new BMap.Point(116.404, 39.915))
-  el.style.left = pixel.x - 60 + 'px'
+  const pixel = map.pointToOverlayPixel(new BMap.Point(116.404, 39.915)) // 返回的坐标为覆盖物的左上角坐标。
+  el.style.left = pixel.x - 60 + 'px' // 最终坐标 = 覆盖物坐标 - 覆盖物宽度/2。 // 居中显示
   el.style.top = pixel.y - 20 + 'px'
 };
 </script>

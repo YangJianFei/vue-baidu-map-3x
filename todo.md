@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-09-22 17:22:04
+ * @LastEditTime: 2023-11-17 13:59:29
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\todo.md
 -->
@@ -49,3 +49,13 @@ webgl label标签不显示
 api当zoom小于6时自定义覆盖物无效
 
 百度地图引入和组件分开
+
+代码提示
+
+贡献代码指南（代码提示、组件。。。）
+
+inforwindow :position 用ref的话会多次触发close和open
+
+海量点自定义图标
+
+个性化主题会在Window上挂，每次进去都挂一次想同内容

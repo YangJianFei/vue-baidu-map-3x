@@ -30,7 +30,7 @@ function destroyInstance() {
 
 const getMixin = (prop = {}) => {
   return {
-    emits: ['ready'],
+    emits: ['ready', 'init'],
     computed: {
       renderByParent() {
         return this.$parent.preventChildrenRender

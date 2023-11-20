@@ -8,7 +8,7 @@
 |------|-----|-----|----|
 |position|Point||标注的位置|
 |offset|Size||标注的位置偏移值|
-|icon|Icon||标注所用的图标对象|
+|icon|Icon||标注所用的图标对象参考百度地图官方类|
 |massClear|Boolean|true|是否在调用map.clearOverlays清除此覆盖物|
 |dragging|Boolean|false|是否启用拖拽|
 |clicking|Boolean|true|是否响应点击事件|

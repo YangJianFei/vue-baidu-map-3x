@@ -2,18 +2,21 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-09-15 18:13:26
+ * @LastEditTime: 2023-10-19 15:36:30
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\components\test.vue
 -->
 <!-- vue 3 引入百度api -->
 <template>
   <div>
-    <span @click="handleChange">修改</span>
-    <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="12" scroll-wheel-zoom @init="handleReady"
-      @zoomend="handleZoomed">
-      <bm-polygon v-if="showPolygon" :path="polygonPath" stroke-color="blue" :stroke-opacity="0.5" :stroke-weight="2"
-        :editing="true" @lineupdate="updatePolygonPath" />
+    <span @click="handleChange">修改{{ zoom }}</span>
+    <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+      <bm-info-window ref="infoWindowRef" :position="{ lng: markerPoint.lng, lat: markerPoint.lat }"
+        title="Info Window Title" :show="infoWindow.show" @close="infoWinClose" @open="infoWinOpen"
+        @ready="onInfoWindowReady">
+        <p @click="onContentClick">{{ infoWinContent }}</p>
+        <button @click="clear">Clear</button>
+      </bm-info-window>
     </baidu-map>
   </div>
 </template>
@@ -22,6 +25,13 @@
 import { ref } from 'vue';
 import { getPointByAddress, useGeocoder, usePoint } from 'c'
 
+const infoWindowRef = ref(null);
+const markerPoint = ref({ lng: 116.404, lat: 39.915 });
+const infoWindow = ref({
+  show: true,
+  contents: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+});
+const infoWinContent = ref('我是内容');
 const keyword = ref('');
 const location = ref('上海市');
 const zoom = ref(6);
@@ -63,6 +73,23 @@ useGeocoder().then((geocoder) => {
     });
   });
 });
+
+const infoWinClose = (e) => {
+  infoWindow.value.show = false
+};
+
+const onInfoWindowReady = () => {
+};
+
+const infoWinOpen = (e) => {
+  infoWindow.value.show = true
+  infoWindowRef?.value?.observer?.disconnect?.();
+};
+
+const onContentClick = () => {
+  infoWinContent.value = '我是内容修改后';
+};
+
 </script>
 
 <style>

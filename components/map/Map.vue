@@ -209,14 +209,6 @@ export default {
         return
       }
       let $el = this.$refs.view
-      if (this.$slots.default) {
-        // for (let $node of this.$slots.default() || []) {
-        //   if ($node.type && $node.type.name && 'bm-view' === $node.type.name) {
-        //     this.hasBmView = true
-        //     $el = $node.elm  // 获取不到$el 暂时去掉
-        //   }
-        // }
-      }
       const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick, preserveDrawingBuffer: this.preserveDrawingBuffer })
       this.map = map
       const { setMapOptions, zoom, getCenterPoint, theme, mapStyle } = this
