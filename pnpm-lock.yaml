@@ -7,10 +7,13 @@ settings:
 importers:
 
   .:
-    devDependencies:
+    dependencies:
       vue:
         specifier: ^3.2.25
         version: 3.3.8(typescript@4.9.5)
+      vue-baidu-map-3x:
+        specifier: workspace:^
+        version: link:packages/vue-baidu-map-3x
       vue-router:
         specifier: ^4.0.14
         version: 4.2.5(vue@3.3.8)
@@ -36,11 +39,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       vue:
-        specifier: ^3.2.25
+        specifier: ^3.0.0
         version: 3.3.8(typescript@4.9.5)
-      vue-router:
-        specifier: ^4.0.14
-        version: 4.2.5(vue@3.3.8)
     devDependencies:
       '@fnando/sparkline':
         specifier: ^0.3.10
@@ -66,9 +66,6 @@ importers:
       vitepress:
         specifier: 0.22.3
         version: 0.22.3(@algolia/client-search@4.20.0)(sass@1.69.5)(search-insights@2.11.0)(typescript@4.9.5)
-      vue-baidu-map-3x:
-        specifier: file:components
-        version: file:packages/vue-baidu-map-3x/components
 
   packages/vue-baidu-map-3x/components: {}
 
@@ -343,6 +340,7 @@ packages:
 
   /@vue/devtools-api@6.5.1:
     resolution: {integrity: sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==}
+    dev: false
 
   /@vue/reactivity-transform@3.3.8:
     resolution: {integrity: sha512-49CvBzmZNtcHua0XJ7GdGifM8GOXoUMOX4dD40Y5DxI3R8OUhMlvf2nvgUAcPxaXiV5MQQ1Nwy09ADpnLQUqRw==}
@@ -937,6 +935,7 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.5.1
       vue: 3.3.8(typescript@4.9.5)
+    dev: false
 
   /vue@3.3.8(typescript@4.9.5):
     resolution: {integrity: sha512-5VSX/3DabBikOXMsxzlW8JyfeLKlG9mzqnWgLQLty88vdZL7ZJgrdgBOmrArwxiLtmS+lNNpPcBYqrhE6TQW5w==}
@@ -952,8 +951,3 @@ packages:
       '@vue/server-renderer': 3.3.8(vue@3.3.8)
       '@vue/shared': 3.3.8
       typescript: 4.9.5
-
-  file:packages/vue-baidu-map-3x/components:
-    resolution: {directory: packages/vue-baidu-map-3x/components, type: directory}
-    name: baidu-map
-    dev: true

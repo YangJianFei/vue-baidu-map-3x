@@ -6,8 +6,10 @@
   "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "main:dev": "pnpm --filter vue-baidu-map-3x run dev",
-    "main:build": "pnpm --filter vue-baidu-map-3x run build"
+    "main:dev": "pnpm -F vue-baidu-map-3x run dev",
+    "main:build": "pnpm -F vue-baidu-map-3x run build",
+    "local:registry": "pnpm config set registry http://localhost:9081/repository/npm-hosted/",
+    "taobao:registry": "pnpm config set registry http://registry.npmmirror.com/"
   },
   "keywords": [],
   "author": "",
