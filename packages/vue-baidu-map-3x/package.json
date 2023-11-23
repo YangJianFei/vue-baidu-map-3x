@@ -52,6 +52,8 @@
   "homepage": "https://github.com/YangJianFei/vue-baidu-map-3x#readme",
   "license": "MIT",
   "dependencies": {
+    "@vue-baidu-map-3x/map": "workspace:^",
+    "@vue-baidu-map-3x/utils": "workspace:^",
     "bmaplib.curveline": "^1.0.0",
     "bmaplib.distancetool": "^1.0.2",
     "bmaplib.heatmap": "^1.0.4",
@@ -64,12 +66,9 @@
   },
   "devDependencies": {
     "@fnando/sparkline": "^0.3.10",
-    "@types/node": "^18.7.15",
-    "@vitejs/plugin-vue": "^2.2.0",
     "clipboard": "^2.0.10",
     "sass": "^1.51.0",
     "typescript": "^4.8.2",
-    "vite": "^2.8.0",
     "vitepress": "0.22.3"
   },
   "typings": "types/index.d.ts",

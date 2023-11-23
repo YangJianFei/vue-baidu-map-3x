@@ -1,0 +1,16 @@
+{
+  "name": "@vue-baidu-map-3x/utils",
+  "version": "1.0.0",
+  "description": "vue-baidu-map-3x通用方法和配置",
+  "private": "false",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tiny-emitter": "^2.1.0"
+  }
+}

@@ -7,7 +7,7 @@
  * Copyright (c) 2022 瑞为
  */
 
-import { getConfig } from './util';
+import { getConfig } from '@vue-baidu-map-3x/utils';
 
 const config = getConfig();
 

@@ -1,4 +1,4 @@
-import BaiduMap from './map/Map.vue'
+import BaiduMap from '@vue-baidu-map-3x/map'
 import BmScale from './controls/Scale.vue'
 import BmNavigation from './controls/Navigation.vue'
 import BmMapType from './controls/MapType.vue'
@@ -34,7 +34,7 @@ import BmlLushu from './extra/Lushu.vue'
 import BmlHeatmap from './extra/Heatmap.vue'
 import BmlCurveLine from './extra/CurveLine.vue'
 
-import { setConfig, getConfig } from './base/util';
+import { setConfig, getConfig } from '@vue-baidu-map-3x/utils'
 import { getAddressByPoints, getPointByAddress, getPointsTransfer } from './utils';
 import { useGeocoder, usePoint, useMap } from './hooks';
 
@@ -42,7 +42,7 @@ export default {
   install(Vue, options = {}) {
     setConfig(options);
 
-    Vue.component('baidu-map', BaiduMap)
+    Vue.component(BaiduMap.name, BaiduMap)
 
     Vue.component('bm-scale', BmScale)
     Vue.component('bm-navigation', BmNavigation)

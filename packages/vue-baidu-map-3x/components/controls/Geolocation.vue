@@ -2,7 +2,8 @@
 import commonMixin from '../base/mixins/common.js'
 import bindEvents from '../base/bindEvent.js'
 import { createIcon, createSize } from '../base/factory.js'
-import { deleteEmptyKey, getConfig } from '../base/util.js'
+import { deleteEmptyKey } from '../base/util.js'
+import { getConfig } from '@vue-baidu-map-3x/utils';
 
 export default {
   name: 'bm-geolocation',

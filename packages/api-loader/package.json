@@ -1,0 +1,16 @@
+{
+  "name": "@vue-baidu-map-3x/api-loader",
+  "version": "1.0.0",
+  "description": "用于加载百度地图sdk，加载完成后全局将会有 **`window.BMap`** / **`window.BMapGL`** 对象。",
+  "private": "false",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vue-baidu-map-3x/utils": "workspace:^"
+  }
+}

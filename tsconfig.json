@@ -7,7 +7,7 @@
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "importHelpers": true, // 从 tslib 导入辅助工具函数（比如 __extends， __rest等）
-    "module": "commonjs", // 指定生成哪个模块系统代码
+    "module": "ESNext", // 指定生成哪个模块系统代码
     "moduleResolution": "node", // 决定如何处理模块。
     "strict": true, // 启用所有严格类型检查选项。 --strict相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict，--strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
     "noImplicitAny": false, //关闭implicitly has an 'any' type
@@ -20,23 +20,11 @@
       "node",
       //   "vite/client"
     ],
-    "typeRoots": [
-      "../node_modules/@types"
-    ],
     "isolatedModules": true,
     "paths": { // 模块名到基于 baseUrl的路径映射的列表。
-      "@/*": [
-        "src/*"
+      "@vue-baidu-map-3x/*": [
+        "packages/*"
       ],
-      "c/*": [
-        "components/*"
-      ],
-      "_c/*": [
-        "src/components/*"
-      ],
-      "types/*": [
-        "components/types/*"
-      ]
     },
     "lib": [ // 编译过程中需要引入的库文件的列表。
       // "ESNext",
@@ -50,9 +38,8 @@
     ]
   },
   "include": [ // 解析的文件
-    "components/**/*",
-    "src/**/*",
-    "components/types/**/*"
+    "packages/**/*",
+    "global.d.ts",
   ],
   "exclude": [
     "node_modules"

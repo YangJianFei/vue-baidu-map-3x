@@ -1,0 +1,17 @@
+{
+  "name": "@vue-baidu-map-3x/map",
+  "version": "1.0.0",
+  "description": "vue-baidu-map-3x的map组件",
+  "private": "false",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vue-baidu-map-3x/api-loader": "workspace:^",
+    "@vue-baidu-map-3x/utils": "workspace:^"
+  }
+}

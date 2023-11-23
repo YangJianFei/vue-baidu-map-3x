@@ -1,4 +1,4 @@
-import EvenBus from '../eventBus.js'
+import { EventBus } from '@vue-baidu-map-3x/utils'
 const types = {
   control: {
     unload: 'removeControl'
@@ -21,7 +21,7 @@ const getParent = $component => {
 
 function destroyInstance() {
   const { unload, renderByParent, $parent, ready } = this
-  EvenBus.$off('ready', ready);
+  EventBus.$off('ready', ready);
   if (renderByParent) {
     $parent.reload()
   }
@@ -40,14 +40,14 @@ const getMixin = (prop = {}) => {
       const $parent = getParent(this.$parent)
       const map = $parent.map
       const { ready } = this
-      map ? ready() : EvenBus.$on('ready', ready);
-      map ? this.init({ BMap: $parent.BMap, map }) : EvenBus.$on('init', this.init);
+      map ? ready() : EventBus.$on('ready', ready);
+      map ? this.init({ BMap: $parent.BMap, map }) : EventBus.$on('init', this.init);
     },
     mounted() {
       const $parent = getParent(this.$parent)
       const map = $parent.map
       const { mountedReady } = this
-      map ? mountedReady() : EvenBus.$on('ready', mountedReady);
+      map ? mountedReady() : EventBus.$on('ready', mountedReady);
     },
     unmounted: destroyInstance,
     methods: {

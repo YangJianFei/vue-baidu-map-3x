@@ -7,7 +7,7 @@
  * Copyright (c) 2022 黑发
  */
 
-import { getConfig } from '../base/util';
+import { getConfig } from '@vue-baidu-map-3x/utils';
 import { IAddressToPointConfig, IAddressToPointResponse, IPointTransferConfig, IPointTransferResponse } from './type';
 
 let mapLoadResolve;
