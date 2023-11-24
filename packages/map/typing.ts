@@ -1,21 +1,12 @@
 /*
  * @Description:   
  * @Author: YangJianFei
- * @Date: 2023-11-22 17:16:21
- * @LastEditTime: 2023-11-23 10:05:21
+ * @Date: 2023-11-24 10:30:32
+ * @LastEditTime: 2023-11-24 10:30:32
  * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\packages\map\src\typing.ts
+ * @FilePath: \vue-baidu-map-3x\packages\map\typing.ts
  */
-
-export type Point = {
-  lng: number;
-  lat: number;
-  equals: (other: Point) => void;
-};
-
-export type MapStyleV2 = {
-  styleJson: any[];
-};
+import type { Point, MapStyleV2 } from '@vue-baidu-map-3x/utils';
 
 export type Map = {
   center: Point;
@@ -38,12 +29,4 @@ export type Map = {
   // hasAnimation?: boolean;
   // defaultAnimation?: boolean;
   preserveDrawingBuffer?: boolean;
-};
-
-type MapCallback = (params: any) => void;
-
-export type MapInstance = {
-  addEventListener: (evnet: string, cb: MapCallback) => void;
-  removeEventListener: (evnet: string, cb: MapCallback) => void;
-  centerAndZoom: (point: Point, zoom: number) => void
 };

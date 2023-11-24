@@ -112,10 +112,6 @@ const config = {
                     link: '/shuangxiang'
                 },
                 {
-                    text: '图像绘制',
-                    link: '/guid/painting'
-                },
-                {
                     text: '控件',
                     children: [
                         {
@@ -184,6 +180,9 @@ const config = {
                             link: '/overlay/overlay'
                         }
                     ]
+                }, {
+                    text: '图像绘制',
+                    link: '/guid/painting'
                 }, {
                     text: '图层',
                     children: [

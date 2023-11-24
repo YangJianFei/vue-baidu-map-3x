@@ -7,7 +7,7 @@ import BmGeolocation from './controls/Geolocation.vue'
 import BmCopyright from './controls/Copyright.vue'
 import BmCityList from './controls/CityList.vue'
 import BmPanorama from './controls/Panorama.vue'
-import BmControl from './controls/Control.vue'
+import BmControl from '@vue-baidu-map-3x/control';
 import BmMarker from './overlays/Marker.vue'
 import BmPointCollection from './overlays/PointCollection.vue'
 import BmPolyline from './overlays/Polyline.vue'
@@ -52,7 +52,7 @@ export default {
     Vue.component('bm-copyright', BmCopyright)
     Vue.component('bm-city-list', BmCityList)
     Vue.component('bm-panorama', BmPanorama)
-    Vue.component('bm-control', BmControl)
+    Vue.component(BmControl.name, BmControl)
 
     Vue.component('bm-marker', BmMarker)
     Vue.component('bm-point-collection', BmPointCollection)

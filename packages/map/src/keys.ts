@@ -7,8 +7,7 @@
  * @FilePath: \vue-baidu-map-3x\packages\map\src\keys.ts
  */
 import { InjectionKey, Ref } from 'vue';
-import type { BMap } from '@vue-baidu-map-3x/api-loader';
-import { MapInstance } from './typing';
+import type { BMap, MapInstance } from '@vue-baidu-map-3x/utils';
 
 export const bdmapKey = Symbol() as InjectionKey<{
   BMap: Ref<BMap | undefined>,

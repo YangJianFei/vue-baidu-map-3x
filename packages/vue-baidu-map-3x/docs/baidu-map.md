@@ -25,8 +25,8 @@
 |auto-resize|Boolean|true|允许自适应容器尺寸|
 |mapStyle|MapStyle||自定义地图样式主题|
 |~~theme~~|Array||自定义主题，是 `mapStyle.styleJson` 属性的别名，可能会在下一个主版本中 **移除** ，不推荐使用|
-|hasAnimation|Boolean|true|WebGL地图是否有动画效果（为false可以通过**animationed**事件拿到map对象）|
-|defaultAnimation|Boolean|true|WebGL是否使用默认动画效果（为false时动画效果很快，可以通过**animationed**事件拿到map对象）|
+|~~hasAnimation~~|Boolean|true|WebGL地图是否有动画效果（为false可以通过**animationed**事件拿到map对象）|
+|~~defaultAnimation~~|Boolean|true|WebGL是否使用默认动画效果（为false时动画效果很快，可以通过**animationed**事件拿到map对象）|
 |preserveDrawingBuffer|Boolean|false|获取地图截图需要设置为true，地球模式不支持。否则是黑屏|
 
 ## 事件
@@ -68,7 +68,7 @@
 |touchmove|`{type, target, point,pixel}`|触摸移动时触发此事件，仅适用移动设备|
 |touchend|`{type, target, point,pixel}`|触摸结束时触发此事件，仅适用移动设备|
 |longpress|`{type, target, point,pixel}`|长按事件，仅适用移动设备|
-|animationed|`{BMap,map}`|WebGL地图当hasAnimation或defaultAnimation为false抛出动画结束事件|
+|~~animationed~~|`{BMap,map}`|WebGL地图当hasAnimation或defaultAnimation为false抛出动画结束事件|
 
 ::: danger 地图事件点坐标坑
 WebGl地图事件点坐标是latlng，Api事件点坐标是point

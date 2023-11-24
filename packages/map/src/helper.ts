@@ -8,7 +8,7 @@
  */
 
 import { getConfig } from "@vue-baidu-map-3x/utils";
-import { Point } from "./typing";
+import type { Point } from "@vue-baidu-map-3x/utils";
 
 export const methodsMap = new Map<string, string | string[]>([
   ['center', 'setCenter'],
@@ -68,7 +68,6 @@ export const events = [
 export const customEvents = [
   'init',
   'ready',
-  'animationed',
 ];
 
 export const getCenterPoint = (center?: string | Point) => {

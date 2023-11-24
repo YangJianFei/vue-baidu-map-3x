@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-22 17:09:17
- * @LastEditTime: 2023-11-23 18:01:27
+ * @LastEditTime: 2023-11-24 15:04:54
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\map\src\index.vue
 -->
@@ -16,8 +16,9 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, onMounted, watch, provide } from 'vue';
-import { Map, MapInstance } from './typing';
+import { ref, onMounted, onUnmounted, watch, provide } from 'vue';
+import type { MapInstance } from '@vue-baidu-map-3x/utils';
+import { Map } from '../typing';
 import ApiLoader, { getBMap, useBMap } from '@vue-baidu-map-3x/api-loader';
 import { useEvent, equalsFace, EventBus } from '@vue-baidu-map-3x/utils';
 import { methodsMap, events, customEvents, getCenterPoint, getMapMethod } from './helper';
@@ -53,7 +54,7 @@ useEvent(map, emit, events);
 
 provide(bdmapKey, { BMap, map });
 
-watch([map, props], ([newMap, newProps], [preMap, preProps]) => {
+watch([map, () => ({ ...props })], ([newMap, newProps], [preMap, preProps]) => {
   if (newMap) {
     methodsMap.forEach((methods, key) => {
       if ((!equalsFace(newProps?.[key], preProps?.[key]) || !preMap) && newProps?.[key]) {
@@ -80,21 +81,31 @@ watch([map, props], ([newMap, newProps], [preMap, preProps]) => {
   deep: true,
 });
 
-onMounted(() => {
-  getBMap().then(BMap => {
-    const instance: MapInstance = new BMap.Map(contain.value, {
-      enableHighResolution: props.highResolution,
-      enableMapClick: props.mapClick,
-      preserveDrawingBuffer: props.preserveDrawingBuffer,
+watch(contain, () => {
+  if (contain?.value) {
+    getBMap().then(BMap => {
+      const instance: MapInstance = new BMap.Map(contain.value, {
+        enableHighResolution: props.highResolution,
+        enableMapClick: props.mapClick,
+        preserveDrawingBuffer: props.preserveDrawingBuffer,
+      });
+      // 必须先调用centerAndZoom才能初始化地图
+      instance.centerAndZoom(getCenterPoint(props.center), props.zoom);
+      map.value = instance;
+      emit('init', { BMap, map: instance });
+      emit('ready', { BMap, map: instance });
+      EventBus.$emit('init', { BMap, map });
+      EventBus.$emit('ready', { BMap, map });
     });
-    // 必须先调用centerAndZoom才能初始化地图
-    instance.centerAndZoom(getCenterPoint(props.center), props.zoom);
-    map.value = instance;
-    emit('init', { BMap, map: instance });
-    emit('ready', { BMap, map: instance });
-    EventBus.$emit('init', { BMap, map });
-    EventBus.$emit('ready', { BMap, map });
-  });
+  }
+}, { immediate: true });
+
+onUnmounted(() => {
+  map?.value?.destroy?.(); // webgl销毁，api？
+});
+
+defineExpose({
+  originInstance: map?.value
 });
 
 </script>

@@ -8,7 +8,7 @@
  */
 import { ref } from 'vue';
 import { getBMap } from './helper';
-import { BMap } from './typing';
+import { BMap } from '@vue-baidu-map-3x/utils';
 
 const useBMap = () => {
   const BMap = ref<BMap>();

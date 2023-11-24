@@ -40,6 +40,15 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/control:
+    dependencies:
+      '@vue-baidu-map-3x/map':
+        specifier: workspace:^
+        version: link:../map
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
   packages/map:
     dependencies:
       '@vue-baidu-map-3x/api-loader':
@@ -48,9 +57,6 @@ importers:
       '@vue-baidu-map-3x/utils':
         specifier: workspace:^
         version: link:../utils
-      tiny-emitter:
-        specifier: ^2.1.0
-        version: 2.1.0
 
   packages/utils:
     dependencies:
@@ -60,6 +66,9 @@ importers:
 
   packages/vue-baidu-map-3x:
     dependencies:
+      '@vue-baidu-map-3x/control':
+        specifier: workspace:^
+        version: link:../control
       '@vue-baidu-map-3x/map':
         specifier: workspace:^
         version: link:../map

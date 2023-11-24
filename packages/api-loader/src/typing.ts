@@ -6,9 +6,6 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\api-loader\typing.ts
  */
-export type BMap = {
-  [key in string]: any;
-};
 
 export type ApiLoaderType = {
   ak?: string;

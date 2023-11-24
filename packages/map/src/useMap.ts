@@ -12,7 +12,9 @@ import { bdmapKey } from './keys';
 const useMap = () => {
   const injectvalue = inject(bdmapKey);
 
-  return injectvalue;
+  return {
+    ...injectvalue
+  };
 };
 
 export default useMap;
