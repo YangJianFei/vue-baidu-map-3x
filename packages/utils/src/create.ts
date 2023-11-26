@@ -6,7 +6,7 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\create.ts
  */
-import { Point, Size } from '../typing';
+import type { Point, Size } from '../typing';
 
 export const getPoint = (lng: number, lat: number): Point => {
   return new window.BMap.Point(lng, lat);

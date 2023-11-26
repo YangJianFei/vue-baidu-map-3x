@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-24 09:48:52
- * @LastEditTime: 2023-11-24 15:10:35
+ * @LastEditTime: 2023-11-26 10:29:04
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\control\src\index.vue
 -->
@@ -16,9 +16,8 @@
 import { ref, watch, withDefaults } from 'vue';
 import { getControl } from './control';
 import { useMap } from '@vue-baidu-map-3x/map';
-import { getSize, ControlInstance, useCleanup, equalsFace } from '@vue-baidu-map-3x/utils';
-import { Control } from '../typing';
-import { methods } from './helper';
+import { getSize, useCleanup, equalsFace, controlMethods } from '@vue-baidu-map-3x/utils';
+import type { Control, ControlInstance } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   name: 'BmControl',
@@ -38,11 +37,12 @@ const { removeInstance } = useCleanup(originInstance, map);
 watch([contain, map], (_, __, onCleanup) => {
   if (contain.value && map?.value) {
     const CustomControl = getControl(BMap?.value?.Control, contain.value);
-    originInstance.value = new CustomControl({
+    const instance = new CustomControl({
       anchor: props.anchor,
       offset: getSize(props.offset?.width as any, props.offset?.height as any),
     }) as any as ControlInstance;
-    map?.value?.addControl?.(originInstance.value);
+    map?.value?.addControl?.(instance);
+    originInstance.value = instance;
     onCleanup(removeInstance);
   }
 }, {
@@ -51,7 +51,7 @@ watch([contain, map], (_, __, onCleanup) => {
 
 watch(() => ({ ...props }), (newProps, preProps) => {
   if (originInstance?.value) {
-    methods.forEach((method, key) => {
+    controlMethods.forEach((method, key) => {
       if (!equalsFace(newProps?.[key], preProps?.[key])) {
         originInstance?.value?.[method]?.(window[newProps?.[key]]);
       }

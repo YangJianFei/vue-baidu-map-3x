@@ -6,7 +6,7 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\index.ts
  */
-import { ConfigType } from '../typing';
+import type { ConfigType } from '../typing';
 
 let config: ConfigType = {
   v: '3.0',
@@ -41,4 +41,12 @@ export const equalsFace = (value: any, elseValue: any) => {
     return false;
   }
   return true;
+};
+
+export const deleteEmptyKey = (obj) => {
+  Object.keys(obj).forEach(key => {
+    if (typeof obj[key] === 'undefined') {
+      delete obj[key];
+    }
+  });
 };

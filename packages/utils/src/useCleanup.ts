@@ -7,7 +7,7 @@
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\useCleanup.ts
  */
 import { onUnmounted, Ref } from 'vue';
-import { MapInstance } from '../typing';
+import type { MapInstance } from '../typing';
 
 const useCleanup = (instance: Ref<any>, map?: Ref<MapInstance | undefined>) => {
 

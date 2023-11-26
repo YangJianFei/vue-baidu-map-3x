@@ -1,5 +1,5 @@
 import BaiduMap from '@vue-baidu-map-3x/map'
-import BmScale from './controls/Scale.vue'
+import BmScale from '@vue-baidu-map-3x/scale'
 import BmNavigation from './controls/Navigation.vue'
 import BmMapType from './controls/MapType.vue'
 import BmOverviewMap from './controls/OverviewMap.vue'
@@ -44,7 +44,7 @@ export default {
 
     Vue.component(BaiduMap.name, BaiduMap)
 
-    Vue.component('bm-scale', BmScale)
+    Vue.component(BmScale.name, BmScale)
     Vue.component('bm-navigation', BmNavigation)
     Vue.component('bm-map-type', BmMapType)
     Vue.component('bm-overview-map', BmOverviewMap)
