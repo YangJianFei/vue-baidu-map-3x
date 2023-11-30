@@ -15,9 +15,9 @@
 <script lang='ts' setup>
 import { ref, watch, withDefaults } from 'vue';
 import { getControl } from './control';
-import { useMap } from '@vue-baidu-map-3x/map';
+import { useMap } from '@vue-baidu-map-3x/utils';
 import { getSize, useCleanup, equalsFace, controlMethods } from '@vue-baidu-map-3x/utils';
-import type { Control, ControlInstance } from '@vue-baidu-map-3x/utils';
+import { Control, ControlInstance, deleteEmptyKey } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   name: 'BmControl',
@@ -37,10 +37,10 @@ const { removeInstance } = useCleanup(originInstance, map);
 watch([contain, map], (_, __, onCleanup) => {
   if (contain.value && map?.value) {
     const CustomControl = getControl(BMap?.value?.Control, contain.value);
-    const instance = new CustomControl({
+    const instance = new CustomControl(deleteEmptyKey({
       anchor: props.anchor,
-      offset: getSize(props.offset?.width as any, props.offset?.height as any),
-    }) as any as ControlInstance;
+      offset: getSize(props.offset?.width, props.offset?.height),
+    })) as any as ControlInstance;
     map?.value?.addControl?.(instance);
     originInstance.value = instance;
     onCleanup(removeInstance);
@@ -53,7 +53,13 @@ watch(() => ({ ...props }), (newProps, preProps) => {
   if (originInstance?.value) {
     controlMethods.forEach((method, key) => {
       if (!equalsFace(newProps?.[key], preProps?.[key])) {
-        originInstance?.value?.[method]?.(window[newProps?.[key]]);
+        if (key == 'anchor') {
+          originInstance?.value?.[method]?.(window[newProps?.[key]]);
+        } else if (key == 'offset') {
+          originInstance?.value?.[method]?.(
+            getSize(newProps.offset?.width, newProps.offset?.height)
+          );
+        }
       }
     });
   }

@@ -9,11 +9,7 @@
 
 import BaiduMap from './src/index.vue';
 import { withInstall } from '@vue-baidu-map-3x/utils';
-import { bdmapKey } from './src/keys';
-import useMap from './src/useMap';
 
 withInstall(BaiduMap);
 
 export default BaiduMap;
-
-export { bdmapKey, useMap };

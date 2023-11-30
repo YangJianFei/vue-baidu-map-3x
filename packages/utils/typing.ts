@@ -2,12 +2,12 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-22 17:16:21
- * @LastEditTime: 2023-11-26 11:13:43
+ * @LastEditTime: 2023-11-30 18:50:07
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\utils\typing.ts
  */
 
-import { ControlAnchorEnum, ControlAnchor, LengthUnit } from "./src/constant";
+import { ControlAnchorEnum, ControlAnchor, LengthUnit, NavigationControlType } from "./src/constant";
 
 export type BMap = {
   [key in string]: any;
@@ -31,11 +31,6 @@ export type Size = {
   equals?: (other: Size) => boolean;
 };
 
-export type Control = {
-  offset?: Size;
-  anchor?: ControlAnchor;
-};
-
 export type MapStyleV2 = {
   styleJson: any[];
 };
@@ -51,6 +46,11 @@ export type MapInstance = {
   destroy: () => void;
 };
 
+export type Control = {
+  offset?: Size;
+  anchor?: ControlAnchor;
+};
+
 export type ControlInstance = {
   setAnchor: (anchor: keyof typeof ControlAnchorEnum) => void;
   getAnchor: () => keyof typeof ControlAnchorEnum;
@@ -64,4 +64,15 @@ export type ControlInstance = {
 export type ScaleInstance = ControlInstance & {
   setUnit: (unit: LengthUnit) => void;
   getUnit: () => LengthUnit;
+};
+
+export type Navigation = Control & {
+  type?: string;
+  showZoomInfo?: boolean;
+  enableGeolocation?: boolean;
+};
+
+export type NavigationInstance = ControlInstance & {
+  getType: () => NavigationControlType;
+  setType: (type: NavigationControlType) => void;
 };

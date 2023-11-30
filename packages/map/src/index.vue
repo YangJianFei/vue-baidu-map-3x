@@ -21,8 +21,8 @@ import type { MapInstance } from '@vue-baidu-map-3x/utils';
 import { Map } from '../typing';
 import ApiLoader, { getBMap, useBMap } from '@vue-baidu-map-3x/api-loader';
 import { useEvent, equalsFace, EventBus } from '@vue-baidu-map-3x/utils';
-import { methodsMap, events, customEvents, getCenterPoint, getMapMethod } from './helper';
-import { bdmapKey } from './keys';
+import { methodsMap, events, customEvents, getCenterPoint } from './helper';
+import { BdMapKey,getMapMethod } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   inheritAttrs: false,
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Map>(), {
   highResolution: true,
   mapClick: true,
   dragging: true,
-  scrollWheelZoom: false,
+  scrollWheelZoom: true,
   doubleClickZoom: true,
   keyboard: true,
   inertialDragging: true,
@@ -52,7 +52,7 @@ const map = ref<MapInstance>();
 const { BMap } = useBMap();
 useEvent(map, emit, events);
 
-provide(bdmapKey, { BMap, map });
+provide(BdMapKey, { BMap, map });
 
 watch([map, () => ({ ...props })], ([newMap, newProps], [preMap, preProps]) => {
   if (newMap) {

@@ -58,11 +58,14 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/navigation:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
   packages/scale:
     dependencies:
-      '@vue-baidu-map-3x/map':
-        specifier: workspace:^
-        version: link:../map
       '@vue-baidu-map-3x/utils':
         specifier: workspace:^
         version: link:../utils
@@ -81,6 +84,9 @@ importers:
       '@vue-baidu-map-3x/map':
         specifier: workspace:^
         version: link:../map
+      '@vue-baidu-map-3x/navigation':
+        specifier: workspace:^
+        version: link:../navigation
       '@vue-baidu-map-3x/scale':
         specifier: workspace:^
         version: link:../scale

@@ -16,7 +16,7 @@
 |map-click|Boolean|true|允许点击 该项仅在地图组件挂载时加载一次|
 |map-type|String|global.BMAP_NORMAL_MAP|地图类型|
 |dragging|Boolean|true|允许拖拽|
-|scroll-wheel-zoom|Boolean|false|允许鼠标滚轮缩放|
+|scroll-wheel-zoom|Boolean|true|允许鼠标滚轮缩放|
 |double-click-zoom|Boolean|true|允许双击缩放|
 |keyboard|Boolean|true|允许键盘操作|
 |inertial-dragging|Boolean|false|允许惯性拖拽|

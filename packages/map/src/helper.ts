@@ -6,8 +6,6 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\map\src\helper.ts
  */
-
-import { getConfig } from "@vue-baidu-map-3x/utils";
 import type { Point } from "@vue-baidu-map-3x/utils";
 
 export const methodsMap = new Map<string, string | string[]>([
@@ -77,29 +75,3 @@ export const getCenterPoint = (center?: string | Point) => {
     default: return new window.BMap.Point();
   }
 };
-
-const methods = {
-  'API': {
-    '2.0': {
-      setMapStyle: 'setMapStyle',
-      NavigationControl: 'NavigationControl'
-    },
-    '3.0': {
-      setMapStyle: 'setMapStyleV2',
-      NavigationControl: 'NavigationControl'
-    }
-  },
-  'WebGL': {
-    setMapStyle: 'setMapStyleV2',
-    NavigationControl: 'NavigationControl3D'
-  }
-}
-
-export const getMapMethod = (method) => {
-  const config = getConfig();
-  if (config.type == 'WebGL') {
-    return methods[config.type][method];
-  } else {
-    return methods[config.type][config.v][method];
-  }
-}

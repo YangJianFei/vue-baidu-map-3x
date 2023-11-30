@@ -1,0 +1,37 @@
+<!--
+ * @Description:   
+ * @Author: YangJianFei
+ * @Date: 2023-11-26 15:40:11
+ * @LastEditTime: 2023-11-30 19:09:43
+ * @LastEditors: YangJianFei
+ * @FilePath: \vue-baidu-map-3x\packages\navigation\src\index.vue
+-->
+<script lang='ts' setup>
+import { withDefaults } from 'vue';
+import type { Navigation, NavigationInstance } from '@vue-baidu-map-3x/utils';
+import { useControl, ControlsEnum, getMapMethod } from '@vue-baidu-map-3x/utils';
+
+defineOptions({
+  name: 'BmNavigation',
+});
+
+const props = withDefaults(defineProps<Navigation>(), {
+  anchor: 'BMAP_ANCHOR_TOP_RIGHT',
+  enableGeolocation: false,
+});
+
+const { originInstance } = useControl<NavigationInstance>({
+  props,
+  controlName: getMapMethod('NavigationControl'),
+  getRestParams: () => ({
+    type: window[props?.type ?? ''],
+    showZoomInfo: props?.showZoomInfo,
+    enableGeolocation: props?.enableGeolocation,
+  })
+});
+
+defineExpose({
+  originInstance
+});
+
+</script>

@@ -1,6 +1,6 @@
 import BaiduMap from '@vue-baidu-map-3x/map'
 import BmScale from '@vue-baidu-map-3x/scale'
-import BmNavigation from './controls/Navigation.vue'
+import BmNavigation from '@vue-baidu-map-3x/navigation'
 import BmMapType from './controls/MapType.vue'
 import BmOverviewMap from './controls/OverviewMap.vue'
 import BmGeolocation from './controls/Geolocation.vue'
@@ -45,7 +45,7 @@ export default {
     Vue.component(BaiduMap.name, BaiduMap)
 
     Vue.component(BmScale.name, BmScale)
-    Vue.component('bm-navigation', BmNavigation)
+    Vue.component(BmNavigation.name, BmNavigation)
     Vue.component('bm-map-type', BmMapType)
     Vue.component('bm-overview-map', BmOverviewMap)
     Vue.component('bm-geolocation', BmGeolocation)

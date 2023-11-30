@@ -1,7 +1,7 @@
 {
-  "name": "@vue-baidu-map-3x/scale",
+  "name": "@vue-baidu-map-3x/navigation",
   "version": "1.0.0",
-  "description": "vue-baidu-map-3x的scale组件",
+  "description": "vue-baidu-map-3x的navigation组件",
   "private": "false",
   "main": "index.ts",
   "scripts": {
