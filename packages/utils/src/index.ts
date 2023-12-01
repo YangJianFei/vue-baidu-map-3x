@@ -54,7 +54,7 @@ export const equalsFace = (newValue: any, elseValue: any) => {
 
 export const deleteEmptyKey = (obj) => {
   Object.keys(obj).forEach(key => {
-    if (typeof obj[key] === 'undefined') {
+    if (isEmpty(obj[key])) {
       delete obj[key];
     }
   });

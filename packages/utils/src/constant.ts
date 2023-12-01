@@ -10,6 +10,7 @@
 export enum ControlsEnum {
   ScaleControl = 'ScaleControl',
   Navigation = 'NavigationControl',
+  MapTypeControl ='MapTypeControl',
 };
 
 export const controlMethods = new Map([
@@ -40,3 +41,19 @@ export enum NavigationControlTypeEnum {
 };
 
 export type NavigationControlType = keyof typeof NavigationControlTypeEnum;
+
+export enum MapTypeControlTypeEnum {
+  'BMAP_MAPTYPE_CONTROL_HORIZONTAL' = 'BMAP_MAPTYPE_CONTROL_HORIZONTAL',
+  'BMAP_MAPTYPE_CONTROL_DROPDOWN' = 'BMAP_MAPTYPE_CONTROL_DROPDOWN',
+  'BMAP_MAPTYPE_CONTROL_MAP' = 'BMAP_MAPTYPE_CONTROL_MAP',
+};
+
+export type MapTypeControlType = keyof typeof MapTypeControlTypeEnum;
+
+export enum MapTypesEnum {
+  'BMAP_NORMAL_MAP' = 'BMAP_NORMAL_MAP',
+  'BMAP_SATELLITE_MAP' = 'BMAP_SATELLITE_MAP',
+  'BMAP_HYBRID_MAP' = 'BMAP_HYBRID_MAP',
+};
+
+export type MapTypes = keyof typeof MapTypesEnum;

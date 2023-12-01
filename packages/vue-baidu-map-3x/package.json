@@ -54,6 +54,7 @@
   "dependencies": {
     "@vue-baidu-map-3x/control": "workspace:^",
     "@vue-baidu-map-3x/map": "workspace:^",
+    "@vue-baidu-map-3x/map-type": "workspace:^",
     "@vue-baidu-map-3x/navigation": "workspace:^",
     "@vue-baidu-map-3x/scale": "workspace:^",
     "@vue-baidu-map-3x/utils": "workspace:^",

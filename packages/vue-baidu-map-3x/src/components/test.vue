@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-11-30 19:10:17
+ * @LastEditTime: 2023-12-01 14:06:17
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\vue-baidu-map-3x\src\components\test.vue
 -->
@@ -14,7 +14,8 @@
       <button>缩放至最 小</button>
     </bm-control>
     <bm-scale></bm-scale>
-    <bm-navigation/>
+    <bm-navigation :offset="{ height: 40 }" />
+    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" />
   </baidu-map>
 </template>
 

@@ -1,7 +1,7 @@
 {
-  "name": "@vue-baidu-map-3x/scale",
+  "name": "@vue-baidu-map-3x/map-type",
   "version": "1.0.0",
-  "description": "vue-baidu-map-3x的BmScale组件",
+  "description": "vue-baidu-map-3x的BmMapType组件",
   "private": "false",
   "main": "index.ts",
   "scripts": {

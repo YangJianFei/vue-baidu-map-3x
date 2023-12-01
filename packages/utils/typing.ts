@@ -67,7 +67,7 @@ export type ScaleInstance = ControlInstance & {
 };
 
 export type Navigation = Control & {
-  type?: string;
+  type?: NavigationControlType;
   showZoomInfo?: boolean;
   enableGeolocation?: boolean;
 };
@@ -76,3 +76,10 @@ export type NavigationInstance = ControlInstance & {
   getType: () => NavigationControlType;
   setType: (type: NavigationControlType) => void;
 };
+
+export type MapType = Control & {
+  type?: string;
+  mapTypes?: string[];
+};
+
+export type MapTypeInstance = ControlInstance;

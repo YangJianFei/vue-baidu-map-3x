@@ -38,6 +38,7 @@ export const controlMethodMap = new Map<ControlsEnum, {
       format: (value) => window[value],
     }
   ]],
+  [ControlsEnum.MapTypeControl, [...baseControlMethod]],
 ]);
 
 const methods = {

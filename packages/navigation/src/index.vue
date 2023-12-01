@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-26 15:40:11
- * @LastEditTime: 2023-11-30 19:09:43
+ * @LastEditTime: 2023-12-01 14:02:45
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\navigation\src\index.vue
 -->
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Navigation>(), {
 
 const { originInstance } = useControl<NavigationInstance>({
   props,
-  controlName: getMapMethod('NavigationControl'),
+  controlName: getMapMethod(ControlsEnum.Navigation),
   getRestParams: () => ({
     type: window[props?.type ?? ''],
     showZoomInfo: props?.showZoomInfo,
