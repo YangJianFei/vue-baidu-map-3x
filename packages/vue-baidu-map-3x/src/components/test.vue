@@ -2,20 +2,22 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-12-01 14:06:17
+ * @LastEditTime: 2023-12-02 10:24:10
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\vue-baidu-map-3x\src\components\test.vue
 -->
 <template>
-  <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="zoom">
-    <bm-control :anchor="anthor">
+  <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="zoom" @load="onLoad">
+    <bm-control :anchor="anthor" @load="onLoad" @unLoad="unLoad">
       <button @click="onClick">改变位置</button>
       <button @click="changeZoom">还原</button>
       <button>缩放至最 小</button>
     </bm-control>
-    <bm-scale></bm-scale>
-    <bm-navigation :offset="{ height: 40 }" />
-    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" />
+    <bm-scale @load="onLoad" @unLoad="unLoad"></bm-scale>
+    <bm-navigation :offset="{ height: 40 }"  @load="onLoad" @unLoad="unLoad"/>
+    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"  @load="onLoad" @unLoad="unLoad"/>
+    <bm-overview-map :offset="{ height: 100 }" :isOpen="true"  @load="onLoad" @unLoad="unLoad"/>
+    <bm-geolocation :showAddressBar="true" @locationError="locationError"  @load="onLoad" @unLoad="unLoad"/>
   </baidu-map>
 </template>
 
@@ -38,6 +40,17 @@ const onClick = () => {
   anthor.value = 'BMAP_ANCHOR_TOP_RIGHT';
 };
 
+const onLoad = (...params) => { 
+  console.log(params);
+};
+
+const unLoad = () => {
+  console.log('gg');
+};
+
+const locationError = (...res) => {
+  console.log(res);
+};
 
 const changeZoom = () => {
   zoom.value = 10;

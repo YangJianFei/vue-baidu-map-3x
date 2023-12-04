@@ -13,20 +13,21 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, watch, withDefaults } from 'vue';
+import { ref, watch, withDefaults, onUnmounted } from 'vue';
 import { getControl } from './control';
-import { useMap } from '@vue-baidu-map-3x/utils';
-import { getSize, useCleanup, equalsFace, controlMethods } from '@vue-baidu-map-3x/utils';
-import { Control, ControlInstance, deleteEmptyKey } from '@vue-baidu-map-3x/utils';
+import { useMap, getSize, useCleanup, equalsFace, controlMethods, deleteEmptyKey } from '@vue-baidu-map-3x/utils';
+import type { Control, ControlInstance, BaseEvents } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   name: 'BmControl',
 });
 
 const props = withDefaults(defineProps<Control>(), {
-  offset: { width: 0, height: 0 } as any,
+  offset: () => ({ width: 0, height: 0 }),
   anchor: 'BMAP_ANCHOR_TOP_LEFT',
 });
+
+const emit = defineEmits<BaseEvents<ControlInstance>>();
 
 const contain = ref(null);
 const { BMap, map } = useMap();
@@ -43,6 +44,7 @@ watch([contain, map], (_, __, onCleanup) => {
     })) as any as ControlInstance;
     map?.value?.addControl?.(instance);
     originInstance.value = instance;
+    emit('load', instance);
     onCleanup(removeInstance);
   }
 }, {
@@ -65,6 +67,10 @@ watch(() => ({ ...props }), (newProps, preProps) => {
   }
 }, {
   deep: true,
+});
+
+onUnmounted(() => {
+  emit('unLoad');
 });
 
 defineExpose({

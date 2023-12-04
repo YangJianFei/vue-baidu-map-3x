@@ -31,6 +31,31 @@ export type Size = {
   equals?: (other: Size) => boolean;
 };
 
+export type Icon = {
+  imageUrl: string;
+  size?: Size;
+  anchor?: Size;
+  imageOffset?: Size;
+  imageSize?: Size;
+  infoWindowAnchor?: Size;
+  printImageUrl?: string;
+  setImageUrl?: (url: string) => void;
+  setSize?: (size: Size) => void;
+  setImageSize?: (offset: Size) => void;
+  setAnchor?: (anchor: Size) => void;
+  setImageOffset?: (offset: Size) => void;
+  setInfoWindowAnchor?: (anchor: Size) => void;
+  setPrintImageUrl?: (url: string) => void;
+};
+
+export type AddressComponent = {
+  streetNumber?: string;
+  street?: string;
+  district?: string;
+  city?: string;
+  province?: string;
+};
+
 export type MapStyleV2 = {
   styleJson: any[];
 };
@@ -61,6 +86,9 @@ export type ControlInstance = {
   isVisible: () => boolean;
 };
 
+export type Scale = Control & {
+};
+
 export type ScaleInstance = ControlInstance & {
   setUnit: (unit: LengthUnit) => void;
   getUnit: () => LengthUnit;
@@ -83,3 +111,25 @@ export type MapType = Control & {
 };
 
 export type MapTypeInstance = ControlInstance;
+
+export type OverivewMap = Control & {
+  size?: Size;
+  isOpen?: boolean;
+};
+
+export type OverivewMapInstance = ControlInstance & {
+  changeView: () => void;
+  setSize: (size: Size) => void;
+  getSize: () => Size;
+};
+
+export type Geolocation = Control & {
+  showAddressBar?: boolean;
+  autoLocation?: boolean;
+  locationIcon?: Icon;
+};
+
+export type GeolocationInstance = ControlInstance & {
+  location?: () => void;
+  getAddressComponent?: () => AddressComponent;
+};

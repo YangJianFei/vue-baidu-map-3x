@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-22 17:09:17
- * @LastEditTime: 2023-11-24 15:04:54
+ * @LastEditTime: 2023-12-01 17:34:34
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\map\src\index.vue
 -->
@@ -17,12 +17,11 @@
 
 <script lang='ts' setup>
 import { ref, onMounted, onUnmounted, watch, provide } from 'vue';
-import type { MapInstance } from '@vue-baidu-map-3x/utils';
+import type { MapInstance, BaseEvents } from '@vue-baidu-map-3x/utils';
 import { Map } from '../typing';
 import ApiLoader, { getBMap, useBMap } from '@vue-baidu-map-3x/api-loader';
-import { useEvent, equalsFace, EventBus } from '@vue-baidu-map-3x/utils';
+import { useEvent, equalsFace, EventBus, BdMapKey, getMapMethod } from '@vue-baidu-map-3x/utils';
 import { methodsMap, events, customEvents, getCenterPoint } from './helper';
-import { BdMapKey,getMapMethod } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   inheritAttrs: false,
@@ -92,6 +91,7 @@ watch(contain, () => {
       // 必须先调用centerAndZoom才能初始化地图
       instance.centerAndZoom(getCenterPoint(props.center), props.zoom);
       map.value = instance;
+      emit('load', { BMap, map: instance });
       emit('init', { BMap, map: instance });
       emit('ready', { BMap, map: instance });
       EventBus.$emit('init', { BMap, map });
@@ -102,6 +102,7 @@ watch(contain, () => {
 
 onUnmounted(() => {
   map?.value?.destroy?.(); // webgl销毁，api？
+  emit('unLoad');
 });
 
 defineExpose({

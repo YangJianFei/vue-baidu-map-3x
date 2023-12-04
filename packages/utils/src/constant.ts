@@ -2,16 +2,28 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-24 10:01:08
- * @LastEditTime: 2023-11-30 16:31:41
+ * @LastEditTime: 2023-12-02 10:15:22
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\constant.ts
  */
 
+import { type } from "os";
+import { BMap } from "../typing";
+
 export enum ControlsEnum {
   ScaleControl = 'ScaleControl',
   Navigation = 'NavigationControl',
-  MapTypeControl ='MapTypeControl',
+  MapTypeControl = 'MapTypeControl',
+  OverviewMapControl = 'OverviewMapControl',
+  GeolocationControl = 'GeolocationControl',
 };
+
+export type BaseEvents<T = any> = {
+  'load': [params: T],
+  'unLoad': [],
+};
+
+export const baseEvents = ['load', 'unLoad'];
 
 export const controlMethods = new Map([
   ['anchor', 'setAnchor'],

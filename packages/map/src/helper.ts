@@ -50,7 +50,6 @@ export const events = [
   'dragend',
   'addtilelayer',
   'removetilelayer',
-  'load',
   'loaded',
   'resize',
   'hotspotclick',
@@ -66,6 +65,8 @@ export const events = [
 export const customEvents = [
   'init',
   'ready',
+  'load',
+  'unLoad',
 ];
 
 export const getCenterPoint = (center?: string | Point) => {

@@ -9,19 +9,23 @@
 
 <script lang='ts' setup>
 import { withDefaults } from 'vue';
-import type { Control, ScaleInstance } from '@vue-baidu-map-3x/utils';
-import { useControl, ControlsEnum } from '@vue-baidu-map-3x/utils';
+import type { BaseEvents, Scale, ScaleInstance } from '@vue-baidu-map-3x/utils';
+import { useControl, ControlsEnum, baseEvents } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   name: 'BmScale',
 });
 
-const props = withDefaults(defineProps<Control>(), {
+const props = withDefaults(defineProps<Scale>(), {
   anchor: 'BMAP_ANCHOR_BOTTOM_LEFT',
 });
 
+const emit = defineEmits<BaseEvents<ScaleInstance>>();
+
 const { originInstance } = useControl<ScaleInstance>({
   props,
+  emit,
+  events: baseEvents,
   controlName: ControlsEnum.ScaleControl,
 });
 

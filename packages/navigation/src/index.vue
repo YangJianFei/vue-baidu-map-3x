@@ -8,8 +8,8 @@
 -->
 <script lang='ts' setup>
 import { withDefaults } from 'vue';
-import type { Navigation, NavigationInstance } from '@vue-baidu-map-3x/utils';
-import { useControl, ControlsEnum, getMapMethod } from '@vue-baidu-map-3x/utils';
+import type { BaseEvents, Navigation, NavigationInstance } from '@vue-baidu-map-3x/utils';
+import { useControl, ControlsEnum, getMapMethod, baseEvents } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   name: 'BmNavigation',
@@ -20,8 +20,12 @@ const props = withDefaults(defineProps<Navigation>(), {
   enableGeolocation: false,
 });
 
+const emit = defineEmits<BaseEvents<NavigationInstance>>();
+
 const { originInstance } = useControl<NavigationInstance>({
   props,
+  emit,
+  events: baseEvents,
   controlName: getMapMethod(ControlsEnum.Navigation),
   getRestParams: () => ({
     type: window[props?.type ?? ''],

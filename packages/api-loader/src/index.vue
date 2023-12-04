@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onUnmounted } from 'vue';
 import { ApiLoaderType } from './typing';
-import { setConfig, getConfig } from '@vue-baidu-map-3x/utils';
-import { ConfigType } from '@vue-baidu-map-3x/utils/typing';
+import { setConfig, getConfig, BaseEvents } from '@vue-baidu-map-3x/utils';
+import type { BMap, ConfigType } from '@vue-baidu-map-3x/utils';
 import { mapLoadResolve } from './helper';
 
 defineOptions({
@@ -22,9 +22,7 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<ApiLoaderType>(), {});
-const emit = defineEmits<{
-  ready: [BMap: any],
-}>();
+const emit = defineEmits<BaseEvents<BMap>>();
 
 const isLoad = ref(false);
 
@@ -71,7 +69,11 @@ const getMapScript = () => {
 dealConfig();
 getMapScript().then((BMap) => {
   isLoad.value = true;
-  emit('ready', BMap);
+  emit('load', BMap);
   mapLoadResolve(BMap);
+});
+
+onUnmounted(() => {
+  emit('unLoad');
 });
 </script>

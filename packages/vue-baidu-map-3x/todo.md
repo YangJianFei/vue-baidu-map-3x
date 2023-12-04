@@ -59,3 +59,5 @@ inforwindow :position 用ref的话会多次触发close和open
 海量点自定义图标
 
 个性化主题会在Window上挂，每次进去都挂一次想同内容
+
+所有组件暴露reload方法

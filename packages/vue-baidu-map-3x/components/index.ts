@@ -2,8 +2,8 @@ import BaiduMap from '@vue-baidu-map-3x/map'
 import BmScale from '@vue-baidu-map-3x/scale'
 import BmNavigation from '@vue-baidu-map-3x/navigation'
 import BmMapType from '@vue-baidu-map-3x/map-type'
-import BmOverviewMap from './controls/OverviewMap.vue'
-import BmGeolocation from './controls/Geolocation.vue'
+import BmOverviewMap from '@vue-baidu-map-3x/overview-map'
+import BmGeolocation from '@vue-baidu-map-3x/geolocation'
 import BmCopyright from './controls/Copyright.vue'
 import BmCityList from './controls/CityList.vue'
 import BmPanorama from './controls/Panorama.vue'
@@ -47,8 +47,8 @@ export default {
     Vue.component(BmScale.name, BmScale)
     Vue.component(BmNavigation.name, BmNavigation)
     Vue.component(BmMapType.name, BmMapType)
-    Vue.component('bm-overview-map', BmOverviewMap)
-    Vue.component('bm-geolocation', BmGeolocation)
+    Vue.component(BmOverviewMap.name, BmOverviewMap)
+    Vue.component(BmGeolocation.name, BmGeolocation)
     Vue.component('bm-copyright', BmCopyright)
     Vue.component('bm-city-list', BmCityList)
     Vue.component('bm-panorama', BmPanorama)
