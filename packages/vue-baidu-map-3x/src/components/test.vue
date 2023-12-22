@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-12-02 10:24:10
+ * @LastEditTime: 2023-12-21 18:00:51
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\vue-baidu-map-3x\src\components\test.vue
 -->
@@ -14,10 +14,13 @@
       <button>缩放至最 小</button>
     </bm-control>
     <bm-scale @load="onLoad" @unLoad="unLoad"></bm-scale>
-    <bm-navigation :offset="{ height: 40 }"  @load="onLoad" @unLoad="unLoad"/>
-    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"  @load="onLoad" @unLoad="unLoad"/>
-    <bm-overview-map :offset="{ height: 100 }" :isOpen="true"  @load="onLoad" @unLoad="unLoad"/>
-    <bm-geolocation :showAddressBar="true" @locationError="locationError"  @load="onLoad" @unLoad="unLoad"/>
+    <bm-navigation :offset="{ height: 40 }" @load="onLoad" @unLoad="unLoad" />
+    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" @load="onLoad" @unLoad="unLoad" />
+    <bm-overview-map :offset="{ height: 100 }" :isOpen="true" @load="onLoad" @unLoad="unLoad" />
+    <bm-geolocation :showAddressBar="true" @locationError="locationError" @load="onLoad" @unLoad="unLoad" />
+    <bm-copyright
+      :copyright="[{ id: 1, content: 'Copyright Message', bounds: { ne: { lng: 110, lat: 40 }, sw: { lng: 0, lat: 0 } } }, { id: 2, content: '<a>我是版权信息</a>' }]" />
+
   </baidu-map>
 </template>
 
@@ -40,7 +43,7 @@ const onClick = () => {
   anthor.value = 'BMAP_ANCHOR_TOP_RIGHT';
 };
 
-const onLoad = (...params) => { 
+const onLoad = (...params) => {
   console.log(params);
 };
 

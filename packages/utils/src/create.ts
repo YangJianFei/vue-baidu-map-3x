@@ -7,7 +7,7 @@
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\create.ts
  */
 import { deleteEmptyKey } from '.';
-import type { Icon, Point, Size } from '../typing';
+import type { Bounds, Icon, Point, Size } from '../typing';
 
 export const getPoint = (lng: number, lat: number): Point => {
   return new window.BMap.Point(lng, lat);
@@ -28,4 +28,8 @@ export const getIcon = (options: Icon): Icon => {
       printImageUrl: options?.printImageUrl,
     })
   );
+};
+
+export const getBounds = (sw?: Point, ne?: Point): Bounds => {
+  return new window.BMap.Bounds(sw, ne);
 };

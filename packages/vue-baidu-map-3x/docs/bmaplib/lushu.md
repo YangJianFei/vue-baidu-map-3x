@@ -2,6 +2,11 @@
 
 `bml-lushu` 是用来还原行进轨迹的组件。
 
+::: danger
+此组件没有默认全局注册需要手动引入BmlLushu
+import { BmlLushu } from 'vue-baidu-map-3x';
+:::
+
 ## 属性
 
 |属性名|类型|默认值|描述|

@@ -53,6 +53,7 @@
   "license": "MIT",
   "dependencies": {
     "@vue-baidu-map-3x/control": "workspace:^",
+    "@vue-baidu-map-3x/copyright": "workspace:^",
     "@vue-baidu-map-3x/geolocation": "workspace:^",
     "@vue-baidu-map-3x/map": "workspace:^",
     "@vue-baidu-map-3x/map-type": "workspace:^",

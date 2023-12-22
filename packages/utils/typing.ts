@@ -48,6 +48,61 @@ export type Icon = {
   setPrintImageUrl?: (url: string) => void;
 };
 
+export type Bounds = {
+  /**
+   * @name  创建一个包含所有给定点坐标的矩形区域。其中sw表示矩形区域的西南角，参数ne表示矩形区域的东北角
+   */
+  new(sw: Point, ne: Point): void;
+  sw: Point;
+  ne: Point;
+  /**
+   * @name  当且仅当此矩形中的两点参数都等于其他矩形的两点参数时，返回true
+   */
+  equals?: (other: Bounds) => boolean;
+  /**
+   * @name  如果点的地理坐标位于此矩形内，则返回true
+   */
+  containsPoint?: (point: Point) => boolean;
+  /**
+   * @name  传入的矩形区域完全包含于此矩形区域中，则返回true
+   */
+  containsBounds?: (bounds: Bounds) => boolean;
+  /**
+   * @name  计算与另一矩形的交集区域
+   */
+  intersects?: (other: Bounds) => Bounds;
+  /**
+   * @name  放大此矩形，使其包含给定的点
+   */
+  extend?: (point: Point) => void;
+  /**
+   * @name  返回矩形的中心点
+   */
+  getCenter?: () => Point;
+  /**
+   * @name  如果矩形为空，则返回true
+   */
+  isEmpty?: () => boolean;
+  /**
+   * @name  返回矩形区域的西南角
+   */
+  getSouthWest?: () => Point;
+  /**
+   * @name  返回矩形区域的东北角
+   */
+  getNorthEast?: () => Point;
+  /**
+   * @name  
+   */
+  toSpan?: () => Point;
+};
+
+export type CopyrightControl = {
+  id?: number;
+  content?: string;
+  bounds?: Bounds;
+}
+
 export type AddressComponent = {
   streetNumber?: string;
   street?: string;
@@ -132,4 +187,34 @@ export type Geolocation = Control & {
 export type GeolocationInstance = ControlInstance & {
   location?: () => void;
   getAddressComponent?: () => AddressComponent;
+};
+
+export type Copyright = Control & {
+  copyrights?: CopyrightControl[];
+};
+
+export type CopyrightInstance = ControlInstance & {
+  /**
+   * @name 添加版权信息
+   * @param copyright 
+   * @returns 
+   */
+  addCopyright?: (copyright: CopyrightControl) => void;
+  /**
+   * @name 移除版权信息
+   * @param id 
+   * @returns 
+   */
+  removeCopyright?: (id: number) => void;
+  /**
+   * @name 返回单个版权信息
+   * @param id 
+   * @returns CopyrightControl
+   */
+  getCopyright?: (id: number) => CopyrightControl;
+  /**
+   * @name 返回版权信息列表
+   * @returns CopyrightControl[]
+   */
+  getCopyrightCollection?: () => CopyrightControl[];
 };

@@ -2,6 +2,11 @@
 
 `BmlHeatmap`
 
+::: danger
+此组件没有默认全局注册需要手动引入BmlHeatmap
+import { BmlHeatmap } from 'vue-baidu-map-3x';
+:::
+
 ## 属性
 
 |属性名|类型 |默认值|描述|

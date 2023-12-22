@@ -2,6 +2,11 @@
 
 `BmlMarkerClusterer` 能够聚合它包含的所有 `BmMarker` 组件。
 
+::: danger
+此组件没有默认全局注册需要手动引入BmlMarkerClusterer
+import { BmlMarkerClusterer } from 'vue-baidu-map-3x';
+:::
+
 ## 属性
 
 |属性名|类型 |默认值|描述|

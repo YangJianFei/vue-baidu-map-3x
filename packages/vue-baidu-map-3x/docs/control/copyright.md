@@ -7,7 +7,7 @@
 |------|-----|-----|----|
 |anchor|ControlAnchor||控件停靠位置|
 |offset|Size||控件偏移值|
-|copyright|Array||版权信息列表|
+|copyrights|Array||版权信息列表|
 
 ## 示例
 

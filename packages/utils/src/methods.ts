@@ -2,14 +2,16 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-30 17:14:46
- * @LastEditTime: 2023-12-01 14:37:40
+ * @LastEditTime: 2023-12-21 18:05:14
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\methods.ts
  */
 
-import { getConfig } from ".";
+import { Ref } from 'vue';
+import { deleteEmptyKey, getConfig } from ".";
+import { CopyrightControl, CopyrightInstance } from "../typing";
 import { ControlsEnum } from "./constant";
-import { getSize } from "./create";
+import { getBounds, getPoint, getSize } from "./create";
 
 export const baseControlMethod = [
   {
@@ -27,7 +29,8 @@ export const baseControlMethod = [
 export const controlMethodMap = new Map<ControlsEnum, {
   key: string;
   method: string | string[];
-  format: (value: any) => any;
+  format?: (value: any) => any;
+  customMethod?: (originInstance, newValue: any, oldValue?: any) => void;
 }[]>([
   [ControlsEnum.ScaleControl, [...baseControlMethod]],
   [ControlsEnum.Navigation, [
@@ -48,6 +51,30 @@ export const controlMethodMap = new Map<ControlsEnum, {
     }
   ]],
   [ControlsEnum.GeolocationControl, [...baseControlMethod]],
+  [ControlsEnum.CopyrightControl, [
+    ...baseControlMethod,
+    {
+      key: 'copyright',
+      method: 'addCopyright',
+      customMethod: (originInstance: Ref<CopyrightInstance | undefined>, newValue: CopyrightControl[]) => {
+        originInstance?.value?.getCopyrightCollection?.()?.forEach?.(copyright => {
+          if (copyright?.id) {
+            originInstance?.value?.removeCopyright?.(copyright?.id);
+          }
+        });
+        newValue?.forEach?.(copyright => {
+          const bounds = copyright?.bounds && getBounds(
+            getPoint(copyright?.bounds?.sw?.lng, copyright?.bounds?.sw?.lat),
+            getPoint(copyright?.bounds?.ne?.lng, copyright?.bounds?.ne?.lat)
+          );
+          originInstance?.value?.addCopyright?.(deleteEmptyKey({
+            ...copyright,
+            bounds
+          }));
+        });
+      },
+    }
+  ]],
 ]);
 
 const methods = {

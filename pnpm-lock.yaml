@@ -49,6 +49,12 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/copyright:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
   packages/geolocation:
     dependencies:
       '@vue-baidu-map-3x/utils':
@@ -99,6 +105,9 @@ importers:
       '@vue-baidu-map-3x/control':
         specifier: workspace:^
         version: link:../control
+      '@vue-baidu-map-3x/copyright':
+        specifier: workspace:^
+        version: link:../copyright
       '@vue-baidu-map-3x/geolocation':
         specifier: workspace:^
         version: link:../geolocation
@@ -139,7 +148,7 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       vue:
-        specifier: ^3.0.0
+        specifier: ^3.3.0
         version: 3.3.9(typescript@4.9.5)
     devDependencies:
       '@fnando/sparkline':

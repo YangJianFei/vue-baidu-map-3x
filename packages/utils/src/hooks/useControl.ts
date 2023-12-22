@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-30 16:14:10
- * @LastEditTime: 2023-12-02 10:19:41
+ * @LastEditTime: 2023-12-14 17:17:18
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\hooks\useControl.ts
  */
@@ -54,16 +54,20 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
 
   watch(() => props, (newProps, preProps) => {
     if (originInstance?.value) {
-      controlMethodMap.get(controlName)?.forEach?.(({ key, method, format }) => {
-        if (!equalsFace(newProps?.[key], preProps?.[key])) {
-          if (Array.isArray(method)) {
-            originInstance?.value?.[
-              newProps?.[key] ? method[0] : method[1]
-            ]?.(format ? format(newProps?.[key]) : newProps?.[key]);
-          } else {
-            originInstance?.value?.[
-              method
-            ]?.(format ? format(newProps?.[key]) : newProps?.[key]);
+      controlMethodMap.get(controlName)?.forEach?.(({ key, method, format, customMethod }) => {
+        if (customMethod) {
+          customMethod?.(originInstance, newProps?.[key], preProps?.[key]);
+        } else {
+          if (!equalsFace(newProps?.[key], preProps?.[key])) {
+            if (Array.isArray(method)) {
+              originInstance?.value?.[
+                newProps?.[key] ? method[0] : method[1]
+              ]?.(format ? format(newProps?.[key]) : newProps?.[key]);
+            } else {
+              originInstance?.value?.[
+                method
+              ]?.(format ? format(newProps?.[key]) : newProps?.[key]);
+            }
           }
         }
       });
