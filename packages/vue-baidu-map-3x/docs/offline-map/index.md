@@ -9,7 +9,7 @@
 import BaiduMapOffline from 'vue-baidu-map-offline';
 import BaiduMap from 'vue-baidu-map-3x'
 
-app.use(BaiduMapOffline, {
+app.use(BaiduMapOffline, { // 只需要注册，其余步骤参考微信小程序：前端男海
     offline: true
 });
 app.use(BaiduMap, {

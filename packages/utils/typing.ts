@@ -218,3 +218,7 @@ export type CopyrightInstance = ControlInstance & {
    */
   getCopyrightCollection?: () => CopyrightControl[];
 };
+
+export type CityList = Control;
+
+export type CityListInstance = ControlInstance;

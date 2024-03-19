@@ -119,6 +119,7 @@ getMarkers();
 
 <script setup>
 import { ref } from 'vue';
+import { BmlMarkerClusterer } from 'vue';
 
 
 const markers = ref([]);

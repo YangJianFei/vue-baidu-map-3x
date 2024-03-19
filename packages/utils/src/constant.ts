@@ -17,6 +17,7 @@ export enum ControlsEnum {
   OverviewMapControl = 'OverviewMapControl',
   GeolocationControl = 'GeolocationControl',
   CopyrightControl = 'CopyrightControl',
+  CityListControl = 'CityListControl',
 };
 
 export type BaseEvents<T = any> = {

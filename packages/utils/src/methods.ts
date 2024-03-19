@@ -75,6 +75,7 @@ export const controlMethodMap = new Map<ControlsEnum, {
       },
     }
   ]],
+  [ControlsEnum.CityListControl, [...baseControlMethod]],
 ]);
 
 const methods = {

@@ -2,9 +2,9 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-11-17 13:59:29
+ * @LastEditTime: 2024-01-25 15:58:42
  * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\todo.md
+ * @FilePath: \vue-baidu-map-3x\packages\vue-baidu-map-3x\todo.md
 -->
 ## injection警告去除
 ## 局部注册
@@ -61,3 +61,7 @@ inforwindow :position 用ref的话会多次触发close和open
 个性化主题会在Window上挂，每次进去都挂一次想同内容
 
 所有组件暴露reload方法
+
+maker和overlay层级设置无效
+
+lushu添加onmove方法

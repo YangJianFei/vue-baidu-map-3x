@@ -40,6 +40,12 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/city-list:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
   packages/control:
     dependencies:
       '@vue-baidu-map-3x/map':
@@ -102,6 +108,9 @@ importers:
 
   packages/vue-baidu-map-3x:
     dependencies:
+      '@vue-baidu-map-3x/city-list':
+        specifier: workspace:^
+        version: link:../city-list
       '@vue-baidu-map-3x/control':
         specifier: workspace:^
         version: link:../control
