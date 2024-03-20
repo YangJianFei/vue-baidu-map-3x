@@ -23,6 +23,7 @@
 |start|this|开始移动|
 |stop|this|停止本次移动|
 |pause|this|暂停移动|
+|move|this|移动事件(参数里面的i即为当前points的索引)|
 
 ## 示例
 
