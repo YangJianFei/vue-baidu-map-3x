@@ -1,11 +1,11 @@
 /*
- * Author: yang jian fei
- * Email: 1294485765@qq.com
- * Created Date: Thursday, April 14th 2022, 2:33:28 pm
- * Modified By: yang jian fei
- * Desc: desc
- * Copyright (c) 2022 瑞为
- */
+* Author: yang jian fei
+* Email: 1294485765@qq.com
+* Created Date: Thursday, April 14th 2022, 2:33:28 pm
+* Modified By: yang jian fei
+* Desc: desc
+* Copyright (c) 2022 瑞为
+*/
 <template>
   <div>
     <label v-for="label in labels" :key="label.type">
@@ -25,12 +25,12 @@
     </div>
     <div v-if="activeType === 'lushu'">
       <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="11">
-        <bm-driving :start="lushuPoint.start" :end="lushuPoint.end" @searchcomplete="handleSearchComplete" :panel="false"
-          :autoViewport="true" :waypoints="waypoints">
+        <bm-driving :start="lushuPoint.start" :end="lushuPoint.end" @searchcomplete="handleSearchComplete"
+          :panel="false" :autoViewport="true" :waypoints="waypoints">
         </bm-driving>
-        <bml-lushu @start="changeBtnText('pause')" @stop="changeBtnText('play_arrow')"
-          @pause="changeBtnText('play_arrow')" :path="path" :rotation="rotation" :content="content" :infoWindow="true"
-          :speed="speed" :icon="icon" :play="play">
+        <bml-lushu ref="lushu" @start="(e) => changeBtnText('pause', e)" @stop="changeBtnText('play_arrow')"
+          @pause="changeBtnText('play_arrow')" @move="handleMove" :path="path" :rotation="rotation" :content="content"
+          :infoWindow="true" :speed="speed" :icon="icon" :play="play">
         </bml-lushu>
       </baidu-map>
       <table>
@@ -44,7 +44,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><span @click="toggle">{{ btnText }}</span></td>
+            <td><span @click="toggle">{{ btnText }}</span><span @click="go">跳到100</span></td>
             <td>
               <input v-model="rotation" type="radio" name="lushu">
             </td>
@@ -91,6 +91,7 @@ const labels = ref([
   { name: '弧线', type: 'curveLine' }
 ]);
 
+const lushu = ref(null);
 const heatMax = ref(100);
 const markers = ref([]);
 const styles = ref([]);
@@ -277,7 +278,8 @@ const changeStyles = () => {
   styles.value = customStyles.value ? stylesArr : []
 };
 
-const changeBtnText = (val) => {
+const changeBtnText = (val, e) => {
+  console.log(val, e);
   btnText.value = val
   if (val === 'play_arrow') {
     play.value = false
@@ -324,6 +326,14 @@ const handleChange = () => {
     { lng: 116.425867, lat: 39.918989, count: 8 }
   ];
 };
+
+const handleMove = (e) => {
+  console.log('move', e.i);
+};
+
+const go = () => {
+  lushu.value.originInstance.moveNext(100);
+}
 
 getMarkers();
 </script>

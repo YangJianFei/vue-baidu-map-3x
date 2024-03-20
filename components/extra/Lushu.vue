@@ -2,12 +2,12 @@
 /*eslint-disable*/
 import commonMixin from '../base/mixins/common.js'
 import { createIcon } from '../base/factory.js'
-import Lushu from 'bmaplib.lushu'
+import Lushu from '@yangjianfei/bmaplib.lushu'
 
 export default {
   name: 'bm-lushu',
   render(h) { },
-  emits: ['start', 'stop', 'pause'],
+  emits: ['start', 'stop', 'pause', 'move'],
   mixins: [commonMixin('lushu')],
   props: {
     path: {
@@ -110,13 +110,14 @@ export default {
         autoView,
         onstart: e => {
           this._isEnd = false
-          this.$emit('start')
+          this.$emit('start', e)
         },
         onstop: e => {
           this._isEnd = true
-          this.$emit('stop')
+          this.$emit('stop', e)
         },
-        onpause: e => this.$emit('pause')
+        onpause: e => this.$emit('pause', e),
+        onmove: e => this.$emit('move', e),
       })
       play && path.length && lushu.start(this)
       path.length && (content && infoWindow ? lushu.showInfoWindow() : lushu.hideInfoWindow())
