@@ -2,12 +2,16 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-05-17 19:19:59
+ * @LastEditTime: 2024-04-10 17:52:25
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\docs\changelogs.md
 -->
 ## 更新日志
 ## vue-baidu-map-3x
+### v1.0.38 [2024-04-10]
+- 修复多个地图时重复加载bug
+### v1.0.37 [2024-03-20]
+- 路书添加move事件
 ### v1.0.35 [2023-08-18]
 - 添加地图截图参数
 ### v1.0.34 [2023-05-17]
