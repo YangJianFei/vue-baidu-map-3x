@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2024-01-25 15:58:42
+ * @LastEditTime: 2024-03-20 11:03:13
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\vue-baidu-map-3x\todo.md
 -->
@@ -64,4 +64,4 @@ inforwindow :position 用ref的话会多次触发close和open
 
 maker和overlay层级设置无效
 
-lushu添加onmove方法
+lushu添加onmove方法，添加index控制当前点
