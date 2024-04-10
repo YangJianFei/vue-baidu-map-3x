@@ -210,6 +210,8 @@ export default {
       }
       let $el = this.$refs.view
       const map = new BMap.Map($el, { enableHighResolution: this.highResolution, enableMapClick: this.mapClick, preserveDrawingBuffer: this.preserveDrawingBuffer })
+      const mapKey = Math.random().toString();
+      this.mapKey = mapKey;
       this.map = map
       const { setMapOptions, zoom, getCenterPoint, theme, mapStyle } = this
       setMapOptions()
@@ -219,18 +221,18 @@ export default {
       this.setCenterZoom(map, getCenterPoint(), zoom);
       theme ? map[getMapMethod('setMapStyle')]({ styleJson: theme }) : (mapStyle && map[getMapMethod('setMapStyle')](mapStyle))
       let loadNum = 0;
-      this.$emit('init', { BMap, map });
-      EvenBus.$emit('init', { BMap, map });
+      this.$emit('init', { BMap, map, mapKey });
+      EvenBus.$emit('init', { BMap, map, mapKey });
       map.addEventListener('tilesloaded', () => {
         if (!loadNum) {
           loadNum++;
-          this.$emit('ready', { BMap, map })
-          EvenBus.$emit('ready', { BMap, map });
+          this.$emit('ready', { BMap, map, mapKey })
+          EvenBus.$emit('ready', { BMap, map, mapKey });
         }
       });
       map.addEventListener('loaded', () => {
-        this.$emit('loaded', { BMap, map });
-        EvenBus.$emit('loaded', { BMap, map });
+        this.$emit('loaded', { BMap, map, mapKey });
+        EvenBus.$emit('loaded', { BMap, map, mapKey });
       });
     },
     setCenterZoom(map, center, zoom) {
@@ -317,7 +319,8 @@ export default {
       hasBmView: false,
       map: null,
       BMap: null,
-      name: 'bm-map'
+      name: 'bm-map',
+      mapKey: '',
     }
   }
 }

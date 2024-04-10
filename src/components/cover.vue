@@ -1,11 +1,11 @@
 /*
- * Author: yang jian fei
- * Email: 1294485765@qq.com
- * Created Date: Monday, April 11th 2022, 4:50:30 pm
- * Modified By: yang jian fei
- * Desc: desc
- * Copyright (c) 2022 瑞为
- */
+* Author: yang jian fei
+* Email: 1294485765@qq.com
+* Created Date: Monday, April 11th 2022, 4:50:30 pm
+* Modified By: yang jian fei
+* Desc: desc
+* Copyright (c) 2022 瑞为
+*/
 <template>
   <div>
     <span @click="handleClick">{{ labelContent }}</span>
@@ -21,18 +21,18 @@
     </baidu-map>
     <baidu-map v-else-if="activeType === 'customPoint'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
       <bm-marker :position="{ lng: 116.404, lat: 39.915 }" :dragging="true" :icon="{
-        url: './heifahaizei.png',
-        size: {
-          width: 52,
-          height: 26,
-        },
-        opts: {
-          imageSize: {
-            width: 20,
-            height: 20,
-          }
+      url: './heifahaizei.png',
+      size: {
+        width: 52,
+        height: 26,
+      },
+      opts: {
+        imageSize: {
+          width: 20,
+          height: 20,
         }
-      }">
+      }
+    }">
       </bm-marker>
     </baidu-map>
     <baidu-map v-else-if="activeType === 'infoPoint'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
@@ -79,7 +79,8 @@
         <button @click="clear">Clear</button>
       </bm-info-window>
     </baidu-map>
-    <baidu-map v-else-if="activeType === 'customOverlay'" class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+    <baidu-map v-else-if="activeType === 'customOverlay'" class="map" :center="{ lng: 116.404, lat: 39.915 }"
+      :zoom="15">
       <bm-overlay pane="labelPane" :class="{ sample: true, active }" @draw="draw" @mouseover="active = true"
         @mouseleave="active = false">
         <div>我爱北京天安门</div>
@@ -91,7 +92,7 @@
 <script setup>
 import { ref, reactive, nextTick } from 'vue';
 
-const activeType = ref('polygon');
+const activeType = ref('point');
 const infoWinContent = ref('我是内容');
 const labels = ref([
   { name: '跳跃点', type: 'point' },

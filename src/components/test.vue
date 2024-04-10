@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-10-19 15:36:30
+ * @LastEditTime: 2024-04-10 17:41:22
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\components\test.vue
 -->
@@ -10,13 +10,13 @@
 <template>
   <div>
     <span @click="handleChange">修改{{ zoom }}</span>
-    <baidu-map class="map" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
-      <bm-info-window ref="infoWindowRef" :position="{ lng: markerPoint.lng, lat: markerPoint.lat }"
-        title="Info Window Title" :show="infoWindow.show" @close="infoWinClose" @open="infoWinOpen"
-        @ready="onInfoWindowReady">
-        <p @click="onContentClick">{{ infoWinContent }}</p>
-        <button @click="clear">Clear</button>
-      </bm-info-window>
+    <baidu-map class="map" :center="{ lng: 113.73099, lat: 27.984867 }" :zoom="8" :mapClick="mapClick">
+      <bm-marker :position="{ lng: 113.73099, lat: 27.984867 }" :dragging="true">
+      </bm-marker>
+    </baidu-map>
+    <baidu-map class="map" :center="{ lng: 113.73099, lat: 27.984867 }" :zoom="8" :mapClick="mapClick">
+      <bm-marker :position="{ lng: 113.73099, lat: 27.984867 }" :dragging="true">
+      </bm-marker>
     </baidu-map>
   </div>
 </template>
@@ -32,6 +32,7 @@ const infoWindow = ref({
   contents: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 });
 const infoWinContent = ref('我是内容');
+const mapClick = ref(false);
 const keyword = ref('');
 const location = ref('上海市');
 const zoom = ref(6);
@@ -50,6 +51,7 @@ const handleZoomed = (e) => {
 
 const handleChange = () => {
   zoom.value = 15;
+  mapClick.value = true;
 }
 
 const handleClick = () => {

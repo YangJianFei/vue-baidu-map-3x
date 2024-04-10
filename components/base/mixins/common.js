@@ -39,18 +39,24 @@ const getMixin = (prop = {}) => {
     created() {
       const $parent = getParent(this.$parent)
       const map = $parent.map
-      const { ready } = this
-      map ? ready() : EvenBus.$on('ready', ready);
-      map ? this.init({ BMap: $parent.BMap, map }) : EvenBus.$on('init', this.init);
+      const { ready, init } = this
+      map ? ready() : EvenBus.$on('ready', ({ mapKey }) => this.emitCallBack(mapKey, ready));
+      map ? this.init({ BMap: $parent.BMap, map }) : EvenBus.$on('init', ({ mapKey }) => this.emitCallBack(mapKey, init));
     },
     mounted() {
       const $parent = getParent(this.$parent)
       const map = $parent.map
       const { mountedReady } = this
-      map ? mountedReady() : EvenBus.$on('ready', mountedReady);
+      map ? mountedReady() : EvenBus.$on('ready', ({ mapKey }) => this.emitCallBack(mapKey, mountedReady));
     },
     unmounted: destroyInstance,
     methods: {
+      emitCallBack(mapKey, cb) {
+        const $parent = getParent(this.$parent)
+        if (mapKey == $parent.mapKey) {
+          cb();
+        }
+      },
       init() { },
       ready() {
         const $parent = getParent(this.$parent)
