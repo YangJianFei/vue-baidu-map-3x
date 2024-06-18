@@ -120,7 +120,7 @@ const handler = ({BMap, map}) => {
 
 ```html
 <template>
-  <baidu-map class="map" center="北京" zoom="5"></baidu-map>
+  <baidu-map class="map" center="北京" :zoom="5"></baidu-map>
 </template>
 
 <style>

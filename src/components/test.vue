@@ -2,96 +2,46 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2024-04-10 17:41:22
+ * @LastEditTime: 2024-06-18 18:03:19
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\components\test.vue
 -->
 <!-- vue 3 引入百度api -->
 <template>
   <div>
-    <span @click="handleChange">修改{{ zoom }}</span>
-    <baidu-map class="map" :center="{ lng: 113.73099, lat: 27.984867 }" :zoom="8" :mapClick="mapClick">
-      <bm-marker :position="{ lng: 113.73099, lat: 27.984867 }" :dragging="true">
-      </bm-marker>
-    </baidu-map>
-    <baidu-map class="map" :center="{ lng: 113.73099, lat: 27.984867 }" :zoom="8" :mapClick="mapClick">
-      <bm-marker :position="{ lng: 113.73099, lat: 27.984867 }" :dragging="true">
-      </bm-marker>
+
+    <baidu-map class="map" :center="{ lng: 105.0, lat: 38.0 }" :zoom="4"
+      :scroll-wheel-zoom="true" @init="addPoints">
+      <!-- <bm-point-collection :points="[{lat:37.405247,lng:109.49779}]" /> -->
+      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL"
+        >
+      </bm-point-collection>
     </baidu-map>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { getPointByAddress, useGeocoder, usePoint } from 'c'
+import { BmlMarkerClusterer } from 'c';
 
-const infoWindowRef = ref(null);
-const markerPoint = ref({ lng: 116.404, lat: 39.915 });
-const infoWindow = ref({
-  show: true,
-  contents: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-});
-const infoWinContent = ref('我是内容');
-const mapClick = ref(false);
-const keyword = ref('');
-const location = ref('上海市');
-const zoom = ref(6);
-const points = ref([
-  { lng: 116.404, lat: 39.915 },
-  { lng: 116.304, lat: 39.915 },
-  { lng: 116.504, lat: 39.915 },
-]);
+const markers = ref([]);
+const points = ref([]);
 
-const handleReady = ({ BMap, map }) => {
-}
-
-const handleZoomed = (e) => {
-  console.log('zoomed');
+const getMarkers = () => {
+  for (let i = 0; i < 100; i++) {
+    markers.value.push({ lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 });
+  }
 };
 
-const handleChange = () => {
-  zoom.value = 15;
-  mapClick.value = true;
-}
-
-const handleClick = () => {
-  console.log('click');
-}
-
-
-const draw = ({ el, BMap, map }, point) => {
-  const pixel = map.pointToOverlayPixel(new BMap.Point(point.lng, point.lat))
-  el.style.left = pixel.x + 'px'
-  el.style.top = pixel.y + 'px'
+getMarkers();
+const addPoints = () => {
+  const pointAll = [];
+  for (var i = 0; i < 1000; i++) {
+    const position = { lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21 };
+    pointAll.push(position);
+  }
+  points.value = pointAll;
 };
-
-useGeocoder().then((geocoder) => {
-  geocoder.getPoint('广东省深圳市光明新区上辇新村', (res) => {
-    console.log('222:', res);
-  });
-  usePoint(116.404, 39.915).then(point => {
-    geocoder.getLocation(point, (result) => {
-      console.log('1111:', result);
-    });
-  });
-});
-
-const infoWinClose = (e) => {
-  infoWindow.value.show = false
-};
-
-const onInfoWindowReady = () => {
-};
-
-const infoWinOpen = (e) => {
-  infoWindow.value.show = true
-  infoWindowRef?.value?.observer?.disconnect?.();
-};
-
-const onContentClick = () => {
-  infoWinContent.value = '我是内容修改后';
-};
-
 </script>
 
 <style>
