@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-11-16 11:41:11
+ * @LastEditTime: 2024-08-23 09:24:32
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\docs\help\index.md
 -->
@@ -16,6 +16,7 @@
 ## 给作者投食
 
 ### 投食列表（有了大佬们的支持感觉开源也有动力了，开肝🚀）
+- [wx] *豪 10米
 - [wx] 优🤔 15米
 - [wx] 老实憨厚的西卡 20米
 - [zfb] 逗比之法 88米
