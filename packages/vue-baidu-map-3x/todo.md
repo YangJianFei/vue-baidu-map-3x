@@ -2,9 +2,9 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2024-03-20 11:03:13
+ * @LastEditTime: 2024-09-12 15:27:06
  * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\packages\vue-baidu-map-3x\todo.md
+ * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/todo.md
 -->
 ## injection警告去除
 ## 局部注册
@@ -65,3 +65,6 @@ inforwindow :position 用ref的话会多次触发close和open
 maker和overlay层级设置无效
 
 lushu添加onmove方法，添加index控制当前点
+
+图形绘制
+https://lbsyun.baidu.com/jsdemo/demo/f0_7.htm
