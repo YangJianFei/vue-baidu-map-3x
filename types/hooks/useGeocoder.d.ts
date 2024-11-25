@@ -1,1 +1,1 @@
-export declare const useGeocoder: () => Promise<IGeoCoder>;
+export declare const useGeocoder: (options?: any) => Promise<IGeoCoder>;

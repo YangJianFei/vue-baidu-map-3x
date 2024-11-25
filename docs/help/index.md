@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2024-08-23 09:24:32
+ * @LastEditTime: 2024-11-14 16:20:08
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\docs\help\index.md
 -->
@@ -16,12 +16,16 @@
 ## 给作者投食
 
 ### 投食列表（有了大佬们的支持感觉开源也有动力了，开肝🚀）
+- [wx] 邓太钦 66.66米
+- [wx] bearzhou 10米
+- [zfb] **通 20米
 - [wx] *豪 10米
 - [wx] 优🤔 15米
 - [wx] 老实憨厚的西卡 20米
 - [zfb] 逗比之法 88米
 - [wx] archer 20米
 - [zfb] 御坂美惠 20米
+- [wx] AFq 28.8米
 - [zfb] Day Day Up 50米
 - [wx] butf traveling 50米
 - [wx] 马永建 88米
