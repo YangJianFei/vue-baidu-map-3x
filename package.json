@@ -38,6 +38,7 @@
   "module": "./dist/vue-baidu-map-3x.es.js",
   "exports": {
     ".": {
+      "types": "./types/index.d.ts",
       "import": "./dist/vue-baidu-map-3x.es.js",
       "require": "./dist/vue-baidu-map-3x.umd.js"
     }
