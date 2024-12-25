@@ -2,12 +2,14 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2024-04-10 17:52:25
+ * @LastEditTime: 2024-11-21 14:04:30
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\docs\changelogs.md
 -->
 ## 更新日志
 ## vue-baidu-map-3x
+### v1.0.40 [2024-11-21]
+- useGeocoder添加参数
 ### v1.0.38 [2024-04-10]
 - 修复多个地图时重复加载bug
 ### v1.0.37 [2024-03-20]

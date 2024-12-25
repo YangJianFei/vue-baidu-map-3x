@@ -9,13 +9,13 @@
 import { useMap } from './useMap';
 
 let geocoder: IGeoCoder;
-export const useGeocoder = (): Promise<IGeoCoder> => {
+export const useGeocoder = (options?: any): Promise<IGeoCoder> => {
     return new Promise((resolve) => {
         if (geocoder) {
             resolve(geocoder);
         } else {
             useMap().then(BMap => {
-                geocoder = new BMap.Geocoder();
+                geocoder = new BMap.Geocoder(options);
                 resolve(geocoder);
             });
         }
