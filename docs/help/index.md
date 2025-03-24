@@ -2,8 +2,8 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2024-12-25 16:49:35
- * @LastEditors: YangJianFei
+ * @LastEditTime: 2025-03-24 09:51:14
+ * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/docs/help/index.md
 -->
 ## 作者微信
@@ -16,6 +16,8 @@
 ## 给作者投食
 
 ### 投食列表（有了大佬们的支持感觉开源也有动力了，开肝🚀）
+- [wx] 🍍 50米
+- [wx] *子 10米
 - [wx] 樱桃小远子 10米
 - [wx] 邓太钦 66.66米
 - [wx] bearzhou 10米
