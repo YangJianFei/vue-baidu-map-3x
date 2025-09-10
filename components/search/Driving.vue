@@ -5,174 +5,216 @@
 </template>
 
 <script>
-import { createPoint } from '../base/factory.js'
-import { isPoint, getPosition } from '../base/util.js'
-import commonMixin from '../base/mixins/common.js'
+import { createPoint } from "../base/factory.js";
+import { isPoint, getPosition } from "../base/util.js";
+import commonMixin from "../base/mixins/common.js";
 
 export default {
-  name: 'bm-driving',
-  emits: ['searchcomplete', 'markersset', 'infohtmlset', 'polylinesset', 'resultshtmlset'],
-  mixins: [commonMixin('search')],
+  name: "bm-driving",
+  emits: [
+    "searchcomplete",
+    "markersset",
+    "infohtmlset",
+    "polylinesset",
+    "resultshtmlset",
+  ],
+  mixins: [commonMixin("search")],
   props: {
     location: {
-      type: [Object, String]
+      type: [Object, String],
     },
     start: {
-      type: [Object, String]
+      type: [Object, String],
     },
     end: {
-      type: [Object, String]
+      type: [Object, String],
     },
     startCity: {
-      type: [String, Number]
+      type: [String, Number],
     },
     endCity: {
-      type: [String, Number]
+      type: [String, Number],
     },
     waypoints: {
-      type: Array
+      type: Array,
     },
     policy: {
-      type: String
+      type: String,
     },
     panel: {
       type: Boolean,
-      default: true
+      default: true,
     },
     autoViewport: {
-      type: Boolean
+      type: Boolean,
     },
     selectFirstResult: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   watch: {
     location: {
       handler(val) {
-        const { originInstance, map } = this
-        originInstance.setLocation(val || map)
+        const { originInstance, map } = this;
+        originInstance.setLocation(val || map);
       },
-      deep: true
+      deep: true,
     },
     start: {
       handler(val) {
-        const { originInstance, end, startCity, endCity, waypoints, BMap, getWaypoints } = this
+        const {
+          originInstance,
+          end,
+          startCity,
+          endCity,
+          waypoints,
+          BMap,
+          getWaypoints,
+        } = this;
         originInstance.search(getPosition(BMap, val), getPosition(BMap, end), {
           startCity,
           endCity,
-          waypoints: getWaypoints(waypoints)
-        })
+          waypoints: getWaypoints(waypoints),
+        });
       },
-      deep: true
+      deep: true,
     },
     end: {
       handler(val) {
-        const { originInstance, start, startCity, endCity, waypoints, BMap, getWaypoints } = this
+        const {
+          originInstance,
+          start,
+          startCity,
+          endCity,
+          waypoints,
+          BMap,
+          getWaypoints,
+        } = this;
         originInstance.search(getPosition(BMap, start), getPosition(BMap, val), {
           startCity,
           endCity,
-          waypoints: getWaypoints(waypoints)
-        })
+          waypoints: getWaypoints(waypoints),
+        });
       },
-      deep: true
+      deep: true,
     },
     startCity(val) {
-      const { originInstance, start, end, endCity, waypoints, getWaypoints } = this
+      const { originInstance, start, end, endCity, waypoints, getWaypoints } = this;
       originInstance.search(start, end, {
         val,
         endCity,
-        waypoints: getWaypoints(waypoints)
-      })
+        waypoints: getWaypoints(waypoints),
+      });
     },
     endCity(val) {
-      const { originInstance, start, end, startCity, waypoints, getWaypoints } = this
+      const { originInstance, start, end, startCity, waypoints, getWaypoints } = this;
       originInstance.search(start, end, {
         startCity,
         val,
-        waypoints: getWaypoints(waypoints)
-      })
+        waypoints: getWaypoints(waypoints),
+      });
     },
     waypoints: {
       handler(val) {
-        const { originInstance, start, end, startCity, endCity, getWaypoints } = this
+        const { originInstance, start, end, startCity, endCity, getWaypoints } = this;
         originInstance.search(start, end, {
           startCity,
           endCity,
-          waypoints: getWaypoints(val)
-        })
+          waypoints: getWaypoints(val),
+        });
       },
-      deep: true
+      deep: true,
     },
     panel() {
-      this.reload()
+      this.reload();
     },
     policy(val) {
-      this.reload()
+      this.reload();
     },
     autoViewport() {
-      this.reload()
+      this.reload();
     },
     selectFirstResult() {
-      this.reload()
+      this.reload();
     },
     highlightMode() {
-      this.reload()
-    }
+      this.reload();
+    },
   },
   methods: {
     search(start, end, { startCity, endCity, waypoints }) {
-      const { originInstance, getWaypoints } = this
+      const { originInstance, getWaypoints } = this;
       originInstance.search(start, end, {
         startCity,
         endCity,
-        waypoints: getWaypoints(waypoints)
-      })
+        waypoints: getWaypoints(waypoints),
+      });
     },
     getWaypoints(waypoints) {
-      const { BMap } = this
+      const { BMap } = this;
       if (waypoints) {
-        return waypoints.map(position => getPosition(BMap, position))
+        return waypoints.map((position) => getPosition(BMap, position));
       }
     },
     load() {
-      const instance = this
-      const { map, BMap, location, policy, selectFirstResult, autoViewport, highlightMode, search, start, end, startCity, endCity, waypoints, originInstance, getWaypoints } = this
-      const _location = location ? isPoint(location) ? createPoint(BMap, location) : location : map
-      const route = this.originInstance = new BMap.DrivingRoute(_location, {
+      const instance = this;
+      const {
+        map,
+        BMap,
+        location,
+        policy,
+        selectFirstResult,
+        autoViewport,
+        highlightMode,
+        search,
+        start,
+        end,
+        startCity,
+        endCity,
+        waypoints,
+        originInstance,
+        getWaypoints,
+      } = this;
+      const _location = location
+        ? isPoint(location)
+          ? createPoint(BMap, location)
+          : location
+        : map;
+      const route = (this.originInstance = new BMap.DrivingRoute(_location, {
         renderOptions: {
           map,
           // panel: panel && this.$el,
           panel: this.$el,
           selectFirstResult,
           autoViewport,
-          highlightMode
+          // highlightMode
         },
         policy: window[policy],
         onSearchComplete(e) {
           if (originInstance && originInstance !== route) {
-            originInstance.clearResults()
+            originInstance.clearResults();
           }
-          instance.$emit('searchcomplete', e)
+          instance.$emit("searchcomplete", e);
         },
         onMarkersSet(e) {
-          instance.$emit('markersset', e)
+          instance.$emit("markersset", e);
         },
         onInfoHtmlSet(e) {
-          instance.$emit('infohtmlset', e)
+          instance.$emit("infohtmlset", e);
         },
         onPolylinesSet(e) {
-          instance.$emit('polylinesset', e)
+          instance.$emit("polylinesset", e);
         },
-        onResultsHtmlSet(e) {
-          instance.$emit('resultshtmlset', e)
-        }
-      })
+        // onResultsHtmlSet(e) {
+        //   instance.$emit('resultshtmlset', e)
+        // }
+      }));
       search(getPosition(BMap, start), getPosition(BMap, end), {
         startCity,
         endCity,
-        waypoints: getWaypoints(waypoints)
-      })
-    }
-  }
-}
+        waypoints: getWaypoints(waypoints),
+      });
+    },
+  },
+};
 </script>

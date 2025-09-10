@@ -2,30 +2,41 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2024-06-18 18:03:19
- * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\src\components\test.vue
+ * @LastEditTime: 2025-06-26 17:26:04
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/src/components/test.vue
 -->
 <!-- vue 3 引入百度api -->
 <template>
   <div>
-
-    <baidu-map class="map" :center="{ lng: 105.0, lat: 38.0 }" :zoom="4"
-      :scroll-wheel-zoom="true" @init="addPoints">
-      <!-- <bm-point-collection :points="[{lat:37.405247,lng:109.49779}]" /> -->
-      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" size="BMAP_POINT_SIZE_SMALL"
-        >
-      </bm-point-collection>
+    <baidu-map class="map" center="北京" :zoom="16">
+      <bm-driving
+        :start="start"
+        :end="end"
+        :auto-viewport="true"
+        :panel="true"
+        location="北京"
+        :waypoints="waypoints"
+        @markersset="onmarkersset"
+      >
+      </bm-driving>
     </baidu-map>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { BmlMarkerClusterer } from 'c';
+import { ref } from "vue";
+import { BmlMarkerClusterer } from "c";
 
 const markers = ref([]);
 const points = ref([]);
+const start = ref({ lng: 116.310791, lat: 40.003419 });
+const end = ref({ lng: 116.486419, lat: 39.877282 });
+const waypoints = ref([{ lng: 116.318791, lat: 40.003419 }]);
+
+// setTimeout(() => {
+//   waypoints.value.push({ lng: 116.318791, lat: 40.003419 });
+// }, 10);
 
 const getMarkers = () => {
   for (let i = 0; i < 100; i++) {
@@ -42,24 +53,25 @@ const addPoints = () => {
   }
   points.value = pointAll;
 };
+
+const onmarkersset = (e) => {
+  console.log(e);
+  e.forEach((item) => {
+    item?.bn?.removeEventListener?.("click");
+    item?.marker?.removeEventListener?.("click");
+  });
+};
+
+const init = ({ BMap, map }) => {
+  map.centerAndZoom(new BMap.Point(116.404, 39.915), 14);
+  var driving = new BMap.DrivingRoute(map, {
+    renderOptions: {
+      map: map,
+      autoViewport: true,
+    },
+  });
+  var start = new BMap.Point(116.310791, 40.003419);
+  var end = new BMap.Point(116.486419, 39.877282);
+  driving.search(start, end);
+};
 </script>
-
-<style>
-.sample {
-  width: 120px;
-  height: 40px;
-  line-height: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  box-shadow: 0 0 5px #000;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  position: absolute;
-}
-
-.sample.active {
-  background: rgba(0, 0, 0, 0.75);
-  color: #fff;
-}
-</style>

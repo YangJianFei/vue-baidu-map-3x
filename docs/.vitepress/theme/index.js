@@ -1,34 +1,38 @@
-/**
- * Author: yang jian fei
- * Email: 1294485765@qq.com
- * Created Date: Wednesday, April 27th 2022, 4:45:56 pm
- * Modified By: yang jian fei
- * Desc: desc
- * Copyright (c) 2022 瑞为
+/*
+ * @Description:
+ * @Author: YangJianFei 1294485765@qq.com
+ * @Date: 2024-12-25 16:49:12
+ * @LastEditTime: 2025-09-10 16:43:50
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/docs/.vitepress/theme/index.js
  */
 
-
-import DefaultTheme from 'vitepress/theme'
-import BaiduMap from 'vue-baidu-map-3x';
-import RunCode from '../components/run-code.vue'
-import './common.scss'
-import Loading from '../components/loading.vue';
-import Download from '../components/download.vue';
-import CLayout from '../components/layout.vue';
-import { showHolidayTheme } from '../plugin/util';
+import DefaultTheme from "vitepress/theme";
+import BaiduMap from "vue-baidu-map-3x";
+import RunCode from "../components/run-code.vue";
+import "./common.scss";
+import Loading from "../components/loading.vue";
+import Download from "../components/download.vue";
+import CLayout from "../components/layout.vue";
+import { showHolidayTheme } from "../plugin/util";
+import { vue3xAk } from './config';
 
 export default {
     Layout: CLayout,
     NotFound: DefaultTheme.NotFound,
     enhanceApp({ app }) {
-        showHolidayTheme();
+        let ak = vue3xAk;
+        if (!import.meta.env.SSR) {
+            ak = localStorage.getItem('userAk') || vue3xAk;
+        }
         app.use(BaiduMap, {
-            ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK',
+            ak,
             // v: '2.0'
             // type: 'WebGL'
         });
-        app.component('RunCode', RunCode);
-        app.component('Loading', Loading);
-        app.component('Download', Download);
-    }
-}
+        showHolidayTheme();
+        app.component("RunCode", RunCode);
+        app.component("Loading", Loading);
+        app.component("Download", Download);
+    },
+};

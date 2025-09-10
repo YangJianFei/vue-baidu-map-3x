@@ -64,10 +64,10 @@ const config = {
             }, {
                 text: '传送门',
                 link: '/help/portal',
-                hot: true
-            }, {
-                text: '饿了么',
-                link: '/advert/',
+            },
+            {
+                text: '赞助商',
+                link: '/sponsor/',
                 hot: true
             },
         ],
@@ -79,7 +79,7 @@ const config = {
             '/help/download': 'auto',
             '/help/about': 'auto',
             'help/portal': 'auto',
-            '/advert/': 'auto',
+            '/sponsor/': 'auto',
             '/': [
                 {
                     text: '介绍',
@@ -285,10 +285,9 @@ const config = {
                 }, {
                     text: '传送门',
                     link: '/help/portal',
-                    hot: true
                 }, {
-                    text: '饿了么',
-                    link: '/advert/',
+                    text: '赞助商',
+                    link: '/sponsor/',
                     hot: true
                 }
             ]

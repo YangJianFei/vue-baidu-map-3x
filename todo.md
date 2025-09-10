@@ -2,9 +2,9 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-11-17 13:59:29
- * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\todo.md
+ * @LastEditTime: 2025-09-05 14:54:08
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/todo.md
 -->
 ## injection警告去除
 ## 局部注册
@@ -59,3 +59,5 @@ inforwindow :position 用ref的话会多次触发close和open
 海量点自定义图标
 
 个性化主题会在Window上挂，每次进去都挂一次想同内容
+
+点聚合等第三方组件需要先引入再使用

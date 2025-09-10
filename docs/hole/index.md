@@ -64,11 +64,25 @@ import { BaiduMap } from 'vue-baidu-map-3x'
 WebGl地图事件点坐标是latlng，Api事件点坐标是point
 :::
 
+
+::: danger 第三方组件库默认没有引入，使用时需要引入
+点聚合、路书、热力图、弧线
+:::
+
+```html{2-7}
+<script lang="ts" setup>
+import { BmlMarkerClusterer } from 'vue-baidu-map-3x';
+import { BmlLushu } from 'vue-baidu-map-3x';
+import { BmlHeatmap } from 'vue-baidu-map-3x';
+import { BmlCurveLine } from 'vue-baidu-map-3x';
+</script>
+```
+
 ::: danger 驾车路线规划坑
 WebGL和API3.0的start和end点不能是地点名，需和官方文档一致。API2.0的可以是地点名
 :::
 
-```
+```html{2-7}
 <bm-driving :start="lushuPoint.start" :end="lushuPoint.end" :auto-viewport="true" :policy="policy" :panel="true" location="北京" :waypoints="['西二旗']">
 </bm-driving>
 

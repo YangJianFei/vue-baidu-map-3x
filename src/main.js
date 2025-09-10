@@ -2,9 +2,9 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2023-10-13 17:22:05
- * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\src\main.js
+ * @LastEditTime: 2025-06-26 17:33:55
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/src/main.js
  */
 import { createApp } from 'vue'
 import App from './App.vue'
