@@ -6,3 +6,12 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\geolocation\src\helper.ts
  */
+
+import { RangefinderAddPointEventType, RangefinderDrawendEventType } from "@vue-baidu-map-3x/utils";
+
+export type Events = {
+  'addpoint': [params: RangefinderAddPointEventType];
+  'drawend': [params: RangefinderDrawendEventType];
+}
+
+export const events = ['addpoint', 'drawend'];

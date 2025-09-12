@@ -1,4 +1,12 @@
-<template>
+<!--
+ * @Description:   
+ * @Author: YangJianFei 1294485765@qq.com
+ * @Date: 2025-09-10 17:08:11
+ * @LastEditTime: 2025-09-12 16:36:08
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/play/src/App.vue
+-->
+<template>  
   <div>
     首页
     <router-view></router-view>

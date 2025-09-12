@@ -6,14 +6,6 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\src\components\search.vue
 -->
-/*
- * Author: yang jian fei
- * Email: 1294485765@qq.com
- * Created Date: Wednesday, April 13th 2022, 4:16:25 pm
- * Modified By: yang jian fei
- * Desc: desc
- * Copyright (c) 2022 瑞为
- */
 <template>
   <div>
     <label v-for="label in labels" :key="label.type">

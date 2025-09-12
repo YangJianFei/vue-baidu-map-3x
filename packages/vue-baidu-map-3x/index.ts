@@ -2,10 +2,11 @@
  * @Description:   
  * @Author: YangJianFei 1294485765@qq.com
  * @Date: 2025-09-12 10:59:09
- * @LastEditTime: 2025-09-12 11:50:34
+ * @LastEditTime: 2025-09-12 15:28:22
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/index.ts
  */
+import ApiLoader from '@vue-baidu-map-3x/api-loader';
 import BaiduMap from '@vue-baidu-map-3x/map'
 import BmScale from '@vue-baidu-map-3x/scale'
 import BmNavigation from '@vue-baidu-map-3x/navigation'
@@ -17,13 +18,15 @@ import BmCityList from '@vue-baidu-map-3x/city-list'
 import BmPanorama from '@vue-baidu-map-3x/panorama'
 import BmControl from '@vue-baidu-map-3x/control';
 import BmRangefinder from '@vue-baidu-map-3x/rangefinder';
-import { setConfig, getConfig } from '@vue-baidu-map-3x/utils'
+import { setConfig, getConfig } from '@vue-baidu-map-3x/utils';
 
+export * from '@vue-baidu-map-3x/utils';
 
 export default {
   install(Vue, options = {}) {
     setConfig(options);
 
+    Vue.component(ApiLoader.name, ApiLoader)
     Vue.component(BaiduMap.name, BaiduMap)
 
     Vue.component(BmScale.name, BmScale)
@@ -40,6 +43,7 @@ export default {
 }
 
 export {
+  ApiLoader,
   BaiduMap,
   BmScale,
   BmNavigation,

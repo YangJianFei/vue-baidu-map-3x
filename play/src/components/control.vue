@@ -1,6 +1,3 @@
-/* * Author: y components: { Label },ang jian fei * Email: 1294485765@qq.com * Created
-Date: Thursday, April 7th 2022, 9:44:40 am * Modified By: yang jian fei * Desc: desc *
-Copyright (c) 2022 瑞为 */
 <template>
   <div>
     <label v-for="label in labels" :key="label.type">
@@ -23,7 +20,8 @@ Copyright (c) 2022 瑞为 */
     <baidu-map
       v-else-if="controlType === 'scale'"
       class="map"
-      center="北京"
+      :zoom="zoom"
+      :center="{ lng: 116.404, lat: 39.915 }"
       :scroll-wheel-zoom="true"
     >
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
@@ -31,7 +29,8 @@ Copyright (c) 2022 瑞为 */
     <baidu-map
       v-else-if="controlType === 'type'"
       class="map"
-      center="北京"
+      :zoom="zoom"
+      :center="{ lng: 116.404, lat: 39.915 }"
       :scroll-wheel-zoom="true"
     >
       <bm-map-type
@@ -46,7 +45,7 @@ Copyright (c) 2022 瑞为 */
       :zoom="zoom"
     >
       <bm-overview-map
-        :offset="{ height: 100 }"
+        :offset="{ width: 0, height: 100 }"
         :isOpen="true"
         anchor="BMAP_ANCHOR_BOTTOM_RIGHT"
         @load="onLoad"
@@ -57,7 +56,8 @@ Copyright (c) 2022 瑞为 */
     <baidu-map
       v-else-if="controlType === 'location'"
       class="map"
-      center="北京"
+      :zoom="zoom"
+      :center="{ lng: 116.404, lat: 39.915 }"
       @init="handleMapInit"
     >
       <bm-geolocation
@@ -73,7 +73,7 @@ Copyright (c) 2022 瑞为 */
       :zoom="zoom"
     >
       <bm-copyright
-        :copyrights="[
+        :copyright="[
           {
             id: 1,
             content: 'Copyright Message',
@@ -104,7 +104,7 @@ Copyright (c) 2022 瑞为 */
       v-else-if="controlType === 'custom'"
       class="map"
       :zoom="zoom"
-      center="北京"
+      :center="{ lng: 116.404, lat: 39.915 }"
     >
       <bm-control>
         <button @click="addZoom(19)">缩放至最大</button>
@@ -119,20 +119,22 @@ Copyright (c) 2022 瑞为 */
       :zoom="zoom"
     >
       <BmControl>
-        <BmRangefinder />
+        <BmRangefinder @addpoint="addPoint" />
       </BmControl>
     </baidu-map>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, onUnmounted, useTemplateRef } from "vue";
-
-window.global = window.global || window;
+import type { RangefinderAddPointEventType } from "vue-baidu-map-3x";
+import { BmControl, getPoint } from "vue-baidu-map-3x";
 
 const controlType = ref("overview");
 
 const zoom = ref(10);
+
+console.log("point", getPoint(116.404, 39.915));
 
 const labels = ref([
   { name: "比例尺", type: "scaleRule" },
@@ -162,6 +164,10 @@ const handleMapInit = ({ BMap, map }) => {
       { enableHighAccuracy: true }
     );
   });
+};
+
+const addPoint = (e: RangefinderAddPointEventType) => {
+  console.log("addPoint", e);
 };
 
 const onLoad = (...params) => {

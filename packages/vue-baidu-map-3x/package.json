@@ -4,12 +4,13 @@
   "private": false,
   "version": "2.0.0",
   "main": "dist/vue-baidu-map-3x.umd.js",
-  "module": "./dist/vue-baidu-map-3x.es.js",
+  "module": "index.ts",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/vue-baidu-map-3x.es.js",
-      "require": "./dist/vue-baidu-map-3x.umd.js"
+      "import": "./index.ts",
+      "require": "./dist/vue-baidu-map-3x.umd.js",
+      "types": "./types/index.d.ts"
     }
   },
   "scripts": {
@@ -41,6 +42,7 @@
   "homepage": "https://github.com/YangJianFei/vue-baidu-map-3x#readme",
   "license": "MIT",
   "dependencies": {
+    "@vue-baidu-map-3x/api-loader": "workspace:^",
     "@vue-baidu-map-3x/city-list": "workspace:^",
     "@vue-baidu-map-3x/control": "workspace:^",
     "@vue-baidu-map-3x/copyright": "workspace:^",

@@ -1,11 +1,3 @@
-/*
- * Author: yang jian fei
- * Email: 1294485765@qq.com
- * Created Date: Wednesday, April 13th 2022, 3:41:51 pm
- * Modified By: yang jian fei
- * Desc: desc
- * Copyright (c) 2022 瑞为
- */
 <template>
   <div>
     <baidu-map class="map" style="height:500px" @ready="addPoints" :center="{lng: 105.000, lat: 38.000}" :zoom="4">

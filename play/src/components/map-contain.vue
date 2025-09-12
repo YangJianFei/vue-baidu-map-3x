@@ -6,8 +6,6 @@
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/play/src/components/map-contain.vue
 -->
-/* * Author: yang jian fei * Email: 1294485765@qq.com * Created Date: Wednesday, April 6th
-2022, 2:22:34 pm * Modified By: yang jian fei * Desc: desc * Copyright (c) 2022 瑞为 */
 <template>
   <div>
     <span>开启滚轮缩放+设置自定义主题</span>

@@ -1,11 +1,3 @@
-/*
- * Author: yang jian fei
- * Email: 1294485765@qq.com
- * Created Date: Thursday, April 14th 2022, 2:33:28 pm
- * Modified By: yang jian fei
- * Desc: desc
- * Copyright (c) 2022 瑞为
- */
 <template>
   <div>
     <label v-for="label in labels" :key="label.type">

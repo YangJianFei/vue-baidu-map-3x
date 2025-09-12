@@ -2,9 +2,9 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-03-14 11:14:25
- * @LastEditTime: 2025-09-11 17:39:42
+ * @LastEditTime: 2025-09-12 15:06:10
  * @LastEditors: YangJianFei 1294485765@qq.com
- * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/src/components/test.vue
+ * @FilePath: /vue-baidu-map-3x/play/src/components/test.vue
 -->
 <template>
   <baidu-map
@@ -54,10 +54,6 @@
 
 <script lang="ts" setup>
 import { watch, ref, withDefaults, provide } from "vue";
-import { Control } from "@vue-baidu-map-3x/utils";
-
-const wa: Control = {};
-console.log(wa);
 
 const props = withDefaults(defineProps<{}>(), {});
 

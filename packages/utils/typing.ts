@@ -2,9 +2,9 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-22 17:16:21
- * @LastEditTime: 2023-11-30 18:50:07
- * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\packages\utils\typing.ts
+ * @LastEditTime: 2025-09-12 15:05:58
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/packages/utils/typing.ts
  */
 
 import { ControlAnchorEnum, ControlAnchor, LengthUnit, NavigationControlType } from "./src/constant";
@@ -26,9 +26,19 @@ export type Point = {
 };
 
 export type Size = {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   equals?: (other: Size) => boolean;
+};
+
+export type Pixel = {
+  x: number;
+  y: number;
+  equals: (other: Pixel) => boolean;
+};
+
+export type Overlay = {
+
 };
 
 export type Icon = {
@@ -141,6 +151,15 @@ export type ControlInstance = {
   isVisible: () => boolean;
 };
 
+export type OverlayInstance = {
+  initialize: (map: BMap) => any;
+  isVisible: () => boolean;
+  draw: () => void;
+  show: () => void;
+  hide: () => void;
+};
+
+
 export type Scale = Control & {
 };
 
@@ -227,9 +246,32 @@ export type Panorama = Control;
 
 export type PanoramaInstance = ControlInstance;
 
-export type Rangefinder = {};
+export type Rangefinder = {
+  followText?: string;  //测距过程中，提示框文字,
+  unit?: 'metric' | 'us'; //测距结果所用的单位制，可接受的属性为"metric"表示米制和"us"表示美国传统单位,
+  lineColor?: string; //折线颜色,
+  lineStroke?: number; //折线宽度,
+  opacity?: number //透明度,
+  lineStyle?: 'solid' | 'dashed'; //折线的样式，只可设置solid和dashed,
+  secIcon?: Icon;//转折点的Icon,
+  closeIcon?: Icon; //关闭按钮的Icon,
+  cursor?: string; //跟随的鼠标样式
+};
 
 export type RangefinderInstance = {
   close?: () => void;
-  open?: () => void;
+  open?: () => boolean;
+};
+
+export type RangefinderAddPointEventType = {
+  point?: Point; //最新添加上的节点BMap.Point对象,
+  pixel?: Pixel; //最新添加上的节点BMap.Pixel对象,
+  index?: number; //最新添加的节点的索引,
+  distance?: number; //截止最新添加的节点的总距离
+};
+
+export type RangefinderDrawendEventType = {
+  points?: Point;// 所有测量时，打下的节点BMap.Point对象,
+  overlays?: Overlay[];// 所有测量时，生成的线段BMap.Overlay对象,
+  distance?: number;// 测量解释时的最终距离
 };
