@@ -7,9 +7,9 @@
  * @FilePath: \vue-baidu-map-3x\packages\city-list\index.ts
  */
 
-import CityList from './src/index.vue';
+import Rangefinder from './src/index.vue';
 import { withInstall } from '@vue-baidu-map-3x/utils';
 
-withInstall(CityList);
+withInstall(Rangefinder);
 
-export default CityList;
+export default Rangefinder;

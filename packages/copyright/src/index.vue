@@ -6,19 +6,24 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\copyright\src\index.vue
 -->
-<script lang='ts' setup>
-import { watch } from 'vue';
-import { baseEvents, ControlsEnum, controlMethodMap, useControl } from '@vue-baidu-map-3x/utils';
-import type { BaseEvents, Copyright, CopyrightInstance } from '@vue-baidu-map-3x/utils';
-import type { Events } from './helper';
-import { events } from './helper';
+<script lang="ts" setup>
+import { watch } from "vue";
+import {
+  baseEvents,
+  ControlsEnum,
+  controlMethodMap,
+  useControl,
+} from "@vue-baidu-map-3x/utils";
+import type { BaseEvents, Copyright, CopyrightInstance } from "@vue-baidu-map-3x/utils";
+import type { Events } from "./helper";
+import { events } from "./helper";
 
 defineOptions({
-  name: 'BmCopyright',
+  name: "BmCopyright",
 });
 
 const props = withDefaults(defineProps<Copyright>(), {
-  anchor: 'BMAP_ANCHOR_BOTTOM_RIGHT',
+  anchor: "BMAP_ANCHOR_BOTTOM_RIGHT",
 });
 
 const emit = defineEmits<Events & BaseEvents>();
@@ -30,18 +35,22 @@ const { originInstance } = useControl<CopyrightInstance>({
   controlName: ControlsEnum.CopyrightControl,
 });
 
-watch([originInstance], () => {
-  if (originInstance?.value) {
-    controlMethodMap.get(ControlsEnum.CopyrightControl)?.
-      find?.(item => item.key == 'copyright')?.
-      customMethod?.(originInstance, props.copyrights);
+watch(
+  [originInstance],
+  () => {
+    if (originInstance?.value) {
+      controlMethodMap
+        .get(ControlsEnum.CopyrightControl)
+        ?.find?.((item) => item.key == "copyright")
+        ?.customMethod?.(originInstance, props.copyrights);
+    }
+  },
+  {
+    immediate: true,
   }
-}, {
-  immediate: true,
-});
+);
 
 defineExpose({
-  originInstance
+  originInstance,
 });
-
 </script>

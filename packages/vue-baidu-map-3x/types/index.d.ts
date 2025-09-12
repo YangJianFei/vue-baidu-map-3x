@@ -1,44 +1,40 @@
-import BaiduMap from './map/Map.vue';
-import BmScale from './controls/Scale.vue';
-import BmNavigation from './controls/Navigation.vue';
-import BmMapType from './controls/MapType.vue';
-import BmOverviewMap from './controls/OverviewMap.vue';
-import BmGeolocation from './controls/Geolocation.vue';
-import BmCopyright from './controls/Copyright.vue';
-import BmCityList from './controls/CityList.vue';
-import BmPanorama from './controls/Panorama.vue';
-import BmControl from './controls/Control.vue';
-import BmMarker from './overlays/Marker.vue';
-import BmPointCollection from './overlays/PointCollection.vue';
-import BmPolyline from './overlays/Polyline.vue';
-import BmPolygon from './overlays/Polygon.vue';
-import BmCircle from './overlays/Circle.vue';
-import BmGround from './overlays/Ground.vue';
-import BmLabel from './overlays/Label.vue';
-import BmInfoWindow from './overlays/InfoWindow.vue';
-import BmOverlay from './overlays/Overlay.vue';
-import BmContextMenu from './context-menu/Menu.vue';
-import BmContextMenuItem from './context-menu/Item.vue';
-import BmLocalSearch from './search/LocalSearch.vue';
-import BmTransit from './search/Transit.vue';
-import BmWalking from './search/Walking.vue';
-import BmDriving from './search/Driving.vue';
-import BmBus from './search/Bus.vue';
-import BmTile from './layers/Tile.vue';
-import BmTraffic from './layers/Traffic.vue';
-import BmBoundary from './others/Boundary.vue';
-import BmAutoComplete from './others/AutoComplete.vue';
-import BmlMarkerClusterer from './extra/MarkerClusterer.vue';
-import BmlLushu from './extra/Lushu.vue';
-import BmlHeatmap from './extra/Heatmap.vue';
-import BmlCurveLine from './extra/CurveLine.vue';
-import { getConfig } from './base/util';
-import { getAddressByPoints, getPointByAddress, getPointsTransfer } from './utils';
-import { useGeocoder, usePoint, useMap } from './hooks';
-declare const _default: {
-    install(Vue: any, options?: {}): void;
-};
-export default _default;
-export { BaiduMap, BmScale, BmNavigation, BmMapType, BmOverviewMap, BmGeolocation, BmCopyright, BmCityList, BmPanorama, BmControl, BmMarker, BmPointCollection, BmPolyline, BmPolygon, BmCircle, BmGround, BmLabel, BmInfoWindow, BmOverlay, BmContextMenu, BmContextMenuItem, BmLocalSearch, BmTransit, BmWalking, BmDriving, BmBus, BmTile, BmTraffic, BmBoundary, BmAutoComplete };
-export { BmlMarkerClusterer, BmlLushu, BmlHeatmap, BmlCurveLine };
-export { getAddressByPoints, getPointByAddress, getPointsTransfer, useMap, getConfig, useGeocoder, usePoint };
+/*
+ * @Description:   
+ * @Author: YangJianFei 1294485765@qq.com
+ * @Date: 2025-09-12 11:43:23
+ * @LastEditTime: 2025-09-12 13:43:05
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/types/index.d.ts
+ */
+import 'vue'
+import type {
+  BaiduMap,
+  BmScale,
+  BmNavigation,
+  BmMapType,
+  BmOverviewMap,
+  BmGeolocation,
+  BmCopyright,
+  BmCityList,
+  BmPanorama,
+  BmControl,
+  BmRangefinder,
+} from '../index'
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    BaiduMap: typeof BaiduMap
+    BmScale: typeof BmScale
+    BmNavigation: typeof BmNavigation
+    BmMapType: typeof BmMapType
+    BmOverviewMap: typeof BmOverviewMap
+    BmGeolocation: typeof BmGeolocation
+    BmCopyright: typeof BmCopyright
+    BmCityList: typeof BmCityList
+    BmPanorama: typeof BmPanorama
+    BmControl: typeof BmControl
+    BmRangefinder: typeof BmRangefinder
+  }
+}
+
+export { }

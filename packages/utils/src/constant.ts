@@ -18,10 +18,11 @@ export enum ControlsEnum {
   GeolocationControl = 'GeolocationControl',
   CopyrightControl = 'CopyrightControl',
   CityListControl = 'CityListControl',
+  PanoramaControl = 'PanoramaControl',
 };
 
 export type BaseEvents<T = any> = {
-  'load': [params: T],
+  'load': [params?: T],
   'unLoad': [],
 };
 

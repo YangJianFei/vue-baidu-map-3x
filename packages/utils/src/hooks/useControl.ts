@@ -2,12 +2,12 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-30 16:14:10
- * @LastEditTime: 2023-12-14 17:17:18
- * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\packages\utils\src\hooks\useControl.ts
+ * @LastEditTime: 2025-09-12 09:20:23
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/packages/utils/src/hooks/useControl.ts
  */
 
-import { ref, watch } from 'vue';
+import { onUnmounted, ref, watch } from 'vue';
 import useCleanup from './useCleanup';
 import { deleteEmptyKey, equalsFace } from '..';
 import { getSize } from '../create';
@@ -30,7 +30,7 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
   const { BMap, map } = useMap();
   const originInstance = ref<ControlInstanceType>();
   const { removeInstance } = useCleanup(originInstance, map);
-  useEvent(map, emit, events);
+  useEvent(originInstance, emit, events);
 
 
   watch([map], (_, __, onCleanup) => {
@@ -38,7 +38,7 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
       const Control = BMap?.value?.[controlName];
       const controlInstance = new Control(deleteEmptyKey({
         anchor: window[props?.anchor],
-        offset: props.offset && getSize(props.offset?.width, props.offset?.height),
+        offset: props?.offset && getSize(props.offset?.width, props.offset?.height),
         ...getRestParams?.()
       }));
       map?.value?.addControl?.(controlInstance);
@@ -74,6 +74,12 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
     }
   }, {
     deep: true,
+  });
+
+  onUnmounted(() => {
+    if (events?.includes?.('unLoad')) {
+      emit?.('unLoad');
+    }
   });
 
   return {

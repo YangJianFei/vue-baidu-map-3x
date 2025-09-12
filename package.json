@@ -6,6 +6,7 @@
   "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "play": "cd play && pnpm install && pnpm run dev",
     "main:dev": "pnpm -F vue-baidu-map-3x run dev",
     "main:build": "pnpm -F vue-baidu-map-3x run build",
     "local:login": "pnpm login -registry http://localhost:9081/repository/npm-hosted/",
@@ -21,7 +22,7 @@
     "pnpm": ">=8"
   },
   "dependencies": {
-    "vue": "^3.3.8",
+    "vue": "^3.5.21",
     "vue-baidu-map-3x": "workspace:^",
     "vue-router": "^4.0.14"
   },
@@ -30,6 +31,6 @@
     "@types/node": "^20.9.3",
     "@vitejs/plugin-vue": "^4.5.0",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
-    "vite": "^5.0.0"
+    "vite": "^7.1.5"
   }
 }

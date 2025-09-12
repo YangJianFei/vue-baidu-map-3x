@@ -7,9 +7,9 @@
  * @FilePath: \vue-baidu-map-3x\packages\city-list\index.ts
  */
 
-import CityList from './src/index.vue';
+import Panorama from './src/index.vue';
 import { withInstall } from '@vue-baidu-map-3x/utils';
 
-withInstall(CityList);
+withInstall(Panorama);
 
-export default CityList;
+export default Panorama;

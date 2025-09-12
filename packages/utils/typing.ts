@@ -222,3 +222,14 @@ export type CopyrightInstance = ControlInstance & {
 export type CityList = Control;
 
 export type CityListInstance = ControlInstance;
+
+export type Panorama = Control;
+
+export type PanoramaInstance = ControlInstance;
+
+export type Rangefinder = {};
+
+export type RangefinderInstance = {
+  close?: () => void;
+  open?: () => void;
+};

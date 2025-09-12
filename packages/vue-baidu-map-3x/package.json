@@ -2,15 +2,18 @@
   "name": "vue-baidu-map-3x",
   "author": "YangJianFei",
   "private": false,
-  "version": "1.0.35",
-  "description": "vue-baidu-map的vue3版本（支持v2.0、v3.0和webGl api）。Baidu Map Component for Vue 3.0 (support v2.0 、 v3.0 and webGl api)",
+  "version": "2.0.0",
+  "main": "dist/vue-baidu-map-3x.umd.js",
+  "module": "./dist/vue-baidu-map-3x.es.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-baidu-map-3x.es.js",
+      "require": "./dist/vue-baidu-map-3x.umd.js"
+    }
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && tsc",
-    "preview": "vite preview",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "build": "vite build"
   },
   "keywords": [
     "vite",
@@ -28,20 +31,6 @@
     "vue-baidu-map-3.0",
     "vue-baidu-map-v3"
   ],
-  "files": [
-    "dist",
-    "components",
-    "types",
-    "vetur"
-  ],
-  "main": "./dist/vue-baidu-map-3x.umd.js",
-  "module": "./dist/vue-baidu-map-3x.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/vue-baidu-map-3x.es.js",
-      "require": "./dist/vue-baidu-map-3x.umd.js"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/YangJianFei/vue-baidu-map-3x.git"
@@ -62,27 +51,11 @@
     "@vue-baidu-map-3x/overview-map": "workspace:^",
     "@vue-baidu-map-3x/scale": "workspace:^",
     "@vue-baidu-map-3x/utils": "workspace:^",
-    "bmaplib.curveline": "^1.0.0",
-    "bmaplib.distancetool": "^1.0.2",
-    "bmaplib.heatmap": "^1.0.4",
-    "bmaplib.lushu": "^1.0.7",
-    "bmaplib.markerclusterer": "^1.0.13",
-    "tiny-emitter": "^2.1.0"
+    "@vue-baidu-map-3x/panorama": "workspace:^",
+    "@vue-baidu-map-3x/rangefinder": "workspace:^"
   },
   "peerDependencies": {
-    "vue": "^3.3.0"
-  },
-  "devDependencies": {
-    "@fnando/sparkline": "^0.3.10",
-    "clipboard": "^2.0.10",
-    "sass": "^1.51.0",
-    "typescript": "^4.8.2",
-    "vitepress": "0.22.3"
-  },
-  "typings": "types/index.d.ts",
-  "vetur": {
-    "tags": "vetur/tags.json",
-    "attributes": "vetur/attr.json"
+    "vue": "^3.5.21"
   },
   "engines": {
     "node": ">=16",

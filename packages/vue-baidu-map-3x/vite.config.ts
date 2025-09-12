@@ -1,44 +1,32 @@
-import { defineConfig } from 'vite'
-import path from 'path'
-import vue from '@vitejs/plugin-vue'
+/*
+ * @Description:
+ * @Author: YangJianFei 1294485765@qq.com
+ * @Date: 2025-09-12 11:03:37
+ * @LastEditTime: 2025-09-12 11:05:08
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/vite.config.ts
+ */
 
-// https://vitejs.dev/config/
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import path from "path";
+
 export default defineConfig({
   build: {
-    // sourcemap: true,
     lib: {
-      entry: path.resolve(__dirname, 'components/index.ts'),
-      name: 'vue-baidu-map-3x',
-      fileName: (format) => `vue-baidu-map-3x.${format}.js`
+      entry: path.resolve(__dirname, "index.ts"),
+      name: "vue-baidu-map-3x",
+      fileName: (format) => `vue-baidu-map-3x.${format}.js`,
+      // formats: ["es", "cjs", "umd"],
     },
     rollupOptions: {
-      // 确保外部化处理那些你不想打包进库的依赖
-      external: ['vue'],
+      external: ["vue"], // 不打包 Vue
       output: {
-        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
-          vue: 'Vue'
-        }
-      }
-    }
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      'c': path.resolve(__dirname, 'components'),
-      '_c': path.resolve(__dirname, 'src/components'),
-      'types': path.resolve(__dirname, 'types'),
-    }
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "@/assets/css/variables.scss";`
-      }
-    }
+          vue: "Vue",
+        },
+      },
+    },
   },
   plugins: [vue()],
-  server: {
-    host: true
-  }
-})
+});

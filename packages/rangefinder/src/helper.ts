@@ -6,14 +6,3 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\geolocation\src\helper.ts
  */
-
-export type Events = {
-  'changeBefore': [params: any];
-  'changeAfter': [params: any];
-  'changeSuccess': [params: any];
-}
-
-export const events = [
-  'changeBefore',
-  'changeAfter'
-];
