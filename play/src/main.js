@@ -17,7 +17,7 @@ const app = createApp(App);
 
 app.use(BaiduMap, {
     // v: '2.0',
-    ak: 'Yp57V71dkOPiXjiN8VdcFRsVELzlVNKK',
+    ak: 'zC6huAhvMoONWxPA8dYOuIgyckdqiL3G',
     // type: 'WebGL'
 });
 app.use(Router);

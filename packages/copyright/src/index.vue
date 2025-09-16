@@ -6,6 +6,8 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\copyright\src\index.vue
 -->
+<template></template>
+
 <script lang="ts" setup>
 import { watch } from "vue";
 import {

@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-12-01 16:01:13
- * @LastEditTime: 2025-09-12 14:23:25
+ * @LastEditTime: 2025-09-12 17:01:52
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/rangefinder/src/index.vue
 -->
@@ -23,6 +23,8 @@ import type {
 import DistanceTool from "bmaplib.distancetool";
 import { events } from "./helper";
 import type { Events } from "./helper";
+
+window.global = window.global || window;
 
 defineOptions({
   name: "BmRangefinder",

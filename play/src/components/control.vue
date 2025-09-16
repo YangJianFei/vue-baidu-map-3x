@@ -48,9 +48,6 @@
         :offset="{ width: 0, height: 100 }"
         :isOpen="true"
         anchor="BMAP_ANCHOR_BOTTOM_RIGHT"
-        @load="onLoad"
-        @unLoad="unLoad"
-        @viewchanged="onViewchanged"
       ></bm-overview-map>
     </baidu-map>
     <baidu-map
@@ -128,13 +125,11 @@
 <script lang="ts" setup>
 import { ref, onUnmounted, useTemplateRef } from "vue";
 import type { RangefinderAddPointEventType } from "vue-baidu-map-3x";
-import { BmControl, getPoint } from "vue-baidu-map-3x";
+import { BmControl } from "vue-baidu-map-3x";
 
 const controlType = ref("overview");
 
-const zoom = ref(10);
-
-console.log("point", getPoint(116.404, 39.915));
+const zoom = ref(13);
 
 const labels = ref([
   { name: "比例尺", type: "scaleRule" },

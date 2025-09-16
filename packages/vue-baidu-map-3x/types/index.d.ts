@@ -2,42 +2,13 @@
  * @Description:
  * @Author: YangJianFei 1294485765@qq.com
  * @Date: 2025-09-12 11:43:23
- * @LastEditTime: 2025-09-12 16:05:14
+ * @LastEditTime: 2025-09-12 16:56:01
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/types/index.d.ts
  */
 import "vue";
-import type {
-  ApiLoader,
-  BaiduMap,
-  BmScale,
-  BmNavigation,
-  BmMapType,
-  BmOverviewMap,
-  BmGeolocation,
-  BmCopyright,
-  BmCityList,
-  BmPanorama,
-  BmControl,
-  BmRangefinder,
-} from "../index";
 
-export type {
-  ApiLoader,
-  BaiduMap,
-  BmScale,
-  BmNavigation,
-  BmMapType,
-  BmOverviewMap,
-  BmGeolocation,
-  BmCopyright,
-  BmCityList,
-  BmPanorama,
-  BmControl,
-  BmRangefinder,
-};
-
-export * from "@vue-baidu-map-3x/utils";
+export * from '../index';
 
 declare module "vue" {
   export interface GlobalComponents {

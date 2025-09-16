@@ -6,6 +6,8 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\geolocation\src\index.vue
 -->
+<template></template>
+
 <script lang='ts' setup>
 import { } from 'vue';
 import { baseEvents, ControlsEnum, getMapMethod, getIcon, useControl } from '@vue-baidu-map-3x/utils';

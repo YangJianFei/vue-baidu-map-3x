@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,  onUnmounted, watch, provide } from "vue";
+import { ref, onUnmounted, watch, provide } from "vue";
 import type { MapInstance } from "@vue-baidu-map-3x/utils";
 import { Map } from "../typing";
 import ApiLoader, { getBMap, useBMap } from "@vue-baidu-map-3x/api-loader";
@@ -123,6 +123,7 @@ onUnmounted(() => {
 });
 
 defineExpose({
-  originInstance: map?.value,
+  originInstance: map,
+  BMap,
 });
 </script>

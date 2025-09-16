@@ -6,12 +6,10 @@
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/city-list/src/index.vue
 -->
+<template></template>
+
 <script lang="ts" setup>
-import {
-  baseEvents,
-  ControlsEnum,
-  useControl,
-} from "@vue-baidu-map-3x/utils";
+import { baseEvents, ControlsEnum, useControl } from "@vue-baidu-map-3x/utils";
 import type { BaseEvents, CityList, CityListInstance } from "@vue-baidu-map-3x/utils";
 import type { Events } from "./helper";
 import { events } from "./helper";

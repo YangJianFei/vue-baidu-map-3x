@@ -6,6 +6,8 @@
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/panorama/src/index.vue
 -->
+<template></template>
+
 <script lang="ts" setup>
 import {
   baseEvents,

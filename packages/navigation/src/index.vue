@@ -6,6 +6,8 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\navigation\src\index.vue
 -->
+<template></template>
+
 <script lang='ts' setup>
 import { withDefaults } from 'vue';
 import type { BaseEvents, Navigation, NavigationInstance } from '@vue-baidu-map-3x/utils';
