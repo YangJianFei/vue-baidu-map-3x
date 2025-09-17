@@ -19,6 +19,14 @@ export enum ControlsEnum {
   CopyrightControl = 'CopyrightControl',
   CityListControl = 'CityListControl',
   PanoramaControl = 'PanoramaControl',
+  Marker = 'Marker',
+};
+
+export enum ComponentTypeEnum {
+  Control = 'control',
+  Overlay = 'overlay',
+  TileLayer = 'tileLayer',
+  ContextMenu = 'contextMenu',
 };
 
 export type BaseEvents<T = any> = {
@@ -72,3 +80,13 @@ export enum MapTypesEnum {
 };
 
 export type MapTypes = keyof typeof MapTypesEnum;
+
+export enum AnimationEnum {
+  'BMAP_ANIMATION_DROP' = 'BMAP_ANIMATION_DROP',
+  'BMAP_ANIMATION_BOUNCE' = 'BMAP_ANIMATION_BOUNCE',
+};
+
+export enum ContextMenuIconEnum {
+  'BMAP_CONTEXT_MENU_ICON_ZOOMIN' = 'BMAP_CONTEXT_MENU_ICON_ZOOMIN',
+  'BMAP_CONTEXT_MENU_ICON_ZOOMOUT' = 'BMAP_CONTEXT_MENU_ICON_ZOOMOUT',
+}

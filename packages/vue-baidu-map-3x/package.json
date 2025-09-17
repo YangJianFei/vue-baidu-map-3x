@@ -54,7 +54,8 @@
     "@vue-baidu-map-3x/scale": "workspace:^",
     "@vue-baidu-map-3x/utils": "workspace:^",
     "@vue-baidu-map-3x/panorama": "workspace:^",
-    "@vue-baidu-map-3x/rangefinder": "workspace:^"
+    "@vue-baidu-map-3x/rangefinder": "workspace:^",
+    "@vue-baidu-map-3x/marker": "workspace:^"
   },
   "peerDependencies": {
     "vue": "^3.5.21"

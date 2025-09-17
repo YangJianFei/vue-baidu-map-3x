@@ -8,11 +8,26 @@
  */
 import { onUnmounted, Ref } from 'vue';
 import type { MapInstance } from '../../typing';
+import { ComponentTypeEnum } from '../constant';
 
-const useCleanup = (instance: Ref<any>, map?: Ref<MapInstance | undefined>) => {
+type UserCleanupOptions = {
+  type?: ComponentTypeEnum;
+};
+
+const useCleanup = (instance: Ref<any>, map?: Ref<MapInstance | undefined>, options?: UserCleanupOptions) => {
+
+  const { type = ComponentTypeEnum.Control } = options || {};
 
   const removeInstance = () => {
-    map?.value?.removeControl?.(instance?.value);
+    if (type == ComponentTypeEnum.Control) {
+      map?.value?.removeControl?.(instance?.value);
+    } else if (type == ComponentTypeEnum.Overlay) {
+      map?.value?.removeOverlay?.(instance?.value);
+    } else if (type == ComponentTypeEnum.TileLayer) {
+      map?.value?.removeTileLayer?.(instance?.value);
+    } else if (type == ComponentTypeEnum.ContextMenu) {
+      map?.value?.removeContextMenu?.(instance?.value);
+    }
   };
 
   onUnmounted(removeInstance);

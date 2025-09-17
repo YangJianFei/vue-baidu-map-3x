@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, provide, reactive } from 'vue';
 import Else from './else.vue'
 import { elError } from './symbol.js'

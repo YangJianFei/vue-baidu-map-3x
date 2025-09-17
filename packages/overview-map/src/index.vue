@@ -39,7 +39,7 @@ const { originInstance } = useControl<OverivewMapInstance>({
   emit,
   events: [...events, ...baseEvents],
   controlName: ControlsEnum.OverviewMapControl,
-  getRestParams: () => {
+  getElseParams: () => {
     return {
       size: props.offset && getSize(props.offset?.width, props.offset?.height),
       isOpen: props.isOpen,

@@ -29,7 +29,7 @@ const { originInstance } = useControl<NavigationInstance>({
   emit,
   events: baseEvents,
   controlName: getMapMethod(ControlsEnum.Navigation),
-  getRestParams: () => ({
+  getElseParams: () => ({
     type: window[props?.type ?? ''],
     showZoomInfo: props?.showZoomInfo,
     enableGeolocation: props?.enableGeolocation,

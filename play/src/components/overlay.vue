@@ -1,6 +1,5 @@
 <template>
   <div>
-    <span @click="handleClick">{{ labelContent }}</span>
     <label v-for="label in labels" :key="label.type">
       <input
         type="radio"
@@ -13,13 +12,18 @@
     <baidu-map
       v-if="activeType === 'point'"
       class="map"
-      :center="{ lng: 113.73099, lat: 27.984867 }"
+      :center="{ lng: 116.404, lat: 39.915 }"
       :zoom="8"
     >
       <bm-marker
-        :position="{ lng: 113.73099, lat: 27.984867 }"
-        :dragging="true"
+        :position="{ lng: 116.404, lat: 39.915 }"
+        enable-dragging
         animation="BMAP_ANIMATION_BOUNCE"
+        :label="{
+          content: 'wahaha',
+          offset: { width: -15, height: 30 },
+        }"
+        @load="onLoad"
       >
         <bm-label
           content="我爱北京天安门"
@@ -35,19 +39,12 @@
       :zoom="15"
     >
       <bm-marker
-        :position="{ lng: 116.404, lat: 39.915 }"
-        :dragging="true"
+        :position="{ lng: 116.304, lat: 39.915 }"
         :icon="{
-          url: './heifahaizei.png',
-          size: {
-            width: 52,
-            height: 26,
-          },
-          opts: {
-            imageSize: {
-              width: 20,
-              height: 20,
-            },
+          imageUrl: './heifahaizei.png',
+          imageSize: {
+            width: 20,
+            height: 20,
           },
         }"
       >
@@ -196,10 +193,11 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive, nextTick } from "vue";
 
-const activeType = ref("polygon");
+const activeType = ref("point");
+
 const infoWinContent = ref("我是内容");
 const labels = ref([
   { name: "跳跃点", type: "point" },
@@ -326,6 +324,10 @@ const onContentClick = () => {
   infoWinContent.value = "我是内容修改后";
 };
 // addPoints();
+
+const onLoad = (params) => {
+  console.log("load", params);
+};
 </script>
 
 <style>

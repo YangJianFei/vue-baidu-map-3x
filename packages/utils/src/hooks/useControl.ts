@@ -12,7 +12,7 @@ import useCleanup from './useCleanup';
 import { deleteEmptyKey, equalsFace } from '..';
 import { getSize } from '../create';
 import useMap from './useMap';
-import { ControlsEnum } from '../constant';
+import { ComponentTypeEnum, ControlsEnum } from '../constant';
 import { controlMethodMap } from '../methods';
 import useEvent from './useEvent';
 
@@ -21,30 +21,59 @@ export type UseControlParamsType = {
   emit?: (event: any, ...args: any[]) => void;
   events?: string[];
   controlName: ControlsEnum;
-  getRestParams?: () => Record<string, any>;
+  getElseParams?: () => Record<string, any>;
+  getPrefixParams?: () => any;
+  type?: ComponentTypeEnum;
+};
+
+const typeAddMethodMap = {
+  [ComponentTypeEnum.Control]: 'addControl',
+  [ComponentTypeEnum.Overlay]: 'addOverlay',
+  [ComponentTypeEnum.TileLayer]: 'addTileLayer',
+  [ComponentTypeEnum.ContextMenu]: 'addContextMenu',
 };
 
 const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
-  const { props, emit, events, controlName, getRestParams } = params;
+  const { props, emit, events, controlName, getPrefixParams, getElseParams, type = ComponentTypeEnum.Control } = params;
 
   const { BMap, map } = useMap();
   const originInstance = ref<ControlInstanceType>();
-  const { removeInstance } = useCleanup(originInstance, map);
+  const { removeInstance } = useCleanup(originInstance, map, { type });
+
   useEvent(originInstance, emit, events);
 
+  const prefixParams = ref();
 
-  watch([map], (_, __, onCleanup) => {
+  watch(() => props, () => {
+    if (type != ComponentTypeEnum.Control && !prefixParams.value) {
+      prefixParams.value = getPrefixParams?.();
+    }
+  }, {
+    immediate: true,
+  });
+
+  // 监听map和prefixParams参数
+  watch([map, prefixParams], (_, __, onCleanup) => {
     if (map?.value) {
       const Control = BMap?.value?.[controlName];
-      const controlInstance = new Control(deleteEmptyKey({
-        anchor: window[props?.anchor],
-        offset: props?.offset && getSize(props.offset?.width, props.offset?.height),
-        ...getRestParams?.()
-      }));
-      map?.value?.addControl?.(controlInstance);
-      originInstance.value = controlInstance;
-      if (events?.includes?.('load')) {
-        emit?.('load', controlInstance);
+      let controlInstance;
+      if (type == ComponentTypeEnum.Control) {
+        controlInstance = new Control(deleteEmptyKey({
+          anchor: window[props?.anchor],
+          offset: props?.offset && getSize(props.offset?.width, props.offset?.height),
+          ...getElseParams?.()
+        }));
+      } else {
+        if (prefixParams.value) {// 有prefixParams参数才创建实例
+          controlInstance = new Control(prefixParams.value, deleteEmptyKey(getElseParams?.()));
+        }
+      }
+      if (controlInstance) {
+        map?.value?.[typeAddMethodMap[type]]?.(controlInstance);
+        originInstance.value = controlInstance;
+        if (events?.includes?.('load')) {
+          emit?.('load', controlInstance);
+        }
       }
       onCleanup(removeInstance);
     }

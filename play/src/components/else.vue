@@ -66,7 +66,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, inject, onMounted } from 'vue';
 import { BmlMarkerClusterer, BmlLushu, BmlHeatmap, BmlCurveLine } from 'vue-baidu-map-3x';
 

@@ -7,7 +7,7 @@
  * @FilePath: /vue-baidu-map-3x/packages/utils/typing.ts
  */
 
-import { ControlAnchorEnum, ControlAnchor, LengthUnit, NavigationControlType } from "./src/constant";
+import { ControlAnchorEnum, ControlAnchor, LengthUnit, NavigationControlType, AnimationEnum, ContextMenuIconEnum } from "./src/constant";
 
 export type BMap = {
   [key in string]: any;
@@ -56,6 +56,28 @@ export type Icon = {
   setImageOffset?: (offset: Size) => void;
   setInfoWindowAnchor?: (anchor: Size) => void;
   setPrintImageUrl?: (url: string) => void;
+};
+
+export type Label = {
+  content?: string;
+  offset?: Size;
+  position?: Point;
+  enableMassClear?: boolean;
+};
+
+export type LabelInstance = {
+  setStyle?: (style: Object) => void;
+  setContent?: (content: string) => void;
+  setPosition?: (position: Point) => void;
+  getPosition?: () => Point;
+  setOffset?: (offset: Size) => void;
+  getOffset?: () => Size;
+  setTitle?: (title: string) => void;
+  getTitle?: () => string;
+  enableMassClear?: (enable: boolean) => void;
+  disableMassClear?: () => void;
+  setZIndex?: (zIndex: number) => void;
+  getMap?: () => MapInstance;
 };
 
 export type Bounds = {
@@ -133,6 +155,12 @@ export type MapInstance = {
   centerAndZoom: (point: Point, zoom: number) => void;
   addControl: (instance: any) => void;
   removeControl: (instance: any) => void;
+  addOverlay: (instance: any) => void;
+  removeOverlay: (instance: any) => void;
+  addTileLayer: (instance: any) => void;
+  removeTileLayer: (instance: any) => void;
+  addContextMenu: (instance: any) => void;
+  removeContextMenu: (instance: any) => void;
   destroy: () => void;
 };
 
@@ -274,4 +302,114 @@ export type RangefinderDrawendEventType = {
   points?: Point;// 所有测量时，打下的节点BMap.Point对象,
   overlays?: Overlay[];// 所有测量时，生成的线段BMap.Overlay对象,
   distance?: number;// 测量解释时的最终距离
+};
+
+export type MarkerEventParams = {
+  type: string;
+  target: any;
+};
+
+export type MarkerEventPointParams = MarkerEventParams & {
+  point: Point;
+  pixel: Pixel;
+};
+
+export type Marker = {
+  offset?: Size;
+  icon?: Icon;
+  enableMassClear?: boolean;
+  enableDragging?: boolean;
+  enableClicking?: boolean;
+  raiseOnDrag?: boolean;
+  draggingCursor?: string;
+  rotation?: number;
+  shadow?: Icon;
+  title?: string;
+  position?: Point;
+  label?: Label;
+};
+
+export type MarkerInstance = {
+  openInfoWindow?: (infoWindow: InfoWindow) => void;
+  closeInfoWindow?: () => void;
+  setIcon?: (icon: Icon) => void;
+  getIcon?: () => Icon;
+  setPosition?: (point: Point) => void;
+  getPosition?: () => Point;
+  setOffset?: (offset: Size) => void;
+  getOffset?: () => Size;
+  setLabel?: (label: Label) => void;
+  getLabel?: () => Label;
+  setTitle?: (title: string) => void;
+  getTitle?: () => string;
+  setTop?: (isTop: boolean) => void;
+  enableDragging?: () => void;
+  disableDragging?: () => void;
+  enableMassClear?: () => void;
+  disableMassClear?: () => void;
+  setZIndex?: (zIndex: number) => void;
+  getMap?: () => MapInstance;
+  addContextMenu?: (menu: ContextMenu) => void;
+  removeContextMenu?: (menu: ContextMenu) => void;
+  setAnimation?: (animation?: AnimationEnum) => void;
+  setRotation?: (rotation: number) => void;
+  getRotation?: () => number;
+  setShadow?: (shadow: Icon) => void;
+  getShadow?: () => Icon;
+};
+
+export type InfoWindow = {
+  width?: number;
+  height?: number;
+  maxWidth?: number;
+  offset?: Size;
+  title?: string;
+  enableAutoPan?: boolean;
+  enableCloseOnClick?: boolean;
+  enableMessage?: boolean;
+  message?: string;
+};
+export type InfoWindowInstance = {
+  setWidth?: (width: number) => void;
+  setHeight?: (height: number) => void;
+  redraw?: () => void;
+  setTitle?: (title: string | HTMLElement) => void;
+  getTitle?: () => string | HTMLElement;
+  setContent?: (content: string | HTMLElement) => void;
+  getContent?: () => string | HTMLElement;
+  getPosition?: () => Point;
+  enableMaximize?: () => void;
+  disableMaximize?: () => void;
+  isOpen?: () => boolean;
+  setMaxContent?: (content: string) => void;
+  maximize?: () => void;
+  restore?: () => void;
+  enableAutoPan?: () => void;
+  disableAutoPan?: () => void;
+  enableCloseOnClick?: () => void;
+  disableCloseOnClick?: () => void;
+};
+
+export type ContextMenuItem = {
+  width?: number;
+  id?: string;
+  iconUrl?: string | ContextMenuIconEnum;
+};
+
+export type ContextMenuItemInstance = {
+  setText?: (text: string) => void;
+  setIcon?: (iconUrl: string) => void;
+  enable?: () => void;
+  disable?: () => void;
+}
+
+export type ContextMenu = {
+};
+
+export type ContextMenuInstance = {
+  addItem?: (item: ContextMenuItem) => void;
+  getItem?: (index: number) => ContextMenuItem;
+  removeItem?: (item: ContextMenuItem) => void;
+  addSeparator?: () => void;
+  removeSeparator?: (index: number) => void;
 };

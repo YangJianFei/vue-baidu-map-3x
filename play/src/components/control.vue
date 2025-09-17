@@ -48,6 +48,7 @@
         :offset="{ width: 0, height: 100 }"
         :isOpen="true"
         anchor="BMAP_ANCHOR_BOTTOM_RIGHT"
+        @load="onLoad"
       ></bm-overview-map>
     </baidu-map>
     <baidu-map
@@ -123,6 +124,7 @@
 </template>
 
 <script lang="ts" setup>
+import { on } from "events";
 import { ref, onUnmounted, useTemplateRef } from "vue";
 import type { RangefinderAddPointEventType } from "vue-baidu-map-3x";
 import { BmControl } from "vue-baidu-map-3x";

@@ -11,7 +11,7 @@
 </template>
 
 
-<script setup>
+<script lang="ts" setup>
 import { ref, toRef } from 'vue';
 import { getConfig } from 'vue-baidu-map-3x';
 

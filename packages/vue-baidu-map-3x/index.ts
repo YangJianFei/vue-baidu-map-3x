@@ -2,7 +2,7 @@
  * @Description:
  * @Author: YangJianFei 1294485765@qq.com
  * @Date: 2025-09-12 10:59:09
- * @LastEditTime: 2025-09-12 17:13:43
+ * @LastEditTime: 2025-09-16 18:13:08
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/index.ts
  */
@@ -20,6 +20,7 @@ import BmCityList from "@vue-baidu-map-3x/city-list";
 import BmPanorama from "@vue-baidu-map-3x/panorama";
 import BmControl from "@vue-baidu-map-3x/control";
 import BmRangefinder from "@vue-baidu-map-3x/rangefinder";
+import BmMarker from "@vue-baidu-map-3x/marker";
 
 export * from "@vue-baidu-map-3x/utils";
 
@@ -44,6 +45,7 @@ export default {
     Vue.component(BmRangefinder.name, BmRangefinder);
 
     // 覆盖物
+    Vue.component(BmMarker.name, BmMarker);
 
     // 图层
 
@@ -70,6 +72,8 @@ export {
   BmPanorama,
   BmControl,
   BmRangefinder,
+
+  BmMarker,
 };
 
 export { useBMap };

@@ -15,5 +15,6 @@ export type Events = {
 
 export const events = [
   'changeBefore',
-  'changeAfter'
+  'changeAfter',
+  'changeSuccess',
 ];

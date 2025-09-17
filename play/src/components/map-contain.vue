@@ -44,7 +44,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, nextTick } from "vue";
 
 const center = ref({

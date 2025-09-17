@@ -27,10 +27,10 @@ const routes = [
         path: '/control',
         component: () => import('@/components/control.vue')
     },
-    // {
-    //     path: '/cover',
-    //     component: () => import('@/components/cover.vue')
-    // },
+    {
+        path: '/overlay',
+        component: () => import('@/components/overlay.vue')
+    },
     // {
     //     path: '/layer',
     //     component: () => import('@/components/layer.vue')

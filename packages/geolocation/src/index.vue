@@ -30,7 +30,7 @@ const { originInstance } = useControl<GeolocationInstance>({
   emit,
   events: [...events, ...baseEvents],
   controlName: getMapMethod(ControlsEnum.GeolocationControl),
-  getRestParams: () => {
+  getElseParams: () => {
     return {
       showAddressBar: props.showAddressBar,
       enableAutoLocation: props.autoLocation,

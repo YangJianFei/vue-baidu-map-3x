@@ -10,8 +10,25 @@ import "vue";
 
 export * from '../index';
 
+import {
+  ApiLoader,
+  BaiduMap,
+  BmScale,
+  BmNavigation,
+  BmMapType,
+  BmOverviewMap,
+  BmGeolocation,
+  BmCopyright,
+  BmCityList,
+  BmPanorama,
+  BmControl,
+  BmRangefinder,
+
+  BmMarker,
+} from '../index';
 declare module "vue" {
   export interface GlobalComponents {
+    ApiLoader: typeof ApiLoader;
     BaiduMap: typeof BaiduMap;
     BmScale: typeof BmScale;
     BmNavigation: typeof BmNavigation;
@@ -23,5 +40,7 @@ declare module "vue" {
     BmPanorama: typeof BmPanorama;
     BmControl: typeof BmControl;
     BmRangefinder: typeof BmRangefinder;
+
+    BmMarker: typeof BmMarker;
   }
 }

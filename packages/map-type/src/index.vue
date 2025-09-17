@@ -28,7 +28,7 @@ const { originInstance } = useControl<MapTypeInstance>({
   emit,
   events: baseEvents,
   controlName: ControlsEnum.MapTypeControl,
-  getRestParams: () => {
+  getElseParams: () => {
     const mapTypes: any[] = [];
     props?.mapTypes?.forEach?.(item => {
       const result = window[item];

@@ -27,7 +27,7 @@ const { originInstance } = useControl<CityListInstance>({
   emit,
   events: [...events, ...baseEvents],
   controlName: ControlsEnum.CityListControl,
-  getRestParams: () => {
+  getElseParams: () => {
     return {
       onChangeBefore: (params) => {
         emit("changeBefore", params);

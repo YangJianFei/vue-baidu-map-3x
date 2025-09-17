@@ -7,7 +7,7 @@
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\create.ts
  */
 import { deleteEmptyKey } from '.';
-import type { Bounds, Icon, Point, Size } from '../typing';
+import type { Bounds, Icon, Label, Point, Size } from '../typing';
 
 export const getPoint = (lng: number, lat: number): Point => {
   return new window.BMap.Point(lng, lat);
@@ -32,4 +32,14 @@ export const getIcon = (options: Icon): Icon => {
 
 export const getBounds = (sw?: Point, ne?: Point): Bounds => {
   return new window.BMap.Bounds(sw, ne);
+};
+
+export const getLabel = (options?: Label): Label => {
+  let labelOption = {
+    offset: options?.offset && getSize(options.offset.width, options.offset.height),
+    position: options?.position && getPoint(options.position.lng, options.position.lat),
+    enableMassClear: options?.enableMassClear,
+  };
+  deleteEmptyKey(labelOption);
+  return new window.BMap.Label(options?.content, labelOption)
 };
