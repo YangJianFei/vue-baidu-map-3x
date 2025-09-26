@@ -55,7 +55,10 @@
     "@vue-baidu-map-3x/utils": "workspace:^",
     "@vue-baidu-map-3x/panorama": "workspace:^",
     "@vue-baidu-map-3x/rangefinder": "workspace:^",
-    "@vue-baidu-map-3x/marker": "workspace:^"
+    "@vue-baidu-map-3x/marker": "workspace:^",
+    "@vue-baidu-map-3x/point-collection": "workspace:^",
+    "@vue-baidu-map-3x/polyline": "workspace:^",
+    "@vue-baidu-map-3x/polygon": "workspace:^"
   },
   "peerDependencies": {
     "vue": "^3.5.21"

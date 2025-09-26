@@ -19,7 +19,11 @@ export enum ControlsEnum {
   CopyrightControl = 'CopyrightControl',
   CityListControl = 'CityListControl',
   PanoramaControl = 'PanoramaControl',
+
   Marker = 'Marker',
+  PointCollection = 'PointCollection',
+  Polyline = 'Polyline',
+  Polygon = 'Polygon',
 };
 
 export enum ComponentTypeEnum {
@@ -90,3 +94,21 @@ export enum ContextMenuIconEnum {
   'BMAP_CONTEXT_MENU_ICON_ZOOMIN' = 'BMAP_CONTEXT_MENU_ICON_ZOOMIN',
   'BMAP_CONTEXT_MENU_ICON_ZOOMOUT' = 'BMAP_CONTEXT_MENU_ICON_ZOOMOUT',
 }
+
+export enum ShapeTypeEnum {
+  'BMAP_POINT_SHAPE_CIRCLE' = 'BMAP_POINT_SHAPE_CIRCLE',
+  'BMAP_POINT_SHAPE_STAR' = 'BMAP_POINT_SHAPE_STAR',
+  'BMAP_POINT_SHAPE_SQUARE' = 'BMAP_POINT_SHAPE_SQUARE',
+  'BMAP_POINT_SHAPE_RHOMBUS' = 'BMAP_POINT_SHAPE_RHOMBUS',
+  'BMAP_POINT_SHAPE_WATERDROP' = 'BMAP_POINT_SHAPE_WATERDROP',
+};
+
+export enum SizeTypeEnum {
+  'BMAP_POINT_SIZE_TINY' = 'BMAP_POINT_SIZE_TINY',
+  'BMAP_POINT_SIZE_SMALLER' = 'BMAP_POINT_SIZE_SMALLER',
+  'BMAP_POINT_SIZE_SMALL' = 'BMAP_POINT_SIZE_SMALL',
+  'BMAP_POINT_SIZE_NORMAL' = 'BMAP_POINT_SIZE_NORMAL',
+  'BMAP_POINT_SIZE_BIG' = 'BMAP_POINT_SIZE_BIG',
+  'BMAP_POINT_SIZE_BIGGER' = 'BMAP_POINT_SIZE_BIGGER',
+  'BMAP_POINT_SIZE_HUGE' = 'BMAP_POINT_SIZE_HUGE',
+};

@@ -7,7 +7,7 @@
  * @FilePath: \vue-baidu-map-3x\packages\utils\src\create.ts
  */
 import { deleteEmptyKey } from '.';
-import type { Bounds, Icon, Label, Point, Size } from '../typing';
+import type { Bounds, Icon, IconSequence, Label, Point, Size, SymbolOption } from '../typing';
 
 export const getPoint = (lng: number, lat: number): Point => {
   return new window.BMap.Point(lng, lat);
@@ -43,3 +43,28 @@ export const getLabel = (options?: Label): Label => {
   deleteEmptyKey(labelOption);
   return new window.BMap.Label(options?.content, labelOption)
 };
+
+export function getSymbol(options: SymbolOption) {
+  let symbolOption = {
+    anchor: options.anchor && getSize(options.anchor?.width, options.anchor?.height),
+    fillColor: options.fillColor,
+    fillOpacity: options.fillOpacity,
+    scale: options.scale,
+    rotation: options.rotation,
+    strokeColor: options.strokeColor,
+    strokeOpacity: options.strokeOpacity,
+    strokeWeight: options.strokeWeight
+  };
+  deleteEmptyKey(symbolOption);
+  return new window.BMap.Symbol(window[options.path] || options.path, symbolOption)
+}
+
+export function getIconSequence(options: IconSequence) {
+  const { symbol, offset, repeat, fixedRotation } = options;
+  return new window.BMap.IconSequence(
+    symbol && getSymbol(symbol),
+    offset,
+    repeat,
+    fixedRotation
+  )
+}

@@ -6,7 +6,7 @@
  * @LastEditors: YangJianFei
  * @FilePath: \vue-baidu-map-3x\packages\map\src\helper.ts
  */
-import type { Point } from "@vue-baidu-map-3x/utils";
+import type { BMap, EventParams, MapEventPixelOverlayParams, MapEventPixelParams, MapInstance, Point, Size } from "@vue-baidu-map-3x/utils";
 
 export const methodsMap = new Map<string, string | string[]>([
   ['center', 'setCenter'],
@@ -25,6 +25,43 @@ export const methodsMap = new Map<string, string | string[]>([
   ['theme', 'setMapStyle'],
   ['mapStyle', 'setMapStyle'],
 ]);
+
+
+export type Events = {
+  click: [params: MapEventPixelOverlayParams];
+  dblclick: [params: MapEventPixelParams];
+  rightclick: [params: MapEventPixelOverlayParams];
+  rightdblclick: [params: MapEventPixelOverlayParams];
+  maptypechange: [params: EventParams];
+  mousemove: [params: MapEventPixelOverlayParams];
+  mouseover: [params: EventParams];
+  mouseout: [params: EventParams];
+  movestart: [params: EventParams];
+  moving: [params: EventParams];
+  moveend: [params: EventParams];
+  zoomstart: [params: EventParams];
+  zoomend: [params: EventParams];
+  addoverlay: [params: EventParams];
+  addcontrol: [params: EventParams];
+  removecontrol: [params: EventParams];
+  removeoverlay: [params: EventParams];
+  clearoverlays: [params: EventParams];
+  dragstart: [params: MapEventPixelParams];
+  dragging: [params: MapEventPixelParams];
+  dragend: [params: MapEventPixelParams];
+  addtilelayer: [params: EventParams];
+  removetilelayer: [params: EventParams];
+  loaded: [params: MapEventPixelParams & { zoom: number }];
+  resize: [params: EventParams & { size: Size }];
+  hotspotclick: [params: EventParams & { spots: any }];
+  hotspotover: [params: EventParams & { spots: any }];
+  hotspotout: [params: EventParams & { spots: any }];
+  tilesloaded: [params: EventParams];
+  touchstart: [params: MapEventPixelParams];
+  touchmove: [params: MapEventPixelParams];
+  touchend: [params: MapEventPixelParams];
+  longpress: [params: MapEventPixelParams];
+};
 
 export const events = [
   'click',
@@ -62,12 +99,17 @@ export const events = [
   'longpress'
 ];
 
-export const customEvents = [
-  'init',
-  'ready',
-  'load',
-  'unLoad',
-];
+type MapLoadEvents = {
+  BMap?: BMap;
+  map?: MapInstance;
+};
+
+export type CustomEvents = {
+  init: [params: MapLoadEvents];
+  ready: [params: MapLoadEvents];
+  load: [params: MapLoadEvents];
+  unLoad: [];
+};
 
 export const getCenterPoint = (center?: string | Point) => {
   switch (typeof center) {

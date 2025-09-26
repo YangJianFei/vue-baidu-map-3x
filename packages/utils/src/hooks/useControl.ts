@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-30 16:14:10
- * @LastEditTime: 2025-09-12 09:20:23
+ * @LastEditTime: 2025-09-26 14:20:25
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/utils/src/hooks/useControl.ts
  */
@@ -13,7 +13,7 @@ import { deleteEmptyKey, equalsFace } from '..';
 import { getSize } from '../create';
 import useMap from './useMap';
 import { ComponentTypeEnum, ControlsEnum } from '../constant';
-import { controlMethodMap } from '../methods';
+import { ControlMethod, controlMethodMap } from '../methods';
 import useEvent from './useEvent';
 
 export type UseControlParamsType = {
@@ -24,6 +24,7 @@ export type UseControlParamsType = {
   getElseParams?: () => Record<string, any>;
   getPrefixParams?: () => any;
   type?: ComponentTypeEnum;
+  methods?: ControlMethod[];
 };
 
 const typeAddMethodMap = {
@@ -34,7 +35,16 @@ const typeAddMethodMap = {
 };
 
 const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
-  const { props, emit, events, controlName, getPrefixParams, getElseParams, type = ComponentTypeEnum.Control } = params;
+  const {
+    props,
+    emit,
+    events,
+    controlName,
+    getPrefixParams,
+    getElseParams,
+    type = ComponentTypeEnum.Control,
+    methods,
+  } = params;
 
   const { BMap, map } = useMap();
   const originInstance = ref<ControlInstanceType>();
@@ -81,28 +91,32 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
     immediate: true,
   });
 
-  watch(() => props, (newProps, preProps) => {
-    if (originInstance?.value) {
-      controlMethodMap.get(controlName)?.forEach?.(({ key, method, format, customMethod }) => {
-        if (customMethod) {
-          customMethod?.(originInstance, newProps?.[key], preProps?.[key]);
-        } else {
-          if (!equalsFace(newProps?.[key], preProps?.[key])) {
-            if (Array.isArray(method)) {
-              originInstance?.value?.[
-                newProps?.[key] ? method[0] : method[1]
-              ]?.(format ? format(newProps?.[key]) : newProps?.[key]);
-            } else {
-              originInstance?.value?.[
-                method
-              ]?.(format ? format(newProps?.[key]) : newProps?.[key]);
+  Object.keys(props).forEach(propKey => {
+    watch(() => props[propKey], (newProps, preProps) => {
+      if (originInstance?.value) {
+        const methodConfig = (methods || controlMethodMap.get(controlName))?.find(item => item.key == propKey);
+        if (methodConfig) {
+          const { method, format, customMethod } = methodConfig;
+          if (customMethod) {
+            customMethod?.(originInstance, newProps, preProps);
+          } else {
+            if (!equalsFace(newProps, preProps)) {
+              if (Array.isArray(method)) {
+                originInstance?.value?.[
+                  newProps ? method[0] : method[1]
+                ]?.(format ? format(newProps) : newProps);
+              } else {
+                originInstance?.value?.[
+                  method
+                ]?.(format ? format(newProps) : newProps);
+              }
             }
           }
         }
-      });
-    }
-  }, {
-    deep: true,
+      }
+    }, {
+      deep: true,
+    });
   });
 
   onUnmounted(() => {

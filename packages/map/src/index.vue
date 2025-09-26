@@ -2,7 +2,7 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-22 17:09:17
- * @LastEditTime: 2025-09-12 08:55:35
+ * @LastEditTime: 2025-09-26 10:48:21
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/map/src/index.vue
 -->
@@ -27,7 +27,8 @@ import {
   BdMapKey,
   getMapMethod,
 } from "@vue-baidu-map-3x/utils";
-import { methodsMap, events, customEvents, getCenterPoint } from "./helper";
+import { methodsMap, events, getCenterPoint } from "./helper";
+import type { Events, CustomEvents } from "./helper";
 
 defineOptions({
   inheritAttrs: false,
@@ -49,7 +50,8 @@ const props = withDefaults(defineProps<Map>(), {
   defaultAnimation: true,
   preserveDrawingBuffer: false,
 });
-const emit = defineEmits([...events, ...customEvents]);
+
+const emit = defineEmits<Events & CustomEvents>();
 
 const contain = ref(null);
 const map = ref<MapInstance>();

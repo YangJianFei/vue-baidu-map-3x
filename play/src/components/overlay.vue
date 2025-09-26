@@ -68,16 +68,10 @@
       :center="{ lng: 105.0, lat: 38.0 }"
       :zoom="4"
       :scroll-wheel-zoom="true"
-      @init="addPoints"
+      @load="addPoints"
     >
       <!-- <bm-point-collection :points="[{lat:37.405247,lng:109.49779}]" /> -->
-      <bm-point-collection
-        :points="points"
-        shape="BMAP_POINT_SHAPE_STAR"
-        color="red"
-        size="BMAP_POINT_SIZE_SMALL"
-        @click="clickHandler"
-      >
+      <bm-point-collection :points="points" color="red" @click="clickHandler">
       </bm-point-collection>
     </baidu-map>
     <baidu-map
@@ -88,11 +82,11 @@
       :scroll-wheel-zoom="true"
     >
       <bm-polyline
-        :path="polylinePath"
+        :points="polylinePath"
         stroke-color="blue"
         :stroke-opacity="0.5"
         :stroke-weight="2"
-        :editing="true"
+        enable-editing
         @lineupdate="updatePolylinePath"
       >
       </bm-polyline>
@@ -105,11 +99,11 @@
     >
       <bm-polygon
         v-if="showPolygon"
-        :path="polygonPath"
+        :points="polygonPath"
         stroke-color="blue"
         :stroke-opacity="0.5"
         :stroke-weight="2"
-        :editing="true"
+        enable-editing
         @lineupdate="updatePolygonPath"
       />
     </baidu-map>

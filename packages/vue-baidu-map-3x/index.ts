@@ -20,7 +20,11 @@ import BmCityList from "@vue-baidu-map-3x/city-list";
 import BmPanorama from "@vue-baidu-map-3x/panorama";
 import BmControl from "@vue-baidu-map-3x/control";
 import BmRangefinder from "@vue-baidu-map-3x/rangefinder";
+
 import BmMarker from "@vue-baidu-map-3x/marker";
+import BmPointCollection from "@vue-baidu-map-3x/point-collection";
+import BmPolyline from "@vue-baidu-map-3x/polyline";
+import BmPolygon from "@vue-baidu-map-3x/polygon";
 
 export * from "@vue-baidu-map-3x/utils";
 
@@ -46,6 +50,9 @@ export default {
 
     // 覆盖物
     Vue.component(BmMarker.name, BmMarker);
+    Vue.component(BmPointCollection.name, BmPointCollection);
+    Vue.component(BmPolyline.name, BmPolyline);
+    Vue.component(BmPolygon.name, BmPolygon);
 
     // 图层
 
@@ -74,6 +81,9 @@ export {
   BmRangefinder,
 
   BmMarker,
+  BmPointCollection,
+  BmPolyline,
+  BmPolygon,
 };
 
 export { useBMap };

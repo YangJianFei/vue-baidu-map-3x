@@ -7,7 +7,7 @@
  * @FilePath: /vue-baidu-map-3x/packages/utils/typing.ts
  */
 
-import { ControlAnchorEnum, ControlAnchor, LengthUnit, NavigationControlType, AnimationEnum, ContextMenuIconEnum } from "./src/constant";
+import { ControlAnchorEnum, ControlAnchor, LengthUnit, NavigationControlType, AnimationEnum, ContextMenuIconEnum, ShapeTypeEnum, SizeTypeEnum } from "./src/constant";
 
 export type BMap = {
   [key in string]: any;
@@ -304,9 +304,24 @@ export type RangefinderDrawendEventType = {
   distance?: number;// 测量解释时的最终距离
 };
 
-export type MarkerEventParams = {
+export type EventParams = {
   type: string;
   target: any;
+};
+
+export type MapEventPixelParams = EventParams & {
+  point: Point;
+  pixel: Pixel;
+};
+
+export type MapEventPixelOverlayParams = MapEventPixelParams & {
+  overlay: OverlayInstance;
+};
+
+export type MarkerEventParams = EventParams;
+
+export type PointCollectionEventPointParams = MarkerEventParams & {
+  point: Point;
 };
 
 export type MarkerEventPointParams = MarkerEventParams & {
@@ -412,4 +427,92 @@ export type ContextMenuInstance = {
   removeItem?: (item: ContextMenuItem) => void;
   addSeparator?: () => void;
   removeSeparator?: (index: number) => void;
+};
+
+export type PointCollection = {
+  points: Point[];
+  shape?: ShapeTypeEnum;
+  color?: string;
+  size?: SizeTypeEnum;
+};
+
+export type PointCollectionInstance = {
+  setPoints?: (points: Point[]) => void;
+  setStyles?: (styles: PointCollection) => void;
+  clear?: () => void;
+};
+
+export type SymbolOption = {
+  path: string;
+  anchor?: Size;
+  fillColor?: string;
+  fillOpacity?: number;
+  scale?: number;
+  rotation?: number;
+  strokeColor?: string;
+  strokeOpacity?: number;
+  strokeWeight?: number;
+};
+
+export type SymbolOptionInstance = {
+  setPath: (path: string) => void;
+  setAnchor: (anchor: Size) => void;
+  setRotation: (rotation: number) => void;
+  setScale: (scale: number) => void;
+  setStrokeWeight: (weight: number) => void;
+  setStrokeColor: (color: string) => void;
+  setStrokeOpacity: (opacity: number) => void;
+  setFillOpacity: (opacity: number) => void;
+  setFillColor: (color: string) => void;
+};
+
+export type IconSequence = {
+  symbol?: SymbolOption;
+  offset?: string;
+  repeat: string;
+  fixedRotation: boolean;
+};
+
+export type Polyline = {
+  points: Point[];
+  strokeColor?: string;
+  strokeWeight?: number;
+  strokeOpacity?: number;
+  strokeStyle?: 'solid' | 'dashed';
+  enableMassClear?: boolean;
+  enableEditing?: boolean;
+  enableClicking?: boolean;
+  icons?: IconSequence[];
+};
+
+export type PolylineInstance = {
+  setPath: (path: Point[]) => void;
+  getPath: () => Point[];
+  setStrokeColor: (color: string) => void;
+  getStrokeColor: () => string;
+  setStrokeOpacity: (opacity: number) => void;
+  getStrokeOpacity: () => number;
+  setStrokeWeight: (weight: number) => void;
+  getStrokeWeight: () => number;
+  setStrokeStyle: (style: 'solid' | 'dashed') => void;
+  getStrokeStyle: () => 'solid' | 'dashed';
+  getBounds: () => Bounds;
+  setPositionAt: (index: number, point: Point) => void;
+  getMap: () => MapInstance;
+  enableMassClear: () => void;
+  disableMassClear: () => void;
+  enableEditing: () => void;
+  disableEditing: () => void;
+};
+
+export type Polygon = Omit<Polyline, 'icons'> & {
+  fillColor?: string;
+  fillOpacity?: number;
+};
+
+export type PolygonInstance = PolylineInstance & {
+  setFillColor: (color: string) => void;
+  getFillColor: () => string;
+  setFillOpacity: (opacity: number) => void;
+  getFillOpacity: () => number;
 };

@@ -26,14 +26,16 @@ export const baseControlMethod = [
   },
 ];
 
+export type ControlMethod = {
+  key: string;
+  method: string | string[];
+  format?: (value: any) => any;
+  customMethod?: (originInstance, newValue: any, oldValue?: any) => void;
+};
+
 export const controlMethodMap = new Map<
   ControlsEnum,
-  {
-    key: string;
-    method: string | string[];
-    format?: (value: any) => any;
-    customMethod?: (originInstance, newValue: any, oldValue?: any) => void;
-  }[]
+  ControlMethod[]
 >([
   [ControlsEnum.ScaleControl, [...baseControlMethod]],
   [

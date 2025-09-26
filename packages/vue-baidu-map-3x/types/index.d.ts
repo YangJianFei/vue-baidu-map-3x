@@ -2,13 +2,13 @@
  * @Description:
  * @Author: YangJianFei 1294485765@qq.com
  * @Date: 2025-09-12 11:43:23
- * @LastEditTime: 2025-09-12 16:56:01
+ * @LastEditTime: 2025-09-26 16:34:20
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/types/index.d.ts
  */
 import "vue";
 
-export * from '../index';
+export * from "../index";
 
 import {
   ApiLoader,
@@ -23,9 +23,11 @@ import {
   BmPanorama,
   BmControl,
   BmRangefinder,
-
   BmMarker,
-} from '../index';
+  BmPointCollection,
+  BmPolyline,
+  BmPolygon,
+} from "../index";
 declare module "vue" {
   export interface GlobalComponents {
     ApiLoader: typeof ApiLoader;
@@ -42,5 +44,8 @@ declare module "vue" {
     BmRangefinder: typeof BmRangefinder;
 
     BmMarker: typeof BmMarker;
+    BmPointCollection: typeof BmPointCollection;
+    BmPolyline: typeof BmPolyline;
+    BmPolygon: typeof BmPolygon;
   }
 }

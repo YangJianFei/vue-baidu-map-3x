@@ -106,6 +106,24 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/point-collection:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
+  packages/polygon:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
+  packages/polyline:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
   packages/rangefinder:
     dependencies:
       '@vue-baidu-map-3x/utils':
@@ -162,6 +180,15 @@ importers:
       '@vue-baidu-map-3x/panorama':
         specifier: workspace:^
         version: link:../panorama
+      '@vue-baidu-map-3x/point-collection':
+        specifier: workspace:^
+        version: link:../point-collection
+      '@vue-baidu-map-3x/polygon':
+        specifier: workspace:^
+        version: link:../polygon
+      '@vue-baidu-map-3x/polyline':
+        specifier: workspace:^
+        version: link:../polyline
       '@vue-baidu-map-3x/rangefinder':
         specifier: workspace:^
         version: link:../rangefinder
