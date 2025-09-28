@@ -13,41 +13,39 @@ import {
   baseEvents,
   ComponentTypeEnum,
   ControlsEnum,
+  getBounds,
   getPoint,
   useControl,
 } from "@vue-baidu-map-3x/utils";
-import type { BaseEvents, Polygon, PolygonInstance } from "@vue-baidu-map-3x/utils";
+import type {
+  BaseEvents,
+  GroundOverlay,
+  GroundOverlayInstance,
+} from "@vue-baidu-map-3x/utils";
 import type { Events } from "./helper";
 import { events, methods } from "./helper";
 
 defineOptions({
-  name: "BmPolygon",
+  name: "BmGround",
 });
 
-const props = defineProps<Polygon>();
+const props = defineProps<GroundOverlay>();
 
 const emit = defineEmits<Events & BaseEvents>();
 
-const { originInstance } = useControl<PolygonInstance>({
+const { originInstance } = useControl<GroundOverlayInstance>({
   type: ComponentTypeEnum.Overlay,
   props,
   emit,
   events: [...events, ...baseEvents],
-  controlName: ControlsEnum.Polygon,
-  getPrefixParams: () => [
-    props.points?.map((item) => getPoint(item.lng, item.lat)) ?? [],
-  ],
+  controlName: ControlsEnum.GroundOverlay,
+  getPrefixParams: () => [getBounds(props.bounds?.sw, props.bounds?.ne)],
   getElseParams: () => {
     return {
-      strokeColor: props.strokeColor,
-      strokeWeight: props.strokeWeight,
-      strokeOpacity: props.strokeOpacity,
-      strokeStyle: props.strokeStyle,
-      enableMassClear: props.enableMassClear,
-      enableEditing: props.enableEditing,
-      enableClicking: props.enableClicking,
-      fillColor: props.fillColor,
-      fillOpacity: props.fillOpacity,
+      opacity: props.opacity,
+      imageURL: props.imageURL,
+      displayOnMinLevel: props.displayOnMinLevel,
+      displayOnMaxLevel: props.displayOnMaxLevel,
     };
   },
   methods,

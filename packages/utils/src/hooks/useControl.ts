@@ -16,15 +16,16 @@ import { ComponentTypeEnum, ControlsEnum } from '../constant';
 import { ControlMethod, controlMethodMap } from '../methods';
 import useEvent from './useEvent';
 
-export type UseControlParamsType = {
+export type UseControlParamsType<ControlInstanceType> = {
   props;
   emit?: (event: any, ...args: any[]) => void;
   events?: string[];
   controlName: ControlsEnum;
   getElseParams?: () => Record<string, any>;
-  getPrefixParams?: () => any;
+  getPrefixParams?: () => any[];
   type?: ComponentTypeEnum;
   methods?: ControlMethod[];
+  onInstanceInit?: (instance: ControlInstanceType) => void;
 };
 
 const typeAddMethodMap = {
@@ -34,7 +35,7 @@ const typeAddMethodMap = {
   [ComponentTypeEnum.ContextMenu]: 'addContextMenu',
 };
 
-const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
+const useControl = <ControlInstanceType>(params: UseControlParamsType<ControlInstanceType>) => {
   const {
     props,
     emit,
@@ -44,6 +45,7 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
     getElseParams,
     type = ComponentTypeEnum.Control,
     methods,
+    onInstanceInit,
   } = params;
 
   const { BMap, map } = useMap();
@@ -75,7 +77,7 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
         }));
       } else {
         if (prefixParams.value) {// 有prefixParams参数才创建实例
-          controlInstance = new Control(prefixParams.value, deleteEmptyKey(getElseParams?.()));
+          controlInstance = new Control(...prefixParams.value, deleteEmptyKey(getElseParams?.()));
         }
       }
       if (controlInstance) {
@@ -84,6 +86,7 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType) => {
         if (events?.includes?.('load')) {
           emit?.('load', controlInstance);
         }
+        onInstanceInit?.(controlInstance);
       }
       onCleanup(removeInstance);
     }

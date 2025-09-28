@@ -120,7 +120,7 @@
         :stroke-opacity="0.5"
         :stroke-weight="2"
         @lineupdate="updateCirclePath"
-        :editing="true"
+        :enable-editing="true"
       ></bm-circle>
     </baidu-map>
     <baidu-map
@@ -131,8 +131,8 @@
     >
       <bm-ground
         :bounds="bounds"
-        imageURL="//developer.baidu.com/map/jsdemo/img/si-huan.png"
-        :opacity="1"
+        :imageURL="bjMap"
+        :opacity="0.5"
         :displayOnMinLevel="10"
         :displayOnMaxLevel="14"
       >
@@ -189,6 +189,7 @@
 
 <script lang="ts" setup>
 import { ref, reactive, nextTick } from "vue";
+import bjMap from "@/assets/bj-map.jpeg";
 
 const activeType = ref("point");
 
@@ -216,7 +217,7 @@ setTimeout(() => {
 }, 3000);
 const points = ref([]);
 const polylinePath = ref([
-  { lng: 116.404, lat: 39.915 },
+  { lng: 116.405, lat: 39.915 },
   { lng: 116.405, lat: 39.82 },
   { lng: 116.423493, lat: 39.707445 },
 ]);
@@ -234,12 +235,12 @@ const circlePath = ref({
 });
 const bounds = ref({
   ne: {
-    lng: 116.475451,
-    lat: 39.9764,
+    lng: 117.3025,
+    lat: 40.4757,
   },
   sw: {
-    lng: 116.29579,
-    lat: 39.837146,
+    lng: 116.33,
+    lat: 39.28,
   },
 });
 const infoWindow = ref({
@@ -249,6 +250,11 @@ const infoWindow = ref({
 });
 const active = ref(false);
 const showPolygon = ref(true);
+const circleEditing = ref(false);
+
+setTimeout(() => {
+  circleEditing.value = true;
+}, 2000);
 
 const handleClick = () => {
   showPolygon.value = !showPolygon.value;

@@ -35,7 +35,7 @@ const { originInstance } = useControl<PolylineInstance>({
   emit,
   events: [...events, ...baseEvents],
   controlName: ControlsEnum.Polyline,
-  getPrefixParams: () => props.points?.map((item) => getPoint(item.lng, item.lat) ?? []),
+  getPrefixParams: () => [props.points?.map((item) => getPoint(item.lng, item.lat) )?? []],
   getElseParams: () => {
     return {
       strokeColor: props.strokeColor,

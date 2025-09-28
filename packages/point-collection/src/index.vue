@@ -42,7 +42,9 @@ const { originInstance } = useControl<PointCollectionInstance>({
   emit,
   events: [...events, ...baseEvents],
   controlName: ControlsEnum.PointCollection,
-  getPrefixParams: () => props.points?.map((item) => getPoint(item.lng, item.lat)??[]),
+  getPrefixParams: () => [
+    props.points?.map((item) => getPoint(item.lng, item.lat)) ?? [],
+  ],
   getElseParams: () => {
     return {
       shape: props.shape,

@@ -1,13 +1,22 @@
 /*
- * @Description:   
+ * @Description:
  * @Author: YangJianFei
  * @Date: 2023-11-22 17:16:21
- * @LastEditTime: 2025-09-12 15:05:58
+ * @LastEditTime: 2025-09-28 11:11:38
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/utils/typing.ts
  */
 
-import { ControlAnchorEnum, ControlAnchor, LengthUnit, NavigationControlType, AnimationEnum, ContextMenuIconEnum, ShapeTypeEnum, SizeTypeEnum } from "./src/constant";
+import {
+  ControlAnchorEnum,
+  ControlAnchor,
+  LengthUnit,
+  NavigationControlType,
+  AnimationEnum,
+  ContextMenuIconEnum,
+  ShapeTypeEnum,
+  SizeTypeEnum,
+} from "./src/constant";
 
 export type BMap = {
   [key in string]: any;
@@ -37,9 +46,7 @@ export type Pixel = {
   equals: (other: Pixel) => boolean;
 };
 
-export type Overlay = {
-
-};
+export type Overlay = {};
 
 export type Icon = {
   imageUrl: string;
@@ -84,7 +91,6 @@ export type Bounds = {
   /**
    * @name  创建一个包含所有给定点坐标的矩形区域。其中sw表示矩形区域的西南角，参数ne表示矩形区域的东北角
    */
-  new(sw: Point, ne: Point): void;
   sw: Point;
   ne: Point;
   /**
@@ -124,7 +130,7 @@ export type Bounds = {
    */
   getNorthEast?: () => Point;
   /**
-   * @name  
+   * @name
    */
   toSpan?: () => Point;
 };
@@ -133,7 +139,7 @@ export type CopyrightControl = {
   id?: number;
   content?: string;
   bounds?: Bounds;
-}
+};
 
 export type AddressComponent = {
   streetNumber?: string;
@@ -187,9 +193,7 @@ export type OverlayInstance = {
   hide: () => void;
 };
 
-
-export type Scale = Control & {
-};
+export type Scale = Control & {};
 
 export type ScaleInstance = ControlInstance & {
   setUnit: (unit: LengthUnit) => void;
@@ -243,19 +247,19 @@ export type Copyright = Control & {
 export type CopyrightInstance = ControlInstance & {
   /**
    * @name 添加版权信息
-   * @param copyright 
-   * @returns 
+   * @param copyright
+   * @returns
    */
   addCopyright?: (copyright: CopyrightControl) => void;
   /**
    * @name 移除版权信息
-   * @param id 
-   * @returns 
+   * @param id
+   * @returns
    */
   removeCopyright?: (id: number) => void;
   /**
    * @name 返回单个版权信息
-   * @param id 
+   * @param id
    * @returns CopyrightControl
    */
   getCopyright?: (id: number) => CopyrightControl;
@@ -275,13 +279,13 @@ export type Panorama = Control;
 export type PanoramaInstance = ControlInstance;
 
 export type Rangefinder = {
-  followText?: string;  //测距过程中，提示框文字,
-  unit?: 'metric' | 'us'; //测距结果所用的单位制，可接受的属性为"metric"表示米制和"us"表示美国传统单位,
+  followText?: string; //测距过程中，提示框文字,
+  unit?: "metric" | "us"; //测距结果所用的单位制，可接受的属性为"metric"表示米制和"us"表示美国传统单位,
   lineColor?: string; //折线颜色,
   lineStroke?: number; //折线宽度,
-  opacity?: number //透明度,
-  lineStyle?: 'solid' | 'dashed'; //折线的样式，只可设置solid和dashed,
-  secIcon?: Icon;//转折点的Icon,
+  opacity?: number; //透明度,
+  lineStyle?: "solid" | "dashed"; //折线的样式，只可设置solid和dashed,
+  secIcon?: Icon; //转折点的Icon,
   closeIcon?: Icon; //关闭按钮的Icon,
   cursor?: string; //跟随的鼠标样式
 };
@@ -299,9 +303,9 @@ export type RangefinderAddPointEventType = {
 };
 
 export type RangefinderDrawendEventType = {
-  points?: Point;// 所有测量时，打下的节点BMap.Point对象,
-  overlays?: Overlay[];// 所有测量时，生成的线段BMap.Overlay对象,
-  distance?: number;// 测量解释时的最终距离
+  points?: Point; // 所有测量时，打下的节点BMap.Point对象,
+  overlays?: Overlay[]; // 所有测量时，生成的线段BMap.Overlay对象,
+  distance?: number; // 测量解释时的最终距离
 };
 
 export type EventParams = {
@@ -340,7 +344,7 @@ export type Marker = {
   rotation?: number;
   shadow?: Icon;
   title?: string;
-  position?: Point;
+  position: Point;
   label?: Label;
 };
 
@@ -416,10 +420,9 @@ export type ContextMenuItemInstance = {
   setIcon?: (iconUrl: string) => void;
   enable?: () => void;
   disable?: () => void;
-}
-
-export type ContextMenu = {
 };
+
+export type ContextMenu = {};
 
 export type ContextMenuInstance = {
   addItem?: (item: ContextMenuItem) => void;
@@ -478,7 +481,7 @@ export type Polyline = {
   strokeColor?: string;
   strokeWeight?: number;
   strokeOpacity?: number;
-  strokeStyle?: 'solid' | 'dashed';
+  strokeStyle?: "solid" | "dashed";
   enableMassClear?: boolean;
   enableEditing?: boolean;
   enableClicking?: boolean;
@@ -494,8 +497,8 @@ export type PolylineInstance = {
   getStrokeOpacity: () => number;
   setStrokeWeight: (weight: number) => void;
   getStrokeWeight: () => number;
-  setStrokeStyle: (style: 'solid' | 'dashed') => void;
-  getStrokeStyle: () => 'solid' | 'dashed';
+  setStrokeStyle: (style: "solid" | "dashed") => void;
+  getStrokeStyle: () => "solid" | "dashed";
   getBounds: () => Bounds;
   setPositionAt: (index: number, point: Point) => void;
   getMap: () => MapInstance;
@@ -505,7 +508,7 @@ export type PolylineInstance = {
   disableEditing: () => void;
 };
 
-export type Polygon = Omit<Polyline, 'icons'> & {
+export type Polygon = Omit<Polyline, "icons"> & {
   fillColor?: string;
   fillOpacity?: number;
 };
@@ -516,3 +519,42 @@ export type PolygonInstance = PolylineInstance & {
   setFillOpacity: (opacity: number) => void;
   getFillOpacity: () => number;
 };
+
+export type Circle = Omit<Polyline, "icons" | "points"> & {
+  center: Point;
+  radius: number;
+  fillColor?: string;
+  fillOpacity?: number;
+};
+
+export type CircleInstance = PolylineInstance & {
+  setCenter: (center: Point) => void;
+  getCenter: () => Point;
+  setRadius: (radius: number) => void;
+  getRadius: () => number;
+  setFillColor: (color: string) => void;
+  getFillColor: () => string;
+  setFillOpacity: (opacity: number) => void;
+  getFillOpacity: () => number;
+};
+
+export type GroundOverlay = {
+  bounds: Bounds;
+  opacity?: number;
+  imageURL?: string;
+  displayOnMinLevel?: number;
+  displayOnMaxLevel?: number;
+};
+
+export type GroundOverlayInstance = {
+  setBounds: (bounds: Bounds) => void;
+  getBounds: () => Bounds;
+  setOpacity: (opacity: number) => void;
+  getOpacity: () => number;
+  setImageURL: (imageURL: string) => void;
+  getImageURL: () => string;
+  setDisplayOnMinLevel: (level: number) => void;
+  getDisplayOnMinLevel: () => number;
+  setDispalyOnMaxLevel: (level: number) => void;
+  getDispalyOnMaxLevel: () => number;
+}

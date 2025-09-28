@@ -40,6 +40,12 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/circle:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
   packages/city-list:
     dependencies:
       '@vue-baidu-map-3x/utils':
@@ -62,6 +68,12 @@ importers:
         version: link:../utils
 
   packages/geolocation:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
+  packages/ground:
     dependencies:
       '@vue-baidu-map-3x/utils':
         specifier: workspace:^
@@ -150,6 +162,9 @@ importers:
       '@vue-baidu-map-3x/api-loader':
         specifier: workspace:^
         version: link:../api-loader
+      '@vue-baidu-map-3x/circle':
+        specifier: workspace:^
+        version: link:../circle
       '@vue-baidu-map-3x/city-list':
         specifier: workspace:^
         version: link:../city-list
@@ -162,6 +177,9 @@ importers:
       '@vue-baidu-map-3x/geolocation':
         specifier: workspace:^
         version: link:../geolocation
+      '@vue-baidu-map-3x/ground':
+        specifier: workspace:^
+        version: link:../ground
       '@vue-baidu-map-3x/map':
         specifier: workspace:^
         version: link:../map

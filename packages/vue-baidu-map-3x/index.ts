@@ -25,6 +25,8 @@ import BmMarker from "@vue-baidu-map-3x/marker";
 import BmPointCollection from "@vue-baidu-map-3x/point-collection";
 import BmPolyline from "@vue-baidu-map-3x/polyline";
 import BmPolygon from "@vue-baidu-map-3x/polygon";
+import BmCircle from "@vue-baidu-map-3x/circle";
+import BmGround from "@vue-baidu-map-3x/ground";
 
 export * from "@vue-baidu-map-3x/utils";
 
@@ -53,6 +55,8 @@ export default {
     Vue.component(BmPointCollection.name, BmPointCollection);
     Vue.component(BmPolyline.name, BmPolyline);
     Vue.component(BmPolygon.name, BmPolygon);
+    Vue.component(BmCircle.name, BmCircle);
+    Vue.component(BmGround.name, BmGround);
 
     // 图层
 
@@ -84,6 +88,8 @@ export {
   BmPointCollection,
   BmPolyline,
   BmPolygon,
+  BmCircle,
+  BmGround,
 };
 
 export { useBMap };

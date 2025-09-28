@@ -23,10 +23,13 @@ import {
   BmPanorama,
   BmControl,
   BmRangefinder,
+
   BmMarker,
   BmPointCollection,
   BmPolyline,
   BmPolygon,
+  BmCircle,
+  BmGround,
 } from "../index";
 declare module "vue" {
   export interface GlobalComponents {
@@ -47,5 +50,7 @@ declare module "vue" {
     BmPointCollection: typeof BmPointCollection;
     BmPolyline: typeof BmPolyline;
     BmPolygon: typeof BmPolygon;
+    BmCircle: typeof BmCircle;
+    BmGround: typeof BmGround;
   }
 }

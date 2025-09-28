@@ -41,7 +41,7 @@ const { originInstance } = useControl<MarkerInstance>({
   events: [...events, ...baseEvents],
   controlName: ControlsEnum.Marker,
   getPrefixParams: () =>
-    props.position && getPoint(props.position.lng, props.position.lat),
+    [props.position && getPoint(props.position.lng, props.position.lat)],
   getElseParams: () => {
     return {
       offset: props.offset && getSize(props.offset?.width, props.offset?.height),

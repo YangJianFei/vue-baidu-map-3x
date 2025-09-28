@@ -24,6 +24,8 @@ export enum ControlsEnum {
   PointCollection = 'PointCollection',
   Polyline = 'Polyline',
   Polygon = 'Polygon',
+  Circle = 'Circle',
+  GroundOverlay = 'GroundOverlay',
 };
 
 export enum ComponentTypeEnum {
