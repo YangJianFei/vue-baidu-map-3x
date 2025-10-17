@@ -26,7 +26,7 @@ defineOptions({
 
 const props = defineProps<Polygon>();
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<PolygonInstance>>();
 
 const { originInstance } = useControl<PolygonInstance>({
   type: ComponentTypeEnum.Overlay,

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: YangJianFei 1294485765@qq.com
  * @Date: 2025-09-12 11:43:23
- * @LastEditTime: 2025-09-26 16:34:20
+ * @LastEditTime: 2025-09-28 15:30:29
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/vue-baidu-map-3x/types/index.d.ts
  */
@@ -30,6 +30,8 @@ import {
   BmPolygon,
   BmCircle,
   BmGround,
+  BmLabel,
+  BmInfoWindow,
 } from "../index";
 declare module "vue" {
   export interface GlobalComponents {
@@ -52,5 +54,7 @@ declare module "vue" {
     BmPolygon: typeof BmPolygon;
     BmCircle: typeof BmCircle;
     BmGround: typeof BmGround;
+    BmLabel: typeof BmLabel;
+    BmInfoWindow: typeof BmInfoWindow;
   }
 }

@@ -7,7 +7,7 @@
  * @FilePath: \vue-baidu-map-3x\packages\geolocation\src\helper.ts
  */
 
-import { ControlMethod, EventParams, getPoint, MapEventPixelParams, PointCollectionEventPointParams, PolygonInstance } from "@vue-baidu-map-3x/utils";
+import { ControlMethod, EventParams, getPoint, MapEventPixelParams, PolygonInstance } from "@vue-baidu-map-3x/utils";
 import { Ref } from "vue";
 
 export type Events = {

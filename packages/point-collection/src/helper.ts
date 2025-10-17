@@ -7,13 +7,13 @@
  * @FilePath: \vue-baidu-map-3x\packages\geolocation\src\helper.ts
  */
 
-import { ControlMethod, getPoint, PointCollectionEventPointParams } from "@vue-baidu-map-3x/utils";
+import { ControlMethod, getPoint, EventPointParams } from "@vue-baidu-map-3x/utils";
 
 
 export type Events = {
-  'click': [params: PointCollectionEventPointParams];
-  'mouseout': [params: PointCollectionEventPointParams];
-  'mouseover': [params: PointCollectionEventPointParams];
+  'click': [params: EventPointParams];
+  'mouseout': [params: EventPointParams];
+  'mouseover': [params: EventPointParams];
 }
 
 export const events = [

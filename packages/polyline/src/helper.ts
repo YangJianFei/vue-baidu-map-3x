@@ -2,12 +2,12 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-12-01 16:01:27
- * @LastEditTime: 2023-12-01 16:01:27
- * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\packages\geolocation\src\helper.ts
+ * @LastEditTime: 2025-09-29 15:38:11
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/packages/polyline/src/helper.ts
  */
 
-import { ControlMethod, EventParams, getPoint, MapEventPixelParams, PointCollectionEventPointParams, PolylineInstance } from "@vue-baidu-map-3x/utils";
+import { ControlMethod, EventParams, getPoint, MapEventPixelParams, PolylineInstance } from "@vue-baidu-map-3x/utils";
 import { Ref } from "vue";
 
 export type Events = {

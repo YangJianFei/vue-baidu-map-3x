@@ -14,17 +14,17 @@ import {
   ControlsEnum,
   useControl,
 } from "@vue-baidu-map-3x/utils";
-import type { BaseEvents, Panorama, PanoramaInstance } from "@vue-baidu-map-3x/utils";
+import type { BaseEvents, PanoramaControl, PanoramaControlInstance } from "@vue-baidu-map-3x/utils";
 
 defineOptions({
   name: "BmPanorama",
 });
 
-const props = defineProps<Panorama>();
+const props = defineProps<PanoramaControl>();
 
-const emit = defineEmits<BaseEvents>();
+const emit = defineEmits<BaseEvents<PanoramaControlInstance>>();
 
-const { originInstance } = useControl<PanoramaInstance>({
+const { originInstance } = useControl<PanoramaControlInstance>({
   props,
   emit,
   events: [...baseEvents],

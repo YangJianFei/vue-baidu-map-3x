@@ -20,7 +20,7 @@ defineOptions({
 
 const props = defineProps<CityList>();
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<CityListInstance>>();
 
 const { originInstance } = useControl<CityListInstance>({
   props,

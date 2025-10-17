@@ -2,12 +2,12 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-11-24 10:20:33
- * @LastEditTime: 2023-11-24 10:20:33
- * @LastEditors: YangJianFei
- * @FilePath: \vue-baidu-map-3x\packages\utils\src\create.ts
+ * @LastEditTime: 2025-09-28 17:50:21
+ * @LastEditors: YangJianFei 1294485765@qq.com
+ * @FilePath: /vue-baidu-map-3x/packages/utils/src/create.ts
  */
 import { deleteEmptyKey } from '.';
-import type { Bounds, Icon, IconSequence, Label, Point, Size, SymbolOption } from '../typing';
+import type { Bounds, Icon, IconSequence, Label, LabelInstance, Point, Size, SymbolOption } from '../typing';
 
 export const getPoint = (lng: number, lat: number): Point => {
   return new window.BMap.Point(lng, lat);
@@ -18,9 +18,9 @@ export const getSize = (width?: number, height?: number): Size => {
 };
 
 export const getIcon = (options: Icon): Icon => {
-  return new window.BMap.Icon(
+  const icon = new window.BMap.Icon(
     options?.imageUrl,
-    getSize(options?.imageSize?.width, options?.imageSize?.height),
+    getSize(options?.size?.width, options?.size?.height),
     deleteEmptyKey({
       anchor: getSize(options?.anchor?.width, options?.anchor?.height),
       imageOffset: getSize(options?.imageOffset?.width, options?.imageOffset?.height),
@@ -28,13 +28,17 @@ export const getIcon = (options: Icon): Icon => {
       printImageUrl: options?.printImageUrl,
     })
   );
+  if (options.imageSize) {
+    icon.setImageSize(getSize(options?.imageSize?.width, options?.imageSize?.height));
+  }
+  return icon;
 };
 
 export const getBounds = (sw?: Point, ne?: Point): Bounds => {
   return new window.BMap.Bounds(sw, ne);
 };
 
-export const getLabel = (options?: Label): Label => {
+export const getLabel = (options?: Label): LabelInstance => {
   let labelOption = {
     offset: options?.offset && getSize(options.offset.width, options.offset.height),
     position: options?.position && getPoint(options.position.lng, options.position.lat),

@@ -79,6 +79,18 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/info-window:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
+  packages/label:
+    dependencies:
+      '@vue-baidu-map-3x/utils':
+        specifier: workspace:^
+        version: link:../utils
+
   packages/map:
     dependencies:
       '@vue-baidu-map-3x/api-loader':
@@ -180,6 +192,12 @@ importers:
       '@vue-baidu-map-3x/ground':
         specifier: workspace:^
         version: link:../ground
+      '@vue-baidu-map-3x/info-window':
+        specifier: workspace:^
+        version: link:../info-window
+      '@vue-baidu-map-3x/label':
+        specifier: workspace:^
+        version: link:../label
       '@vue-baidu-map-3x/map':
         specifier: workspace:^
         version: link:../map

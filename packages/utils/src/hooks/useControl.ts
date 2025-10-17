@@ -68,7 +68,7 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType<ControlIns
   watch([map, prefixParams], (_, __, onCleanup) => {
     if (map?.value) {
       const Control = BMap?.value?.[controlName];
-      let controlInstance;
+      let controlInstance: ControlInstanceType | undefined = undefined;
       if (type == ComponentTypeEnum.Control) {
         controlInstance = new Control(deleteEmptyKey({
           anchor: window[props?.anchor],
@@ -81,7 +81,9 @@ const useControl = <ControlInstanceType>(params: UseControlParamsType<ControlIns
         }
       }
       if (controlInstance) {
-        map?.value?.[typeAddMethodMap[type]]?.(controlInstance);
+        if (controlName != ControlsEnum.InfoWindow) {
+          map?.value?.[typeAddMethodMap[type]]?.(controlInstance);
+        }
         originInstance.value = controlInstance;
         if (events?.includes?.('load')) {
           emit?.('load', controlInstance);

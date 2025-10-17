@@ -2,11 +2,12 @@
  * @Description:
  * @Author: YangJianFei
  * @Date: 2023-11-22 17:16:21
- * @LastEditTime: 2025-09-28 11:11:38
+ * @LastEditTime: 2025-09-29 15:04:32
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/packages/utils/typing.ts
  */
 
+import { StyleValue } from "vue";
 import {
   ControlAnchorEnum,
   ControlAnchor,
@@ -70,21 +71,24 @@ export type Label = {
   offset?: Size;
   position?: Point;
   enableMassClear?: boolean;
+  styles?: StyleValue;
+  title?: string;
+  zIndex?: number;
 };
 
 export type LabelInstance = {
-  setStyle?: (style: Object) => void;
-  setContent?: (content: string) => void;
-  setPosition?: (position: Point) => void;
-  getPosition?: () => Point;
-  setOffset?: (offset: Size) => void;
-  getOffset?: () => Size;
-  setTitle?: (title: string) => void;
-  getTitle?: () => string;
-  enableMassClear?: (enable: boolean) => void;
-  disableMassClear?: () => void;
-  setZIndex?: (zIndex: number) => void;
-  getMap?: () => MapInstance;
+  setStyle: (style: Object) => void;
+  setContent: (content: string) => void;
+  setPosition: (position: Point) => void;
+  getPosition: () => Point;
+  setOffset: (offset: Size) => void;
+  getOffset: () => Size;
+  setTitle: (title: string) => void;
+  getTitle: () => string;
+  enableMassClear: () => void;
+  disableMassClear: () => void;
+  setZIndex: (zIndex: number) => void;
+  getMap: () => MapInstance;
 };
 
 export type Bounds = {
@@ -149,25 +153,173 @@ export type AddressComponent = {
   province?: string;
 };
 
+export type MapStyle = {
+  features?: any[];
+  style?: string;
+};
+
 export type MapStyleV2 = {
-  styleJson: any[];
+  styleJson?: any[];
 };
 
 type MapCallback = (params: any) => void;
 
 export type MapInstance = {
+  enableDragging: () => void;
+  disableDragging: () => void;
+  enableScrollWheelZoom: () => void;
+  disableScrollWheelZoom: () => void;
+  enableDoubleClickZoom: () => void;
+  disableDoubleClickZoom: () => void;
+  enableKeyboard: () => void;
+  disableKeyboard: () => void;
+  enableInertialDragging: () => void;
+  disableInertialDragging: () => void;
+  enableContinuousZoom: () => void;
+  disableContinuousZoom: () => void;
+  enablePinchToZoom: () => void;
+  disablePinchToZoom: () => void;
+  enableAutoResize: () => void;
+  disableAutoResize: () => void;
+  setDefaultCursor: (cursor: string) => void;
+  getDefaultCursor: () => string;
+  setDraggingCursor: (cursor: string) => void;
+  getDraggingCursor: () => string;
+  setMinZoom: (zoom: number) => void;
+  setMaxZoom: (zoom: number) => void;
+  setMapStyle: (style: MapStyle) => void;
+  setMapStyleV2: (style: MapStyleV2) => void;
+  setPanorama: (panorama: Panorama) => void;
+  getPanorama: () => PanoramaInstance;
+  getBounds: () => Bounds;
+  getCenter: () => Point;
+  getDistance: (start: Point, end: Point) => number;
+  setMapType: (type: MapType) => void;
+  getMapType: () => MapType;
+  getSize: () => Size;
+  getViewport: (view: Point[], options?: Viewport) => ViewportInstance;
+  setViewport: (view: Point[] | Viewport, options?: ViewportInstance) => void;
+  getZoom: () => number;
+  setZoom: (zoom: number) => void;
+  centerAndZoom: (point: Point, zoom: number) => void;
+  panTo: (center: Point, options: Pan) => void;
+  panBy: (x: number, y: number, options: Pan) => void;
+  reset: () => void;
+  setCenter: (center: Point | string) => void;
+  setCurrentCity: (city: string) => void;
+  highResolutionEnabled: () => boolean;
+  zoomIn: () => void;
+  zoomOut: () => void;
+  addHotspot: (hotspot: Hotspot) => void;
+  removeHotspot: (hotspot: Hotspot) => void;
+  clearHotspots: () => void;
+  addControl: (instance: ControlInstance) => void;
+  removeControl: (instance: ControlInstance) => void;
+  getContainer: () => HTMLElement;
+  addContextMenu: (instance: ContextMenu) => void;
+  removeContextMenu: (instance: ContextMenu) => void;
+  addOverlay: (instance: Overlay) => void;
+  removeOverlay: (instance: Overlay) => void;
+  clearOverlays: () => void;
+  getOverlays: () => Overlay[];
+  getPanes: () => MapPanes;
+  openInfoWindow: (instance: InfoWindowInstance, position: Point) => void;
+  closeInfoWindow: () => void;
+  pointToOverlayPixel: (point: Point) => Pixel;
+  overlayPixelToPoint: (pixel: Pixel) => Point;
+  getInfoWindow: () => InfoWindow | null;
+  addTileLayer: (instance: TileLayer) => void;
+  removeTileLayer: (instance: TileLayer) => void;
+  getTileLayer: (mapType: string) => TileLayer;
+  pixelToPoint: (pixel: Pixel) => Point;
+  pointToPixel: (point: Point) => Pixel;
+  destroy: () => void;
   addEventListener: (evnet: string, cb: MapCallback) => void;
   removeEventListener: (evnet: string, cb: MapCallback) => void;
-  centerAndZoom: (point: Point, zoom: number) => void;
-  addControl: (instance: any) => void;
-  removeControl: (instance: any) => void;
-  addOverlay: (instance: any) => void;
-  removeOverlay: (instance: any) => void;
-  addTileLayer: (instance: any) => void;
-  removeTileLayer: (instance: any) => void;
-  addContextMenu: (instance: any) => void;
-  removeContextMenu: (instance: any) => void;
-  destroy: () => void;
+};
+
+export type AlbumsControl = {
+  anchor?: ControlAnchor;
+  offset?: Size;
+  maxWidth?: number | string;
+  imageHeight?: number;
+};
+
+export type Panorama = {
+  container: string | HTMLElement;
+  navigationControl?: boolean;
+  linksControl?: boolean;
+  indoorSceneSwitchControl?: boolean;
+  albumsControl?: boolean;
+  albumsControlOptions?: AlbumsControl;
+};
+
+export type PanoramaInstance = {
+};
+
+export type MapPanes = {
+  floatPane?: HTMLElement;
+  markerMouseTarget?: HTMLElement;
+  floatShadow?: HTMLElement;
+  labelPane?: HTMLElement;
+  markerPane?: HTMLElement;
+  markerShadow?: HTMLElement;
+  mapPane?: HTMLElement;
+};
+
+export type TileLayer = {
+  transparentPng?: boolean;
+  tileUrlTemplate?: string;
+  copyright?: Copyright;
+  zIndex?: number;
+
+};
+
+export type TileLayerInstance = {
+  getTilesUrl: (tileCoord: Pixel, zoom: number) => string;
+  getCopyright: () => Copyright;
+  isTransparentPng: () => boolean;
+};
+
+export type ProjectionInstance = {
+  lngLatToPoint: (lngLat: Point) => Pixel;
+  pointToLngLat: (point: Pixel) => Point;
+};
+
+export type MapType = {
+  name?: string;
+  layers?: TileLayer;
+  minZoom?: number;
+  maxZoom?: number;
+  errorImageUrl?: string;
+  textColor?: string;
+  tips?: string;
+};
+
+export type MapTypeInstance = {
+  getName: () => string;
+  getTileLayer: () => TileLayer;
+  getMinZoom: () => number;
+  getMaxZoom: () => number;
+  getProjection: () => ProjectionInstance;
+  getTextColor: () => string;
+  getTips: () => string;
+};
+
+export type Pan = {
+  noAnimation?: boolean;
+};
+
+export type Viewport = {
+  enableAnimation?: boolean;
+  margins?: number[];
+  zoomFactor?: number;
+  delay?: number;
+};
+
+export type ViewportInstance = {
+  center?: Point;
+  zoom?: number;
 };
 
 export type Control = {
@@ -211,12 +363,12 @@ export type NavigationInstance = ControlInstance & {
   setType: (type: NavigationControlType) => void;
 };
 
-export type MapType = Control & {
+export type MapTypeControl = Control & {
   type?: string;
   mapTypes?: string[];
 };
 
-export type MapTypeInstance = ControlInstance;
+export type MapTypeControlInstance = ControlInstance;
 
 export type OverivewMap = Control & {
   size?: Size;
@@ -274,9 +426,9 @@ export type CityList = Control;
 
 export type CityListInstance = ControlInstance;
 
-export type Panorama = Control;
+export type PanoramaControl = Control; // 待更新
 
-export type PanoramaInstance = ControlInstance;
+export type PanoramaControlInstance = ControlInstance;
 
 export type Rangefinder = {
   followText?: string; //测距过程中，提示框文字,
@@ -324,7 +476,7 @@ export type MapEventPixelOverlayParams = MapEventPixelParams & {
 
 export type MarkerEventParams = EventParams;
 
-export type PointCollectionEventPointParams = MarkerEventParams & {
+export type EventPointParams = EventParams & {
   point: Point;
 };
 
@@ -349,7 +501,7 @@ export type Marker = {
 };
 
 export type MarkerInstance = {
-  openInfoWindow?: (infoWindow: InfoWindow) => void;
+  openInfoWindow?: (infoWindow: InfoWindowInstance) => void;
   closeInfoWindow?: () => void;
   setIcon?: (icon: Icon) => void;
   getIcon?: () => Icon;
@@ -357,7 +509,7 @@ export type MarkerInstance = {
   getPosition?: () => Point;
   setOffset?: (offset: Size) => void;
   getOffset?: () => Size;
-  setLabel?: (label: Label) => void;
+  setLabel?: (label: LabelInstance) => void;
   getLabel?: () => Label;
   setTitle?: (title: string) => void;
   getTitle?: () => string;
@@ -378,16 +530,20 @@ export type MarkerInstance = {
 };
 
 export type InfoWindow = {
+  show?: boolean;
+  position?: Point;
   width?: number;
   height?: number;
   maxWidth?: number;
   offset?: Size;
-  title?: string;
+  title?: string | HTMLElement;
   enableAutoPan?: boolean;
   enableCloseOnClick?: boolean;
   enableMessage?: boolean;
   message?: string;
+  maximize?: boolean;
 };
+
 export type InfoWindowInstance = {
   setWidth?: (width: number) => void;
   setHeight?: (height: number) => void;
@@ -558,3 +714,21 @@ export type GroundOverlayInstance = {
   setDispalyOnMaxLevel: (level: number) => void;
   getDispalyOnMaxLevel: () => number;
 }
+
+export type Hotspot = {
+  position?: Point;
+  text?: string;
+  offsets?: [number, number, number, number];
+  userData?: any;
+  minZoom?: number;
+  maxZoom?: number;
+};
+
+export type HotspotInstance = {
+  getPosition: () => Point;
+  setPosition: (position: Point) => void;
+  getText: () => string;
+  setText: (text: string) => void;
+  getUserData: () => any;
+  setUserData: (userData: any) => void;
+};

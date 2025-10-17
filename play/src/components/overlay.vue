@@ -27,7 +27,7 @@
       >
         <bm-label
           content="我爱北京天安门"
-          :labelStyle="{ color: 'red', fontSize: '24px' }"
+          :styles="{ color: 'red', fontSize: '24px' }"
           :offset="{ width: -35, height: 30 }"
         />
       </bm-marker>
@@ -39,12 +39,16 @@
       :zoom="15"
     >
       <bm-marker
-        :position="{ lng: 116.304, lat: 39.915 }"
+        :position="{ lng: 116.404, lat: 39.915 }"
         :icon="{
           imageUrl: './heifahaizei.png',
+          size: {
+            width: 40,
+            height: 40,
+          },
           imageSize: {
-            width: 20,
-            height: 20,
+            width: 40,
+            height: 40,
           },
         }"
       >
@@ -56,8 +60,13 @@
       :center="{ lng: 116.404, lat: 39.915 }"
       :zoom="15"
     >
-      <bm-marker :position="markerPoint" :dragging="true" @click="infoWindowOpen">
-        <bm-info-window :show="true">
+      <bm-marker
+        :position="markerPoint"
+        enable-dragging
+        enable-clicking
+        @click="infoWindowOpen"
+      >
+        <bm-info-window :show="show" @close="infoWindowClose">
           <p>{{ markerInfo.title }}</p>
         </bm-info-window>
       </bm-marker>
@@ -147,7 +156,7 @@
       <bm-label
         content="我爱北京天安门"
         :position="{ lng: 116.404, lat: 39.915 }"
-        :labelStyle="{ color: 'red', fontSize: '24px' }"
+        :styles="{ color: 'red', fontSize: '24px' }"
         title="Hover me"
       />
     </baidu-map>
@@ -207,7 +216,7 @@ const labels = ref([
   { name: "信息窗体", type: "infoWin" },
   { name: "自定义覆盖物", type: "customOverlay" },
 ]);
-const markerPoint = ref({ lng: 116.404, lat: 39.915 });
+const markerPoint = ref({ lng: 116.402, lat: 39.915 });
 const show = ref(false);
 const markerInfo = reactive({
   title: "我爱北京",
@@ -244,7 +253,7 @@ const bounds = ref({
   },
 });
 const infoWindow = ref({
-  show: true,
+  show: false,
   contents:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 });
@@ -253,7 +262,7 @@ const showPolygon = ref(true);
 const circleEditing = ref(false);
 
 setTimeout(() => {
-  circleEditing.value = true;
+  infoWindow.value.show = true;
 }, 2000);
 
 const handleClick = () => {

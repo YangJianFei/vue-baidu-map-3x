@@ -27,7 +27,7 @@ defineOptions({
 
 const props = defineProps<Polyline>();
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<PolylineInstance>>();
 
 const { originInstance } = useControl<PolylineInstance>({
   type: ComponentTypeEnum.Overlay,

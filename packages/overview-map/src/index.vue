@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<OverivewMap>(), {
   anchor: "BMAP_ANCHOR_BOTTOM_RIGHT",
 });
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<OverivewMapInstance>>();
 
 const { originInstance } = useControl<OverivewMapInstance>({
   props,

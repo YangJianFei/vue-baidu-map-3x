@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Copyright>(), {
   anchor: "BMAP_ANCHOR_BOTTOM_RIGHT",
 });
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<CopyrightInstance>>();
 
 const { originInstance } = useControl<CopyrightInstance>({
   props,

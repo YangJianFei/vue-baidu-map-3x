@@ -26,6 +26,8 @@ export enum ControlsEnum {
   Polygon = 'Polygon',
   Circle = 'Circle',
   GroundOverlay = 'GroundOverlay',
+  Label = 'Label',
+  InfoWindow = 'InfoWindow',
 };
 
 export enum ComponentTypeEnum {

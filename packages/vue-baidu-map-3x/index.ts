@@ -27,6 +27,8 @@ import BmPolyline from "@vue-baidu-map-3x/polyline";
 import BmPolygon from "@vue-baidu-map-3x/polygon";
 import BmCircle from "@vue-baidu-map-3x/circle";
 import BmGround from "@vue-baidu-map-3x/ground";
+import BmLabel from "@vue-baidu-map-3x/label";
+import BmInfoWindow from "@vue-baidu-map-3x/info-window";
 
 export * from "@vue-baidu-map-3x/utils";
 
@@ -57,6 +59,8 @@ export default {
     Vue.component(BmPolygon.name, BmPolygon);
     Vue.component(BmCircle.name, BmCircle);
     Vue.component(BmGround.name, BmGround);
+    Vue.component(BmLabel.name, BmLabel);
+    Vue.component(BmInfoWindow.name, BmInfoWindow);
 
     // 图层
 
@@ -90,6 +94,8 @@ export {
   BmPolygon,
   BmCircle,
   BmGround,
+  BmLabel,
+  BmInfoWindow,
 };
 
 export { useBMap };

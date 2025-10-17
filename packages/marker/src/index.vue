@@ -2,16 +2,16 @@
  * @Description:   
  * @Author: YangJianFei
  * @Date: 2023-12-01 16:01:13
- * @LastEditTime: 2025-09-11 18:07:43
+ * @LastEditTime: 2025-09-28 17:39:56
  * @LastEditors: YangJianFei 1294485765@qq.com
- * @FilePath: /vue-baidu-map-3x/packages/city-list/src/index.vue
+ * @FilePath: /vue-baidu-map-3x/packages/marker/src/index.vue
 -->
 <template>
   <slot></slot>
 </template>
 
 <script lang="ts" setup>
-import { watch } from "vue";
+import { provide, watch } from "vue";
 import {
   baseEvents,
   ComponentTypeEnum,
@@ -20,6 +20,7 @@ import {
   getLabel,
   getPoint,
   getSize,
+  MarkerKey,
   useControl,
 } from "@vue-baidu-map-3x/utils";
 import type { BaseEvents, Marker, MarkerInstance } from "@vue-baidu-map-3x/utils";
@@ -32,7 +33,7 @@ defineOptions({
 
 const props = defineProps<Marker>();
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<MarkerInstance>>();
 
 const { originInstance } = useControl<MarkerInstance>({
   type: ComponentTypeEnum.Overlay,
@@ -40,8 +41,9 @@ const { originInstance } = useControl<MarkerInstance>({
   emit,
   events: [...events, ...baseEvents],
   controlName: ControlsEnum.Marker,
-  getPrefixParams: () =>
-    [props.position && getPoint(props.position.lng, props.position.lat)],
+  getPrefixParams: () => [
+    props.position && getPoint(props.position.lng, props.position.lat),
+  ],
   getElseParams: () => {
     return {
       offset: props.offset && getSize(props.offset?.width, props.offset?.height),
@@ -56,19 +58,14 @@ const { originInstance } = useControl<MarkerInstance>({
       title: props.title,
     };
   },
-});
-
-watch(
-  originInstance,
-  () => {
-    if (originInstance.value && props.label) {
-      originInstance.value.setLabel?.(getLabel(props.label));
+  onInstanceInit: (instance) => {
+    if (props.label) {
+      instance?.setLabel?.(getLabel(props.label));
     }
   },
-  {
-    immediate: true,
-  }
-);
+});
+
+provide(MarkerKey, originInstance);
 
 defineExpose({
   originInstance,

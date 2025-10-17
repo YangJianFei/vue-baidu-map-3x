@@ -11,19 +11,19 @@
 <script lang='ts' setup>
 import { } from 'vue';
 import { ControlsEnum, baseEvents, isEmpty, useControl } from '@vue-baidu-map-3x/utils';
-import type { BaseEvents, MapType, MapTypeInstance } from '@vue-baidu-map-3x/utils';
+import type { BaseEvents, MapTypeControl, MapTypeControlInstance } from '@vue-baidu-map-3x/utils';
 
 defineOptions({
   name: 'BmMapType',
 });
 
-const props = withDefaults(defineProps<MapType>(), {
+const props = withDefaults(defineProps<MapTypeControl>(), {
   anchor: 'BMAP_ANCHOR_TOP_RIGHT',
 });
 
-const emit = defineEmits<BaseEvents<MapTypeInstance>>();
+const emit = defineEmits<BaseEvents<MapTypeControlInstance>>();
 
-const { originInstance } = useControl<MapTypeInstance>({
+const { originInstance } = useControl<MapTypeControlInstance>({
   props,
   emit,
   events: baseEvents,

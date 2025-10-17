@@ -34,7 +34,7 @@ defineOptions({
 
 const props = defineProps<PointCollection>();
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<PointCollectionInstance>>();
 
 const { originInstance } = useControl<PointCollectionInstance>({
   type: ComponentTypeEnum.Overlay,

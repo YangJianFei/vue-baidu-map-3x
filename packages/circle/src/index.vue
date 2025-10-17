@@ -27,7 +27,7 @@ defineOptions({
 
 const props = defineProps<Circle>();
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<CircleInstance>>();
 
 const editingKey = ref();
 const isEditing = ref(false);

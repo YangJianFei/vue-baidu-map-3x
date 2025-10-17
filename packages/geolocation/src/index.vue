@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Geolocation>(), {
   anchor: 'BMAP_ANCHOR_BOTTOM_RIGHT',
 });
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<GeolocationInstance>>();
 
 const { originInstance } = useControl<GeolocationInstance>({
   props,

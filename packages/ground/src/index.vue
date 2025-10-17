@@ -31,7 +31,7 @@ defineOptions({
 
 const props = defineProps<GroundOverlay>();
 
-const emit = defineEmits<Events & BaseEvents>();
+const emit = defineEmits<Events & BaseEvents<GroundOverlayInstance>>();
 
 const { originInstance } = useControl<GroundOverlayInstance>({
   type: ComponentTypeEnum.Overlay,
