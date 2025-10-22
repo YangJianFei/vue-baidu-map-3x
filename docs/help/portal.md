@@ -14,3 +14,7 @@
 
 |GeoJson下载🏹|
 |[阿里数据可视化中心](https://datav.aliyun.com/portal/school/atlas/area_selector)|
+
+| 微前端🏹       | 
+| ------------- |
+|[qiankun微前端接入地图](https://github.com/YangJianFei/qiankun)|

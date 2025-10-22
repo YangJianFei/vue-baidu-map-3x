@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as r,a}from"./app.ada5b26b.js";const u='{"title":"\u4F20\u9001\u95E8","description":"","frontmatter":{},"headers":[{"level":2,"title":"\u4F20\u9001\u95E8","slug":"\u4F20\u9001\u95E8"}],"relativePath":"help/portal.md"}',o={},n=a("",5),l=[n];function d(p,s,h,i,b,_){return r(),e("div",null,l)}var f=t(o,[["render",d]]);export{u as __pageData,f as default};
