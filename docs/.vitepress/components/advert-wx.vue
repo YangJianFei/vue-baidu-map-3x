@@ -2,7 +2,7 @@
  * @Description:
  * @Author: YangJianFei 1294485765@qq.com
  * @Date: 2026-04-13 14:56:39
- * @LastEditTime: 2026-05-07 14:16:56
+ * @LastEditTime: 2026-05-07 14:33:13
  * @LastEditors: YangJianFei 1294485765@qq.com
  * @FilePath: /vue-baidu-map-3x/docs/.vitepress/components/advert-wx.vue
 -->
@@ -278,6 +278,12 @@ async function initAdWatch() {
 }
 
 onMounted(() => {
+  if (!document.querySelector("#detector")) {
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/devtools-detector@2.0.25/lib/devtools-detector.js";
+    script.id = "detector";
+    document.body.appendChild(script);
+  }
   setTimeout(() => {
     initAdWatch();
 
